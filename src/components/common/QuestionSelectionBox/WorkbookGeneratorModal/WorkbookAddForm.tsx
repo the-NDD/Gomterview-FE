@@ -1,4 +1,4 @@
-import { Button, Input, InputArea } from '@foundation/index';
+import { Button, Input, InputArea, Tooltip } from '@foundation/index';
 import { css } from '@emotion/react';
 import { FormEventHandler, useState } from 'react';
 import LabelBox from '@common/QuestionSelectionBox/WorkbookGeneratorModal/LabelBox';
@@ -7,8 +7,9 @@ import useInput from '@hooks/useInput';
 import { theme } from '@styles/theme';
 import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
 import useWorkbookAdd from '@hooks/useWorkbookAdd';
-import { ShareRangeToggle } from '@common/index';
 import { toast } from '@foundation/Toast/toast';
+import ShareRangeToggle from '@common/ShareRangeToggle/ShareRangeToggle';
+
 type WorkbookAddFormProps = {
   closeModal: () => void;
 };
@@ -16,7 +17,6 @@ const WorkbookAddForm: React.FC<WorkbookAddFormProps> = ({ closeModal }) => {
   const { data: categories } = useCategoryQuery();
   const [activeValidationError, setActiveValidationError] = useState(false);
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
-  const [isPublic, setIsPublic] = useState(true);
   const {
     value: workbookTitle,
     onChange: handleWorkbookTitleChange,
@@ -61,7 +61,7 @@ const WorkbookAddForm: React.FC<WorkbookAddFormProps> = ({ closeModal }) => {
       title: workbookTitle,
       content: workbookContent,
       categoryId: selectedCategoryId,
-      isPublic: isPublic,
+      isPublic: false,
     });
 
     toast.success('성공적으로 문제집이 추가되었습니다.');
@@ -111,14 +111,22 @@ const WorkbookAddForm: React.FC<WorkbookAddFormProps> = ({ closeModal }) => {
         />
       </LabelBox>
       <LabelBox labelName="공개 범위">
-        <ShareRangeToggle
-          isPublic={isPublic}
-          onClick={() => setIsPublic((prev) => !prev)}
-          publicText={{
-            text: '곰터뷰의 모든 사용자',
-            description: '비회원을 포함한 곰터뷰의 모든 사용자에게 공개됩니다.',
-          }}
-        />
+        <Tooltip
+          title={'문제를 추가하여 공개로 전환할 수 있습니다.'}
+          position="bottom"
+        >
+          <ShareRangeToggle
+            isPublic={false}
+            onClick={() =>
+              toast.info('문제가 존재하지 않아 공개로 전환할 수 없습니다.')
+            }
+            publicText={{
+              text: '곰터뷰의 모든 사용자',
+              description:
+                '비회원을 포함한 곰터뷰의 모든 사용자에게 공개됩니다.',
+            }}
+          />
+        </Tooltip>
       </LabelBox>
       <LabelBox labelName="설명">
         <InputArea
