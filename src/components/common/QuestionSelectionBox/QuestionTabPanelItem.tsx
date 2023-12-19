@@ -12,6 +12,7 @@ import QuestionTabPanelHeader from '@common/QuestionSelectionBox/QuestionTabPane
 import useTabs from '@foundation/Tabs/useTabs';
 import QuestionAccordionList from '@common/QuestionSelectionBox/QuestionAccordionList';
 import useBreakpoint from '@hooks/useBreakPoint';
+import { toast } from '@foundation/Toast/toast';
 
 type TabPanelItemProps = {
   tabIndex: string;
@@ -69,7 +70,11 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
           workbook={workbook}
           questionLength={questionData?.length || 0}
           onWorkbookDelete={() => setCurrentValue('0')}
-          onEditButtonClick={() => setIsEditMode(true)}
+          onEditButtonClick={() =>
+            questionData?.length
+              ? setIsEditMode(true)
+              : toast.info('문제가 존재하지 않습니다.')
+          }
         />
         <div
           css={css`
