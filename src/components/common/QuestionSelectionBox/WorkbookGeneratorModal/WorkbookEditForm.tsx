@@ -10,6 +10,7 @@ import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
 import useWorkbookEdit from '@hooks/useWorkbookEdit';
 import { ShareRangeToggle } from '@common/index';
 import { toast } from '@foundation/Toast/toast';
+import useQuestionWorkbookQuery from '@hooks/apis/queries/useQuestionWorkbookQuery';
 
 type WorkbookEditFormProps = {
   workbookId: number;
@@ -35,6 +36,11 @@ const WorkbookEditForm: React.FC<WorkbookEditFormProps> = ({
   } = useInput<HTMLInputElement>(workbookInfo?.title ?? '');
   const { value: workbookContent, onChange: handleWorkbookContentChange } =
     useInput<HTMLTextAreaElement>(workbookInfo?.content ?? '');
+
+  const { data: questions } = useQuestionWorkbookQuery({
+    workbookId: workbookId,
+    enabled: true,
+  });
 
   const findCategoryIndex = useCallback(
     (categoryId?: number) => {
@@ -64,6 +70,16 @@ const WorkbookEditForm: React.FC<WorkbookEditFormProps> = ({
 
   const handleCategoryClick = (index: number) => {
     setSelectedCategoryIndex(index);
+  };
+
+  const handleWorkbookIsPublic = () => {
+    if (questions && questions.length > 0) {
+      setIsPublic((prev) => !prev);
+    } else {
+      toast.info(
+        '현재 문제집에 질문이 존재하지 않아 상태 변경이 불가능합니다.'
+      );
+    }
   };
 
   const handleSubmit: FormEventHandler = (e) => {
@@ -123,7 +139,7 @@ const WorkbookEditForm: React.FC<WorkbookEditFormProps> = ({
       <LabelBox labelName="공개 범위">
         <ShareRangeToggle
           isPublic={isPublic}
-          onClick={() => setIsPublic((prev) => !prev)}
+          onClick={handleWorkbookIsPublic}
           publicText={{
             text: '곰터뷰의 모든 사용자',
             description: '비회원을 포함한 곰터뷰의 모든 사용자에게 공개됩니다.',
