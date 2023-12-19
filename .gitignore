@@ -1,2 +1,7 @@
+node_modules
+dist
+.env.*
+*.log
+src/dev/
 .vscode
 .idea
