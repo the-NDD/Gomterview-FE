@@ -42,11 +42,7 @@ const useWorkbookQuestionDelete = (workbookId: number) => {
         return deleteQuestionAsync(questionId);
       })
     );
-    if (
-      workbookInfo &&
-      workbookInfo.isPublic &&
-      questions?.length === checkedQuestion.length
-    ) {
+    if (workbookInfo && questions?.length === checkedQuestion.length) {
       editWorkbook({
         workbookId: workbookId,
         title: workbookInfo.title,
