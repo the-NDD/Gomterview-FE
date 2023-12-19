@@ -47,25 +47,21 @@ deferRender()
     } else {
       console.error('Root element not found');
     }
-    console.log(`     ヽ      |   |      /    /  `);
-    console.log(`   ー       곰터뷰 최고!!!       ー`);
-    console.log(`     /    /    |   |   ＼   ヽ  `);
-    console.log(`　　　　　　　　　　　　　　;' ':;,　　 　　　 ,;'':;,`);
-    console.log(`　　　　　　　　　　　　　;'　　 ':;,.,..,,,;'　　　';,`);
-    console.log(`                ,:'　　　　　　　　 　　　　::::::::､`);
     console.log(
-      `　    　　　　　　　,:' ／ 　 　　　　＼ 　　　　　::::::::',`
+      '     ヽ      |   |      /    /  \n' +
+        '   ー       곰터뷰 최고!!!       ー\n' +
+        '     /    /    |   |  ヽ    ヽ  \n' +
+        "                    ;' ':;,       ,;'':;,\n" +
+        "                  ;'   ':;,.,..,,,;'   ';,\n" +
+        "                ,:'                 ::::::::､\n" +
+        "              ,:'   /      ヽ      ::::::::',\n" +
+        "              :'    ●      ●        ::::::::i.\n" +
+        "              i ''' (_人__)  ''''   ::::::::::i\n" +
+        '              :                      ::::::::i\n' +
+        '               :,､                :::::::::: /\n' +
+        "               ,:'         : ::::::::::::::､\n" +
+        "             ,:'             : : :::::::::: :､"
     );
-    console.log(
-      `　　　　　  　　　　:'　 ●　　　　　 ●　 　　　　　　::::::::i.`
-    );
-    console.log(`　　  　　　　　　　i　'''　(_人__)　　''''　　 ::::::::::i`);
-    console.log(
-      `　　　　  　　　　　 :　 　　　　　　　　　 　　　　　::::::::i`
-    );
-    console.log(`　　　　　　　　　　　:,､ 　　　　　 　 　　　 :::::::::: /`);
-    console.log(`　　　　 　　　　　　 ,:'　　　　　　　 : ::::::::::::｀:､`);
-    console.log(`　　　　　　　 　　 ,:'　　　　 　　　　 : : ::::::::::｀:､`);
   })
   .catch((err) => {
     console.error('Failed to start mock service worker', err);
