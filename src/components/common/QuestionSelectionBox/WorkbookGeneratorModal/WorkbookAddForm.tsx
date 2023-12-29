@@ -8,11 +8,12 @@ import { theme } from '@styles/theme';
 import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
 import useWorkbookAdd from '@hooks/useWorkbookAdd';
 import { toast } from '@foundation/Toast/toast';
-import ShareRangeToggle from '@common/ShareRangeToggle/ShareRangeToggle';
+import { ShareRangeToggle } from '@common/index';
 
 type WorkbookAddFormProps = {
   closeModal: () => void;
 };
+
 const WorkbookAddForm: React.FC<WorkbookAddFormProps> = ({ closeModal }) => {
   const { data: categories } = useCategoryQuery();
   const [activeValidationError, setActiveValidationError] = useState(false);
