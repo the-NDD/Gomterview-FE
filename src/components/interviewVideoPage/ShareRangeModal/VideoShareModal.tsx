@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import Modal from '@foundation/Modal';
 import { Typography } from '@foundation/index';
 import useToggleVideoPublicMutation from '@hooks/apis/mutations/useToggleVideoPublicMutation';
-import ShareRangeToggle from '@common/ShareRangeToggle/ShareRangeToggle';
+import { ShareRangeToggle } from '@common/index';
 import VideoShareModalFooter from './VideoShareModalFooter';
 
 type VideoShareModalProps = {
