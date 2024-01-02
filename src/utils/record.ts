@@ -5,6 +5,8 @@ import { FFmpeg } from '@ffmpeg/ffmpeg';
 import { toBlobURL } from '@ffmpeg/util';
 import { isAndroid, isIOSUser } from '@/utils/userAgent';
 
+const baseURL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.4/dist/umd';
+
 type StartRecordingProps = {
   media: MediaStream | null;
   selectedMimeType: string;
@@ -23,7 +25,12 @@ let index = 1;
 const videoRecordQueue: VideoRecordQueue = [];
 
 const ffmpegLogCallback = ({ message }: { message: string }) => {
+  if (!videoRecordQueue[0]) {
+    return;
+  }
+
   const { toastId, recordTime, questionNumber } = videoRecordQueue[0];
+
   if (toastId) {
     const curProgressMessage = compareProgress(message, recordTime);
     curProgressMessage &&
@@ -41,6 +48,7 @@ const ffmpegLogCallback = ({ message }: { message: string }) => {
     }
   );
 };
+
 ffmpeg.on('log', ffmpegLogCallback);
 
 export const startRecording = ({
@@ -103,7 +111,6 @@ export const EncodingWebmToMp4 = async (blob: Blob, recordTime: string) => {
     return blob;
   }
 
-  const baseURL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm';
   videoRecordQueue.push({ recordTime, questionNumber: index++ });
 
   if (!ffmpeg.loaded) {
@@ -141,6 +148,37 @@ export const EncodingWebmToMp4 = async (blob: Blob, recordTime: string) => {
   toast.delete(videoRecordQueue[0].toastId!);
   videoRecordQueue.shift();
   return newBlob;
+};
+
+/**
+ * Blob 에 대한 0.1초 시점의 썸네일을 생성해, 썸네일에 대한 blob 으로 반환합니다.
+ */
+export const getThumbnailBlob = async (blob: Blob) => {
+  const video = document.createElement('video');
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+
+  const loadVideo = new Promise((resolve) => {
+    video.addEventListener('loadeddata', resolve);
+
+    video.src = URL.createObjectURL(blob);
+    video.currentTime = 0.1; // 썸네일을 캡처할 시점 (초단위)
+  });
+
+  await loadVideo;
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  context?.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  return new Promise<Blob>((resolve) => {
+    canvas.toBlob((blob) => {
+      if (blob) {
+        resolve(blob);
+      } else {
+        resolve(new Blob());
+      }
+    }, 'image/png');
+  });
 };
 
 const compareProgress = (logMessage: string, recordTime: string) => {
