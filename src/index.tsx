@@ -1,29 +1,29 @@
 import ReactDOM from 'react-dom/client';
 import ReactGA from 'react-ga4';
-import { worker } from '@/mocks/browser';
 import App from '@/App';
 import * as Sentry from '@sentry/react';
 
 async function deferRender() {
-  if (import.meta.env.REACT_APP_MSW_ENABLE !== 'true') {
+  if (import.meta.env.VITE_APP_MSW_ENABLE !== 'true') {
     return;
   }
+  const { worker } = await import('./mocks/browser.js');
   return worker.start({
     onUnhandledRequest: 'bypass',
   });
 }
 
 //GA 추적 태그 설정
-if (import.meta.env.REACT_APP_GTAG_ID) {
-  ReactGA.initialize(import.meta.env.REACT_APP_GTAG_ID);
+if (import.meta.env.VITE_APP_GTAG_ID) {
+  ReactGA.initialize(import.meta.env.VITE_APP_GTAG_ID);
 }
 
 Sentry.init({
-  dsn: import.meta.env.REACT_APP_SENTRY_DSN,
+  dsn: import.meta.env.VITE_APP_SENTRY_DSN,
   integrations: [
     new Sentry.BrowserTracing({
       // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
-      tracePropagationTargets: [import.meta.env.REACT_APP_SENTRY_BASE_URL],
+      tracePropagationTargets: [import.meta.env.VITE_APP_SENTRY_BASE_URL],
     }),
     new Sentry.Replay(),
   ],

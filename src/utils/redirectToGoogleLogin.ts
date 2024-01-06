@@ -3,7 +3,7 @@ import { PATH } from '@constants/path';
 import { toast } from '@foundation/Toast/toast';
 
 const redirectToGoogleLogin = async () => {
-  if (import.meta.env.NODE_ENV === 'development') {
+  if (import.meta.env.MODE === 'development') {
     const { cookieGenerator } = await import('@/dev/cookieGenerator');
     void (await cookieGenerator());
     toast.success('개발 모드에서 로그인 되었습니다.', {

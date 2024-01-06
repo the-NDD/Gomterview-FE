@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode development",
+    "local": "vite --mode localhost",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -49,5 +50,8 @@
     "msw": "^2.0.3",
     "prettier": "^3.0.3",
     "ts-loader": "^9.5.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
