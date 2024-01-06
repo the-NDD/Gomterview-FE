@@ -4,6 +4,7 @@ import { putBlobDataToIdrive } from '@/apis/idrive';
 import useAddVideoMutation from '@/hooks/apis/mutations/useAddVideoMutation';
 import { toast } from '@foundation/Toast/toast';
 import { EncodingWebmToMp4, getThumbnailBlob } from '@/utils/record';
+import { IDRIVE_URL } from '@constants/api';
 
 type UploadParams = {
   blob: Blob;
@@ -40,8 +41,8 @@ export const useUploadToIDrive = () => {
       videoToServer({
         questionId: currentQuestion.questionId,
         videoName: currentQuestion.questionContent,
-        url: `https://u2e0.c18.e2-4.dev/videos/${video.key}`,
-        thumbnail: `https://u2e0.c18.e2-4.dev/thumbnail/${thumbnail.key}`,
+        url: `${IDRIVE_URL}/videos/${video.key}`,
+        thumbnail: `${IDRIVE_URL}/thumbnail/${thumbnail.key}`,
         videoLength: recordTime,
       });
 
