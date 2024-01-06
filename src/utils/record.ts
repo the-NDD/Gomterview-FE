@@ -4,8 +4,7 @@ import { toast } from '@foundation/Toast/toast';
 import { FFmpeg } from '@ffmpeg/ffmpeg';
 import { toBlobURL } from '@ffmpeg/util';
 import { isAndroid, isIOSUser } from '@/utils/userAgent';
-
-const baseURL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.4/dist/umd';
+import { FFMPEG_URL } from '@constants/api';
 
 type StartRecordingProps = {
   media: MediaStream | null;
@@ -115,13 +114,16 @@ export const EncodingWebmToMp4 = async (blob: Blob, recordTime: string) => {
 
   if (!ffmpeg.loaded) {
     await ffmpeg.load({
-      coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+      coreURL: await toBlobURL(
+        `${FFMPEG_URL}/ffmpeg-core.js`,
+        'text/javascript'
+      ),
       wasmURL: await toBlobURL(
-        `${baseURL}/ffmpeg-core.wasm`,
+        `${FFMPEG_URL}/ffmpeg-core.wasm`,
         'application/wasm'
       ),
       workerURL: await toBlobURL(
-        `${baseURL}/ffmpeg-core.worker.js`,
+        `${FFMPEG_URL}/ffmpeg-core.worker.js`,
         'text/javascript'
       ),
     });
