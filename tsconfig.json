@@ -4,7 +4,7 @@
     "module": "es2020", // module 형식
     "resolveJsonModule": true,
     "esModuleInterop": true, // import시 namespace alias 가능
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "strict": true,
