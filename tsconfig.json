@@ -1,15 +1,27 @@
 {
   "compilerOptions": {
-    "target": "es5", // 결과 파일 형식
-    "module": "es2020", // module 형식
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true, // import시 namespace alias 가능
-    "moduleResolution": "node",
+    "isolatedModules": true,
+    "noEmit": true,
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
+
+    /* Linting */
     "strict": true,
-    "noImplicitAny": true,
-    "baseUrl": ".",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* path */
     "paths": {
       "@common/*": ["./src/components/common/*"],
       "@foundation/*": ["./src/components/foundation/*"],
@@ -24,5 +36,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

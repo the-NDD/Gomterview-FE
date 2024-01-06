@@ -5,7 +5,6 @@
     "browser": true,
     "node": true
   },
-  "ignorePatterns": ["webpack.config.js"],
   "parserOptions": {
     "project": ["./tsconfig.json"]
   },
