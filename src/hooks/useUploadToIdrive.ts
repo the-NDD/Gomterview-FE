@@ -51,7 +51,6 @@ export const useUploadToIDrive = () => {
       toast.error('업로드 중 오류 발생');
       throw error; // 오류를 다시 throw하여 호출자에게 전파
     }
-    alert('어떻게 나간거임?');
   };
 
   return uploadToIDrive;
