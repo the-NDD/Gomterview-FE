@@ -13,7 +13,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "@ffmpeg/ffmpeg": "^0.12.7",
+    "@ffmpeg/ffmpeg": "^0.12.10",
     "@ffmpeg/util": "^0.12.1",
     "@sentry/react": "^7.81.1",
     "@tanstack/react-query": "^5.8.1",
@@ -54,6 +54,5 @@
   },
   "msw": {
     "workerDirectory": "public"
-  },
-  "packageManager": "yarn@4.0.2"
+  }
 }
