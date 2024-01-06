@@ -61,6 +61,7 @@ const RAW_RUNTIME_STATE =
           ["react-router-dom", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:6.21.1"],\
           ["recoil", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:0.7.7"],\
           ["ts-loader", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:9.5.1"],\
+          ["tsc", "npm:2.0.4"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"],\
           ["vite", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:5.0.11"]\
         ],\
@@ -3724,6 +3725,7 @@ const RAW_RUNTIME_STATE =
           ["react-router-dom", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:6.21.1"],\
           ["recoil", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:0.7.7"],\
           ["ts-loader", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:9.5.1"],\
+          ["tsc", "npm:2.0.4"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"],\
           ["vite", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:5.0.11"]\
         ],\
@@ -6423,6 +6425,15 @@ const RAW_RUNTIME_STATE =
           "@types/webpack",\
           "typescript",\
           "webpack"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["tsc", [\
+      ["npm:2.0.4", {\
+        "packageLocation": "../../../.yarn/berry/cache/tsc-npm-2.0.4-e331b066cb-10c0.zip/node_modules/tsc/",\
+        "packageDependencies": [\
+          ["tsc", "npm:2.0.4"]\
         ],\
         "linkType": "HARD"\
       }]\

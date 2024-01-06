@@ -3015,6 +3015,7 @@ __metadata:
     react-router-dom: "npm:^6.18.0"
     recoil: "npm:^0.7.7"
     ts-loader: "npm:^9.5.0"
+    tsc: "npm:^2.0.4"
     typescript: "npm:^5.2.2"
     vite: "npm:^5.0.8"
   languageName: unknown
@@ -5370,6 +5371,15 @@ __metadata:
     typescript: "*"
     webpack: ^5.0.0
   checksum: 7dc1e3e5d3d032b6ef27836032f02c57077dfbcdf5817cbbc16b7b8609e7ed1d0ec157a03eaac07960161d8ad4a9e030c4d6722fe33540cf6ee75156c7f9c33d
+  languageName: node
+  linkType: hard
+
+"tsc@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "tsc@npm:2.0.4"
+  bin:
+    tsc: bin/tsc
+  checksum: 4651d344891d995e62ab7ca64ce0a8597bbdc2d392886c9956d15caab4dc9bfe86e759d3385b3f97c49fb5294194a161d6812673e3f51e46357c82482f32c3ab
   languageName: node
   linkType: hard
 
