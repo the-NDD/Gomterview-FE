@@ -103,7 +103,7 @@ export const EncodingWebmToMp4 = async (blob: Blob, recordTime: string) => {
     return blob;
   }
 
-  const baseURL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.4/dist/umd';
+  const baseURL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm';
   videoRecordQueue.push({ recordTime, questionNumber: index++ });
 
   if (!ffmpeg.loaded) {

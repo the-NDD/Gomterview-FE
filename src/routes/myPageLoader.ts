@@ -8,7 +8,7 @@ const myPageLoader = ({ queryClient }: { queryClient: QueryClient }) => {
   //   })
   //   .catch((e) => {
   //     if (axios.isAxiosError(e)) {
-  //       process.env.NODE_ENV === 'development' && console.error(e.toJSON());
+  //       import.meta.env.NODE_ENV === 'development' && console.error(e.toJSON());
   //     }
   //   });
   // const queryState = queryClient.getQueryState(QUERY_KEY.MEMBER);

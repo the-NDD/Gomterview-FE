@@ -23,7 +23,7 @@ const logAPIErrorToSentry = (
       errorCode: error.response?.data.errorCode,
       status: error.status,
     });
-    scope.setTag('environment', process.env.NODE_ENV);
+    scope.setTag('environment', import.meta.env.NODE_ENV);
 
     scope.setContext('API Request Detail', {
       url: error.config?.url,

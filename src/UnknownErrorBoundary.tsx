@@ -13,7 +13,7 @@ const UnknownErrorBoundary: React.FC<PropsWithChildren> = ({ children }) => {
           scope.setTags({
             status: 'unknown',
           });
-          scope.setTag('environment', process.env.NODE_ENV);
+          scope.setTag('environment', import.meta.env.NODE_ENV);
           scope.setContext('trace', {
             message: error.message,
             stack: error.stack,

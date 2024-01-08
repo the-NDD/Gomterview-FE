@@ -8,7 +8,7 @@ import { AxiosError } from 'axios';
 const LoaderErrorPage = () => {
   const error = useRouteError() as AxiosError;
 
-  if (process.env.NODE_ENV === 'development') console.log(error);
+  if (import.meta.env.NODE_ENV === 'development') console.log(error);
 
   return (
     <ErrorPageLayout>
