@@ -120,8 +120,9 @@ const InterviewSettingPage: React.FC = () => {
             <ProgressStepBar.Item
               key={item.name}
               name={item.name}
-              isCompleted={item.state.isSuccess || currentPage === item.path}
-            ></ProgressStepBar.Item>
+              isCurrent={currentPage === item.path}
+              isCompleted={item.state.isSuccess}
+            />
           ))}
         </ProgressStepBar>
       </div>
