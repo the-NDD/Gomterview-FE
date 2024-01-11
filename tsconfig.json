@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es5", // 결과 파일 형식
+    "target": "ES2015", // 결과 파일 형식
     "module": "es2020", // module 형식
     "resolveJsonModule": true,
     "esModuleInterop": true, // import시 namespace alias 가능
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "strict": true,
     "noImplicitAny": true,
     "baseUrl": ".",
+    "skipLibCheck": true,
     "paths": {
       "@common/*": ["./src/components/common/*"],
       "@foundation/*": ["./src/components/foundation/*"],
