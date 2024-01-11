@@ -52,5 +52,11 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint",
+      "prettier --write"
+    ]
   }
 }
