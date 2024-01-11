@@ -1,0 +1,6 @@
+- label: "JIRA"
+  message: "$issuePrefix"
+  icon: "jira"
+  color: "blue"
+  url: "https://milk717.atlassian.net/browse/$issuePrefix"
+  when: "$issuePrefix"
