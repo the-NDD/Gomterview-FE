@@ -7,7 +7,7 @@ const getAPIResponseData = async <T, D = T>(option: AxiosRequestConfig<D>) => {
     return result.data;
   } catch (e) {
     if (axios.isAxiosError(e)) {
-      process.env.NODE_ENV === 'development' && console.error(e.toJSON());
+      import.meta.env.NODE_ENV === 'development' && console.error(e.toJSON());
     }
     throw e;
   }
