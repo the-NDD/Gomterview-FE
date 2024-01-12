@@ -5,7 +5,10 @@ type IdriveUploadParams = {
   blob: Blob;
 };
 
-export const putVideoToIdrive = async ({
+/**
+ * Idrive에 Blob 데이터 직접 업로드를 수행합니다.
+ */
+export const putBlobDataToIdrive = async ({
   url,
   blob,
 }: IdriveUploadParams): Promise<void> => {
@@ -14,9 +17,7 @@ export const putVideoToIdrive = async ({
   }
 
   try {
-    await axios.put<null>(url, blob, {
-      headers: { 'Content-Type': 'video/webm; codecs=vp8' },
-    });
+    await axios.put<null>(url, blob);
   } catch (error) {
     console.error('Error occurred while uploading video:', error);
     throw error;
