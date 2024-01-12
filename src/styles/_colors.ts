@@ -101,6 +101,18 @@ export const colors = {
       default: colorChips.navy500, // #475595
       hover: colorChips.navy600, //#3C477D
     },
+    tertiary: {
+      default: colorChips.green500, // #76D773
+      hover: colorChips.green600, //#63B561
+    },
+    error: {
+      default: colorChips.red500, // #E05241
+      hover: colorChips.red600, //#BC4537
+    },
+    warning: {
+      default: colorChips.yellow500, // #EAC645
+      hover: colorChips.yellow600, //#C5A63A
+    },
   },
   status: {
     active: colorChips.green500, // #76D773
