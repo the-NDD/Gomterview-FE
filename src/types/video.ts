@@ -50,8 +50,14 @@ export type VideoPreSignedReqDto = Pick<VideoEntity, 'questionId'>;
  * 비디오 등록 전 질문 아이디로 비디오 등록용 pre-signed url 응답 객체 타입
  */
 export type VideoPreSignedResDto = {
-  preSignedUrl: string;
-  key: string; //비디오 파일 이름입니다.
+  video: {
+    preSignedUrl: string;
+    key: string; //비디오 파일 이름입니다.
+  };
+  thumbnail: {
+    preSignedUrl: string;
+    key: string; //비디오 파일 이름입니다.
+  };
 };
 
 /**
