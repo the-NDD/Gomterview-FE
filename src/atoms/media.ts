@@ -24,4 +24,28 @@ export const selectedMimeTypeState = atom<string>({
   default: getSupportedMimeTypes()[0],
 });
 
-// 사용자의 장치에 관한 전역 상태
+export const deviceListState = atom<{
+  video: MediaDeviceInfo[];
+  audioInput: MediaDeviceInfo[];
+  audioOutput: MediaDeviceInfo[];
+}>({
+  key: 'deviceListState',
+  default: {
+    video: [],
+    audioInput: [],
+    audioOutput: [],
+  },
+});
+
+export const selectedDeviceState = atom<{
+  video: string;
+  audioInput: string;
+  audioOutput: string;
+}>({
+  key: 'selectedDeviceState',
+  default: {
+    video: '',
+    audioInput: '',
+    audioOutput: '',
+  },
+});
