@@ -1,3 +1,4 @@
+import { getSupportedMimeTypes } from '@/utils/media';
 import { atom } from 'recoil';
 
 const mediaConnectStatus = [
@@ -20,5 +21,31 @@ export const connectStatusState = atom<ConnectStatus>({
 
 export const selectedMimeTypeState = atom<string>({
   key: 'selectedMimeTypeState',
-  default: '',
+  default: getSupportedMimeTypes()[0],
+});
+
+export const deviceListState = atom<{
+  video: MediaDeviceInfo[];
+  audioInput: MediaDeviceInfo[];
+  audioOutput: MediaDeviceInfo[];
+}>({
+  key: 'deviceListState',
+  default: {
+    video: [],
+    audioInput: [],
+    audioOutput: [],
+  },
+});
+
+export const selectedDeviceState = atom<{
+  video: string;
+  audioInput: string;
+  audioOutput: string;
+}>({
+  key: 'selectedDeviceState',
+  default: {
+    video: '',
+    audioInput: '',
+    audioOutput: '',
+  },
 });
