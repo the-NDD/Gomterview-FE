@@ -38,8 +38,6 @@ const VideoListTabPanel: React.FC = () => {
     closeDeleteCheckModal();
   };
 
-  if (!data) return <div>로딩중</div>;
-
   return (
     <Box
       css={css`
