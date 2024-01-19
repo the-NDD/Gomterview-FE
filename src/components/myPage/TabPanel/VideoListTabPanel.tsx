@@ -5,18 +5,21 @@ import useDeleteVideoMutation from '@hooks/apis/mutations/useDeleteVideoMutation
 import useVideoListQuery from '@hooks/apis/queries/useVideoListQuery';
 import { theme } from '@styles/theme';
 import dayjs from 'dayjs';
-import { useState } from 'react';
 import DeleteCheckModal from '../DeleteCheckModal';
 import Thumbnail from '../Thumbnail';
 import { VideoItem } from '../VideoItem';
 import useModal from '@hooks/useModal';
+import { VideoListResDto } from '@/types/video';
+import { ExcludeArray } from '@/types/utils';
 
-const VideoListTabPanel: React.FC = () => {
-  const { data } = useVideoListQuery();
-  const { mutate } = useDeleteVideoMutation();
-
-  const [selectedVideoId, setSelectVideoId] = useState<number | null>(null);
-
+type VideoListItemProps = {
+  video: ExcludeArray<VideoListResDto>;
+  deleteVideo: (id: number) => void;
+};
+const VideoListItem: React.FC<VideoListItemProps> = ({
+  video,
+  deleteVideo,
+}) => {
   const { openModal: openDeleteCheckModal, closeModal: closeDeleteCheckModal } =
     useModal(() => {
       return (
@@ -28,15 +31,31 @@ const VideoListTabPanel: React.FC = () => {
       );
     });
 
-  const handleDeleteIconClick = (videoId: number) => {
-    openDeleteCheckModal();
-    setSelectVideoId(videoId);
+  const handleConfirmModal = () => {
+    closeDeleteCheckModal();
+    deleteVideo(video.id);
   };
 
-  const handleConfirmModal = () => {
-    selectedVideoId && mutate(selectedVideoId);
-    closeDeleteCheckModal();
-  };
+  return (
+    <VideoItem
+      key={video.id}
+      videoName={video.videoName}
+      date={dayjs(Number(video.createdAt)).format('YYYY-MM-DD')}
+      path={`${PATH.INTERVIEW_VIDEO(video.id)}`}
+    >
+      <Thumbnail
+        image={video.thumbnail ?? ''}
+        videoName={video.videoName}
+        videoLength={video.videoLength}
+        onDeleteIconClick={openDeleteCheckModal}
+      />
+    </VideoItem>
+  );
+};
+
+const VideoListTabPanel: React.FC = () => {
+  const { data } = useVideoListQuery();
+  const { mutate } = useDeleteVideoMutation();
 
   return (
     <Box
@@ -53,19 +72,7 @@ const VideoListTabPanel: React.FC = () => {
       `}
     >
       {data.map((video) => (
-        <VideoItem
-          key={video.id}
-          videoName={video.videoName}
-          date={dayjs(Number(video.createdAt)).format('YYYY-MM-DD')}
-          path={`${PATH.INTERVIEW_VIDEO(video.id)}`}
-        >
-          <Thumbnail
-            image={video.thumbnail ?? ''}
-            videoName={video.videoName}
-            videoLength={video.videoLength}
-            onDeleteIconClick={() => handleDeleteIconClick(video.id)}
-          />
-        </VideoItem>
+        <VideoListItem key={video.id} video={video} deleteVideo={mutate} />
       ))}
     </Box>
   );
