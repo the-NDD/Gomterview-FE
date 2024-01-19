@@ -8,14 +8,15 @@ type StepProps<T> = {
 
 const Step = <T,>({ page, children, path }: StepProps<T>) => {
   return (
-    <div
-      css={css`
-        display: ${page === path ? 'block' : 'none'};
-        height: 100%;
-      `}
-    >
-      {children}
-    </div>
+    page === path && (
+      <div
+        css={css`
+          height: 100%;
+        `}
+      >
+        {children}
+      </div>
+    )
   );
 };
 
