@@ -1,82 +1,120 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   connectStatusState,
+  deviceListState,
   mediaState,
+  selectedDeviceState,
   selectedMimeTypeState,
 } from '@atoms/media';
-import { useCallback, useEffect, useRef } from 'react';
-import { closeMedia, getMedia, getSupportedMimeTypes } from '@/utils/media';
+import { useCallback, useEffect } from 'react';
+import { closeMedia, getDevices, getMedia } from '@/utils/media';
 import useModal from '@hooks/useModal';
 import { MediaDisconnectedModal } from '@components/interviewPage/InterviewModal';
-import { toast } from '@foundation/Toast/toast';
 
+/**
+ * 전역적으로 사용자의 미디어를 관리하는 hook
+ */
 const useMedia = () => {
   const [media, setMedia] = useRecoilState(mediaState);
   const [connectStatus, setConnectStatus] = useRecoilState(connectStatusState);
 
-  const [selectedMimeType, setSelectedMimeType] = useRecoilState(
-    selectedMimeTypeState
-  );
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [deviceList, setDeviceList] = useRecoilState(deviceListState);
+  const selectedMimeType = useRecoilValue(selectedMimeTypeState);
+  // TODO: 상태 제거
+  const [selectedDevice, setSelectedDevice] =
+    useRecoilState(selectedDeviceState);
+  // element
 
-  const { openModal, closeModal } = useModal(() => {
+  const { openModal: openErrorModal, closeModal } = useModal(() => {
     return <MediaDisconnectedModal closeModal={closeModal} />;
   });
 
+  const updateDeviceList = useCallback(async () => {
+    const newDeviceList = await getDevices();
+    setDeviceList(newDeviceList);
+  }, [setDeviceList]);
+
   const startMedia = useCallback(async () => {
     try {
-      const newMedia = await getMedia();
+      const newMedia = await getMedia({
+        selectedAudio: selectedDevice.audioInput.deviceId,
+        selectedVideo: selectedDevice.video.deviceId,
+      });
       setMedia(newMedia);
       setConnectStatus('connect');
-      if (videoRef.current) videoRef.current.srcObject = newMedia;
-      toast.success('성공적으로 카메라에 연결되었습니다😊');
+      void updateDeviceList();
+      // TODO: 추후 기능적 단위로 분리를 해야함
     } catch (e) {
       setConnectStatus('fail');
-      openModal();
+      openErrorModal();
     }
-  }, [setConnectStatus, setMedia]);
-
-  const connectVideo = useCallback(() => {
-    if (videoRef.current) videoRef.current.srcObject = media;
-    setConnectStatus('connect');
-  }, [media, setConnectStatus]);
+  }, [
+    selectedDevice.audioInput.deviceId,
+    selectedDevice.video.deviceId,
+    setMedia,
+    setConnectStatus,
+    updateDeviceList,
+    openErrorModal,
+  ]);
 
   const stopMedia = useCallback(() => {
-    if (media) {
-      closeMedia(media);
-      setMedia(null);
-      setConnectStatus('pending');
-    }
+    closeMedia(media);
+    setMedia(null);
+    setConnectStatus('pending');
   }, [media, setConnectStatus, setMedia]);
 
+  /**
+   * media가 연결되었을때 해당 videoStream track에 이벤트 리스너를 추가해 종료 여부를 감지하고 있는다.
+   */
   useEffect(() => {
-    const mimeTypes = getSupportedMimeTypes();
-    if (mimeTypes.length > 0) setSelectedMimeType(mimeTypes[0]);
-  }, [setSelectedMimeType]);
+    if (!media) return;
+
+    const checkTrackEnded = () => {
+      setConnectStatus('fail');
+    };
+
+    const tracks = media.getTracks();
+    tracks.forEach((track) => {
+      track.addEventListener('ended', checkTrackEnded);
+    });
+
+    return () => {
+      tracks.forEach((track) => {
+        track.removeEventListener('ended', checkTrackEnded);
+      });
+    };
+  }, [media, setConnectStatus]);
+
+  /**
+   * useMedia hook 호출시 사용자가 사용가능한 미디어 장치 목록과 미디어 장치 상태를 동기화 시킴
+   */
 
   useEffect(() => {
-    const mediaStream = videoRef.current?.srcObject;
-    if (mediaStream instanceof MediaStream) {
-      const checkStream = () => {
-        if (!mediaStream.active) {
-          setConnectStatus('pending');
+    navigator.mediaDevices.addEventListener(
+      'devicechange',
+      () => void updateDeviceList()
+    );
 
-          mediaStream.removeEventListener('inactive', checkStream);
-        }
-      };
+    void updateDeviceList();
 
-      mediaStream.addEventListener('inactive', checkStream);
-    }
-  }, [videoRef, media, setConnectStatus]);
+    return () => {
+      navigator.mediaDevices.removeEventListener(
+        'devicechange',
+        () => void updateDeviceList()
+      );
+    };
+  }, []);
 
   return {
     media,
-    videoRef,
     connectStatus,
     selectedMimeType,
+    deviceList,
+    selectedDevice,
+
+    setSelectedDevice,
     startMedia,
     stopMedia,
-    connectVideo,
   };
 };
 
