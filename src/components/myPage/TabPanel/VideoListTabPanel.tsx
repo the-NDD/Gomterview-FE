@@ -14,12 +14,9 @@ import { ExcludeArray } from '@/types/utils';
 
 type VideoListItemProps = {
   video: ExcludeArray<VideoListResDto>;
-  deleteVideo: (id: number) => void;
 };
-const VideoListItem: React.FC<VideoListItemProps> = ({
-  video,
-  deleteVideo,
-}) => {
+const VideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
+  const { mutate } = useDeleteVideoMutation();
   const { openModal: openDeleteCheckModal, closeModal: closeDeleteCheckModal } =
     useModal(() => {
       return (
@@ -33,7 +30,7 @@ const VideoListItem: React.FC<VideoListItemProps> = ({
 
   const handleConfirmModal = () => {
     closeDeleteCheckModal();
-    deleteVideo(video.id);
+    mutate(video.id);
   };
 
   return (
@@ -55,7 +52,6 @@ const VideoListItem: React.FC<VideoListItemProps> = ({
 
 const VideoListTabPanel: React.FC = () => {
   const { data } = useVideoListQuery();
-  const { mutate } = useDeleteVideoMutation();
 
   return (
     <Box
@@ -72,7 +68,7 @@ const VideoListTabPanel: React.FC = () => {
       `}
     >
       {data.map((video) => (
-        <VideoListItem key={video.id} video={video} deleteVideo={mutate} />
+        <VideoListItem key={video.id} video={video} />
       ))}
     </Box>
   );
