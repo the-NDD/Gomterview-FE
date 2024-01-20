@@ -10,3 +10,7 @@ export type FunctionParamsType<T> = T extends (...args: infer P) => unknown
   : never;
 
 export type ExcludeArray<T> = T extends Array<infer U> ? U : T;
+
+export type NestedObjectKey<T> = T extends Record<string, infer U>
+  ? keyof U
+  : never;
