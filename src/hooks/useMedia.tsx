@@ -1,8 +1,9 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   connectStatusState,
   deviceListState,
   mediaState,
+  selectedDeviceIndexState,
   selectedDeviceState,
   selectedMimeTypeState,
 } from '@atoms/media';
@@ -19,10 +20,14 @@ const useMedia = () => {
   const [connectStatus, setConnectStatus] = useRecoilState(connectStatusState);
 
   const [deviceList, setDeviceList] = useRecoilState(deviceListState);
+
   const selectedMimeType = useRecoilValue(selectedMimeTypeState);
   // TODO: 상태 제거
-  const [selectedDevice, setSelectedDevice] =
-    useRecoilState(selectedDeviceState);
+  /**
+   * 2개의 global state로 선택된 device를 관리한다.
+   */
+  const selectedDevice = useRecoilValue(selectedDeviceState);
+  const setSelectedDeviceIndex = useSetRecoilState(selectedDeviceIndexState);
   // element
 
   const { openModal: openErrorModal, closeModal } = useModal(() => {
@@ -34,35 +39,34 @@ const useMedia = () => {
     setDeviceList(newDeviceList);
   }, [setDeviceList]);
 
-  const startMedia = useCallback(async () => {
-    try {
-      const newMedia = await getMedia({
-        selectedAudio: selectedDevice.audioInput.deviceId,
-        selectedVideo: selectedDevice.video.deviceId,
-      });
-      setMedia(newMedia);
-      setConnectStatus('connect');
-      void updateDeviceList();
-      // TODO: 추후 기능적 단위로 분리를 해야함
-    } catch (e) {
-      setConnectStatus('fail');
-      openErrorModal();
-    }
-  }, [
-    selectedDevice.audioInput.deviceId,
-    selectedDevice.video.deviceId,
-    setMedia,
-    setConnectStatus,
-    updateDeviceList,
-    openErrorModal,
-  ]);
+  const startMedia = useCallback(
+    async ({
+      audioDeviceId,
+      videoDeviceId,
+    }: {
+      audioDeviceId?: string;
+      videoDeviceId?: string;
+    }) => {
+      try {
+        const newMedia = await getMedia({
+          selectedAudio: audioDeviceId,
+          selectedVideo: videoDeviceId,
+        });
+        setMedia(newMedia);
+        setConnectStatus('connect');
+      } catch (e) {
+        setConnectStatus('fail');
+        openErrorModal();
+      }
+    },
+    [setMedia, setConnectStatus, openErrorModal]
+  );
 
   const stopMedia = useCallback(() => {
     closeMedia(media);
     setMedia(null);
     setConnectStatus('pending');
   }, [media, setConnectStatus, setMedia]);
-
   /**
    * media가 연결되었을때 해당 videoStream track에 이벤트 리스너를 추가해 종료 여부를 감지하고 있는다.
    */
@@ -111,8 +115,8 @@ const useMedia = () => {
     selectedMimeType,
     deviceList,
     selectedDevice,
-
-    setSelectedDevice,
+    setSelectedDeviceIndex,
+    updateDeviceList,
     startMedia,
     stopMedia,
   };
