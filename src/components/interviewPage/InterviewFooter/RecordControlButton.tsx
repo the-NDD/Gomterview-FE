@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { Icon, Typography } from '@foundation/index';
 
 import RecordStartModal from '../InterviewModal/RecordStartModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type RecordControlButtonProps = {
   isRecording: boolean;
@@ -18,6 +18,25 @@ const RecordControlButton: React.FC<RecordControlButtonProps> = ({
 }) => {
   const [recordStartModalIsOpen, setRecordStartModalIsOpen] =
     useState<boolean>(false);
+
+  useEffect(() => {
+    const handleKeyDown = (event: { key: string; code: string }) => {
+      if (event.key === ' ' || event.code === 'Space') {
+        if (isRecording) {
+          handleStopRecording();
+        } else {
+          setRecordStartModalIsOpen(true);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isRecording, handleStopRecording, setRecordStartModalIsOpen]);
+
   return (
     <>
       <div
