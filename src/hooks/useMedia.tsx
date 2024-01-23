@@ -45,7 +45,6 @@ const useMedia = () => {
     setMedia(null);
     setConnectStatus('pending');
   }, [media, setConnectStatus, setMedia]);
-
   /**
    * media가 연결되었을때 해당 videoStream track에 이벤트 리스너를 추가해 종료 여부를 감지하고 있는다.
    */
