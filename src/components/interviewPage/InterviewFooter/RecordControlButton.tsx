@@ -1,4 +1,5 @@
 import { theme } from '@styles/theme';
+import { Tooltip } from '@foundation/index';
 import { css } from '@emotion/react';
 import { Icon, Typography } from '@foundation/index';
 
@@ -39,29 +40,36 @@ const RecordControlButton: React.FC<RecordControlButtonProps> = ({
 
   return (
     <>
-      <div
-        css={css`
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 0.75rem;
-        `}
-        onClick={
-          isRecording
-            ? handleStopRecording
-            : () => setRecordStartModalIsOpen(true)
-        }
+      <Tooltip
+        title={`녹화를 ${isRecording ? '종료' : '시작'}합니다`}
+        position="top"
       >
-        {isRecording ? (
-          <Icon id="record-stop" width="2rem" height="2rem" />
-        ) : (
-          <Icon id="record-start" width="2rem" height="2rem" />
-        )}
-        <Typography variant={'body1'} color={theme.colors.text.white}>
-          {isRecording ? '녹화종료' : '녹화시작'}
-        </Typography>
-      </div>
+        <div
+          css={css`
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            gap: 0.75rem;
+          `}
+          onClick={
+            isRecording
+              ? handleStopRecording
+              : () => setRecordStartModalIsOpen(true)
+          }
+        >
+          {isRecording ? (
+            <Icon id="record-stop" width="2rem" height="2rem" />
+          ) : (
+            <Icon id="record-start" width="2rem" height="2rem" />
+          )}
+          <Typography variant={'body1'} color={theme.colors.text.white}>
+            {isRecording ? '녹화종료' : '녹화시작'}
+          </Typography>
+        </div>
+      </Tooltip>
+
       <RecordStartModal
         isOpen={recordStartModalIsOpen}
         handleStartRecording={handleStartRecording}
