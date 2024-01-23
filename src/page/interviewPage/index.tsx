@@ -28,7 +28,6 @@ const InterviewPage: React.FC = () => {
     getNextQuestion,
     handleStartRecording,
     handleStopRecording,
-    handleDownload,
     timeOverModalIsOpen,
     setTimeOverModalIsOpen,
     reloadMedia,
@@ -67,7 +66,6 @@ const InterviewPage: React.FC = () => {
           handleStopRecording={handleStopRecording}
           handleScript={() => setIsScriptInView((prev) => !prev)}
           handleNextQuestion={getNextQuestion}
-          handleDownload={handleDownload}
         />
         <InterviewIntroModal
           isOpen={interviewIntroModalIsOpen}

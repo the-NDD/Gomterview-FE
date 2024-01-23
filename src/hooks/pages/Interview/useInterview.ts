@@ -34,6 +34,10 @@ const useInterview = () => {
   const [timeOverModalIsOpen, setTimeOverModalIsOpen] =
     useState<boolean>(false);
 
+  const [queue, setProcessQueue] = useState<Blob[][]>([]);
+
+  const [isProcessing, setIsProcessing] = useState(false);
+
   const handleStartRecording = useCallback(() => {
     startRecording({
       media,
@@ -51,8 +55,14 @@ const useInterview = () => {
     stopTimer();
   }, [mediaRecorderRef, stopTimer]);
 
-  const handleDownload = useCallback(() => {
+  const handleProcessing = useCallback(() => {
+    if (recordedBlobs.length === 0 || isProcessing) {
+      return;
+    }
+    setIsProcessing(true);
+
     const blob = new Blob(recordedBlobs, { type: selectedMimeType });
+    setRecordedBlobs([]);
 
     const recordTime = calculateDuration();
 
@@ -64,7 +74,9 @@ const useInterview = () => {
         void localDownload(blob, currentQuestion, recordTime);
         break;
     }
-    setRecordedBlobs([]);
+
+    setProcessQueue((prevQueue) => prevQueue.slice(1));
+    setIsProcessing(false);
   }, [
     recordedBlobs,
     selectedMimeType,
@@ -72,7 +84,20 @@ const useInterview = () => {
     method,
     uploadToDrive,
     currentQuestion,
+    isProcessing,
   ]);
+
+  useEffect(() => {
+    if (!isRecording && recordedBlobs.length > 0) {
+      setProcessQueue((prevQueue) => [...prevQueue, recordedBlobs]);
+    }
+  }, [isRecording, recordedBlobs]);
+
+  useEffect(() => {
+    if (queue.length > 0 && !isProcessing) {
+      handleProcessing();
+    }
+  }, [queue, handleProcessing, isProcessing]);
 
   useEffect(() => {
     if (isTimeOver) {
@@ -95,7 +120,6 @@ const useInterview = () => {
     getNextQuestion,
     handleStartRecording,
     handleStopRecording,
-    handleDownload,
     timeOverModalIsOpen,
     setTimeOverModalIsOpen,
     reloadMedia: () =>
