@@ -22,15 +22,8 @@ const useInterview = () => {
   const { currentQuestion, getNextQuestion, isLastQuestion } =
     useInterviewFlow();
 
-  const {
-    media,
-    videoRef,
-    connectStatus,
-    selectedMimeType,
-    startMedia,
-    stopMedia,
-    connectVideo,
-  } = useMedia();
+  const { media, connectStatus, selectedMimeType, startMedia, selectedDevice } =
+    useMedia();
 
   const [isRecording, setIsRecording] = useState(false);
   const [isScriptInView, setIsScriptInView] = useState(true);
@@ -80,10 +73,6 @@ const useInterview = () => {
   ]);
 
   useEffect(() => {
-    if (isAllSuccess) connectVideo();
-  }, [media, stopMedia, isAllSuccess, connectVideo]);
-
-  useEffect(() => {
     if (isTimeOver) {
       handleStopRecording();
       setTimeOverModalIsOpen(true);
@@ -92,10 +81,10 @@ const useInterview = () => {
   }, [handleStopRecording, isTimeOver, setIsTimeOver]);
 
   return {
+    media,
     isAllSuccess,
     connectStatus,
     isRecording,
-    videoRef,
     isScriptInView,
     setIsScriptInView,
     recordedBlobs,
@@ -107,7 +96,11 @@ const useInterview = () => {
     handleDownload,
     timeOverModalIsOpen,
     setTimeOverModalIsOpen,
-    reloadMedia: () => void startMedia(),
+    reloadMedia: () =>
+      void startMedia({
+        audioDeviceId: selectedDevice.audioInput.deviceId,
+        videoDeviceId: selectedDevice.video.deviceId,
+      }),
   };
 };
 
