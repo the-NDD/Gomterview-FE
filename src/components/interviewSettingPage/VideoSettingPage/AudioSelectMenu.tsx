@@ -9,6 +9,9 @@ const AudioSelectMenu = () => {
   const { startMedia, stopMedia } = useMedia();
   const { deviceList, selectedDevice, setSelectedDeviceIndex } = useDevice();
 
+  const { deviceList, selectedDevice, setSelectedDeviceIndex } = useDevice();
+
+  console.log(selectedDevice);
   return (
     <div
       css={css`
