@@ -25,7 +25,7 @@ const RecordControlButton: React.FC<RecordControlButtonProps> = ({
       if (event.key === ' ' || event.code === 'Space') {
         if (isRecording) {
           handleStopRecording();
-        } else {
+        } else if (!recordStartModalIsOpen) {
           setRecordStartModalIsOpen(true);
         }
       }
@@ -36,7 +36,12 @@ const RecordControlButton: React.FC<RecordControlButtonProps> = ({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isRecording, handleStopRecording, setRecordStartModalIsOpen]);
+  }, [
+    recordStartModalIsOpen,
+    isRecording,
+    handleStopRecording,
+    setRecordStartModalIsOpen,
+  ]);
 
   return (
     <>
