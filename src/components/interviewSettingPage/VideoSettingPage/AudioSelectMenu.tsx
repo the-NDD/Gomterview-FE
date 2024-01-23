@@ -1,18 +1,16 @@
 import { css } from '@emotion/react';
 import { Button, Menu, MenuItem } from '@foundation/index';
+import useDevice from '@hooks/useDevice';
 import useMedia from '@hooks/useMedia';
 import { useState } from 'react';
 
 const AudioSelectMenu = () => {
   const [micMenuOpen, setMicMenuOpen] = useState(false);
-  const {
-    deviceList,
-    startMedia,
-    stopMedia,
-    selectedDevice,
-    setSelectedDeviceIndex,
-  } = useMedia();
+  const { startMedia, stopMedia } = useMedia();
 
+  const { deviceList, selectedDevice, setSelectedDeviceIndex } = useDevice();
+
+  console.log(selectedDevice);
   return (
     <div
       css={css`
@@ -20,7 +18,7 @@ const AudioSelectMenu = () => {
       `}
     >
       <Button onClick={() => setMicMenuOpen(true)}>
-        {selectedDevice.audioInput.label}
+        {selectedDevice.audioInput?.label}
       </Button>
       <Menu
         open={micMenuOpen}
@@ -40,14 +38,14 @@ const AudioSelectMenu = () => {
               stopMedia();
               void startMedia({
                 audioDeviceId: device.deviceId,
-                videoDeviceId: selectedDevice.video.deviceId,
+                videoDeviceId: selectedDevice.video?.deviceId,
               });
             }}
             css={css`
               text-align: left;
             `}
           >
-            {device.deviceId === selectedDevice.audioInput.deviceId &&
+            {device.deviceId === selectedDevice.audioInput?.deviceId &&
               '[선택됨] '}
             {device.label}
           </MenuItem>

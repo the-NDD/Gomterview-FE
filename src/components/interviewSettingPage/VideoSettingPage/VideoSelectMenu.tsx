@@ -1,17 +1,14 @@
 import { css } from '@emotion/react';
 import { Button, Menu, MenuItem } from '@foundation/index';
+import useDevice from '@hooks/useDevice';
 import useMedia from '@hooks/useMedia';
 import { useState } from 'react';
 
 const VideoSelectMenu = () => {
   const [videoMenuOpen, setVideoMenuOpen] = useState(false);
-  const {
-    deviceList,
-    startMedia,
-    stopMedia,
-    selectedDevice,
-    setSelectedDeviceIndex,
-  } = useMedia();
+  const { startMedia, stopMedia } = useMedia();
+
+  const { deviceList, selectedDevice, setSelectedDeviceIndex } = useDevice();
 
   return (
     <div
@@ -20,7 +17,7 @@ const VideoSelectMenu = () => {
       `}
     >
       <Button onClick={() => setVideoMenuOpen(true)}>
-        {selectedDevice.video.label}
+        {selectedDevice.video?.label}
       </Button>
       <Menu
         open={videoMenuOpen}
@@ -39,7 +36,7 @@ const VideoSelectMenu = () => {
               }));
               stopMedia();
               void startMedia({
-                audioDeviceId: selectedDevice.audioInput.deviceId,
+                audioDeviceId: selectedDevice.audioInput?.deviceId,
                 videoDeviceId: device.deviceId,
               });
             }}
@@ -47,7 +44,7 @@ const VideoSelectMenu = () => {
               text-align: left;
             `}
           >
-            {device.deviceId === selectedDevice.video.deviceId && '[선택됨] '}
+            {device.deviceId === selectedDevice.video?.deviceId && '[선택됨] '}
             {device.label}
           </MenuItem>
         ))}

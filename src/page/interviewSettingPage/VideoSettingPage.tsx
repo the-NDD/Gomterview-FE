@@ -10,6 +10,7 @@ import InterviewSettingContentLayout from '@components/interviewSettingPage/Inte
 import useMedia from '@hooks/useMedia';
 import AudioSelectMenu from '@components/interviewSettingPage/VideoSettingPage/AudioSelectMenu';
 import VideoSelectMenu from '@components/interviewSettingPage/VideoSettingPage/VideoSelectMenu';
+import useDevice from '@hooks/useDevice';
 
 type VideoSettingPageProps = {
   onNextClick?: () => void;
@@ -23,14 +24,8 @@ const VideoSettingPage: React.FC<VideoSettingPageProps> = ({
   const [videoSettingState, setVideoSettingState] =
     useRecoilState(videoSetting);
 
-  const {
-    connectStatus,
-    media,
-    updateDeviceList,
-    startMedia,
-    selectedDevice,
-    deviceList,
-  } = useMedia();
+  const { connectStatus, media, startMedia } = useMedia();
+  const { selectedDevice, updateDeviceList } = useDevice();
 
   const mirrorVideoRef = useRef<HTMLVideoElement>(null);
 
@@ -40,8 +35,8 @@ const VideoSettingPage: React.FC<VideoSettingPageProps> = ({
   useEffect(() => {
     connectStatus === 'pending' &&
       void startMedia({
-        audioDeviceId: selectedDevice.audioInput.deviceId,
-        videoDeviceId: selectedDevice.video.deviceId,
+        audioDeviceId: selectedDevice.audioInput?.deviceId,
+        videoDeviceId: selectedDevice.video?.deviceId,
       });
     void updateDeviceList();
   }, []);
@@ -100,8 +95,8 @@ const VideoSettingPage: React.FC<VideoSettingPageProps> = ({
           connectStatus={connectStatus}
           reloadMedia={() =>
             void startMedia({
-              audioDeviceId: selectedDevice.audioInput.deviceId,
-              videoDeviceId: selectedDevice.video.deviceId,
+              audioDeviceId: selectedDevice.audioInput?.deviceId,
+              videoDeviceId: selectedDevice.video?.deviceId,
             })
           }
           isSetting
