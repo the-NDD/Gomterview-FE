@@ -31,6 +31,11 @@ const useInterview = () => {
   const [isScriptInView, setIsScriptInView] = useState(true);
   const [recordedBlobs, setRecordedBlobs] = useState<Blob[]>([]);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+
+  const [queue, setProcessQueue] = useState<Blob[][]>([]);
+
+  const [isProcessing, setIsProcessing] = useState(false);
+
   const [timeOverModalIsOpen, setTimeOverModalIsOpen] =
     useState<boolean>(false);
 
@@ -59,6 +64,7 @@ const useInterview = () => {
     if (recordedBlobs.length === 0 || isProcessing) {
       return;
     }
+
     setIsProcessing(true);
 
     const blob = new Blob(recordedBlobs, { type: selectedMimeType });
