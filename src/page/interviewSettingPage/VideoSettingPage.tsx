@@ -4,44 +4,60 @@ import { Mirror } from '@common/index';
 import { RecordStatus } from '@components/interviewPage/InterviewHeader';
 import { Description } from '@components/interviewSettingPage';
 import { css } from '@emotion/react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import InterviewSettingContentLayout from '@components/interviewSettingPage/InterviewSettingContentLayout';
 import useMedia from '@hooks/useMedia';
+import AudioSelectMenu from '@components/interviewSettingPage/VideoSettingPage/AudioSelectMenu';
+import VideoSelectMenu from '@components/interviewSettingPage/VideoSettingPage/VideoSelectMenu';
+
 type VideoSettingPageProps = {
   onNextClick?: () => void;
   onPrevClick?: () => void;
-  isCurrentPage: boolean;
 };
 
 const VideoSettingPage: React.FC<VideoSettingPageProps> = ({
   onNextClick,
   onPrevClick,
-  isCurrentPage,
 }) => {
   const [videoSettingState, setVideoSettingState] =
     useRecoilState(videoSetting);
 
   const {
-    videoRef: mirrorVideoRef,
     connectStatus,
     media,
+    updateDeviceList,
     startMedia,
-    connectVideo,
+    selectedDevice,
+    deviceList,
   } = useMedia();
 
+  const mirrorVideoRef = useRef<HTMLVideoElement>(null);
+
+  /**
+   * 페이지 첫 진입시에만 미디어를 시작해야 한다.
+   */
   useEffect(() => {
-    if (isCurrentPage) {
-      media ? connectVideo() : void startMedia();
-      return;
-    }
-  }, [connectVideo, isCurrentPage, media, startMedia]);
+    connectStatus === 'pending' &&
+      void startMedia({
+        audioDeviceId: selectedDevice.audioInput.deviceId,
+        videoDeviceId: selectedDevice.video.deviceId,
+      });
+    void updateDeviceList();
+  }, []);
+
+  if (mirrorVideoRef.current) {
+    mirrorVideoRef.current.srcObject = media;
+  }
 
   useEffect(() => {
     setVideoSettingState({
       isSuccess: connectStatus === 'connect',
     });
   }, [connectStatus, setVideoSettingState]);
+
+  // 로직: 해당 stream에서 연결된 정보를 가져온다 -> list에 있는 값과 비교해서 해당 값을 초기값으로 설정한다.
+  // 매서드 분리
 
   return (
     <InterviewSettingContentLayout
@@ -82,9 +98,23 @@ const VideoSettingPage: React.FC<VideoSettingPageProps> = ({
         <Mirror
           mirrorVideoRef={mirrorVideoRef}
           connectStatus={connectStatus}
-          reloadMedia={() => void startMedia()}
+          reloadMedia={() =>
+            void startMedia({
+              audioDeviceId: selectedDevice.audioInput.deviceId,
+              videoDeviceId: selectedDevice.video.deviceId,
+            })
+          }
           isSetting
         />
+        <div
+          css={css`
+            display: flex;
+            gap: 0.5rem;
+          `}
+        >
+          <AudioSelectMenu />
+          <VideoSelectMenu />
+        </div>
       </div>
     </InterviewSettingContentLayout>
   );
