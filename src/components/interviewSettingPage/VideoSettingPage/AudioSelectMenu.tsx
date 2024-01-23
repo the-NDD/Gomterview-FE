@@ -7,10 +7,8 @@ import { useState } from 'react';
 const AudioSelectMenu = () => {
   const [micMenuOpen, setMicMenuOpen] = useState(false);
   const { startMedia, stopMedia } = useMedia();
-
   const { deviceList, selectedDevice, setSelectedDeviceIndex } = useDevice();
 
-  console.log(selectedDevice);
   return (
     <div
       css={css`

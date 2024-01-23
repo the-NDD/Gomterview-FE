@@ -51,9 +51,6 @@ const VideoSettingPage: React.FC<VideoSettingPageProps> = ({
     });
   }, [connectStatus, setVideoSettingState]);
 
-  // 로직: 해당 stream에서 연결된 정보를 가져온다 -> list에 있는 값과 비교해서 해당 값을 초기값으로 설정한다.
-  // 매서드 분리
-
   return (
     <InterviewSettingContentLayout
       onPrevClick={onPrevClick}
