@@ -41,9 +41,7 @@ const InterviewMain: React.FC<InterviewMainProps> = ({
         connectStatus={connectStatus}
         reloadMedia={reloadMedia}
       />
-      {isScriptInView && answer.length > 0 && (
-        <InterviewAnswer answer={answer} />
-      )}
+      {isScriptInView && answer && <InterviewAnswer answer={answer} />}
     </div>
   );
 };
