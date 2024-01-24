@@ -32,10 +32,6 @@ const useInterview = () => {
   const [recordedBlobs, setRecordedBlobs] = useState<Blob[]>([]);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
 
-  const [queue, setProcessQueue] = useState<Blob[][]>([]);
-
-  const [isProcessing, setIsProcessing] = useState(false);
-
   const [timeOverModalIsOpen, setTimeOverModalIsOpen] =
     useState<boolean>(false);
 
@@ -85,19 +81,21 @@ const useInterview = () => {
     setIsProcessing(false);
   }, [
     recordedBlobs,
+    isProcessing,
+    setIsProcessing,
     selectedMimeType,
     calculateDuration,
     method,
+    setProcessQueue,
     uploadToDrive,
     currentQuestion,
-    isProcessing,
   ]);
 
   useEffect(() => {
     if (!isRecording && recordedBlobs.length > 0) {
       setProcessQueue((prevQueue) => [...prevQueue, recordedBlobs]);
     }
-  }, [isRecording, recordedBlobs]);
+  }, [isRecording, recordedBlobs, setProcessQueue]);
 
   useEffect(() => {
     if (queue.length > 0 && !isProcessing) {
