@@ -31,8 +31,13 @@ const useInterview = () => {
   const [isScriptInView, setIsScriptInView] = useState(true);
   const [recordedBlobs, setRecordedBlobs] = useState<Blob[]>([]);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+
   const [timeOverModalIsOpen, setTimeOverModalIsOpen] =
     useState<boolean>(false);
+
+  const [queue, setProcessQueue] = useState<Blob[][]>([]);
+
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleStartRecording = useCallback(() => {
     startRecording({
@@ -51,8 +56,15 @@ const useInterview = () => {
     stopTimer();
   }, [mediaRecorderRef, stopTimer]);
 
-  const handleDownload = useCallback(() => {
+  const handleProcessing = useCallback(() => {
+    if (recordedBlobs.length === 0 || isProcessing) {
+      return;
+    }
+
+    setIsProcessing(true);
+
     const blob = new Blob(recordedBlobs, { type: selectedMimeType });
+    setRecordedBlobs([]);
 
     const recordTime = calculateDuration();
 
@@ -64,15 +76,32 @@ const useInterview = () => {
         void localDownload(blob, currentQuestion, recordTime);
         break;
     }
-    setRecordedBlobs([]);
+
+    setProcessQueue((prevQueue) => prevQueue.slice(1));
+    setIsProcessing(false);
   }, [
     recordedBlobs,
+    isProcessing,
+    setIsProcessing,
     selectedMimeType,
     calculateDuration,
     method,
+    setProcessQueue,
     uploadToDrive,
     currentQuestion,
   ]);
+
+  useEffect(() => {
+    if (!isRecording && recordedBlobs.length > 0) {
+      setProcessQueue((prevQueue) => [...prevQueue, recordedBlobs]);
+    }
+  }, [isRecording, recordedBlobs, setProcessQueue]);
+
+  useEffect(() => {
+    if (queue.length > 0 && !isProcessing) {
+      handleProcessing();
+    }
+  }, [queue, handleProcessing, isProcessing]);
 
   useEffect(() => {
     if (isTimeOver) {
@@ -95,7 +124,6 @@ const useInterview = () => {
     getNextQuestion,
     handleStartRecording,
     handleStopRecording,
-    handleDownload,
     timeOverModalIsOpen,
     setTimeOverModalIsOpen,
     reloadMedia: () =>

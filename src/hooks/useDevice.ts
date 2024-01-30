@@ -7,6 +7,7 @@ import {
   selectedDeviceIndexState,
   selectedDeviceState,
 } from '@atoms/device';
+import useMedia from './useMedia';
 
 /**
  * 전역적으로 사용자의 장치를 관리하는 hook
@@ -16,6 +17,8 @@ import {
 const useDevice = () => {
   const [deviceList, setDeviceList] = useRecoilState(deviceListState);
   const selectedDevice = useRecoilValue(selectedDeviceState);
+  const { connectStatus } = useMedia();
+
   const setSelectedDeviceIndex = useSetRecoilState(selectedDeviceIndexState);
 
   const selectedMimeType = getSupportedMimeTypes()[0];
@@ -39,7 +42,7 @@ const useDevice = () => {
         () => void updateDeviceList()
       );
     };
-  }, []);
+  }, [updateDeviceList, connectStatus]);
 
   return {
     selectedMimeType,
