@@ -60,7 +60,6 @@ const useMedia = () => {
     tracks.forEach((track) => {
       track.addEventListener('ended', checkTrackEnded);
     });
-
     return () => {
       tracks.forEach((track) => {
         track.removeEventListener('ended', checkTrackEnded);
