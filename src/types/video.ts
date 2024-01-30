@@ -1,4 +1,4 @@
-export type VideoEntity = {
+type VideoEntity = {
   id: number;
   memberId: number;
   questionId: number;
@@ -7,8 +7,11 @@ export type VideoEntity = {
   videoLength: string;
   url: string;
   hash: string | null;
-  isPublic: boolean;
+  visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE';
   createdAt: string;
+  isRelated: boolean;
+  nickname: string;
+  userThumbnail: string | null;
 };
 
 /**
