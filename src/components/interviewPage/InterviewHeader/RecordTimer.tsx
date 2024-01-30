@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 
 import { theme } from '@styles/theme';
 import { Icon, Typography } from '@foundation/index';
+import { ServiceTourStep } from '@common/index';
 
 interface RecordTimerProps {
   isRecording: boolean;
@@ -30,23 +31,25 @@ const RecordTimer: React.FC<RecordTimerProps> = ({ isRecording }) => {
   }, [isRecording]);
 
   return (
-    <div
-      css={css`
-        display: flex;
-        gap: 0.375rem;
-        align-items: center;
-      `}
-    >
-      <Icon id="timer" width="1.5rem" height="1.5rem" />
-      <Typography
-        noWrap
-        paragraph
-        variant={'body1'}
-        color={theme.colors.text.white}
+    <ServiceTourStep stepIndex={3}>
+      <div
+        css={css`
+          display: flex;
+          gap: 0.375rem;
+          align-items: center;
+        `}
       >
-        {formatTime(curTime)}
-      </Typography>
-    </div>
+        <Icon id="timer" width="1.5rem" height="1.5rem" />
+        <Typography
+          noWrap
+          paragraph
+          variant={'body1'}
+          color={theme.colors.text.white}
+        >
+          {formatTime(curTime)}
+        </Typography>
+      </div>
+    </ServiceTourStep>
   );
 };
 
