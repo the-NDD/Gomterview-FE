@@ -10,7 +10,7 @@ import { isAxiosError } from 'axios';
  *
  * video 상세 페이지에서 사용됩니다.
  */
-const useVideoItemQuery = (videoId: number) => {
+const useRelatedInfoListQuery = (videoId: number) => {
   return useSuspenseQuery({
     queryKey: QUERY_KEY.VIDEO_ID_RELATED_INFO(videoId),
     queryFn: () => getVideoRelatedInfoList(videoId),
@@ -26,4 +26,4 @@ const useVideoItemQuery = (videoId: number) => {
   });
 };
 
-export default useVideoItemQuery;
+export default useRelatedInfoListQuery;
