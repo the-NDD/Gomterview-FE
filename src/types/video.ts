@@ -27,7 +27,7 @@ export type MyVideoListResDto = Pick<
  * GET video/public
  * 비디오 전체 리스트를 조회했을 때 응답 객체 타입
  */
-export type AllVideoListResDto = Pick<
+export type PublicVideoListResDto = Pick<
   VideoEntity,
   | 'id'
   | 'thumbnail'
