@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 import { useLocation } from 'react-router-dom';
 import { theme } from '@styles/theme';
 import { PATH } from '@constants/path';
+import ServiceTourNoticeDialog from './ServiceTourNoticeDialog';
 
 const LandingPageServiceTour: React.FC<PropsWithChildren> = () => {
   const [{ isRunning: isRunning }, setInRunning] = useRecoilState(runState);
@@ -71,21 +72,24 @@ const LandingPageServiceTour: React.FC<PropsWithChildren> = () => {
   ];
 
   return (
-    <Joyride
-      callback={handleJoyrideCallback}
-      continuous
-      hideCloseButton
-      stepIndex={stepIndex}
-      run={isRunning}
-      showSkipButton
-      steps={steps}
-      styles={{
-        buttonNext: {
-          backgroundColor: `${theme.colors.point.primary.default}`,
-          color: 'white',
-        },
-      }}
-    />
+    <>
+      <Joyride
+        callback={handleJoyrideCallback}
+        continuous
+        hideCloseButton
+        stepIndex={stepIndex}
+        run={isRunning}
+        showSkipButton
+        steps={steps}
+        styles={{
+          buttonNext: {
+            backgroundColor: `${theme.colors.point.primary.default}`,
+            color: 'white',
+          },
+        }}
+      />
+      <ServiceTourNoticeDialog />
+    </>
   );
 };
 
