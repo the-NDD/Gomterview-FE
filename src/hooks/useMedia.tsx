@@ -1,82 +1,78 @@
 import { useRecoilState } from 'recoil';
-import {
-  connectStatusState,
-  mediaState,
-  selectedMimeTypeState,
-} from '@atoms/media';
-import { useCallback, useEffect, useRef } from 'react';
-import { closeMedia, getMedia, getSupportedMimeTypes } from '@/utils/media';
+import { connectStatusState, mediaState } from '@atoms/media';
+import { useCallback, useEffect } from 'react';
+import { closeMedia, getMedia } from '@/utils/media';
 import useModal from '@hooks/useModal';
 import { MediaDisconnectedModal } from '@components/interviewPage/InterviewModal';
-import { toast } from '@foundation/Toast/toast';
 
+/**
+ * 전역적으로 사용자의 미디어를 관리하는 hook
+ * @description media stream에서 연결이 중단되었는지 감지하는 사이드 이팩트를 보유중입니다.
+ */
 const useMedia = () => {
   const [media, setMedia] = useRecoilState(mediaState);
   const [connectStatus, setConnectStatus] = useRecoilState(connectStatusState);
 
-  const [selectedMimeType, setSelectedMimeType] = useRecoilState(
-    selectedMimeTypeState
-  );
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const { openModal, closeModal } = useModal(() => {
+  const { openModal: openErrorModal, closeModal } = useModal(() => {
     return <MediaDisconnectedModal closeModal={closeModal} />;
   });
 
-  const startMedia = useCallback(async () => {
-    try {
-      const newMedia = await getMedia();
-      setMedia(newMedia);
-      setConnectStatus('connect');
-      if (videoRef.current) videoRef.current.srcObject = newMedia;
-      toast.success('성공적으로 카메라에 연결되었습니다😊');
-    } catch (e) {
-      setConnectStatus('fail');
-      openModal();
-    }
-  }, [setConnectStatus, setMedia]);
-
-  const connectVideo = useCallback(() => {
-    if (videoRef.current) videoRef.current.srcObject = media;
-    setConnectStatus('connect');
-  }, [media, setConnectStatus]);
+  const startMedia = useCallback(
+    async ({
+      audioDeviceId,
+      videoDeviceId,
+    }: {
+      audioDeviceId?: string;
+      videoDeviceId?: string;
+    }) => {
+      try {
+        const newMedia = await getMedia({
+          selectedAudio: audioDeviceId,
+          selectedVideo: videoDeviceId,
+        });
+        setMedia(newMedia);
+        setConnectStatus('connect');
+      } catch (e) {
+        setConnectStatus('fail');
+        openErrorModal();
+      }
+    },
+    [setMedia, setConnectStatus, openErrorModal]
+  );
 
   const stopMedia = useCallback(() => {
-    if (media) {
-      closeMedia(media);
-      setMedia(null);
-      setConnectStatus('pending');
-    }
+    closeMedia(media);
+    setMedia(null);
+    setConnectStatus('pending');
   }, [media, setConnectStatus, setMedia]);
 
+  /**
+   * media가 연결되었을때 해당 videoStream track에 이벤트 리스너를 추가해 종료 여부를 감지하고 있는다.
+   */
   useEffect(() => {
-    const mimeTypes = getSupportedMimeTypes();
-    if (mimeTypes.length > 0) setSelectedMimeType(mimeTypes[0]);
-  }, [setSelectedMimeType]);
+    if (!media) return;
 
-  useEffect(() => {
-    const mediaStream = videoRef.current?.srcObject;
-    if (mediaStream instanceof MediaStream) {
-      const checkStream = () => {
-        if (!mediaStream.active) {
-          setConnectStatus('pending');
+    const checkTrackEnded = () => {
+      setConnectStatus('fail');
+    };
 
-          mediaStream.removeEventListener('inactive', checkStream);
-        }
-      };
+    const tracks = media.getTracks();
+    tracks.forEach((track) => {
+      track.addEventListener('ended', checkTrackEnded);
+    });
 
-      mediaStream.addEventListener('inactive', checkStream);
-    }
-  }, [videoRef, media, setConnectStatus]);
+    return () => {
+      tracks.forEach((track) => {
+        track.removeEventListener('ended', checkTrackEnded);
+      });
+    };
+  }, [media, setConnectStatus]);
 
   return {
     media,
-    videoRef,
     connectStatus,
-    selectedMimeType,
     startMedia,
     stopMedia,
-    connectVideo,
   };
 };
 

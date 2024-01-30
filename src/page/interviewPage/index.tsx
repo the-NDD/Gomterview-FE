@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { PATH } from '@constants/path';
 import { Navigate } from 'react-router-dom';
@@ -19,7 +19,7 @@ const InterviewPage: React.FC = () => {
     isAllSuccess,
     connectStatus,
     isRecording,
-    videoRef,
+    media,
     isScriptInView,
     setIsScriptInView,
     recordedBlobs,
@@ -37,6 +37,14 @@ const InterviewPage: React.FC = () => {
   const [interviewIntroModalIsOpen, setInterviewIntroModalIsOpen] =
     useState<boolean>(true);
 
+  const mirrorVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (mirrorVideoRef.current) {
+      mirrorVideoRef.current.srcObject = media;
+    }
+  }, [media]);
+
   if (!isAllSuccess || connectStatus === 'fail') {
     return <Navigate to={PATH.ROOT} />;
   } else
@@ -44,7 +52,7 @@ const InterviewPage: React.FC = () => {
       <InterviewPageLayout>
         <InterviewHeader isRecording={isRecording} />
         <InterviewMain
-          mirrorVideoRef={videoRef}
+          mirrorVideoRef={mirrorVideoRef}
           isScriptInView={isScriptInView}
           question={currentQuestion.questionContent}
           answer={currentQuestion.answerContent}

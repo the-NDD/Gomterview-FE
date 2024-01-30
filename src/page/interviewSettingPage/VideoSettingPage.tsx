@@ -4,38 +4,46 @@ import { Mirror } from '@common/index';
 import { RecordStatus } from '@components/interviewPage/InterviewHeader';
 import { Description } from '@components/interviewSettingPage';
 import { css } from '@emotion/react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import InterviewSettingContentLayout from '@components/interviewSettingPage/InterviewSettingContentLayout';
 import useMedia from '@hooks/useMedia';
+import AudioSelectMenu from '@components/interviewSettingPage/VideoSettingPage/AudioSelectMenu';
+import VideoSelectMenu from '@components/interviewSettingPage/VideoSettingPage/VideoSelectMenu';
+import useDevice from '@hooks/useDevice';
+
 type VideoSettingPageProps = {
   onNextClick?: () => void;
   onPrevClick?: () => void;
-  isCurrentPage: boolean;
 };
 
 const VideoSettingPage: React.FC<VideoSettingPageProps> = ({
   onNextClick,
   onPrevClick,
-  isCurrentPage,
 }) => {
   const [videoSettingState, setVideoSettingState] =
     useRecoilState(videoSetting);
 
-  const {
-    videoRef: mirrorVideoRef,
-    connectStatus,
-    media,
-    startMedia,
-    connectVideo,
-  } = useMedia();
+  const { connectStatus, media, startMedia } = useMedia();
+  const { selectedDevice, updateDeviceList } = useDevice();
 
+  const mirrorVideoRef = useRef<HTMLVideoElement>(null);
+
+  /**
+   * 페이지 첫 진입시에만 미디어를 시작해야 한다.
+   */
   useEffect(() => {
-    if (isCurrentPage) {
-      media ? connectVideo() : void startMedia();
-      return;
-    }
-  }, [connectVideo, isCurrentPage, media, startMedia]);
+    connectStatus === 'pending' &&
+      void startMedia({
+        audioDeviceId: selectedDevice.audioInput?.deviceId,
+        videoDeviceId: selectedDevice.video?.deviceId,
+      });
+    void updateDeviceList();
+  }, []);
+
+  if (mirrorVideoRef.current) {
+    mirrorVideoRef.current.srcObject = media;
+  }
 
   useEffect(() => {
     setVideoSettingState({
@@ -82,9 +90,23 @@ const VideoSettingPage: React.FC<VideoSettingPageProps> = ({
         <Mirror
           mirrorVideoRef={mirrorVideoRef}
           connectStatus={connectStatus}
-          reloadMedia={() => void startMedia()}
+          reloadMedia={() =>
+            void startMedia({
+              audioDeviceId: selectedDevice.audioInput?.deviceId,
+              videoDeviceId: selectedDevice.video?.deviceId,
+            })
+          }
           isSetting
         />
+        <div
+          css={css`
+            display: flex;
+            gap: 0.5rem;
+          `}
+        >
+          <AudioSelectMenu />
+          <VideoSelectMenu />
+        </div>
       </div>
     </InterviewSettingContentLayout>
   );

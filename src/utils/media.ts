@@ -4,22 +4,40 @@ export const closeMedia = (media: MediaStream | null) => {
   }
 };
 
-export const getMedia = async (): Promise<MediaStream | null> => {
+export const getDevices = async () => {
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  const video = devices.filter((device) => device.kind === 'videoinput');
+  const audioInput = devices.filter((device) => device.kind === 'audioinput');
+
+  return { video, audioInput };
+};
+
+export const getMedia = async ({
+  selectedAudio,
+  selectedVideo,
+}: {
+  selectedAudio?: string;
+  selectedVideo?: string;
+}): Promise<MediaStream | null> => {
   try {
     const media = await navigator.mediaDevices.getUserMedia({
-      audio: {
-        echoCancellation: { exact: true },
-      },
-      video: {
-        width: 640,
-        height: 360,
-        frameRate: 30,
-      },
+      audio: selectedAudio
+        ? { deviceId: { exact: selectedAudio }, echoCancellation: true }
+        : { echoCancellation: true },
+      video: selectedVideo
+        ? {
+            deviceId: { exact: selectedVideo },
+            width: 640,
+            height: 360,
+            frameRate: 30,
+          }
+        : { width: 640, height: 360, frameRate: 30 },
     });
 
     return media;
   } catch (error) {
     throw new Error();
+    //TODO: custom error를 만들어야함
   }
 };
 

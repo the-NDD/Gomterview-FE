@@ -1,3 +1,4 @@
+import { getSupportedMimeTypes } from '@/utils/media';
 import { atom } from 'recoil';
 
 const mediaConnectStatus = [
@@ -20,5 +21,7 @@ export const connectStatusState = atom<ConnectStatus>({
 
 export const selectedMimeTypeState = atom<string>({
   key: 'selectedMimeTypeState',
-  default: '',
+  default: getSupportedMimeTypes()[0],
 });
+
+// 사용자의 장치에 관한 전역 상태

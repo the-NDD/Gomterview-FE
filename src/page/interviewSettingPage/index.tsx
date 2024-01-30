@@ -55,7 +55,6 @@ const InterviewSettingPage: React.FC = () => {
       path: SETTING_PATH.CONNECTION,
       page: (
         <VideoSettingPage
-          isCurrentPage={currentPage === SETTING_PATH.CONNECTION}
           onPrevClick={() => {
             if (questionSettingState.from !== 'workbook')
               changeSearchParams(SETTING_PATH.QUESTION);
