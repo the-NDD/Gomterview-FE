@@ -47,6 +47,16 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
     handleCancelEditMode();
   };
 
+  const getServiceStepID = (index: number, length: number) => {
+    return length < 7
+      ? index === length - 1
+        ? 'virtual-step-target-0'
+        : ''
+      : index === length - 4
+        ? 'virtual-step-target-0'
+        : '';
+  };
+
   return (
     <>
       <div
@@ -81,12 +91,19 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
                 onInputChange={() => handleQuestionChecked(question.questionId)}
               />
             )}
-            <QuestionSelectionBoxAccordion
-              key={question.questionId}
-              question={question}
-              workbookId={workbookId}
-              isSelectable={!isEditMode}
-            />
+            <div
+              id={getServiceStepID(index, questionData.length)} // 현재 QuestionBox의 UI 수정이 이루어 지지 않았습니다. 매우 특수한 경우로 예외처리 합니다
+              css={css`
+                width: 100%;
+              `}
+            >
+              <QuestionSelectionBoxAccordion
+                key={question.questionId}
+                question={question}
+                workbookId={workbookId}
+                isSelectable={!isEditMode}
+              />
+            </div>
           </div>
         ))}
         {isEditMode && (

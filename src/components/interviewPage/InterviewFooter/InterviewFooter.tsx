@@ -13,6 +13,7 @@ import {
   InterviewExitModal,
   InterviewFinishModal,
 } from '../InterviewModal/index';
+import { ServiceTourStep } from '@common/index';
 type InterviewFooterProps = {
   isRecording: boolean;
   recordedBlobs: Blob[];
@@ -64,11 +65,13 @@ const InterviewFooter: React.FC<InterviewFooterProps> = ({
         handleStartRecording={handleStartRecording}
         handleStopRecording={handleStopRecording}
       />
-
-      {!isRecording && recordedBlobs.length === 0 && (
-        <NextButton handleNext={handleNext} />
-      )}
-
+      <ServiceTourStep stepIndex={5}>
+        {!isRecording && recordedBlobs.length === 0 ? (
+          <NextButton handleNext={handleNext} />
+        ) : (
+          <div></div>
+        )}
+      </ServiceTourStep>
       <InterviewExitModal
         isOpen={interviewExitModalIsOpen}
         closeModal={() => setInterviewExitModalIsOpen((prev) => !prev)}

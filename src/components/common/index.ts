@@ -10,3 +10,4 @@ export { default as ResponsiveMenu } from './ResponsiveMenu/ResponsiveMenu';
 export { default as Mirror } from './Mirror/Mirror';
 export { default as WorkbookGeneratorModal } from '@common/QuestionSelectionBox/WorkbookGeneratorModal/WorkbookGeneratorModal';
 export { default as ShareRangeToggle } from './ShareRangeToggle/ShareRangeToggle';
+export { default as ServiceTourStep } from './ServiceTourStep/ServiceTourStep';

@@ -1,6 +1,7 @@
 import { Button } from '@foundation/index';
 import { css } from '@emotion/react';
 import { InterviewSettingFooter } from '@components/interviewSettingPage/interviewSettingFooter';
+import { ServiceTourStep } from '@common/index';
 
 type InterviewSettingContentLayoutProps = {
   onPrevClick?: () => void;
@@ -50,16 +51,18 @@ const InterviewSettingContentLayout: React.FC<
           >
             이전
           </Button>
-          <Button
-            onClick={onNextClick}
-            size="lg"
-            css={css`
-              padding: 0.6rem 2rem;
-            `}
-            disabled={disabledNext}
-          >
-            다음
-          </Button>
+          <ServiceTourStep stepIndex={99}>
+            <Button
+              onClick={onNextClick}
+              size="lg"
+              css={css`
+                padding: 0.6rem 2rem;
+              `}
+              disabled={disabledNext}
+            >
+              다음
+            </Button>
+          </ServiceTourStep>
         </div>
       </InterviewSettingFooter>
     </div>

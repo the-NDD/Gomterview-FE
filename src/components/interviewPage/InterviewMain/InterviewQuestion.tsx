@@ -2,6 +2,7 @@ import { Typography } from '@foundation/index';
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
 import { useEffect, useState } from 'react';
+import { ServiceTourStep } from '@common/index';
 type InterviewQuestionProps = {
   question: string;
 };
@@ -47,17 +48,19 @@ const InterviewQuestion: React.FC<InterviewQuestionProps> = ({ question }) => {
         }
       `}
     >
-      <Typography
-        noWrap
-        paragraph
-        variant={highlight ? 'title3' : 'title4'}
-        color={theme.colors.text.white}
-        css={css`
-          transition: all 0.3s ease-in-out;
-        `}
-      >
-        {question}
-      </Typography>
+      <ServiceTourStep stepIndex={1}>
+        <Typography
+          noWrap
+          paragraph
+          variant={highlight ? 'title3' : 'title4'}
+          color={theme.colors.text.white}
+          css={css`
+            transition: all 0.3s ease-in-out;
+          `}
+        >
+          {question}
+        </Typography>
+      </ServiceTourStep>
     </div>
   );
 };
