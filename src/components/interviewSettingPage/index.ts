@@ -3,3 +3,4 @@ export { default as InterviewSettingPageLayout } from '@components/interviewSett
 export { default as RecordRadio } from '@components/interviewSettingPage/RecordPage/RecordRadio';
 export { InterviewSettingFooter } from '@components/interviewSettingPage/interviewSettingFooter';
 export { default as TermPageServiceTour } from './ServiceTour/TermPageServiceTour';
+export { default as QuestionSelectPageServiceTour } from './ServiceTour/QuestionSelectPageServiceTour';

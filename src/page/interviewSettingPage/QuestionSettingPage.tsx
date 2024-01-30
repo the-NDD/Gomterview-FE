@@ -3,6 +3,7 @@ import { QuestionSelectionBox } from '@common/index';
 import { useRecoilValue } from 'recoil';
 import InterviewSettingContentLayout from '@components/interviewSettingPage/InterviewSettingContentLayout';
 import NoticeDialog from '@common/QuestionSelectionBox/NoticeDialog/NoticeDialog';
+import { QuestionSelectPageServiceTour } from '@components/interviewSettingPage';
 
 type QuestionSettingPageProps = {
   onNextClick?: () => void;
@@ -25,6 +26,7 @@ const QuestionSettingPage: React.FC<QuestionSettingPageProps> = ({
       >
         <QuestionSelectionBox />
       </InterviewSettingContentLayout>
+      <QuestionSelectPageServiceTour />
     </>
   );
 };
