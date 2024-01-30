@@ -16,11 +16,26 @@ type VideoEntity = {
 
 /**
  * GET video/all
+ * 마이페이지에서 비디오 전체 리스트를 조회했을 때 응답 객체 타입
+ */
+export type MyVideoListResDto = Pick<
+  VideoEntity,
+  'id' | 'thumbnail' | 'videoName' | 'videoLength' | 'visibility' | 'createdAt'
+>[];
+
+/**
+ * GET video/public
  * 비디오 전체 리스트를 조회했을 때 응답 객체 타입
  */
-export type VideoListResDto = Pick<
+export type AllVideoListResDto = Pick<
   VideoEntity,
-  'id' | 'thumbnail' | 'videoName' | 'videoLength' | 'isPublic' | 'createdAt'
+  | 'id'
+  | 'thumbnail'
+  | 'videoName'
+  | 'videoLength'
+  | 'createdAt'
+  | 'nickname'
+  | 'userThumbnail'
 >[];
 
 /**
@@ -29,8 +44,28 @@ export type VideoListResDto = Pick<
  */
 export type VideoItemResDto = Pick<
   VideoEntity,
-  'id' | 'url' | 'hash' | 'videoName' | 'createdAt'
+  'id' | 'nickname' | 'url' | 'hash' | 'videoName' | 'createdAt' | 'visibility'
 >;
+
+/**
+ * GET video/related/${videoId}
+ * 비디오 아이디로 연결된 비디오 리스트"만" 조회했을 때 반환하는 객체 타입
+ *
+ */
+export type OnlyRelatedVideoListResDto = Pick<
+  VideoEntity,
+  'id' | 'nickname' | 'url' | 'hash' | 'videoName' | 'createdAt' | 'visibility'
+>[];
+
+/**
+ * GET video/relate/${videoId}
+ * 비디오 아이디로 비디오와 연결되거나 안된 모든 비디오를 조회했을 때 반환하는 객체 타입
+ *
+ */
+export type VideoRelatedInfoListResDto = Pick<
+  VideoEntity,
+  'id' | 'isRelated' | 'visibility' | 'videoName' | 'createdAt'
+>[];
 
 /**
  * POST video
@@ -52,6 +87,7 @@ export type VideoPreSignedReqDto = Pick<VideoEntity, 'questionId'>;
  * POST video/pre-signed
  * 비디오 등록 전 질문 아이디로 비디오 등록용 pre-signed url 응답 객체 타입
  */
+
 export type VideoPreSignedResDto = {
   video: {
     preSignedUrl: string;
@@ -66,5 +102,6 @@ export type VideoPreSignedResDto = {
 /**
  * PATCH video/${videoId}
  * 비디오 공개, 비공개 토글시 응답 객체 타입
+ *  수정을 해야만 합니다. 현재는 수정하지 않았습니다
  */
 export type VideoPublicToggleResDto = Pick<VideoEntity, 'hash'>;
