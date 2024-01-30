@@ -8,7 +8,7 @@ import {
   VideoPublicToggleResDto,
   OnlyRelatedVideoListResDto,
   VideoRelatedInfoListResDto,
-  AllVideoListResDto,
+  PublicVideoListResDto,
 } from '@/types/video';
 
 export const postVideo = async (body: VideoAddReqDto) => {
@@ -40,28 +40,15 @@ export const getMyVideoList = async () => {
 };
 
 /**
- * GET video/public
- * 공유페이지에서 서비스 전체 비디오 리스트를 조회
- * Res
- * 'id' | 'thumbnail' | 'videoName' | 'videoLength' | 'visibility' | 'createdAt'
- */
-export const getAllVideoList = async () => {
-  return await getAPIResponseData<AllVideoListResDto>({
-    method: 'get',
-    url: API.VIDEO_PUBLIC,
-  });
-};
-
-/**
  * GET video/all
  * 모든 영상을 보여주는 페이지에서 서비스 전체 비디오 리스트를 조회
  * Res
  * 'id' | 'thumbnail' | 'videoName' | 'videoLength' | 'visibility' | 'createdAt'
  */
-export const getALLVideoList = async () => {
-  return await getAPIResponseData<MyVideoListResDto>({
+export const getPublicVideoList = async () => {
+  return await getAPIResponseData<PublicVideoListResDto>({
     method: 'get',
-    url: API.VIDEO_ALL,
+    url: API.VIDEO_PUBLIC,
   });
 };
 
@@ -111,6 +98,9 @@ export const getVideoById = async (videoId: number) => {
   });
 };
 
+/**
+ * 아직 구현하지 않았습니다.
+ */
 export const patchVideoPublic = async (videoId: number) => {
   return await getAPIResponseData<VideoPublicToggleResDto>({
     method: 'patch',
