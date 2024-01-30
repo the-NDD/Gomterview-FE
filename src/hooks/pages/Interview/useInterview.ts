@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { recordSetting } from '@/atoms/interviewSetting';
 import { localDownload, startRecording, stopRecording } from '@/utils/record';
 import { useUploadToIDrive } from '@/hooks/useUploadToIdrive';
@@ -8,6 +8,7 @@ import useInterviewFlow from '@hooks/pages/Interview/useInterviewFlow';
 import useInterviewSettings from '@/hooks/atoms/useInterviewSettings';
 import useMedia from '@hooks/useMedia';
 import useDevice from '@hooks/useDevice';
+import { recordingState } from '@atoms/interview';
 
 const useInterview = () => {
   const {
@@ -27,7 +28,8 @@ const useInterview = () => {
 
   const { selectedMimeType, selectedDevice } = useDevice();
 
-  const [isRecording, setIsRecording] = useState(false);
+  const [{ isRecording: isRecording }, setIsRecording] =
+    useRecoilState(recordingState);
   const [isScriptInView, setIsScriptInView] = useState(true);
   const [recordedBlobs, setRecordedBlobs] = useState<Blob[]>([]);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -46,15 +48,15 @@ const useInterview = () => {
       mediaRecorderRef,
       setRecordedBlobs,
     });
-    setIsRecording(true);
+    setIsRecording({ isRecording: true });
     startTimer();
-  }, [media, selectedMimeType, mediaRecorderRef, setRecordedBlobs, startTimer]);
+  }, [media, selectedMimeType, setIsRecording, startTimer]);
 
   const handleStopRecording = useCallback(() => {
     stopRecording(mediaRecorderRef);
-    setIsRecording(false);
+    setIsRecording({ isRecording: false });
     stopTimer();
-  }, [mediaRecorderRef, stopTimer]);
+  }, [setIsRecording, stopTimer]);
 
   const handleProcessing = useCallback(() => {
     if (recordedBlobs.length === 0 || isProcessing) {
