@@ -132,6 +132,11 @@ const _global = css`
     border-spacing: 0;
   }
 
+  .react-joyride__spotlight {
+    opacity: 0.3 !important; /* 현재 페이지 별로 다른 css가 들어감으로 인한 임시조치 joyride 내부 문제로 확인*/
+    background-color: white !important;
+  }
+
   * {
     box-sizing: border-box;
   }

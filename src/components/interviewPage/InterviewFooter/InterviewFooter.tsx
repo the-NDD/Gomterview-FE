@@ -13,6 +13,7 @@ import {
   InterviewExitModal,
   InterviewFinishModal,
 } from '../InterviewModal/index';
+import { ServiceTourStep } from '@common/index';
 type InterviewFooterProps = {
   isRecording: boolean;
   recordedBlobs: Blob[];
@@ -21,7 +22,6 @@ type InterviewFooterProps = {
   handleStopRecording: () => void;
   handleScript: () => void;
   handleNextQuestion: () => void;
-  handleDownload: () => void;
 };
 
 const InterviewFooter: React.FC<InterviewFooterProps> = ({
@@ -32,7 +32,6 @@ const InterviewFooter: React.FC<InterviewFooterProps> = ({
   handleStopRecording,
   handleScript,
   handleNextQuestion,
-  handleDownload,
 }) => {
   const [interviewExitModalIsOpen, setInterviewExitModalIsOpen] =
     useState<boolean>(false);
@@ -40,7 +39,6 @@ const InterviewFooter: React.FC<InterviewFooterProps> = ({
     useState<boolean>(false);
 
   const handleNext = () => {
-    handleDownload();
     if (!isLastQuestion) handleNextQuestion();
     else setInterviewFinishModalIsOpen(true);
   };
@@ -61,16 +59,19 @@ const InterviewFooter: React.FC<InterviewFooterProps> = ({
         handleInterviewExit={() => setInterviewExitModalIsOpen(true)}
       />
       <AnswerToggleButton handleAnswerToggle={handleScript} />
-      {recordedBlobs.length === 0 && (
-        <RecordControlButton
-          isRecording={isRecording}
-          handleStartRecording={handleStartRecording}
-          handleStopRecording={handleStopRecording}
-        />
-      )}
-      {!isRecording && recordedBlobs.length > 0 && (
-        <NextButton handleNext={handleNext} />
-      )}
+
+      <RecordControlButton
+        isRecording={isRecording}
+        handleStartRecording={handleStartRecording}
+        handleStopRecording={handleStopRecording}
+      />
+      <ServiceTourStep stepIndex={5}>
+        {!isRecording && recordedBlobs.length === 0 ? (
+          <NextButton handleNext={handleNext} />
+        ) : (
+          <div></div>
+        )}
+      </ServiceTourStep>
       <InterviewExitModal
         isOpen={interviewExitModalIsOpen}
         closeModal={() => setInterviewExitModalIsOpen((prev) => !prev)}

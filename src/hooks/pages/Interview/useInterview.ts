@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { recordSetting } from '@/atoms/interviewSetting';
 import { localDownload, startRecording, stopRecording } from '@/utils/record';
 import { useUploadToIDrive } from '@/hooks/useUploadToIdrive';
@@ -7,6 +7,8 @@ import useTimeTracker from '@/hooks/useTimeTracker';
 import useInterviewFlow from '@hooks/pages/Interview/useInterviewFlow';
 import useInterviewSettings from '@/hooks/atoms/useInterviewSettings';
 import useMedia from '@hooks/useMedia';
+import useDevice from '@hooks/useDevice';
+import { recordingState } from '@atoms/interview';
 
 const useInterview = () => {
   const {
@@ -22,22 +24,22 @@ const useInterview = () => {
   const { currentQuestion, getNextQuestion, isLastQuestion } =
     useInterviewFlow();
 
-  const {
-    media,
-    videoRef,
-    connectStatus,
-    selectedMimeType,
-    startMedia,
-    stopMedia,
-    connectVideo,
-  } = useMedia();
+  const { media, connectStatus, startMedia } = useMedia();
 
-  const [isRecording, setIsRecording] = useState(false);
+  const { selectedMimeType, selectedDevice } = useDevice();
+
+  const [{ isRecording: isRecording }, setIsRecording] =
+    useRecoilState(recordingState);
   const [isScriptInView, setIsScriptInView] = useState(true);
   const [recordedBlobs, setRecordedBlobs] = useState<Blob[]>([]);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+
   const [timeOverModalIsOpen, setTimeOverModalIsOpen] =
     useState<boolean>(false);
+
+  const [queue, setProcessQueue] = useState<Blob[][]>([]);
+
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleStartRecording = useCallback(() => {
     startRecording({
@@ -46,18 +48,25 @@ const useInterview = () => {
       mediaRecorderRef,
       setRecordedBlobs,
     });
-    setIsRecording(true);
+    setIsRecording({ isRecording: true });
     startTimer();
-  }, [media, selectedMimeType, mediaRecorderRef, setRecordedBlobs, startTimer]);
+  }, [media, selectedMimeType, setIsRecording, startTimer]);
 
   const handleStopRecording = useCallback(() => {
     stopRecording(mediaRecorderRef);
-    setIsRecording(false);
+    setIsRecording({ isRecording: false });
     stopTimer();
-  }, [mediaRecorderRef, stopTimer]);
+  }, [setIsRecording, stopTimer]);
 
-  const handleDownload = useCallback(() => {
+  const handleProcessing = useCallback(() => {
+    if (recordedBlobs.length === 0 || isProcessing) {
+      return;
+    }
+
+    setIsProcessing(true);
+
     const blob = new Blob(recordedBlobs, { type: selectedMimeType });
+    setRecordedBlobs([]);
 
     const recordTime = calculateDuration();
 
@@ -69,19 +78,32 @@ const useInterview = () => {
         void localDownload(blob, currentQuestion, recordTime);
         break;
     }
-    setRecordedBlobs([]);
+
+    setProcessQueue((prevQueue) => prevQueue.slice(1));
+    setIsProcessing(false);
   }, [
     recordedBlobs,
+    isProcessing,
+    setIsProcessing,
     selectedMimeType,
     calculateDuration,
     method,
+    setProcessQueue,
     uploadToDrive,
     currentQuestion,
   ]);
 
   useEffect(() => {
-    if (isAllSuccess) connectVideo();
-  }, [media, stopMedia, isAllSuccess, connectVideo]);
+    if (!isRecording && recordedBlobs.length > 0) {
+      setProcessQueue((prevQueue) => [...prevQueue, recordedBlobs]);
+    }
+  }, [isRecording, recordedBlobs, setProcessQueue]);
+
+  useEffect(() => {
+    if (queue.length > 0 && !isProcessing) {
+      handleProcessing();
+    }
+  }, [queue, handleProcessing, isProcessing]);
 
   useEffect(() => {
     if (isTimeOver) {
@@ -92,10 +114,10 @@ const useInterview = () => {
   }, [handleStopRecording, isTimeOver, setIsTimeOver]);
 
   return {
+    media,
     isAllSuccess,
     connectStatus,
     isRecording,
-    videoRef,
     isScriptInView,
     setIsScriptInView,
     recordedBlobs,
@@ -104,10 +126,13 @@ const useInterview = () => {
     getNextQuestion,
     handleStartRecording,
     handleStopRecording,
-    handleDownload,
     timeOverModalIsOpen,
     setTimeOverModalIsOpen,
-    reloadMedia: () => void startMedia(),
+    reloadMedia: () =>
+      void startMedia({
+        audioDeviceId: selectedDevice.audioInput?.deviceId,
+        videoDeviceId: selectedDevice.video?.deviceId,
+      }),
   };
 };
 

@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
 
 import { Typography, Modal, Button } from '@foundation/index';
+import { useEffect } from 'react';
 
 type RecordStartModalProps = {
   isOpen: boolean;
@@ -14,6 +15,23 @@ const RecordStartModal: React.FC<RecordStartModalProps> = ({
   handleStartRecording,
   closeModal,
 }) => {
+  useEffect(() => {
+    const handleKeyDown = (event: { key: string; code: string }) => {
+      if (event.key === ' ' || event.code === 'Space') {
+        if (isOpen) {
+          handleStartRecording();
+          closeModal();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [closeModal, handleStartRecording, isOpen]);
+
   return (
     <Modal isOpen={isOpen} closeModal={closeModal}>
       <Modal.content>
