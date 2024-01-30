@@ -9,12 +9,13 @@ import DeleteCheckModal from '../DeleteCheckModal';
 import Thumbnail from '../Thumbnail';
 import { VideoItem } from '../VideoItem';
 import useModal from '@hooks/useModal';
-import { VideoListResDto } from '@/types/video';
+import { MyVideoListResDto } from '@/types/video';
 import { ExcludeArray } from '@/types/utils';
 
 type VideoListItemProps = {
-  video: ExcludeArray<VideoListResDto>;
+  video: ExcludeArray<MyVideoListResDto>;
 };
+
 const VideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
   const { mutate } = useDeleteVideoMutation();
   const { openModal: openDeleteCheckModal, closeModal: closeDeleteCheckModal } =
