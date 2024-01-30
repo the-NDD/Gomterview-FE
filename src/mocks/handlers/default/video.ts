@@ -19,6 +19,24 @@ const videoHandlers = [
   http.get(API.VIDEO_ALL, () => {
     return HttpResponse.json(videoData, { status: 200 });
   }),
+  http.get(API.VIDEO_PUBLIC, () => {
+    return HttpResponse.json(videoData, { status: 200 });
+  }),
+
+  http.get(API.VIDEO_ID_ONLY_RELATED(), ({ params }) => {
+    console.log(params, '현재 비디오 아이디로 연결된 비디오 리스트 조회');
+    return HttpResponse.json(videoData, { status: 200 });
+  }),
+
+  http.get(API.VIDEO_ID_RELATED_INFO(), ({ params }) => {
+    console.log(
+      params,
+      '비디오 아이디로 비디오와 연결되거나 안된 모든 비디오를 조회'
+    );
+
+    return HttpResponse.json(videoData, { status: 200 });
+  }),
+
   http.get(API.VIDEO_ID(), ({ params }) => {
     const { id } = params;
 
