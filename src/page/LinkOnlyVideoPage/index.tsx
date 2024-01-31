@@ -4,9 +4,9 @@ import { useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
 import { VideoItemResDto } from '@/types/video';
 import {
-  InterviewVideoPublicPageLayout,
-  PublicVideoPlayer,
-} from '@components/interviewVideoPublicPage';
+  LinkOnlyVideoPageLayout,
+  LinkOnlyVideoPlayer,
+} from '@components/LinkOnlyVideoPage';
 import useOnlyRelatedVideoQuery from '@hooks/apis/queries/useOnlyRelatedVideoListQuery';
 import { Box } from '@foundation/index';
 import { css } from '@emotion/react';
@@ -15,19 +15,18 @@ import { VideoItem } from '@common/VideoItem';
 import { Thumbnail } from '@components/myPage';
 import dayjs from 'dayjs';
 
-const InterviewVideoPublicPage: React.FC = () => {
+const LinkOnlyVideoPage: React.FC = () => {
   const { videoHash = '' } = useParams();
   const data = useQueryClient().getQueryData<VideoItemResDto>(
     QUERY_KEY.VIDEO_HASH(videoHash)
   );
-
   const { data: relatedVideoItem } = useOnlyRelatedVideoQuery(Number(data?.id));
-  console.log(relatedVideoItem);
+
   if (!data) return <Navigate to={PATH.NOT_FOUND} />;
 
   return (
-    <InterviewVideoPublicPageLayout>
-      <PublicVideoPlayer {...data} />
+    <LinkOnlyVideoPageLayout>
+      <LinkOnlyVideoPlayer {...data} />
       <Box
         css={css`
           display: grid;
@@ -57,8 +56,8 @@ const InterviewVideoPublicPage: React.FC = () => {
           </VideoItem>
         ))}
       </Box>
-    </InterviewVideoPublicPageLayout>
+    </LinkOnlyVideoPageLayout>
   );
 };
 
-export default InterviewVideoPublicPage;
+export default LinkOnlyVideoPage;

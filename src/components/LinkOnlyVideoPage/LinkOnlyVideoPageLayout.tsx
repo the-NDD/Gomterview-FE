@@ -2,13 +2,13 @@ import Layout from '@/components/layout/Layout';
 import { Header } from '@components/layout';
 import { css } from '@emotion/react';
 
-type InterviewVideoPublicPageLayoutProps = {
+type LinkOnlyVideoPageLayoutProps = {
   children: React.ReactNode;
 };
 
-const InterviewVideoPublicPageLayout: React.FC<
-  InterviewVideoPublicPageLayoutProps
-> = ({ children }) => {
+const LinkOnlyVideoPageLayout: React.FC<LinkOnlyVideoPageLayoutProps> = ({
+  children,
+}) => {
   return (
     <div>
       <Header />
@@ -28,4 +28,4 @@ const InterviewVideoPublicPageLayout: React.FC<
   );
 };
 
-export default InterviewVideoPublicPageLayout;
+export default LinkOnlyVideoPageLayout;

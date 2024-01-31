@@ -1,8 +1,8 @@
 import { VideoItemResDto } from '@/types/video';
 import { VideoPlayer, VideoPlayerFrame } from '@common/VideoPlayer';
 
-type PublicVideoPlayerProps = Omit<VideoItemResDto, 'hash'>;
-const PublicVideoPlayer: React.FC<PublicVideoPlayerProps> = ({
+type LinkOnlyVideoPlayerProps = Omit<VideoItemResDto, 'hash'>;
+const LinkOnlyVideoPlayer: React.FC<LinkOnlyVideoPlayerProps> = ({
   id,
   url,
   videoName,
@@ -15,4 +15,4 @@ const PublicVideoPlayer: React.FC<PublicVideoPlayerProps> = ({
   );
 };
 
-export default PublicVideoPlayer;
+export default LinkOnlyVideoPlayer;

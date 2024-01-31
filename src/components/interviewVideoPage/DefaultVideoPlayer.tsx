@@ -4,10 +4,10 @@ import { VideoShareModal } from '@components/interviewVideoPage/ShareRangeModal'
 import { useState } from 'react';
 import { css } from '@emotion/react';
 
-type PrivateVideoPlayerProps = {
+type DefaultVideoPlayerProps = {
   videoId: string;
 };
-const PrivateVideoPlayer: React.FC<PrivateVideoPlayerProps> = ({ videoId }) => {
+const DefaultVideoPlayer: React.FC<DefaultVideoPlayerProps> = ({ videoId }) => {
   const { data: videoItem } = useVideoItemQuery(Number(videoId));
   const [isOpen, setIsOpen] = useState(false);
 
@@ -42,4 +42,4 @@ const PrivateVideoPlayer: React.FC<PrivateVideoPlayerProps> = ({ videoId }) => {
   );
 };
 
-export default PrivateVideoPlayer;
+export default DefaultVideoPlayer;

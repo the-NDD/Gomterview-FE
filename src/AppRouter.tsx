@@ -7,7 +7,7 @@ import { PATH } from '@constants/path';
 import { QueryClient } from '@tanstack/react-query';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import myPageLoader from '@routes/myPageLoader';
-import InterviewVideoPublicPage from '@page/interviewVideoPublicPage';
+import LinkOnlyVideoPage from '@page/LinkOnlyVideoPage';
 import InterviewVideoPublicLoader from '@routes/interviewVideoPublicLoader';
 import rootLoader from '@routes/rootLoader';
 import WorkbookDetailPage from '@page/WorkbookDetailPage';
@@ -66,12 +66,12 @@ const AppRouter = ({ queryClient }: { queryClient: QueryClient }) => {
           element: <MyPage />,
         },
         {
-          path: PATH.INTERVIEW_VIDEO(),
+          path: PATH.INTERVIEW_VIDEO(), // 영상의 상세 페이지입니다. "나의" 영상인지를 떠나서 영상이면 모두 여기서 작성됩니다.
           element: <InterviewVideoPage />,
         },
         {
-          path: PATH.INTERVIEW_VIDEO_PUBLIC(),
-          element: <InterviewVideoPublicPage />,
+          path: PATH.INTERVIEW_VIDEO_PUBLIC(), // 링크 공개로 연결된 페이지 입니다.
+          element: <LinkOnlyVideoPage />,
           loader: ({ params }) =>
             InterviewVideoPublicLoader({
               params: params,

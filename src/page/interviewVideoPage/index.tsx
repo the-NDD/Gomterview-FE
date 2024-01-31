@@ -1,7 +1,7 @@
-import { LoadingBounce, StartButton } from '@common/index';
+import { LoadingBounce } from '@common/index';
 import {
   InterviewVideoPageLayout,
-  PrivateVideoPlayer,
+  DefaultVideoPlayer,
 } from '@components/interviewVideoPage';
 import { Suspense, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
@@ -35,10 +35,9 @@ const InterviewVideoPage: React.FC = () => {
             </CenterLayout>
           }
         >
-          <PrivateVideoPlayer videoId={videoId} />
+          <DefaultVideoPlayer videoId={videoId} />
         </Suspense>
       </ErrorBoundary>
-      <StartButton />
     </InterviewVideoPageLayout>
   );
 };
