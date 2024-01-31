@@ -16,23 +16,54 @@ type VideoListProps = {
 };
 
 const VideoList: React.FC<VideoListProps> = ({ videoList }) => {
+  const isPublicVideoListResDto = (
+    // 타입 가드
+    video: PublicVideoListResDto[number] | OnlyRelatedVideoListResDto[number]
+  ): video is PublicVideoListResDto[number] => {
+    return 'userThumbnail' in video && 'nickname' in video;
+  };
+
   return (
     <>
       {videoList.length > 0 ? (
-        videoList.map((video) => (
-          <VideoItem
-            key={video.id}
-            videoName={video.videoName}
-            date={dayjs(Number(video.createdAt)).format('YYYY-MM-DD')}
-            path={`${PATH.INTERVIEW_VIDEO(video.id)}`}
-          >
-            <Thumbnail
-              image={video.thumbnail ?? ''}
-              videoName={video.videoName}
-              videoLength={video.videoLength}
-            />
-          </VideoItem>
-        ))
+        videoList.map((video) => {
+          if (isPublicVideoListResDto(video)) {
+            // Public 인터뷰들이 모두 모인 페이지에서 사용됩니다.
+            return (
+              <VideoItem
+                key={video.id}
+                videoName={video.videoName}
+                date={dayjs(Number(video.createdAt)).format('YYYY-MM-DD')}
+                nickname={video.nickname}
+                userThumbnail={video.userThumbnail}
+                path={`${PATH.INTERVIEW_VIDEO(video.id)}`}
+              >
+                <Thumbnail
+                  image={video.thumbnail ?? ''}
+                  videoName={video.videoName}
+                  videoLength={video.videoLength}
+                />
+              </VideoItem>
+            );
+          } else {
+            // 여기에 OnlyRelatedVideoListResDto 타입에 대한 처리를 추가할 수 있습니다.
+            // 해당 VideoItem은 nickname과 userThumbnail이 없습니다. 해당 컴포넌트는 interviewVideo 페이지에서 사용됩니다.
+            return (
+              <VideoItem
+                key={video.id}
+                videoName={video.videoName}
+                date={dayjs(Number(video.createdAt)).format('YYYY-MM-DD')}
+                path={`${PATH.INTERVIEW_VIDEO(video.id)}`}
+              >
+                <Thumbnail
+                  image={video.thumbnail ?? ''}
+                  videoName={video.videoName}
+                  videoLength={video.videoLength}
+                />
+              </VideoItem>
+            );
+          }
+        })
       ) : (
         <>
           <div
