@@ -11,7 +11,7 @@ type VideoEntity = {
   createdAt: string;
   isRelated: boolean;
   nickname: string;
-  userThumbnail: string | null;
+  userThumbnail: string;
 };
 
 /**
@@ -44,7 +44,14 @@ export type PublicVideoListResDto = Pick<
  */
 export type VideoItemResDto = Pick<
   VideoEntity,
-  'id' | 'nickname' | 'url' | 'hash' | 'videoName' | 'createdAt' | 'visibility'
+  | 'id'
+  | 'nickname'
+  | 'memberId'
+  | 'url'
+  | 'hash'
+  | 'videoName'
+  | 'createdAt'
+  | 'visibility'
 >;
 
 /**
