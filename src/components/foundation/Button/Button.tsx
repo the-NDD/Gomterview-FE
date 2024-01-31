@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       css={[
         css`
-          transition: background-color 0.15s ease-in-out;
+          transition: all 0.15s ease-in-out;
           cursor: pointer;
         `,
         buttonSize[size],
