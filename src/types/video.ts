@@ -54,7 +54,13 @@ export type VideoItemResDto = Pick<
  */
 export type OnlyRelatedVideoListResDto = Pick<
   VideoEntity,
-  'id' | 'nickname' | 'url' | 'hash' | 'videoName' | 'createdAt' | 'visibility'
+  | 'id'
+  | 'thumbnail'
+  | 'videoName'
+  | 'hash'
+  | 'videoLength'
+  | 'visibility'
+  | 'createdAt'
 >[];
 
 /**
