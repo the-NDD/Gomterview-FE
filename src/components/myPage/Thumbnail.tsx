@@ -5,21 +5,24 @@ import { MouseEventHandler } from 'react';
 
 type ThumbnailProps = {
   image: string;
-  videoLength: string;
   videoName: string;
-  onDeleteIconClick: () => void;
+  videoLength: string;
+  isMyPage?: boolean;
+  onDeleteIconClick?: () => void;
 };
 
 const Thumbnail: React.FC<ThumbnailProps> = ({
+  image,
   videoName,
   videoLength,
-  image,
+  isMyPage = false,
   onDeleteIconClick,
 }) => {
   const handleDeleteIconClick: MouseEventHandler = (e) => {
     e.preventDefault(); //상위 요소의 Link 이벤트를 막기 위해
-    onDeleteIconClick();
+    if (onDeleteIconClick) onDeleteIconClick();
   };
+
   return (
     <CardCover
       borderRadius="1rem"
@@ -50,25 +53,28 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
           }
         `}
       >
-        <div
-          onClick={handleDeleteIconClick}
-          className="delete"
-          css={css`
-            display: none;
-            position: absolute;
-            top: 0.5rem;
-            left: 0.5rem;
-            padding: 0.25rem;
-            border-radius: 1rem;
-            background-color: ${theme.colors.surface.default};
-            z-index: ${theme.zIndex.contentOverlay.overlay5};
-          `}
-        >
-          <Icon id="trash" width="20" height="20" />
-        </div>
+        {isMyPage && (
+          <div
+            onClick={handleDeleteIconClick}
+            className="delete"
+            css={css`
+              display: none;
+              position: absolute;
+              top: 0.5rem;
+              left: 0.5rem;
+              padding: 0.25rem;
+              border-radius: 1rem;
+              background-color: ${theme.colors.surface.default};
+              z-index: ${theme.zIndex.contentOverlay.overlay5};
+            `}
+          >
+            <Icon id="trash" width="20" height="20" />
+          </div>
+        )}
         <img
           crossOrigin="use-credentials"
           src={image}
+          onError={(e) => (e.currentTarget.src = '/src/assets/images/logo.png')}
           alt={videoName}
           css={css`
             aspect-ratio: 3 / 2;
