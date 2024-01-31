@@ -1,16 +1,18 @@
 import { css } from '@emotion/react';
 import { HTMLElementTypes } from '@/types/utils';
 
-type MainProps = {
+type LayoutProps = {
   full?: boolean;
   direction: 'column' | 'row';
   children: React.ReactNode;
+  height?: string;
 } & HTMLElementTypes<HTMLDivElement>;
 
-const Layout: React.FC<MainProps> = ({
+const Layout: React.FC<LayoutProps> = ({
   full = false,
   direction = 'row',
   children,
+  height = '100vh',
   ...args
 }) => {
   return (
@@ -21,7 +23,7 @@ const Layout: React.FC<MainProps> = ({
         width: ${full ? '100%' : 'auto'};
         max-width: ${full ? 'none' : '46.875rem'};
         margin: 0 auto;
-        height: 100vh;
+        height: ${height};
       `}
       {...args}
     >

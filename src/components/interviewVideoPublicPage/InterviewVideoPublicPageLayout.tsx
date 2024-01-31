@@ -1,5 +1,5 @@
 import Layout from '@/components/layout/Layout';
-import { Logo } from '@common/index';
+import { Header } from '@components/layout';
 import { css } from '@emotion/react';
 
 type InterviewVideoPublicPageLayoutProps = {
@@ -11,22 +11,15 @@ const InterviewVideoPublicPageLayout: React.FC<
 > = ({ children }) => {
   return (
     <div>
-      <div
-        css={css`
-          display: flex;
-          padding: 2rem;
-        `}
-      >
-        <Logo />
-      </div>
+      <Header />
       <Layout
         direction="column"
         full
+        height="auto"
         css={css`
           align-items: center;
           row-gap: 1rem;
           padding: 1rem;
-          min-height: auto;
         `}
       >
         {children}
