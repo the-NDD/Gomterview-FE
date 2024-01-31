@@ -11,9 +11,7 @@ import useOnlyRelatedVideoQuery from '@hooks/apis/queries/useOnlyRelatedVideoLis
 import { Box } from '@foundation/index';
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
-import { VideoItem } from '@common/VideoItem';
-import { Thumbnail } from '@components/myPage';
-import dayjs from 'dayjs';
+import { VideoList } from '@common/index';
 
 const LinkOnlyVideoPage: React.FC = () => {
   const { videoHash = '' } = useParams();
@@ -41,20 +39,7 @@ const LinkOnlyVideoPage: React.FC = () => {
           }
         `}
       >
-        {relatedVideoItem.map((video) => (
-          <VideoItem
-            key={video.id}
-            videoName={video.videoName}
-            date={dayjs(Number(video.createdAt)).format('YYYY-MM-DD')}
-            path={`${PATH.INTERVIEW_VIDEO(video.id)}`}
-          >
-            <Thumbnail
-              image={video.thumbnail ?? ''}
-              videoName={video.videoName}
-              videoLength={video.videoLength}
-            />
-          </VideoItem>
-        ))}
+        <VideoList videoList={relatedVideoItem} />
       </Box>
     </LinkOnlyVideoPageLayout>
   );
