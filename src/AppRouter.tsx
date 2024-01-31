@@ -13,6 +13,7 @@ import rootLoader from '@routes/rootLoader';
 import WorkbookDetailPage from '@page/WorkbookDetailPage';
 import LoaderErrorPage from '@page/errorPage/Loader';
 import interviewWorkbookDetailLoader from '@routes/interviewWorkbookDetailLoader';
+import InterviewVideoListPage from '@page/InterviewVideoListPage';
 import WorkbookPage from '@page/workbookPage';
 import UnknownErrorBoundary from './UnknownErrorBoundary';
 import APIErrorBoundary from './APIErrorBoundary';
@@ -59,6 +60,10 @@ const AppRouter = ({ queryClient }: { queryClient: QueryClient }) => {
         {
           path: PATH.WORKBOOK,
           element: <WorkbookPage />,
+        },
+        {
+          path: PATH.INTERVIEW_VIDEO_LIST,
+          element: <InterviewVideoListPage />,
         },
         {
           path: PATH.MYPAGE,
