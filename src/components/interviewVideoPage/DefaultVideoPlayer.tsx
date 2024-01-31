@@ -1,7 +1,7 @@
-import { IconButton, VideoPlayer, VideoPlayerFrame } from '@common/VideoPlayer';
+import { VideoPlayer, VideoPlayerFrame } from '@common/VideoPlayer';
 import useVideoItemQuery from '@hooks/apis/queries/useVideoItemQuery';
-import { VideoShareModal } from '@components/interviewVideoPage/ShareRangeModal';
-import { useState } from 'react';
+// import { VideoShareModal } from '@components/interviewVideoPage/ShareRangeModal';
+// import { useState } from 'react';
 import { css } from '@emotion/react';
 
 type DefaultVideoPlayerProps = {
@@ -9,7 +9,6 @@ type DefaultVideoPlayerProps = {
 };
 const DefaultVideoPlayer: React.FC<DefaultVideoPlayerProps> = ({ videoId }) => {
   const { data: videoItem } = useVideoItemQuery(Number(videoId));
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div
@@ -19,11 +18,6 @@ const DefaultVideoPlayer: React.FC<DefaultVideoPlayerProps> = ({ videoId }) => {
         row-gap: 0.5rem;
       `}
     >
-      <IconButton
-        text="영상 공유하기"
-        iconName="send"
-        onClick={() => setIsOpen(!isOpen)}
-      />
       <VideoPlayerFrame
         key={videoItem.id}
         videoName={videoItem.videoName}
@@ -31,13 +25,13 @@ const DefaultVideoPlayer: React.FC<DefaultVideoPlayerProps> = ({ videoId }) => {
       >
         <VideoPlayer url={videoItem.url} />
       </VideoPlayerFrame>
-      <VideoShareModal
+      {/* <VideoShareModal
         videoId={Number(videoItem.id)}
         videoName={videoItem.videoName}
         hash={videoItem.hash}
         isOpen={isOpen}
         closeModal={() => setIsOpen(false)}
-      />
+      /> */}
     </div>
   );
 };
