@@ -72,7 +72,6 @@ const WorkbookDetailPage = () => {
     setSelectedQuestion(
       questionWorkbookData?.map((question) => question) || []
     );
-    toast.success('모든 질문이 선택 되었습니다.');
   };
 
   const allUnSelectQuestion = () => setSelectedQuestion([]);
@@ -82,7 +81,7 @@ const WorkbookDetailPage = () => {
     setAllSelected((prev) => !prev);
   };
 
-  const validateAddWorkbookListModal = () => {
+  const validateAddWorkbookList = () => {
     if (!userInfo) {
       toast.warning('로그인이 필요합니다.');
       return false;
@@ -133,13 +132,15 @@ const WorkbookDetailPage = () => {
           >
             <Button
               variants="secondary"
+              disabled={selectedQuestion.length < 1}
               onClick={openStartWithSelectedQuestionModal}
             >
-              인터뷰 시작하기
+              면접 시작하기
             </Button>
             <Button
+              disabled={selectedQuestion.length < 1}
               onClick={() => {
-                validateAddWorkbookListModal() && openAddWorkbookListModal();
+                validateAddWorkbookList() && openAddWorkbookListModal();
               }}
             >
               질문 가져오기
