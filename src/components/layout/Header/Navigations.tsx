@@ -18,7 +18,7 @@ const Navigations: React.FC = () => {
     },
     {
       path: PATH.INTERVIEW_SETTING,
-      text: '면접 문제 풀러가기',
+      text: '면접 연습 시작하기',
       visibility: true,
       message: '원하는 질문을 선택해 면접 연습을 시작해보세요!',
     },
