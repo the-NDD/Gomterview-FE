@@ -35,12 +35,13 @@ const Navigations: React.FC = () => {
       {navigationList.map(
         (item) =>
           item.visibility && (
-            <MenuItem key={item.path}>
-              <Tooltip
-                title={item.message}
-                position="bottom"
-                disabled={!item.message}
-              >
+            <Tooltip
+              title={item.message}
+              position="bottom"
+              disabled={!item.message}
+              key={item.path}
+            >
+              <MenuItem>
                 <Link
                   to={item.path}
                   css={css`
@@ -54,8 +55,8 @@ const Navigations: React.FC = () => {
                     {item.text}
                   </Typography>
                 </Link>
-              </Tooltip>
-            </MenuItem>
+              </MenuItem>
+            </Tooltip>
           )
       )}
       {!isLogin && (
