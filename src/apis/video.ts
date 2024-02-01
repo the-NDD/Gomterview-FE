@@ -98,7 +98,10 @@ export const getVideoById = async (videoId: number) => {
 };
 
 /**
- * 아직 구현하지 않았습니다.
+ * Patch video/${videoId}
+ * 비디오 아이디로 비디오 상세 정보를 수정하기 위해서 사용됩니다.
+ * Req
+ *  'videoName' | 'visibility' | 'relatedVideoIds[]'
  */
 export const patchVideoPublic = async (
   videoId: number,

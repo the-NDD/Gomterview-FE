@@ -23,7 +23,6 @@ type VideoEditModalProps = {
   videoId: number;
   videoName: string;
   visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE';
-  hash?: string | null;
   isOpen: boolean;
   editVideo: (
     videoName: string,
@@ -36,7 +35,6 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
   videoId,
   videoName,
   visibility,
-  hash,
   isOpen,
   editVideo,
   closeModal,

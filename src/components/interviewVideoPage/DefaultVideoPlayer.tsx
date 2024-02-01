@@ -4,7 +4,7 @@ import { VideoEditModal } from '@components/interviewVideoPage/ShareRangeModal';
 import { useState } from 'react';
 import { css } from '@emotion/react';
 import useUserInfo from '@hooks/useUserInfo';
-import useToggleVideoPublicMutation from '@hooks/apis/mutations/useToggleVideoPublicMutation';
+import useVideoPatchMutation from '@hooks/apis/mutations/useVideoPatchMutation';
 import { PATH } from '@constants/path';
 import { Button } from '@foundation/index';
 import { theme } from '@styles/theme';
@@ -17,9 +17,7 @@ const DefaultVideoPlayer: React.FC<DefaultVideoPlayerProps> = ({ videoId }) => {
   const { data: videoItem } = useVideoItemQuery(Number(videoId));
   const userInfo = useUserInfo();
   const [isOpen, setIsOpen] = useState(false);
-  const { mutate, data, isPending } = useToggleVideoPublicMutation(
-    Number(videoId)
-  );
+  const { mutate } = useVideoPatchMutation(Number(videoId));
 
   const editVideo = (
     videoName: string,
@@ -36,7 +34,7 @@ const DefaultVideoPlayer: React.FC<DefaultVideoPlayerProps> = ({ videoId }) => {
     if (videoItem.hash) {
       try {
         await navigator.clipboard.writeText(
-          `https://gomterview.com${PATH.INTERVIEW_VIDEO_PUBLIC(hash)}`
+          `https://gomterview.com${PATH.INTERVIEW_VIDEO_PUBLIC(videoItem.hash)}`
         );
         toast.success('링크 복사됨'); //TODO 현재는 alert이지만 추후에 Toast로 변경 예정
       } catch (e) {
@@ -93,7 +91,6 @@ const DefaultVideoPlayer: React.FC<DefaultVideoPlayerProps> = ({ videoId }) => {
           videoId={Number(videoItem.id)}
           videoName={videoItem.videoName}
           visibility={videoItem.visibility}
-          hash={videoItem.hash}
           isOpen={isOpen}
           editVideo={editVideo}
           closeModal={() => setIsOpen(false)}

@@ -39,7 +39,7 @@ const LinkOnlyVideoPage: React.FC = () => {
           }
         `}
       >
-        <VideoList videoList={relatedVideoItem} />
+        {relatedVideoItem && <VideoList videoList={relatedVideoItem} />}
       </Box>
     </LinkOnlyVideoPageLayout>
   );

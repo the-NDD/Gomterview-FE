@@ -5,11 +5,11 @@ import { patchVideoPublic } from '@/apis/video';
 /**
  * PATCH /video/${videoId}
  *
- * 비디오 공개, 비공개를 토글하기 위한 api입니다.
+ * 비디오 상세 정보를 수정하기 위한 api입니다.
  *
  */
 
-const useToggleVideoPublicMutation = (videoId: number) => {
+const useVideoPatchMutation = (videoId: number) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -36,4 +36,4 @@ const useToggleVideoPublicMutation = (videoId: number) => {
   });
 };
 
-export default useToggleVideoPublicMutation;
+export default useVideoPatchMutation;
