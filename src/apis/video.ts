@@ -5,7 +5,6 @@ import {
   VideoItemResDto,
   MyVideoListResDto,
   VideoPreSignedResDto,
-  VideoPublicToggleResDto,
   OnlyRelatedVideoListResDto,
   VideoRelatedInfoListResDto,
   PublicVideoListResDto,
@@ -101,10 +100,20 @@ export const getVideoById = async (videoId: number) => {
 /**
  * 아직 구현하지 않았습니다.
  */
-export const patchVideoPublic = async (videoId: number) => {
-  return await getAPIResponseData<VideoPublicToggleResDto>({
+export const patchVideoPublic = async (
+  videoId: number,
+  videoName: string,
+  visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE',
+  relatedVideoIds: number[]
+) => {
+  return await getAPIResponseData({
     method: 'patch',
     url: API.VIDEO_ID(videoId),
+    data: {
+      videoName: videoName,
+      visibility: visibility,
+      relatedVideoIds: relatedVideoIds,
+    },
   });
 };
 
