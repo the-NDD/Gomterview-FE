@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
 import { getPublicVideoList } from '@/apis/video';
 
@@ -10,7 +10,7 @@ import { getPublicVideoList } from '@/apis/video';
  * 마이페이지에서 사용됩니다.
  */
 const usePublicVideoListQuery = () => {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: QUERY_KEY.VIDEO_PUBLIC,
     queryFn: () => getPublicVideoList(),
   });

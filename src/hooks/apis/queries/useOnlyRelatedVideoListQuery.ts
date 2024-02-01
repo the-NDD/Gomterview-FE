@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
 import { getOnlyRelatedVideoList } from '@/apis/video';
 import { isAxiosError } from 'axios';
@@ -11,7 +11,7 @@ import { isAxiosError } from 'axios';
  * video 상세 페이지에서 사용됩니다.
  */
 const useOnlyRelatedVideoQuery = (videoId: number) => {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: QUERY_KEY.VIDEO_ID_ONLY_RELATED(videoId),
     queryFn: () => getOnlyRelatedVideoList(videoId),
     retry: (_, error) => {
