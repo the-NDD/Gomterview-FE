@@ -41,21 +41,21 @@ const Navigations: React.FC = () => {
               disabled={!item.message}
               key={item.path}
             >
-              <MenuItem>
-                <Link
-                  to={item.path}
-                  css={css`
-                    text-decoration: none;
-                  `}
-                >
+              <Link
+                to={item.path}
+                css={css`
+                  text-decoration: none;
+                `}
+              >
+                <MenuItem>
                   <Typography
                     variant="body1"
                     color={theme.colors.text.subStrong}
                   >
                     {item.text}
                   </Typography>
-                </Link>
-              </MenuItem>
+                </MenuItem>
+              </Link>
             </Tooltip>
           )
       )}
