@@ -8,7 +8,7 @@ import {
   LinkOnlyVideoPlayer,
 } from '@components/LinkOnlyVideoPage';
 import useOnlyRelatedVideoQuery from '@hooks/apis/queries/useOnlyRelatedVideoListQuery';
-import { Box } from '@foundation/index';
+import { Box, Typography } from '@foundation/index';
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
 import { VideoList } from '@common/index';
@@ -25,6 +25,15 @@ const LinkOnlyVideoPage: React.FC = () => {
   return (
     <LinkOnlyVideoPageLayout>
       <LinkOnlyVideoPlayer {...data} />
+      <Typography
+        variant="title2"
+        css={css`
+          margin-top: 4rem;
+          margin-left: 1rem;
+        `}
+      >
+        꼬리 질문 보기🤗
+      </Typography>
       <Box
         css={css`
           display: grid;

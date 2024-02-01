@@ -7,9 +7,15 @@ const LinkOnlyVideoPlayer: React.FC<LinkOnlyVideoPlayerProps> = ({
   url,
   videoName,
   createdAt,
+  nickname,
 }) => {
   return (
-    <VideoPlayerFrame key={id} videoName={videoName} createdAt={createdAt}>
+    <VideoPlayerFrame
+      key={id}
+      videoName={videoName}
+      createdAt={createdAt}
+      nickname={nickname}
+    >
       <VideoPlayer url={url} />
     </VideoPlayerFrame>
   );

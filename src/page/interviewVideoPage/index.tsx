@@ -10,7 +10,7 @@ import { PATH } from '@constants/path';
 import { ErrorBoundary } from 'react-error-boundary';
 import { isAxiosError } from 'axios';
 import useOnlyRelatedVideoQuery from '@hooks/apis/queries/useOnlyRelatedVideoListQuery';
-import { Box } from '@foundation/index';
+import { Box, Typography } from '@foundation/index';
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
 
@@ -48,6 +48,15 @@ const InterviewVideoPage: React.FC = () => {
               `}
             >
               <DefaultVideoPlayer videoId={videoId} />
+              <Typography
+                variant="title2"
+                css={css`
+                  margin-left: 1rem;
+                  margin-top: 4rem;
+                `}
+              >
+                꼬리 질문 보기🤗
+              </Typography>
               <Box
                 css={css`
                   display: grid;
