@@ -2,6 +2,8 @@ import { css } from '@emotion/react';
 import { CardCover, Icon, Typography } from '@foundation/index';
 import { theme } from '@styles/theme';
 import { MouseEventHandler } from 'react';
+import logo from '@assets/images/logo.png';
+
 
 type ThumbnailProps = {
   image: string;
@@ -98,7 +100,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
           loading="lazy"
           crossOrigin="use-credentials"
           src={image}
-          onError={(e) => (e.currentTarget.src = '/src/assets/images/logo.png')}
+          onError={(e) => (e.currentTarget.src = `${logo}`)}
           alt={videoName}
           css={css`
             aspect-ratio: 3 / 2;

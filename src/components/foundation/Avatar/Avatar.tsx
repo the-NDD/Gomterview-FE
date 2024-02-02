@@ -2,6 +2,7 @@ import { theme } from '@styles/theme';
 import { HTMLElementTypes } from '@/types/utils';
 import { css } from '@emotion/react';
 import React from 'react';
+import logo from '@assets/images/logo.png';
 
 type AvatarProps = {
   src?: string;
@@ -27,9 +28,7 @@ const Avatar: React.FC<AvatarProps> = ({
       <img
         src={src}
         loading="lazy"
-        onError={(e) =>
-          (e.currentTarget.src = '/src/assets/images/landing-bear.png')
-        }
+        onError={(e) => (e.currentTarget.src = `${logo}`)}
         crossOrigin="anonymous"
         css={css`
           border-radius: 50%;
