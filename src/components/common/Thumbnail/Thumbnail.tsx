@@ -4,6 +4,7 @@ import { theme } from '@styles/theme';
 import { MouseEventHandler } from 'react';
 import logo from '@assets/images/logo.png';
 
+
 type ThumbnailProps = {
   image: string;
   videoName: string;
