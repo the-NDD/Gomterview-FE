@@ -95,6 +95,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
           </>
         )}
         <img
+          loading="lazy"
           crossOrigin="use-credentials"
           src={image}
           onError={(e) => (e.currentTarget.src = '/src/assets/images/logo.png')}

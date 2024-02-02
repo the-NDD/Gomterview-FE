@@ -13,6 +13,7 @@ const LandingImage: React.FC = () => {
       `}
     >
       <img
+        loading="lazy"
         src={LandingBear}
         alt={'노트북을 하는 곰돌이의 뒷모습'}
         css={css`

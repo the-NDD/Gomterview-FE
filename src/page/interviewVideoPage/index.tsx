@@ -3,7 +3,7 @@ import {
   InterviewVideoPageLayout,
   DefaultVideoPlayer,
 } from '@components/interviewVideoPage';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { CenterLayout } from '@components/layout';
 import { PATH } from '@constants/path';
@@ -18,66 +18,71 @@ const InterviewVideoPage: React.FC = () => {
   const { videoId } = useParams();
   const [errorInfo, setErrorInfo] = useState<Partial<Response>>();
   const { data: relatedVideoItem } = useOnlyRelatedVideoQuery(Number(videoId));
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!videoId) return <Navigate to={PATH.ROOT} />;
-  if (!relatedVideoItem) return <></>;
-  else
-    return (
-      <InterviewVideoPageLayout>
-        <ErrorBoundary
-          onError={(err) => {
-            if (!isAxiosError(err)) return;
-            setErrorInfo({
-              status: err?.response?.status,
-              statusText: err.response?.statusText,
-            });
-          }}
-          fallback={<Navigate to={PATH.NOT_FOUND} state={errorInfo} />}
+
+  return (
+    <InterviewVideoPageLayout>
+      <ErrorBoundary
+        onError={(err) => {
+          if (!isAxiosError(err)) return;
+          setErrorInfo({
+            status: err?.response?.status,
+            statusText: err.response?.statusText,
+          });
+        }}
+        fallback={<Navigate to={PATH.NOT_FOUND} state={errorInfo} />}
+      >
+        <Suspense
+          fallback={
+            <CenterLayout>
+              <LoadingBounce />
+            </CenterLayout>
+          }
         >
-          <Suspense
-            fallback={
-              <CenterLayout>
-                <LoadingBounce />
-              </CenterLayout>
-            }
+          <div
+            css={css`
+              display: flex;
+              flex-direction: column;
+              row-gap: 0.5rem;
+            `}
           >
-            <div
+            <DefaultVideoPlayer videoId={videoId} />
+            <Typography
+              variant="title2"
               css={css`
-                display: flex;
-                flex-direction: column;
-                row-gap: 0.5rem;
+                margin-left: 1rem;
+                margin-top: 4rem;
               `}
             >
-              <DefaultVideoPlayer videoId={videoId} />
-              <Typography
-                variant="title2"
-                css={css`
-                  margin-left: 1rem;
-                  margin-top: 4rem;
-                `}
-              >
-                꼬리 질문 보기🤗
-              </Typography>
-              <Box
-                css={css`
-                  display: grid;
-                  grid-template-columns: repeat(2, 1fr);
-                  justify-content: center;
-                  max-width: 64svw;
-                  gap: 1.5rem;
-                  padding: 1.5rem;
-                  @media (max-width: ${theme.breakpoints.tablet}) {
-                    grid-template-columns: 1fr;
-                    padding: 1rem;
-                  }
-                `}
-              >
-                <VideoList videoList={relatedVideoItem} />
-              </Box>
-            </div>
-          </Suspense>
-        </ErrorBoundary>
-      </InterviewVideoPageLayout>
-    );
+              꼬리 질문 보기🤗
+            </Typography>
+            <Box
+              css={css`
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                justify-content: center;
+                max-width: 64svw;
+                gap: 1.5rem;
+                padding: 1.5rem;
+                min-height: 12.5rem;
+                @media (max-width: ${theme.breakpoints.tablet}) {
+                  grid-template-columns: 1fr;
+                  padding: 1rem;
+                }
+              `}
+            >
+              {relatedVideoItem && <VideoList videoList={relatedVideoItem} />}
+            </Box>
+          </div>
+        </Suspense>
+      </ErrorBoundary>
+    </InterviewVideoPageLayout>
+  );
 };
 
 export default InterviewVideoPage;

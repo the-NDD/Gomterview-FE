@@ -26,7 +26,10 @@ const Avatar: React.FC<AvatarProps> = ({
     >
       <img
         src={src}
-        // TODO: alt에는 사용자 명이 들어가야함
+        loading="lazy"
+        onError={(e) =>
+          (e.currentTarget.src = '/src/assets/images/landing-bear.png')
+        }
         crossOrigin="anonymous"
         css={css`
           border-radius: 50%;
