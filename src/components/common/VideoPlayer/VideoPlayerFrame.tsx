@@ -6,12 +6,13 @@ import { VideoItemResDto } from '@/types/video';
 import dayjs from 'dayjs';
 
 type VideoItemProps = PropsWithChildren &
-  Pick<VideoItemResDto, 'videoName' | 'createdAt'>;
+  Pick<VideoItemResDto, 'videoName' | 'createdAt' | 'nickname'>;
 
 const VideoPlayerFrame: React.FC<VideoItemProps> = ({
   children,
   videoName,
   createdAt,
+  nickname,
 }) => {
   return (
     <div
@@ -42,9 +43,12 @@ const VideoPlayerFrame: React.FC<VideoItemProps> = ({
         </Typography>
         <div
           css={css`
-            align-self: flex-end;
+            display: flex;
+            justify-content: space-between;
           `}
         >
+          <Typography variant="title4">{nickname}</Typography>
+
           <Typography variant="body3" color={theme.colors.text.subStrong}>
             {dayjs(Number(createdAt)).format('YYYY.MM.DD')}
           </Typography>

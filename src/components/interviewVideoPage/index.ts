@@ -1,2 +1,2 @@
 export { default as InterviewVideoPageLayout } from '@components/interviewVideoPage/InterviewVideoPageLayout';
-export { default as PrivateVideoPlayer } from '@components/interviewVideoPage/PrivateVideoPlayer';
+export { default as DefaultVideoPlayer } from '@components/interviewVideoPage/DefaultVideoPlayer';

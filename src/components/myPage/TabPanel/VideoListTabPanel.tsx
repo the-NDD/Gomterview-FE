@@ -6,16 +6,17 @@ import useVideoListQuery from '@hooks/apis/queries/useVideoListQuery';
 import { theme } from '@styles/theme';
 import dayjs from 'dayjs';
 import DeleteCheckModal from '../DeleteCheckModal';
-import Thumbnail from '../Thumbnail';
-import { VideoItem } from '../VideoItem';
+import Thumbnail from '@common/Thumbnail/Thumbnail';
+import { VideoItem } from '@common/VideoItem';
 import useModal from '@hooks/useModal';
-import { VideoListResDto } from '@/types/video';
+import { MyVideoListResDto } from '@/types/video';
 import { ExcludeArray } from '@/types/utils';
 
 type VideoListItemProps = {
-  video: ExcludeArray<VideoListResDto>;
+  video: ExcludeArray<MyVideoListResDto>;
 };
-const VideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
+
+const MyVideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
   const { mutate } = useDeleteVideoMutation();
   const { openModal: openDeleteCheckModal, closeModal: closeDeleteCheckModal } =
     useModal(() => {
@@ -44,6 +45,8 @@ const VideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
         image={video.thumbnail ?? ''}
         videoName={video.videoName}
         videoLength={video.videoLength}
+        isMyPage
+        visibility={video.visibility}
         onDeleteIconClick={openDeleteCheckModal}
       />
     </VideoItem>
@@ -52,7 +55,6 @@ const VideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
 
 const VideoListTabPanel: React.FC = () => {
   const { data } = useVideoListQuery();
-
   return (
     <Box
       css={css`
@@ -68,7 +70,7 @@ const VideoListTabPanel: React.FC = () => {
       `}
     >
       {data.map((video) => (
-        <VideoListItem key={video.id} video={video} />
+        <MyVideoListItem key={video.id} video={video} />
       ))}
     </Box>
   );

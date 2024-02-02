@@ -11,6 +11,12 @@ const Navigations: React.FC = () => {
 
   const navigationList = [
     {
+      path: PATH.INTERVIEW_VIDEO_LIST,
+      text: '면접 영상 보러가기',
+      visibility: true,
+      message: '다른 사람들의 다양한 영상들을 구경해보세요😊',
+    },
+    {
       path: PATH.WORKBOOK,
       text: '면접 세트 보러가기',
       visibility: true,

@@ -1,1 +1,1 @@
-export { default as VideoShareModal } from './VideoShareModal';
+export { default as VideoEditModal } from './VideoEditModal';
