@@ -3,9 +3,11 @@ import { API } from '@constants/api';
 import {
   VideoAddReqDto,
   VideoItemResDto,
-  VideoListResDto,
+  MyVideoListResDto,
   VideoPreSignedResDto,
-  VideoPublicToggleResDto,
+  OnlyRelatedVideoListResDto,
+  VideoRelatedInfoListResDto,
+  PublicVideoListResDto,
 } from '@/types/video';
 
 export const postVideo = async (body: VideoAddReqDto) => {
@@ -23,10 +25,55 @@ export const postPreSignedUrl = async () => {
   });
 };
 
-export const getVideoList = async () => {
-  return await getAPIResponseData<VideoListResDto>({
+/**
+ * GET video/all
+ * 마이페이지에서 비디오 전체 리스트를 조회
+ * Res
+ * 'id' | 'thumbnail' | 'videoName' | 'videoLength' | 'visibility' | 'createdAt'
+ */
+export const getMyVideoList = async () => {
+  return await getAPIResponseData<MyVideoListResDto>({
     method: 'get',
     url: API.VIDEO_ALL,
+  });
+};
+
+/**
+ * GET video/all
+ * 모든 영상을 보여주는 페이지에서 서비스 전체 비디오 리스트를 조회
+ * Res
+ * 'id' | 'thumbnail' | 'videoName' | 'videoLength' | 'visibility' | 'createdAt'
+ */
+export const getPublicVideoList = async () => {
+  return await getAPIResponseData<PublicVideoListResDto>({
+    method: 'get',
+    url: API.VIDEO_PUBLIC,
+  });
+};
+
+/**
+ * GET video/related/${videoId}
+ * 비디오 아이디로 연결된 비디오 리스트"만" 조회
+ * Res => Array
+ * 'id' | 'nickname' | 'url' | 'hash' | 'videoName' | 'createdAt' | 'visibility'
+ */
+export const getOnlyRelatedVideoList = async (videoId: number) => {
+  return await getAPIResponseData<OnlyRelatedVideoListResDto>({
+    method: 'get',
+    url: API.VIDEO_ID_ONLY_RELATED(videoId),
+  });
+};
+
+/**
+ * GET video/relate/${videoId}
+ * 비디오 아이디로 비디오와 연결되거나 안된 모든 비디오를 조회
+ * Res => Array
+ *'id' | 'isRelated' | 'visibility' | 'videoName' | 'createdAt'
+ */
+export const getVideoRelatedInfoList = async (videoId: number) => {
+  return await getAPIResponseData<VideoRelatedInfoListResDto>({
+    method: 'get',
+    url: API.VIDEO_ID_RELATED_INFO(videoId),
   });
 };
 
@@ -37,6 +84,12 @@ export const getVideoByHash = async (hash: string) => {
   });
 };
 
+/**
+ * GET video/${videoId}
+ * 비디오 아이디로 비디오를 단건 조회했을 때 응답 객체 타입
+ * Res
+ *  'id' | 'nickname' | 'url' | 'hash' | 'videoName' | 'createdAt' | 'visibility'
+ */
 export const getVideoById = async (videoId: number) => {
   return await getAPIResponseData<VideoItemResDto>({
     method: 'get',
@@ -44,10 +97,26 @@ export const getVideoById = async (videoId: number) => {
   });
 };
 
-export const patchVideoPublic = async (videoId: number) => {
-  return await getAPIResponseData<VideoPublicToggleResDto>({
+/**
+ * Patch video/${videoId}
+ * 비디오 아이디로 비디오 상세 정보를 수정하기 위해서 사용됩니다.
+ * Req
+ *  'videoName' | 'visibility' | 'relatedVideoIds[]'
+ */
+export const patchVideoPublic = async (
+  videoId: number,
+  videoName: string,
+  visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE',
+  relatedVideoIds: number[]
+) => {
+  return await getAPIResponseData({
     method: 'patch',
     url: API.VIDEO_ID(videoId),
+    data: {
+      videoName: videoName,
+      visibility: visibility,
+      relatedVideoIds: relatedVideoIds,
+    },
   });
 };
 

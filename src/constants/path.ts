@@ -6,6 +6,7 @@ const MYPAGE = 'mypage';
 const QUESTION = 'question';
 const TERMS = 'terms';
 const WORKBOOK = 'workbook';
+const VIDEO = 'video';
 
 export const PATH = {
   ROOT: '/',
@@ -14,6 +15,7 @@ export const PATH = {
   INTERVIEW_SETTING_CONNECTION: `/${INTERVIEW}/${SETTING}?page=${CONNECTION}`,
   INTERVIEW_SETTING_RECORD: `/${INTERVIEW}/${SETTING}/${RECORD}`,
   MYPAGE: `/${MYPAGE}`,
+  INTERVIEW_VIDEO_LIST: `/${VIDEO}`,
   INTERVIEW_VIDEO: (videoId?: number) =>
     `/${INTERVIEW}/${videoId ?? ':videoId'}`,
   INTERVIEW_VIDEO_PUBLIC: (videoHash?: string) =>

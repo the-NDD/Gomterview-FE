@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Typography } from '@foundation/index';
+import { Avatar, Typography } from '@foundation/index';
 import { theme } from '@styles/theme';
 import { Link } from 'react-router-dom';
 
@@ -7,6 +7,8 @@ type VideoItemProps = {
   children?: React.ReactNode;
   videoName: string;
   date: string;
+  userThumbnail?: string;
+  nickname?: string;
   path: string;
 };
 
@@ -14,6 +16,8 @@ const VideoItem: React.FC<VideoItemProps> = ({
   children,
   videoName,
   date,
+  userThumbnail,
+  nickname,
   path,
 }) => {
   return (
@@ -53,9 +57,23 @@ const VideoItem: React.FC<VideoItemProps> = ({
         </Typography>
         <div
           css={css`
-            align-self: flex-end;
+            display: flex;
+            justify-content: space-between;
           `}
         >
+          <div
+            css={css`
+              display: flex;
+              gap: 0.625rem;
+            `}
+          >
+            {userThumbnail && nickname && (
+              <>
+                <Avatar src={userThumbnail} width="1.5rem" height="1.5rem" />
+                <Typography variant="body3">{nickname}</Typography>
+              </>
+            )}
+          </div>
           <Typography variant="body3" color={theme.colors.text.subStrong}>
             {date}
           </Typography>

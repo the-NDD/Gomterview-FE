@@ -75,7 +75,14 @@ const QuestionAccordion: React.FC<QuestionAccordionProps> = ({
           isSelected && selectedStyle,
         ]}
       >
-        <Typography noWrap variant="body3">
+        <Typography
+          noWrap
+          variant="body3"
+          css={css`
+            min-width: 100%;
+            max-width: 21.875rem; // serviceTour에서 100%를 넘기기에 발생하는 문제 해결
+          `}
+        >
           {question.questionContent}
         </Typography>
       </AccordionSummary>
@@ -90,6 +97,7 @@ const QuestionAccordion: React.FC<QuestionAccordionProps> = ({
             variant="body3"
             css={css`
               min-width: 100%;
+              max-width: 21.875rem; // serviceTour에서 100%를 넘기기에 발생하는 문제 해결
             `}
           >
             {question.answerContent}

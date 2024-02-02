@@ -2,31 +2,76 @@
   {
     "id": 1,
     "memberId": 1,
+    "questionId": 101,
     "videoName": "CSS 선택자의 종류에 대해 설명해주세요.",
     "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg",
     "url": "https://u2e0.c18.e2-4.dev/videos/%EB%A3%A8%EC%9D%B4%EB%B7%94%ED%86%B5%ED%86%B5%ED%8A%80%EA%B8%B0%EB%84%A4_test_07ab3e8a-1a0a-453f-8d60-afacb57b0075.webm",
     "videoLength": "03:00",
-    "isPublic": false,
-    "createdAt": "1699941626145"
+    "visibility": "LINK_ONLY",
+    "createdAt": "1699941626145",
+    "hash": "somehashvalue1",
+    "isRelated": true,
+    "nickname": "User1",
+    "userThumbnail": "http://example.com/thumbnail1.jpg"
   },
   {
     "id": 2,
     "memberId": 1,
+    "questionId": 102,
     "videoName": "Big Buck Bunny",
     "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
     "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     "videoLength": "07:17",
-    "isPublic": true,
-    "createdAt": "1699941626145"
+    "visibility": "PUBLIC",
+    "createdAt": "1699941626145",
+    "hash": "somehashvalue2",
+    "isRelated": false,
+    "nickname": "User2",
+    "userThumbnail": "http://example.com/thumbnail2.jpg"
   },
   {
     "id": 3,
     "memberId": 1,
+    "questionId": 103,
     "videoName": "Elephant Dream",
     "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
     "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     "videoLength": "10:53",
-    "isPublic": false,
-    "createdAt": "1699941626145"
+    "visibility": "PRIVATE",
+    "createdAt": "1699941626145",
+    "hash": "somehashvalue3",
+    "isRelated": true,
+    "nickname": "User3",
+    "userThumbnail": "http://example.com/thumbnail3.jpg"
+  },
+  {
+    "id": 4,
+    "memberId": 2,
+    "questionId": 104,
+    "videoName": "Video Tutorial 4",
+    "thumbnail": "http://example.com/thumbnail4.jpg",
+    "url": "http://example.com/video4.mp4",
+    "videoLength": "05:00",
+    "visibility": "PUBLIC",
+    "createdAt": "1699941626146",
+    "hash": "somehashvalue4",
+    "isRelated": false,
+    "nickname": "User4",
+    "userThumbnail": "http://example.com/userthumbnail4.jpg"
+  },
+  {
+    "id": 5,
+    "memberId": 3,
+    "questionId": 105,
+    "videoName": "Video Tutorial 5",
+    "thumbnail": "http://example.com/thumbnail5.jpg",
+    "url": "http://example.com/video5.mp4",
+    "videoLength": "08:30",
+    "visibility": "LINK_ONLY",
+    "createdAt": "1699941626147",
+    "hash": "somehashvalue5",
+    "isRelated": true,
+    "nickname": "User5",
+    "userThumbnail": "http://example.com/userthumbnail5.jpg"
   }
 ]
