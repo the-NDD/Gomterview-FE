@@ -6,7 +6,7 @@ import useVideoListQuery from '@hooks/apis/queries/useVideoListQuery';
 import { theme } from '@styles/theme';
 import dayjs from 'dayjs';
 import DeleteCheckModal from '../DeleteCheckModal';
-import Thumbnail from '../Thumbnail';
+import Thumbnail from '@common/Thumbnail/Thumbnail';
 import { VideoItem } from '@common/VideoItem';
 import useModal from '@hooks/useModal';
 import { MyVideoListResDto } from '@/types/video';
@@ -45,7 +45,8 @@ const MyVideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
         image={video.thumbnail ?? ''}
         videoName={video.videoName}
         videoLength={video.videoLength}
-        isMyPage // 마이페이지에서만 DeleteButton UI가 등장합니다.
+        isMyPage
+        visibility={video.visibility}
         onDeleteIconClick={openDeleteCheckModal}
       />
     </VideoItem>
@@ -54,7 +55,6 @@ const MyVideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
 
 const VideoListTabPanel: React.FC = () => {
   const { data } = useVideoListQuery();
-
   return (
     <Box
       css={css`

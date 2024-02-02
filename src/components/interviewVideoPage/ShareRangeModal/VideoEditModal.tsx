@@ -43,8 +43,12 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
   const [activeValidationError, setActiveValidationError] = useState(false);
   const [selectedVisibility, setSelectedVisibility] = useState<
     'PUBLIC' | 'LINK_ONLY' | 'PRIVATE'
-  >('PUBLIC');
-  const [selectedVideoInfo, setSelectedVideoInfo] = useState<number[]>([]);
+  >(visibility);
+  const [selectedVideoInfo, setSelectedVideoInfo] = useState<number[]>(
+    relatedInfoList
+      ?.filter((info) => info.isRelated) // isRelated가 true인 항목만 필터링
+      .map((info) => info.id) || [] // 필터링된 항목들의 id 추출
+  );
   const {
     value: videoTitle,
     onChange: handleVideoTitleChange,
@@ -73,22 +77,17 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
     }
 
     editVideo(videoTitle, selectedVisibility, selectedVideoInfo);
+    closeModal();
     toast.success('성공적으로 영상정보가 수정되었습니다.');
   };
 
   useEffect(() => {
-    if (visibility) {
-      setSelectedVisibility(visibility);
-    } else {
-      setSelectedVisibility('PRIVATE');
-    }
-    if (selectedVideoInfo.length === 0)
-      relatedInfoList?.map((info) => {
-        if (info.isRelated) {
-          setSelectedVideoInfo((pre) => [...pre, info.id]);
-        }
-      });
-  }, [isOpen, relatedInfoList, visibility, selectedVideoInfo]);
+    relatedInfoList?.map((info) => {
+      if (info.isRelated) {
+        setSelectedVideoInfo((pre) => [...pre, info.id]);
+      }
+    });
+  }, [relatedInfoList]);
 
   return (
     <Modal

@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { CardCover, Icon } from '@foundation/index';
+import { CardCover, Icon, Typography } from '@foundation/index';
 import { theme } from '@styles/theme';
 import { MouseEventHandler } from 'react';
 
@@ -8,6 +8,7 @@ type ThumbnailProps = {
   videoName: string;
   videoLength: string;
   isMyPage?: boolean;
+  visibility?: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE';
   onDeleteIconClick?: () => void;
 };
 
@@ -16,6 +17,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   videoName,
   videoLength,
   isMyPage = false,
+  visibility,
   onDeleteIconClick,
 }) => {
   const handleDeleteIconClick: MouseEventHandler = (e) => {
@@ -54,22 +56,43 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
         `}
       >
         {isMyPage && (
-          <div
-            onClick={handleDeleteIconClick}
-            className="delete"
-            css={css`
-              display: none;
-              position: absolute;
-              top: 0.5rem;
-              left: 0.5rem;
-              padding: 0.25rem;
-              border-radius: 1rem;
-              background-color: ${theme.colors.surface.default};
-              z-index: ${theme.zIndex.contentOverlay.overlay5};
-            `}
-          >
-            <Icon id="trash" width="20" height="20" />
-          </div>
+          <>
+            <div
+              onClick={handleDeleteIconClick}
+              className="delete"
+              css={css`
+                display: none;
+                position: absolute;
+                top: 0.5rem;
+                left: 0.5rem;
+                padding: 0.25rem;
+                border-radius: 1rem;
+                background-color: ${theme.colors.surface.default};
+                z-index: ${theme.zIndex.contentOverlay.overlay5};
+              `}
+            >
+              <Icon id="trash" width="20" height="20" />
+            </div>
+            <div
+              css={css`
+                display: block;
+                position: absolute;
+                top: 0.5rem;
+                right: 0.5rem;
+                padding: 0.25rem;
+                border-radius: 1rem;
+                background-color: ${theme.colors.surface.default};
+                z-index: ${theme.zIndex.contentOverlay.overlay5};
+              `}
+            >
+              <Typography
+                variant="body3"
+                color={`${theme.colors.point.primary.default};`}
+              >
+                {visibility}
+              </Typography>
+            </div>
+          </>
         )}
         <img
           crossOrigin="use-credentials"

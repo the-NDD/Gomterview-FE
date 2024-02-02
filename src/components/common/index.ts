@@ -12,3 +12,4 @@ export { default as WorkbookGeneratorModal } from '@common/QuestionSelectionBox/
 export { default as ShareRangeToggle } from './ShareRangeToggle/ShareRangeToggle';
 export { default as ServiceTourStep } from './ServiceTourStep/ServiceTourStep';
 export { default as VideoList } from './VideoList/VideoList';
+export { default as Thumbnail } from './Thumbnail/Thumbnail';
