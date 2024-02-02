@@ -44,11 +44,7 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
   const [selectedVisibility, setSelectedVisibility] = useState<
     'PUBLIC' | 'LINK_ONLY' | 'PRIVATE'
   >(visibility);
-  const [selectedVideoInfo, setSelectedVideoInfo] = useState<number[]>(
-    relatedInfoList
-      ?.filter((info) => info.isRelated) // isRelated가 true인 항목만 필터링
-      .map((info) => info.id) || [] // 필터링된 항목들의 id 추출
-  );
+  const [selectedVideoInfo, setSelectedVideoInfo] = useState<number[]>([]);
   const {
     value: videoTitle,
     onChange: handleVideoTitleChange,
@@ -62,11 +58,19 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
       : unSelectVideoInfo(Number(id));
   };
 
-  const selectVideoInfo = (id: number) =>
-    setSelectedVideoInfo((pre) => [...pre, id]);
+  const selectVideoInfo = (id: number) => {
+    setSelectedVideoInfo((prev) => {
+      if (prev.includes(id)) {
+        return prev;
+      } else {
+        return [...prev, id];
+      }
+    });
+  };
 
-  const unSelectVideoInfo = (id: number) =>
+  const unSelectVideoInfo = (id: number) => {
     setSelectedVideoInfo((pre) => pre.filter((item) => item !== id));
+  };
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
