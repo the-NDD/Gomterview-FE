@@ -1,18 +1,9 @@
-import { css, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
 
 import { Typography } from '@foundation/index';
 import { Resizable } from 're-resizable';
 import { useState } from 'react';
-
-const blink = keyframes`
-  0%, 100% {
-    border-top-color: transparent;
-  }
-  50% {
-    border-top-color: ${theme.colors.point.primary.default};
-  }
-`;
 
 type InterviewAnswerProps = {
   answer: string;
@@ -58,12 +49,10 @@ const InterviewAnswer: React.FC<InterviewAnswerProps> = ({ answer }) => {
           background-color: ${theme.colors.surface.black100};
           color: ${theme.colors.text.white};
           opacity: 60%;
-          border-radius: 2rem;
 
+          border-radius: 2rem;
           border-top: 5px solid transparent;
           transition: border-top 0.3s ease-in-out;
-
-          border-top: 5px solid transparent;
 
           ${!isResizing &&
           `
