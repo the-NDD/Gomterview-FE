@@ -12,6 +12,7 @@ import { LeadingDot } from '@foundation/index';
 import useUserInfo from '@hooks/useUserInfo';
 import useModal from '@hooks/useModal';
 import AnswerSelectionModal from '@common/QuestionSelectionBox/AnswerSelectionModal/AnswerSelectionModal';
+import { RequestLoginModal } from '@components/common';
 
 type QuestionAccordionProps = {
   question: Question;
@@ -48,6 +49,11 @@ const QuestionAccordion: React.FC<QuestionAccordionProps> = ({
     );
   });
 
+  const {
+    openModal: openRequestLoginModal,
+    closeModal: closeRequestLoginModal,
+  } = useModal(() => <RequestLoginModal closeModal={closeRequestLoginModal} />);
+
   const handleEditModal = (e: React.MouseEvent) => {
     e.stopPropagation();
     openModal();
@@ -55,7 +61,7 @@ const QuestionAccordion: React.FC<QuestionAccordionProps> = ({
 
   const handleEditGuestUser = (e: React.MouseEvent) => {
     e.stopPropagation();
-    alert('로그인 후 이용해 주세요');
+    openRequestLoginModal();
   };
 
   return (
