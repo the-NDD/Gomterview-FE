@@ -4,7 +4,7 @@ import { theme } from '@styles/theme';
 import { PATH } from '@constants/path';
 import useUserInfo from '@hooks/useUserInfo';
 import redirectToGoogleLogin from '@/utils/redirectToGoogleLogin';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Tooltip } from '@foundation/index';
 import { useErrorBoundary } from 'react-error-boundary';
 
@@ -38,18 +38,26 @@ const Navigations: React.FC = () => {
     },
   ];
 
-  const { resetBoundary } = useErrorBoundary(); // 가정: 에러 바운더리 리셋 함수를 제공
+  const { resetBoundary } = useErrorBoundary();
+  const location = useLocation();
 
   return (
     <>
       {navigationList.map(
-        (item) =>
+        (item, index) =>
           item.visibility && (
             <Tooltip
               title={item.message}
               position="bottom"
               disabled={!item.message}
               key={item.path}
+              blinkInterval={
+                index === 0 && location.pathname === PATH.ROOT
+                  ? 5000
+                  : undefined
+              }
+              // 면접 영상 보러가기의 tooltip은 5초 간격으로 깜빡이도록 설정
+              // TODO: 추후 분리할때 로직 변경 필요 현재는 index로 구분
             >
               <Link
                 to={item.path}
