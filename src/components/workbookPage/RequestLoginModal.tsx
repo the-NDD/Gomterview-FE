@@ -44,6 +44,7 @@ const RequestLoginModal: React.FC<RequestLoginModalProps> = ({
             <Button
               onClick={() => {
                 navigate(PATH.ROOT);
+                closeModal();
               }}
             >
               로그인하러 이동
