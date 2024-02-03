@@ -41,6 +41,7 @@ export const useUploadToIDrive = () => {
       videoToServer({
         questionId: currentQuestion.questionId,
         videoName: currentQuestion.questionContent,
+        videoAnswer: currentQuestion.answerContent,
         url: `${IDRIVE_URL}/videos/${video.key}`,
         thumbnail: `${IDRIVE_URL}/thumbnail/${thumbnail.key}`,
         videoLength: recordTime,

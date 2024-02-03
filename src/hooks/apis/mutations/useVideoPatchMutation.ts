@@ -15,13 +15,25 @@ const useVideoPatchMutation = (videoId: number) => {
   return useMutation({
     mutationFn: ({
       videoName,
+      videoAnswer,
+      thumbnail,
       visibility,
       relatedVideoIds,
     }: {
       videoName: string;
+      videoAnswer: string;
+      thumbnail: string;
       visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE';
       relatedVideoIds: number[];
-    }) => patchVideoPublic(videoId, videoName, visibility, relatedVideoIds),
+    }) =>
+      patchVideoPublic(
+        videoId,
+        videoName,
+        videoAnswer,
+        thumbnail,
+        visibility,
+        relatedVideoIds
+      ),
     onSuccess: () => {
       void queryClient.invalidateQueries({
         queryKey: QUERY_KEY.VIDEO_ID(videoId),
