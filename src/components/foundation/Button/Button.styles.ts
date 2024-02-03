@@ -42,7 +42,8 @@ export const buttonVariants = {
     border: 1px solid ${theme.colors.border.default};
 
     &:disabled {
-      background-color: ${theme.colors.surface.weakHover};
+      background-color: ${theme.colors.text.white};
+      color: ${theme.colors.surface.weak};
       cursor: not-allowed;
     }
 

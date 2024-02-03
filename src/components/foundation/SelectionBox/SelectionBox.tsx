@@ -40,6 +40,10 @@ const SelectionBox: React.FC<SelectionButtonProps> = ({
             ${selectionBoxDirection[lineDirection]}
             color: ${theme.colors.text.default};
           }
+          &:hover:not(:checked) + label {
+            color: ${theme.colors.text.sub};
+            cursor: pointer;
+          }
         `}
       />
       <label
