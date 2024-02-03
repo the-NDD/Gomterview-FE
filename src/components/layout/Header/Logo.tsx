@@ -4,8 +4,11 @@ import Typography from '@foundation/Typography/Typography';
 import { Link } from 'react-router-dom';
 import { theme } from '@styles/theme';
 import { PATH } from '@constants/path';
+import { useErrorBoundary } from 'react-error-boundary';
 
 const Logo: React.FC = () => {
+  const { resetBoundary } = useErrorBoundary(); // 가정: 에러 바운더리 리셋 함수를 제공
+
   return (
     <Link
       to={PATH.ROOT}
@@ -17,6 +20,9 @@ const Logo: React.FC = () => {
         text-decoration: none;
         cursor: pointer;
       `}
+      onClick={() => {
+        resetBoundary();
+      }}
     >
       <img
         src={logo}

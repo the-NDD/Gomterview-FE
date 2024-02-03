@@ -6,6 +6,8 @@ import useUserInfo from '@hooks/useUserInfo';
 import redirectToGoogleLogin from '@/utils/redirectToGoogleLogin';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@foundation/index';
+import { useErrorBoundary } from 'react-error-boundary';
+
 const Navigations: React.FC = () => {
   const isLogin = useUserInfo();
 
@@ -24,7 +26,7 @@ const Navigations: React.FC = () => {
     },
     {
       path: PATH.INTERVIEW_SETTING,
-      text: '면접 문제 풀러가기',
+      text: '면접 연습 시작하기',
       visibility: true,
       message: '원하는 질문을 선택해 면접 연습을 시작해보세요!',
     },
@@ -36,36 +38,47 @@ const Navigations: React.FC = () => {
     },
   ];
 
+  const { resetBoundary } = useErrorBoundary(); // 가정: 에러 바운더리 리셋 함수를 제공
+
   return (
     <>
       {navigationList.map(
         (item) =>
           item.visibility && (
-            <MenuItem key={item.path}>
-              <Tooltip
-                title={item.message}
-                position="bottom"
-                disabled={!item.message}
+            <Tooltip
+              title={item.message}
+              position="bottom"
+              disabled={!item.message}
+              key={item.path}
+            >
+              <Link
+                to={item.path}
+                css={css`
+                  text-decoration: none;
+                `}
+                onClick={() => {
+                  resetBoundary();
+                }}
               >
-                <Link
-                  to={item.path}
-                  css={css`
-                    text-decoration: none;
-                  `}
-                >
+                <MenuItem>
                   <Typography
                     variant="body1"
                     color={theme.colors.text.subStrong}
                   >
                     {item.text}
                   </Typography>
-                </Link>
-              </Tooltip>
-            </MenuItem>
+                </MenuItem>
+              </Link>
+            </Tooltip>
           )
       )}
       {!isLogin && (
-        <MenuItem onClick={() => void redirectToGoogleLogin()}>
+        <MenuItem
+          onClick={() => {
+            resetBoundary();
+            void redirectToGoogleLogin();
+          }}
+        >
           <Typography variant="body1" color={theme.colors.text.subStrong}>
             로그인
           </Typography>
