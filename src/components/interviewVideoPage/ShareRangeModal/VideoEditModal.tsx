@@ -98,7 +98,7 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
       videoAnswerContent,
       isThumbnailReset ? '' : thumbnail,
       selectedVisibility,
-      selectedVideoInfo
+      [...new Set(selectedVideoInfo)]
     );
 
     closeModal();

@@ -88,6 +88,7 @@ const DefaultVideoPlayer: React.FC<DefaultVideoPlayerProps> = ({ videoId }) => {
         videoName={videoItem.videoName}
         createdAt={videoItem.createdAt}
         nickname={videoItem.nickname}
+        videoAnswer={videoItem.videoAnswer}
       >
         <VideoPlayer url={videoItem.url} />
       </VideoPlayerFrame>
