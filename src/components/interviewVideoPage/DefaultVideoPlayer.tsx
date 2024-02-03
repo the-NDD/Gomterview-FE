@@ -21,11 +21,15 @@ const DefaultVideoPlayer: React.FC<DefaultVideoPlayerProps> = ({ videoId }) => {
 
   const editVideo = (
     videoName: string,
+    videoAnswer: string,
+    thumbnail: string,
     visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE',
     relatedVideoIds: number[]
   ) => {
     mutate({
       videoName,
+      videoAnswer,
+      thumbnail,
       visibility,
       relatedVideoIds,
     });
@@ -91,6 +95,8 @@ const DefaultVideoPlayer: React.FC<DefaultVideoPlayerProps> = ({ videoId }) => {
         <VideoEditModal
           videoId={Number(videoItem.id)}
           videoName={videoItem.videoName}
+          videoAnswer={videoItem.videoAnswer}
+          thumbnail={videoItem.thumbnail}
           visibility={videoItem.visibility}
           isOpen={isOpen}
           editVideo={editVideo}
