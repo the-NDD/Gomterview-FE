@@ -1,13 +1,27 @@
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import { theme } from '@styles/theme';
 
 import { Typography } from '@foundation/index';
 import { Resizable } from 're-resizable';
+import { useState } from 'react';
+
+const blink = keyframes`
+  0%, 100% {
+    border-top-color: transparent;
+  }
+  50% {
+    border-top-color: ${theme.colors.point.primary.default};
+  }
+`;
 
 type InterviewAnswerProps = {
   answer: string;
 };
 const InterviewAnswer: React.FC<InterviewAnswerProps> = ({ answer }) => {
+  const [isResizing, setIsResizing] = useState(false);
+
+  const handleResizeStart = () => setIsResizing(true);
+
   return (
     <div
       css={css`
@@ -36,6 +50,7 @@ const InterviewAnswer: React.FC<InterviewAnswerProps> = ({ answer }) => {
           width: '100%',
           height: '160px',
         }}
+        onResizeStart={handleResizeStart}
         css={css`
           display: flex;
           justify-content: center;
@@ -45,11 +60,24 @@ const InterviewAnswer: React.FC<InterviewAnswerProps> = ({ answer }) => {
           opacity: 60%;
           border-radius: 2rem;
 
-          border-top: 5px solid transparent; // 초기 border-top 스타일 설정
-          transition: border-top 0.3s ease-in-out; // transition 추가
-          border-radius: 2rem;
+          border-top: 5px solid transparent;
+          transition: border-top 0.3s ease-in-out;
+
+          border-top: 5px solid transparent;
+
+          ${!isResizing &&
+          `
+          animation: blinkingBorder 1.5s linear infinite;
+        `}
+
           &:hover {
-            border-top: 5px solid ${theme.colors.point.primary.default}; // 마우스 오버 시 border-top 스타일 변경
+            border-top: 5px solid ${theme.colors.point.primary.default};
+          }
+
+          @keyframes blinkingBorder {
+            50% {
+              border-top: 5px solid ${theme.colors.point.primary.default};
+            }
           }
 
           padding: 1.25rem;
