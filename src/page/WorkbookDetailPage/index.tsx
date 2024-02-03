@@ -16,6 +16,7 @@ import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { toast } from '@foundation/Toast/toast';
 import useModal from '@hooks/useModal';
+import { RequestLoginModal } from '@components/workbookPage';
 
 const WorkbookDetailPage = () => {
   const [selectedQuestion, setSelectedQuestion] = useState<Question[]>([]);
@@ -81,9 +82,13 @@ const WorkbookDetailPage = () => {
     setAllSelected((prev) => !prev);
   };
 
+  const { closeModal, openModal: openRequestLoginModal } = useModal(() => (
+    <RequestLoginModal closeModal={closeModal} />
+  ));
+
   const validateAddWorkbookList = () => {
     if (!userInfo) {
-      toast.warning('로그인이 필요합니다.');
+      openRequestLoginModal();
       return false;
     }
     if (selectedQuestion.length < 1) {
