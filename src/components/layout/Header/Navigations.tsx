@@ -26,7 +26,7 @@ const Navigations: React.FC = () => {
     },
     {
       path: PATH.INTERVIEW_SETTING,
-      text: '면접 문제 풀러가기',
+      text: '면접 연습 시작하기',
       visibility: true,
       message: '원하는 질문을 선택해 면접 연습을 시작해보세요!',
     },
@@ -45,30 +45,31 @@ const Navigations: React.FC = () => {
       {navigationList.map(
         (item) =>
           item.visibility && (
-            <MenuItem key={item.path}>
-              <Tooltip
-                title={item.message}
-                position="bottom"
-                disabled={!item.message}
+            <Tooltip
+              title={item.message}
+              position="bottom"
+              disabled={!item.message}
+              key={item.path}
+            >
+              <Link
+                to={item.path}
+                css={css`
+                  text-decoration: none;
+                `}
+                onClick={() => {
+                  resetBoundary();
+                }}
               >
-                <Link
-                  to={item.path}
-                  css={css`
-                    text-decoration: none;
-                  `}
-                  onClick={() => {
-                    resetBoundary();
-                  }}
-                >
+                <MenuItem>
                   <Typography
                     variant="body1"
                     color={theme.colors.text.subStrong}
                   >
                     {item.text}
                   </Typography>
-                </Link>
-              </Tooltip>
-            </MenuItem>
+                </MenuItem>
+              </Link>
+            </Tooltip>
           )
       )}
       {!isLogin && (

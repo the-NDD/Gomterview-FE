@@ -37,7 +37,7 @@ const Header: React.FC = () => {
         css={css`
           display: none;
           @media (min-width: ${theme.breakpoints.tablet}) {
-            display: block;
+            display: flex;
           }
         `}
       >
