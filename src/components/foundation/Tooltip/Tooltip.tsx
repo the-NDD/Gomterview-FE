@@ -13,11 +13,27 @@ const fadeIn = keyframes`
   }
 `;
 
+const blink = keyframes`
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
+
 type TooltipProps = {
   children: React.ReactNode;
   title: string;
   position?: 'top' | 'bottom' | 'left' | 'right';
   disabled?: boolean;
+  blinkInterval?: number;
 };
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -25,34 +41,37 @@ const Tooltip: React.FC<TooltipProps> = ({
   children,
   position = 'top',
   disabled = false,
+  blinkInterval,
 }) => {
+  const animationDuration = blinkInterval ? `${blinkInterval / 1000}s` : '0s';
+
   return (
     <div
-      css={[
-        css`
-          position: relative;
-
-          &:hover > :first-child {
+      css={css`
+        position: relative;
+        &:hover > :first-child {
+          display: ${!disabled && 'block'};
+          animation: ${fadeIn} 0.2s linear;
+        }
+      `}
+    >
+      <Typography
+        variant="body3"
+        noWrap
+        css={[
+          css`
+            display: ${blinkInterval ? 'block' : 'none'};
             position: absolute;
             padding: 0.3rem 0.5rem;
             background-color: ${theme.colors.surface.tooltip};
 
             color: ${theme.colors.text.white};
             border-radius: 0.5rem;
-            display: ${!disabled && 'block'};
             z-index: ${theme.zIndex.tooltip.content};
-          }
-        `,
-        positionStyles[position],
-      ]}
-    >
-      <Typography
-        variant="body3"
-        noWrap
-        css={css`
-          display: none;
-          animation: ${fadeIn} 0.2s linear;
-        `}
+            animation: ${blink} ${animationDuration} infinite;
+          `,
+          positionStyles[position],
+        ]}
       >
         {title}
       </Typography>
