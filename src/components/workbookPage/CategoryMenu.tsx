@@ -34,9 +34,9 @@ const CategoryMenu: React.FC<CategoryMenuProps> = ({ onTabChange }) => {
           >
             <div
               css={css`
-              display: ${isDeviceBreakpoint('laptop') ? 'flex' : 'block'};
-              gap: 1rem'
-            `}
+                display: ${isDeviceBreakpoint('laptop') ? 'flex' : 'block'};
+                gap: 1rem;
+              `}
             >
               <Tabs.Tab value="" key="0">
                 <SelectionBox
