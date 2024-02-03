@@ -6,6 +6,8 @@ import useUserInfo from '@hooks/useUserInfo';
 import redirectToGoogleLogin from '@/utils/redirectToGoogleLogin';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@foundation/index';
+import { useErrorBoundary } from 'react-error-boundary';
+
 const Navigations: React.FC = () => {
   const isLogin = useUserInfo();
 
@@ -36,6 +38,8 @@ const Navigations: React.FC = () => {
     },
   ];
 
+  const { resetBoundary } = useErrorBoundary(); // 가정: 에러 바운더리 리셋 함수를 제공
+
   return (
     <>
       {navigationList.map(
@@ -52,6 +56,9 @@ const Navigations: React.FC = () => {
                   css={css`
                     text-decoration: none;
                   `}
+                  onClick={() => {
+                    resetBoundary();
+                  }}
                 >
                   <Typography
                     variant="body1"
@@ -65,7 +72,12 @@ const Navigations: React.FC = () => {
           )
       )}
       {!isLogin && (
-        <MenuItem onClick={() => void redirectToGoogleLogin()}>
+        <MenuItem
+          onClick={() => {
+            resetBoundary();
+            void redirectToGoogleLogin();
+          }}
+        >
           <Typography variant="body1" color={theme.colors.text.subStrong}>
             로그인
           </Typography>
