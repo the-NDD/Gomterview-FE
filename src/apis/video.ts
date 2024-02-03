@@ -88,7 +88,7 @@ export const getVideoByHash = async (hash: string) => {
  * GET video/${videoId}
  * 비디오 아이디로 비디오를 단건 조회했을 때 응답 객체 타입
  * Res
- *  'id' | 'nickname' | 'url' | 'hash' | 'videoName' | 'createdAt' | 'visibility'
+ *  'id' | 'nickname' | 'url' | 'hash' | 'videoName' | 'createdAt' | 'visibility' | "videoAnswer"
  */
 export const getVideoById = async (videoId: number) => {
   return await getAPIResponseData<VideoItemResDto>({
@@ -101,11 +101,13 @@ export const getVideoById = async (videoId: number) => {
  * Patch video/${videoId}
  * 비디오 아이디로 비디오 상세 정보를 수정하기 위해서 사용됩니다.
  * Req
- *  'videoName' | 'visibility' | 'relatedVideoIds[]'
+ *  'videoName' | 'videoName' | 'videoAnswer' |'visibility' | 'relatedVideoIds[]'
  */
 export const patchVideoPublic = async (
   videoId: number,
   videoName: string,
+  videoAnswer: string,
+  thumbnail: string,
   visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE',
   relatedVideoIds: number[]
 ) => {
@@ -114,6 +116,8 @@ export const patchVideoPublic = async (
     url: API.VIDEO_ID(videoId),
     data: {
       videoName: videoName,
+      videoAnswer: videoAnswer,
+      thumbnail: thumbnail,
       visibility: visibility,
       relatedVideoIds: relatedVideoIds,
     },

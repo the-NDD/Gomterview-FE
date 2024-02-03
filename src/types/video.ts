@@ -4,7 +4,7 @@ type VideoEntity = {
   questionId: number;
   videoName: string;
   videoAnswer: string;
-  thumbnail: string | null;
+  thumbnail: string;
   videoLength: string;
   url: string;
   hash: string | null;
@@ -53,6 +53,8 @@ export type VideoItemResDto = Pick<
   | 'videoName'
   | 'createdAt'
   | 'visibility'
+  | 'videoAnswer'
+  | 'thumbnail'
 >;
 
 /**

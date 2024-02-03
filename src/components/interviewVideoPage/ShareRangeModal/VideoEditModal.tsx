@@ -22,10 +22,14 @@ const visibilityOptions: {
 type VideoEditModalProps = {
   videoId: number;
   videoName: string;
+  videoAnswer?: string;
+  thumbnail: string;
   visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE';
   isOpen: boolean;
   editVideo: (
     videoName: string,
+    videoAnswer: string,
+    thumbnail: string,
     visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE',
     relatedVideoIds: number[]
   ) => void;
@@ -34,6 +38,8 @@ type VideoEditModalProps = {
 const VideoEditModal: React.FC<VideoEditModalProps> = ({
   videoId,
   videoName,
+  videoAnswer = '저장된 답변이 없습니다.',
+  thumbnail,
   visibility,
   isOpen,
   editVideo,
@@ -41,6 +47,7 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
 }) => {
   const { data: relatedInfoList } = useRelatedInfoListQuery(videoId);
   const [activeValidationError, setActiveValidationError] = useState(false);
+  const [isThumbnailReset, setIsThumbnailReest] = useState(false);
   const [selectedVisibility, setSelectedVisibility] = useState<
     'PUBLIC' | 'LINK_ONLY' | 'PRIVATE'
   >(visibility);
@@ -50,6 +57,12 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
     onChange: handleVideoTitleChange,
     isEmpty: isVideoTitleEmpty,
   } = useInput<HTMLInputElement>(videoName ?? ''); // 초기 값
+
+  const {
+    value: videoAnswerContent,
+    onChange: handleVideoAnswerChange,
+    isEmpty: isVideoAnswerEmpty,
+  } = useInput<HTMLInputElement>(videoAnswer ?? '저장된 답변이 없습니다.'); // 초기 값
 
   const handleCheckBox = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, id } = e.target;
@@ -80,7 +93,14 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
       return;
     }
 
-    editVideo(videoTitle, selectedVisibility, selectedVideoInfo);
+    editVideo(
+      videoTitle,
+      videoAnswerContent,
+      isThumbnailReset ? '' : thumbnail,
+      selectedVisibility,
+      selectedVideoInfo
+    );
+
     closeModal();
     toast.success('성공적으로 영상정보가 수정되었습니다.');
   };
@@ -142,6 +162,24 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
               `}
             />
           </LabelBox>
+          <LabelBox
+            labelName="나의 답변"
+            labelColor={
+              activeValidationError && isVideoTitleEmpty()
+                ? theme.colors.border.error
+                : theme.colors.border.default
+            }
+          >
+            <Input
+              onChange={handleVideoAnswerChange}
+              value={videoAnswerContent}
+              css={css`
+                border-color: ${activeValidationError &&
+                isVideoAnswerEmpty() &&
+                theme.colors.border.error};
+              `}
+            />
+          </LabelBox>
           <LabelBox labelName="공개여부">
             <div
               css={css`
@@ -169,6 +207,16 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
               ))}
             </div>
           </LabelBox>
+          {thumbnail.length > 10 && !isThumbnailReset && (
+            <LabelBox labelName="썸네일 초기화 여부">
+              <Button
+                variants="secondary"
+                onClick={() => setIsThumbnailReest(true)}
+              >
+                썸네일 초기화 하기
+              </Button>
+            </LabelBox>
+          )}
           <LabelBox labelName="연관 영상 선택">
             <div
               css={css`
