@@ -16,7 +16,7 @@ import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { toast } from '@foundation/Toast/toast';
 import useModal from '@hooks/useModal';
-import { RequestLoginModal } from '@components/workbookPage';
+import { RequestLoginModal } from '@components/common';
 
 const WorkbookDetailPage = () => {
   const [selectedQuestion, setSelectedQuestion] = useState<Question[]>([]);

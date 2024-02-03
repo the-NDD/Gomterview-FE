@@ -12,7 +12,7 @@ import { LeadingDot } from '@foundation/index';
 import useUserInfo from '@hooks/useUserInfo';
 import useModal from '@hooks/useModal';
 import AnswerSelectionModal from '@common/QuestionSelectionBox/AnswerSelectionModal/AnswerSelectionModal';
-import { RequestLoginModal } from '@components/workbookPage';
+import { RequestLoginModal } from '@components/common';
 
 type QuestionAccordionProps = {
   question: Question;

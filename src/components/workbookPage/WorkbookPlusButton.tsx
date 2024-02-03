@@ -3,7 +3,7 @@ import { Icon, Tooltip } from '@foundation/index';
 import useUserInfo from '@hooks/useUserInfo';
 import { breakpoints } from '@styles/_breakpoints';
 import { theme } from '@styles/theme';
-import { RequestLoginModal } from '@components/workbookPage';
+import { RequestLoginModal } from '@components/common';
 import useModal from '@hooks/useModal';
 import { WorkbookGeneratorModal } from '@common/index';
 
