@@ -4,15 +4,17 @@ import { theme } from '@styles/theme';
 import React, { PropsWithChildren } from 'react';
 import { VideoItemResDto } from '@/types/video';
 import dayjs from 'dayjs';
+import { Box } from '@foundation/index';
 
 type VideoItemProps = PropsWithChildren &
-  Pick<VideoItemResDto, 'videoName' | 'createdAt' | 'nickname'>;
+  Pick<VideoItemResDto, 'videoName' | 'createdAt' | 'nickname' | 'videoAnswer'>;
 
 const VideoPlayerFrame: React.FC<VideoItemProps> = ({
   children,
   videoName,
   createdAt,
   nickname,
+  videoAnswer = '제출된 답변이 없습니다😂',
 }) => {
   return (
     <div
@@ -34,7 +36,7 @@ const VideoPlayerFrame: React.FC<VideoItemProps> = ({
         `}
       >
         <Typography
-          variant="title3"
+          variant="title2"
           css={css`
             line-height: 1.7;
           `}
@@ -53,6 +55,34 @@ const VideoPlayerFrame: React.FC<VideoItemProps> = ({
             {dayjs(Number(createdAt)).format('YYYY.MM.DD')}
           </Typography>
         </div>
+        <Typography
+          variant="title3"
+          css={css`
+            line-height: 1.7;
+            margin-top: 4rem;
+          `}
+        >
+          답변 다시 보기
+        </Typography>
+        <Box
+          css={css`
+            display: flex;
+            max-width: 64svw;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            min-height: 12.5rem;
+            margin-top: 0.5rem;
+          `}
+        >
+          <Typography
+            variant="body3"
+            css={css`
+              line-height: 1.7;
+            `}
+          >
+            {videoAnswer}
+          </Typography>
+        </Box>
       </div>
     </div>
   );

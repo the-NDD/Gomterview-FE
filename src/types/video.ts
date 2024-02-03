@@ -3,7 +3,8 @@ type VideoEntity = {
   memberId: number;
   questionId: number;
   videoName: string;
-  thumbnail: string | null;
+  videoAnswer: string;
+  thumbnail: string;
   videoLength: string;
   url: string;
   hash: string | null;
@@ -52,6 +53,8 @@ export type VideoItemResDto = Pick<
   | 'videoName'
   | 'createdAt'
   | 'visibility'
+  | 'videoAnswer'
+  | 'thumbnail'
 >;
 
 /**
@@ -80,7 +83,12 @@ export type VideoRelatedInfoListResDto = Pick<
  */
 export type VideoAddReqDto = Pick<
   VideoEntity,
-  'questionId' | 'videoName' | 'url' | 'thumbnail' | 'videoLength'
+  | 'questionId'
+  | 'videoName'
+  | 'url'
+  | 'thumbnail'
+  | 'videoLength'
+  | 'videoAnswer'
 >;
 
 /**
