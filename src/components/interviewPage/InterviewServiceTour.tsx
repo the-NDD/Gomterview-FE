@@ -9,7 +9,6 @@ const InterviewPageServiceTour: React.FC<PropsWithChildren> = () => {
   const [{ isRunning: isRunning }, setIsRunning] = useRecoilState(runState);
   const [{ stepIndex: stepIndex }, setStepIndex] =
     useRecoilState(stepIndexState);
-
   const [{ isRecording: isRecording }] = useRecoilState(recordingState);
   useEffect(() => {
     setStepIndex({ stepIndex: 0 });
@@ -47,6 +46,8 @@ const InterviewPageServiceTour: React.FC<PropsWithChildren> = () => {
         <>
           <h1>곰터뷰 모의 면접 안내</h1>
           면접화면에서의 기능설명을 시작해 볼게요!🤗
+          <br />
+          <span style={{ color: 'gray' }}>(Space를 눌러보세요!)</span>
         </>
       ),
       locale: { skip: <strong aria-label="skip">S-K-I-P</strong> },
