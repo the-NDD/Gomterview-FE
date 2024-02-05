@@ -45,10 +45,21 @@ const InterviewSettingPage: React.FC = () => {
       page: (
         <QuestionSettingPage
           onPrevClick={() => changeSearchParams(SETTING_PATH.TERMS)}
-          onNextClick={() => changeSearchParams(SETTING_PATH.CONNECTION)}
+          onNextClick={() => changeSearchParams(SETTING_PATH.RECORD)}
         />
       ),
       state: useRecoilValue(questionSetting),
+    },
+    {
+      name: '녹화 설정',
+      path: SETTING_PATH.RECORD,
+      page: (
+        <RecordSettingPage
+          onPrevClick={() => changeSearchParams(SETTING_PATH.QUESTION)}
+          onNextClick={() => changeSearchParams(SETTING_PATH.CONNECTION)}
+        />
+      ),
+      state: useRecoilValue(recordSetting),
     },
     {
       name: '화면과 소리설정',
@@ -57,27 +68,16 @@ const InterviewSettingPage: React.FC = () => {
         <VideoSettingPage
           onPrevClick={() => {
             if (questionSettingState.from !== 'workbook')
-              changeSearchParams(SETTING_PATH.QUESTION);
+              changeSearchParams(SETTING_PATH.RECORD);
             else {
               navigate(PATH.ROOT);
               toast.info('랜딩 페이지로 이동합니다.');
             }
           }}
-          onNextClick={() => changeSearchParams(SETTING_PATH.RECORD)}
+          onNextClick={() => navigate(PATH.INTERVIEW)}
         />
       ),
       state: useRecoilValue(videoSetting),
-    },
-    {
-      name: '녹화 설정',
-      path: SETTING_PATH.RECORD,
-      page: (
-        <RecordSettingPage
-          onPrevClick={() => changeSearchParams(SETTING_PATH.CONNECTION)}
-          onNextClick={() => navigate('/interview')}
-        />
-      ),
-      state: useRecoilValue(recordSetting),
     },
   ];
 
@@ -88,7 +88,6 @@ const InterviewSettingPage: React.FC = () => {
     newSearchParams.set('page', newPage);
     setSearchParams(newSearchParams, { replace: true });
   };
-  // TODO: 로직이 더 길어지면 hook으로 분리해도 나쁘지 않을듯
 
   const isValidatePath = currentIndex !== -1;
   if (!isValidatePath) {
