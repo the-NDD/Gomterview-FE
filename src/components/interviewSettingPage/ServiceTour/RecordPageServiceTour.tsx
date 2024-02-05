@@ -35,8 +35,8 @@ const RecordPageServiceTour: React.FC<PropsWithChildren> = () => {
       content: (
         <>
           <h1>로컬 저장 선택😚</h1>
-          <div>별도의 서버가 아닌 컴퓨터에 면접영상을 저장합니다.</div>
-          <div>하지만 로그인 하면 마이페이지에서 확인이 가능하다고...?!!</div>
+          <span style={{ color: 'red' }}> 서버에 저장하지 않아요!! </span>
+          안심해주세요🤗
         </>
       ),
       hideFooter: true,
@@ -49,7 +49,7 @@ const RecordPageServiceTour: React.FC<PropsWithChildren> = () => {
       content: (
         <h2>
           설정하시느라 고생하셨어요😊
-          <br /> 이제 면접을 시작해볼까요?!
+          <br /> 이제 카메라를 연결해봅시다!
         </h2>
       ),
       disableOverlayClose: true,

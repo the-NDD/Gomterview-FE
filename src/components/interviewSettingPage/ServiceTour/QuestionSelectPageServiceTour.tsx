@@ -42,6 +42,26 @@ const QuestionSelectPageServiceTour: React.FC<PropsWithChildren> = () => {
     }
   }, [isSuccess, setStepIndex]);
 
+  useEffect(() => {
+    const disableScroll = () => {
+      document.body.style.overflow = 'hidden';
+    };
+
+    const enableScroll = () => {
+      document.body.style.overflow = '';
+    };
+
+    if (isRunning) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+
+    return () => {
+      enableScroll();
+    };
+  }, [isRunning]);
+
   const steps: Step[] = [
     {
       content: (

@@ -73,7 +73,8 @@ const VideoSettingPageServiceTour: React.FC<PropsWithChildren> = () => {
     {
       content: (
         <h2>
-          카메라 연결도 완료하셨군요🎉 <br />곧 면접을 시작하실 수 있어요😊
+          카메라 연결도 완료하셨군요🎉 <br />
+          이제 면접을 시작해 봐요!😊
         </h2>
       ),
       disableBeacon: true,
