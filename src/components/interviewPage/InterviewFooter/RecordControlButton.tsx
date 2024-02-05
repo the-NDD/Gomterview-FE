@@ -6,6 +6,8 @@ import { Icon, Typography } from '@foundation/index';
 import RecordStartModal from '../InterviewModal/RecordStartModal';
 import { useEffect, useState } from 'react';
 import { ServiceTourStep } from '@common/index';
+import { useRecoilState } from 'recoil';
+import { runState, stepIndexState } from '@atoms/serviceTour';
 
 type RecordControlButtonProps = {
   isRecording: boolean;
@@ -20,6 +22,9 @@ const RecordControlButton: React.FC<RecordControlButtonProps> = ({
 }) => {
   const [recordStartModalIsOpen, setRecordStartModalIsOpen] =
     useState<boolean>(false);
+  const [{ isRunning: isRunning }, setIsRunning] = useRecoilState(runState);
+  const [{ stepIndex: stepIndex }, setStepIndex] =
+    useRecoilState(stepIndexState);
 
   useEffect(() => {
     const handleKeyDown = (event: { key: string; code: string }) => {
@@ -31,8 +36,8 @@ const RecordControlButton: React.FC<RecordControlButtonProps> = ({
         }
       }
     };
-
-    window.addEventListener('keydown', handleKeyDown);
+    if ((isRunning && stepIndex === 4) || stepIndex === 6 || !isRunning)
+      window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
@@ -42,6 +47,8 @@ const RecordControlButton: React.FC<RecordControlButtonProps> = ({
     isRecording,
     handleStopRecording,
     setRecordStartModalIsOpen,
+    isRunning,
+    stepIndex,
   ]);
 
   return (
