@@ -41,7 +41,11 @@ export const useUploadToIDrive = () => {
       videoToServer({
         questionId: currentQuestion.questionId,
         videoName: currentQuestion.questionContent,
-        videoAnswer: currentQuestion.answerContent,
+        videoAnswer: `${
+          currentQuestion?.answerContent
+            ? currentQuestion.answerContent
+            : '답변이 작성되지 않았습니다.'
+        }`,
         url: `${IDRIVE_URL}/videos/${video.key}`,
         thumbnail: `${IDRIVE_URL}/thumbnail/${thumbnail.key}`,
         videoLength: recordTime,

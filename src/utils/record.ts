@@ -20,11 +20,13 @@ type VideoRecordQueue = {
 }[];
 
 const ffmpeg = new FFmpeg();
+
 let index = 1;
 const videoRecordQueue: VideoRecordQueue = [];
 
 const ffmpegLogCallback = ({ message }: { message: string }) => {
   if (!videoRecordQueue[0]) {
+    toast.info('인코딩 과정에 문제가 발생했습니다😂');
     return;
   }
 
@@ -84,6 +86,34 @@ export const stopRecording = (
 ) => {
   if (mediaRecorderRef.current) {
     mediaRecorderRef.current.stop();
+  }
+};
+
+export const getFFmpeg = async (maxAttempts = 3) => {
+  try {
+    if (!ffmpeg.loaded) {
+      await ffmpeg.load({
+        coreURL: await toBlobURL(
+          `${FFMPEG_URL}/ffmpeg-core.js`,
+          'text/javascript'
+        ),
+        wasmURL: await toBlobURL(
+          `${FFMPEG_URL}/ffmpeg-core.wasm`,
+          'application/wasm'
+        ),
+        workerURL: await toBlobURL(
+          `${FFMPEG_URL}/ffmpeg-core.worker.js`,
+          'text/javascript'
+        ),
+      });
+      console.log('FFmpeg가 연결되었습니다.');
+    }
+  } catch (error) {
+    if (maxAttempts === 1) {
+      return;
+    }
+
+    await getFFmpeg(maxAttempts - 1); // 재시도
   }
 };
 

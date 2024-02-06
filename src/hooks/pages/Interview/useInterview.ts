@@ -107,11 +107,11 @@ const useInterview = () => {
 
   useEffect(() => {
     if (isTimeOver) {
+      setIsTimeOver(false);
       handleStopRecording();
       setTimeOverModalIsOpen(true);
-      setIsTimeOver(false);
     }
-  }, [handleStopRecording, isTimeOver, setIsTimeOver]);
+  }, [isTimeOver, setIsTimeOver]);
 
   return {
     media,

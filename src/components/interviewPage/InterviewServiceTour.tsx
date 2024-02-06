@@ -91,7 +91,7 @@ const InterviewPageServiceTour: React.FC<PropsWithChildren> = () => {
       content: (
         <h2>
           현재 녹화 진행 시간을 안내합니다.
-          <br /> 3분이상 소요되면 녹화는 종료됩니다!
+          <br /> 5분이상 소요되면 녹화는 종료됩니다!
         </h2>
       ),
       locale: { skip: <strong aria-label="skip">S-K-I-P</strong> },
