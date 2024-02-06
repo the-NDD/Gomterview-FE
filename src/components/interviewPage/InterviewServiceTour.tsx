@@ -19,6 +19,7 @@ const InterviewPageServiceTour: React.FC<PropsWithChildren> = () => {
       setStepIndex({ stepIndex: 5 });
     } else if (!isRecording && stepIndex === 6) {
       setStepIndex({ stepIndex: 7 });
+      localStorage.setItem('skipped', new Date().toISOString());
     }
   }, [isRecording, setStepIndex, stepIndex]);
 

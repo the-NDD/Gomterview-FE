@@ -16,6 +16,8 @@ const LandingPageServiceTour: React.FC<PropsWithChildren> = () => {
     if (curPath === PATH.ROOT && checkIsSkipped()) {
       setInRunning({ isRunning: true });
       setStepIndex(0);
+    } else {
+      setInRunning({ isRunning: false });
     }
   }, [setInRunning, curPath, setStepIndex]);
 
