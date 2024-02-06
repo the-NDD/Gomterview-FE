@@ -62,9 +62,13 @@ const LandingPageServiceTour: React.FC<PropsWithChildren> = () => {
       hideFooter: true,
       placement: 'right',
       spotlightClicks: true,
+      spotlightPadding: 20,
       styles: {
         options: {
           zIndex: 10000,
+        },
+        spotlight: {
+          borderRadius: 30,
         },
       },
       target: '#virtual-step-target-1',

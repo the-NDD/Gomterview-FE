@@ -26,6 +26,7 @@ const videoRecordQueue: VideoRecordQueue = [];
 
 const ffmpegLogCallback = ({ message }: { message: string }) => {
   if (!videoRecordQueue[0]) {
+    toast.info('인코딩 과정에 문제가 발생했습니다😂');
     return;
   }
 

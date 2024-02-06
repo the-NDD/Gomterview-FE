@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 
-const TIME_OVER = 180000;
+const TIME_OVER = 300000; //5분
 
 const useTimeTracker = () => {
   const [startTime, setStartTime] = useState<Dayjs | null>(null);

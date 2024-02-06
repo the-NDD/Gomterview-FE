@@ -25,7 +25,7 @@ const InterviewTimeOverModal: React.FC<InterviewTimeOverModalProps> = ({
             variant="body1"
             color={theme.colors.text.default}
           >
-            3분의 시간이 모두 소진되어
+            5분의 시간이 모두 소진되어
           </Typography>
           <Typography
             paragraph

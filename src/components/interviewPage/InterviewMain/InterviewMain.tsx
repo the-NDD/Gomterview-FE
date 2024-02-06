@@ -4,6 +4,7 @@ import { Mirror } from '@common/index';
 import { theme } from '@styles/theme';
 import { InterviewQuestion, InterviewAnswer } from './index';
 import { ConnectStatus } from '@atoms/media';
+import { Tooltip } from '@foundation/index';
 
 type InterviewMainProps = {
   mirrorVideoRef: RefObject<HTMLVideoElement>;
@@ -41,7 +42,11 @@ const InterviewMain: React.FC<InterviewMainProps> = ({
         connectStatus={connectStatus}
         reloadMedia={reloadMedia}
       />
-      {isScriptInView && answer && <InterviewAnswer answer={answer} />}
+      {isScriptInView && (
+        <InterviewAnswer
+          answer={answer ? answer : '답변이 작성되지 않았습니다.'}
+        />
+      )}
     </div>
   );
 };

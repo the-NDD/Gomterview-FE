@@ -56,8 +56,8 @@ const InterviewAnswer: React.FC<InterviewAnswerProps> = ({ answer }) => {
 
           ${!isResizing &&
           `
-          animation: blinkingBorder 1.5s linear infinite;
-        `}
+              animation: blinkingBorder 1.5s linear infinite;
+            `}
 
           &:hover {
             border-top: 5px solid ${theme.colors.point.primary.default};
