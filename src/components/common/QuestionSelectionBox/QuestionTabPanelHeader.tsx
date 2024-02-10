@@ -1,41 +1,28 @@
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import { Button, Icon, Menu, MenuItem, Typography } from '@foundation/index';
-import { theme } from '@styles/theme';
-import { ExcludeArray } from '@/types/utils';
-import { WorkbookTitleListResDto } from '@/types/workbook';
 import { useState } from 'react';
-import useModal from '@hooks/useModal';
-import { WorkbookGeneratorModal } from '@common/index';
 import useWorkbookDelete from '@hooks/useWorkbookDelete';
 import { toast } from '@foundation/Toast/toast';
-import useBreakpoint from '@hooks/useBreakPoint';
+import Chip from '@foundation/Chip/Chip';
+import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
 
 type QuestionTabPanelHeaderProps = {
-  workbook: ExcludeArray<WorkbookTitleListResDto>;
-  questionLength: number;
+  workbookInfo: WorkbookQueryResult;
   onWorkbookDelete: () => void;
   onEditButtonClick: () => void;
 };
 const QuestionTabPanelHeader: React.FC<QuestionTabPanelHeaderProps> = ({
-  workbook,
-  questionLength,
+  workbookInfo,
   onWorkbookDelete,
   onEditButtonClick,
 }) => {
-  const isDeviceBreakpoint = useBreakpoint();
+  const theme = useTheme();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { deleteWorkbook } = useWorkbookDelete();
-  const { openModal, closeModal } = useModal(() => {
-    return (
-      <WorkbookGeneratorModal
-        workbookId={workbook.workbookId}
-        closeModal={closeModal}
-      />
-    );
-  });
 
   const handleWorkbookDeleteClick = () => {
-    deleteWorkbook(workbook.workbookId);
+    deleteWorkbook(workbookInfo.workbookId);
     toast.success('성공적으로 문제집이 삭제되었습니다.');
     onWorkbookDelete();
   };
@@ -47,82 +34,82 @@ const QuestionTabPanelHeader: React.FC<QuestionTabPanelHeaderProps> = ({
           display: flex;
           flex-direction: column;
           row-gap: 0.5rem;
-          padding: 1rem;
+          padding: 0.5rem;
         `}
       >
-        <Typography variant="title4">{workbook.title}</Typography>
         <div
           css={css`
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            row-gap: 0.5rem;
+            column-gap: 0.5rem;
+            justify-content: space-between;
           `}
         >
           <div
             css={css`
               display: flex;
+              flex-direction: row;
+              gap: 0.5rem;
               align-items: center;
-              column-gap: 0.5rem;
+            `}
+          >
+            <Chip
+              css={css`
+                padding: 0.4rem;
+                border-radius: 0.5rem;
+              `}
+            >
+              {workbookInfo.categoryName}
+            </Chip>
+            <Chip
+              color="error"
+              css={css`
+                padding: 0.4rem;
+                border-radius: 0.5rem;
+              `}
+            >
+              {workbookInfo.isPublic ? '공개' : '비공개'}
+            </Chip>
+          </div>
+          <div
+            css={css`
+              position: relative;
             `}
           >
             <Button
+              onClick={() => setIsMenuOpen((prev) => !prev)}
               variants="secondary"
               size="sm"
-              onClick={onEditButtonClick}
-              visible={!isDeviceBreakpoint('mobile')}
               css={css`
                 display: flex;
                 align-items: center;
-                padding-right: 1.25rem;
-                column-gap: 0.25rem;
+                padding: 0.5rem;
                 border: none;
+                background-color: inherit;
               `}
             >
-              <Icon id="edit-outline" width="20" height="20" />
-              면접 질문 수정
+              <Icon id="ellipsis-vertical" />
             </Button>
-            <div
-              css={css`
-                position: relative;
-              `}
-            >
-              <Button
-                onClick={() => setIsMenuOpen((prev) => !prev)}
-                variants="secondary"
-                size="sm"
-                css={css`
-                  display: flex;
-                  align-items: center;
-                  padding: 0.5rem;
-                  border: none;
-                `}
-              >
-                <Icon id="ellipsis-vertical" />
-              </Button>
-              <Menu open={isMenuOpen} closeMenu={() => setIsMenuOpen(false)}>
-                <MenuItem
-                  onClick={onEditButtonClick}
-                  visible={isDeviceBreakpoint('mobile')}
-                >
-                  <Typography noWrap>면접 질문 수정</Typography>
-                </MenuItem>
-                <MenuItem onClick={openModal}>
-                  <Typography noWrap>면접 세트 편집</Typography>
-                </MenuItem>
-                <MenuItem onClick={handleWorkbookDeleteClick}>
-                  <Typography noWrap>면접 세트 삭제</Typography>
-                </MenuItem>
-              </Menu>
-            </div>
+            <Menu open={isMenuOpen} closeMenu={() => setIsMenuOpen(false)}>
+              <MenuItem onClick={onEditButtonClick}>
+                <Typography noWrap>면접 세트 편집</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleWorkbookDeleteClick}>
+                <Typography noWrap>면접 세트 삭제</Typography>
+              </MenuItem>
+            </Menu>
           </div>
-          <Typography
-            component="p"
-            variant="body3"
-            color={theme.colors.text.subStrong}
-          >
-            {questionLength}개의 질문
+        </div>
+        <Typography variant="title4">{workbookInfo.title}</Typography>
+        <div
+          css={css`
+            line-height: 1.2em;
+            height: calc(1.2em * 3);
+            overflow-y: auto;
+          `}
+        >
+          <Typography variant="body3" color={theme.colors.text.subStrong}>
+            {workbookInfo.content}
           </Typography>
         </div>
       </div>

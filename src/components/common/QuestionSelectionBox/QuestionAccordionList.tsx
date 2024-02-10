@@ -2,15 +2,13 @@ import { CheckBox } from '@foundation/index';
 import QuestionSelectionBoxAccordion from '@common/QuestionSelectionBox/QuestionSelectionBoxAccordion';
 import WorkbookEditModeDialog from '@common/QuestionSelectionBox/WorkbookEditModeDialog';
 import useWorkbookQuestionDelete from '@hooks/useWorkbookQuestionDelete';
-import { useRef } from 'react';
-import useOutsideClick from '@hooks/useOutsideClick';
 import { Question } from '@/types/question';
 import { css } from '@emotion/react';
 
 type QuestionAccordionListProps = {
   isEditMode: boolean;
   cancelEditMode: () => void;
-  questionData: Question[];
+  questionData?: Question[];
   workbookId: number;
 };
 const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
@@ -19,11 +17,6 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
   questionData,
   workbookId,
 }) => {
-  const listRef = useRef<HTMLDivElement>(null);
-
-  useOutsideClick(listRef, () => {
-    handleCancelEditMode();
-  });
 
   const {
     addCheckedQuestion,
@@ -56,11 +49,11 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
         ? 'virtual-step-target-0'
         : '';
   };
+  if (!questionData) return <></>;
 
   return (
     <>
       <div
-        ref={listRef}
         css={css`
           display: flex;
           flex-direction: column;

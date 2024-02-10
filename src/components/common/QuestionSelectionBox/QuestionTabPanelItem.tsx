@@ -7,12 +7,15 @@ import useQuestionWorkbookQuery from '@hooks/apis/queries/useQuestionWorkbookQue
 import { Button, Icon, Tabs, Toggle, Typography } from '@foundation/index';
 import { WorkbookTitleListResDto } from '@/types/workbook';
 import { ExcludeArray } from '@/types/utils';
-import QuestionAddForm from '@common/QuestionSelectionBox/QuestionAddForm';
 import QuestionTabPanelHeader from '@common/QuestionSelectionBox/QuestionTabPanelHeader';
 import useTabs from '@foundation/Tabs/useTabs';
-import QuestionAccordionList from '@common/QuestionSelectionBox/QuestionAccordionList';
 import useBreakpoint from '@hooks/useBreakPoint';
 import { toast } from '@foundation/Toast/toast';
+import QuestionAccordionList from './QuestionAccordionList';
+import EmptySuspense from '@foundation/EmptySuspense/EmptySuspense';
+import QuestionTabPanelBlank from './QuestionTabPanelBlank';
+import QuestionTabPanelEditHeader from './QuestionTabPanelEditHeader';
+import useWorkbookQuery from '@hooks/apis/queries/useWorkbookQuery';
 
 type TabPanelItemProps = {
   tabIndex: string;
@@ -36,7 +39,7 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
 
   const { currentValue, setCurrentValue } = useTabs();
   const [onlySelectedOption, setOnlySelectedOption] = useState(false);
-  const [isEditMode, setIsEditMode] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(true);
 
   const toggleShowSelectionOption = () => {
     setOnlySelectedOption((prev) => !prev);
@@ -48,8 +51,11 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
   });
 
   const questionData = onlySelectedOption ? selectedQuestions : questionAPIData;
-  if (!questionData) return;
 
+  const { data: workbookInfo } = useWorkbookQuery({
+    workbookId: workbook.workbookId,
+  });
+  if (!workbookInfo) return null;
   return (
     <Tabs.TabPanel
       key={`workbook.id-${workbook.workbookId}`}
@@ -66,29 +72,31 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
           height: 100%;
         `}
       >
-        <QuestionTabPanelHeader
-          workbook={workbook}
-          questionLength={questionData?.length || 0}
-          onWorkbookDelete={() => setCurrentValue('0')}
-          onEditButtonClick={() =>
-            questionData?.length
-              ? setIsEditMode(true)
-              : toast.info('문제가 존재하지 않습니다.')
-          }
-        />
-        <div
-          css={css`
-            padding: 0 1rem;
-          `}
-        >
-          <QuestionAddForm workbookId={workbook.workbookId} />
-        </div>
-        <QuestionAccordionList
-          isEditMode={isEditMode}
-          cancelEditMode={() => setIsEditMode(false)}
-          questionData={questionData}
-          workbookId={workbook.workbookId}
-        />
+        {isEditMode ? (
+          <QuestionTabPanelEditHeader
+            workbookInfo={workbookInfo}
+            closeEditMode={() => setIsEditMode(false)}
+          />
+        ) : (
+          <QuestionTabPanelHeader
+            workbookInfo={workbookInfo}
+            onWorkbookDelete={() => setCurrentValue('0')}
+            onEditButtonClick={() =>
+              questionData?.length
+                ? setIsEditMode(true)
+                : toast.info('문제가 존재하지 않습니다.')
+            }
+          />
+        )}
+
+        <EmptySuspense callback={<QuestionTabPanelBlank />}>
+          <QuestionAccordionList
+            isEditMode={isEditMode}
+            cancelEditMode={() => setIsEditMode(false)}
+            questionData={questionData}
+            workbookId={workbook.workbookId}
+          />
+        </EmptySuspense>
         <div
           css={css`
             display: flex;
