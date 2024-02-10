@@ -1,6 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
 import { getWorkbookById } from '@/apis/workbook';
+import useCategoryQuery from './useCategoryQuery';
+import { WorkbookEntity } from '@/types/workbook';
+
+export type WorkbookQueryResult = WorkbookEntity & {
+  categoryName: string | number;
+};
 
 /**
  * GET /workbook/${workbookId}
@@ -15,11 +21,22 @@ const useWorkbookQuery = ({
 }: {
   workbookId: number;
   enabled?: boolean;
-}) => {
+}): UseQueryResult<WorkbookQueryResult, unknown> => {
+  const { data: categories } = useCategoryQuery();
+  const findCategoryName = (categoryId?: number) =>
+    categories?.find((category) => category.id === categoryId)?.name ?? 0;
+
   return useQuery({
     queryKey: QUERY_KEY.WORKBOOK_ID(workbookId),
     queryFn: () => getWorkbookById(workbookId),
     enabled,
+    select: (data) => {
+      const categoryName = findCategoryName(data.categoryId);
+      return {
+        ...data,
+        categoryName,
+      };
+    },
   });
 };
 
