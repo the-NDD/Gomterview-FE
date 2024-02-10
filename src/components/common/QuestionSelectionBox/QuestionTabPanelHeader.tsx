@@ -19,6 +19,9 @@ const QuestionTabPanelHeader: React.FC<QuestionTabPanelHeaderProps> = ({
   const theme = useTheme();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
   const { deleteWorkbook } = useWorkbookDelete();
 
   const handleWorkbookDeleteClick = () => {
@@ -77,7 +80,7 @@ const QuestionTabPanelHeader: React.FC<QuestionTabPanelHeaderProps> = ({
             `}
           >
             <Button
-              onClick={() => setIsMenuOpen((prev) => !prev)}
+              onClick={toggleMenu}
               variants="secondary"
               size="sm"
               css={css`
@@ -90,7 +93,7 @@ const QuestionTabPanelHeader: React.FC<QuestionTabPanelHeaderProps> = ({
             >
               <Icon id="ellipsis-vertical" />
             </Button>
-            <Menu open={isMenuOpen} closeMenu={() => setIsMenuOpen(false)}>
+            <Menu open={isMenuOpen} closeMenu={toggleMenu}>
               <MenuItem onClick={onEditButtonClick}>
                 <Typography noWrap>면접 세트 편집</Typography>
               </MenuItem>

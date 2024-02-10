@@ -13,23 +13,15 @@ type QuestionAccordionListProps = {
 };
 const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
   isEditMode,
-  cancelEditMode,
   questionData,
   workbookId,
 }) => {
-
   const {
     addCheckedQuestion,
-    resetCheckedQuestion,
     deleteCheckedQuestion,
     isCheckedQuestion,
     checkQuestionCount,
   } = useWorkbookQuestionDelete(workbookId);
-
-  const handleCancelEditMode = () => {
-    resetCheckedQuestion();
-    cancelEditMode();
-  };
 
   const handleQuestionChecked = (questionId: number) => {
     isEditMode && addCheckedQuestion(questionId);
@@ -37,7 +29,6 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
 
   const handleDeleteQuestion = async () => {
     await deleteCheckedQuestion();
-    handleCancelEditMode();
   };
 
   const getServiceStepID = (index: number, length: number) => {
@@ -102,7 +93,6 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
         {isEditMode && (
           <WorkbookEditModeDialog
             count={checkQuestionCount()}
-            onCancelClick={handleCancelEditMode}
             onDeleteClick={() => void handleDeleteQuestion()}
           />
         )}

@@ -4,12 +4,10 @@ import { Box, Button, Icon, Typography } from '@foundation/index';
 
 type WorkbookEditModeDialogProps = {
   count: number;
-  onCancelClick: () => void;
   onDeleteClick: () => void;
 };
 const WorkbookEditModeDialog: React.FC<WorkbookEditModeDialogProps> = ({
   count,
-  onCancelClick,
   onDeleteClick,
 }) => {
   return (
@@ -32,18 +30,6 @@ const WorkbookEditModeDialog: React.FC<WorkbookEditModeDialogProps> = ({
         z-index: ${theme.zIndex.contentOverlay.overlay5};
       `}
     >
-      <Button
-        size="sm"
-        variants="secondary"
-        onClick={onCancelClick}
-        css={css`
-          flex-grow: 1;
-          border: none;
-          padding-bottom: 0.25rem;
-        `}
-      >
-        <Icon id="close-black" width="12" height="12" />
-      </Button>
       <Typography
         variant="body1"
         css={css`
