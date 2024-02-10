@@ -42,6 +42,7 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({
           css={css`
             cursor: pointer;
           `}
+          fill={theme.colors.text.white}
           onClick={() => {
             closeModal && closeModal();
           }}
