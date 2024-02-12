@@ -5,7 +5,7 @@ import useCategoryQuery from './useCategoryQuery';
 import { WorkbookEntity } from '@/types/workbook';
 
 export type WorkbookQueryResult = WorkbookEntity & {
-  categoryName: string | number;
+  categoryName: string;
 };
 
 /**
@@ -24,7 +24,7 @@ const useWorkbookQuery = ({
 }): UseQueryResult<WorkbookQueryResult, unknown> => {
   const { data: categories } = useCategoryQuery();
   const findCategoryName = (categoryId?: number) =>
-    categories?.find((category) => category.id === categoryId)?.name ?? 0;
+    categories?.find((category) => category.id === categoryId)?.name ?? '';
 
   return useQuery({
     queryKey: QUERY_KEY.WORKBOOK_ID(workbookId),

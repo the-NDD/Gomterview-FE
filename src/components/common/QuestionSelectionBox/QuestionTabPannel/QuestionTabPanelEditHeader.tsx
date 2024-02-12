@@ -1,19 +1,13 @@
 import { css } from '@emotion/react';
-import {
-  Button,
-  Icon,
-  Input,
-  InputArea,
-  Menu,
-  MenuItem,
-  Typography,
-} from '@foundation/index';
+import { Button, Icon, Input, InputArea } from '@foundation/index';
 import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
 import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
 import useInput from '@hooks/useInput';
 import { useState } from 'react';
 import QuestionAddForm from './QuestionAddForm';
 import useWorkbookEdit from '@hooks/useWorkbookEdit';
+import QuestionDropdown from './QuestionDropdown';
+import useDebounce from '@hooks/useDebounce';
 import { toast } from '@foundation/Toast/toast';
 
 type QuestionTabPanelEditHeaderProps = {
@@ -31,33 +25,61 @@ const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
   const { value: content, onChange: handleContentChange } =
     useInput<HTMLTextAreaElement>(workbookInfo.content);
 
-  const [isOpenCategoryMenu, setIsOpenCategoryMenu] = useState(false);
-  const toggleCategoryMenu = () => {
-    setIsOpenCategoryMenu((prev) => !prev);
-  };
   const [selectedCategory, setSelectedCategory] = useState({
     id: workbookInfo.categoryId,
     name: workbookInfo.categoryName,
   });
 
-  const [isOpenPublicMenu, setIsOpenPublicMenu] = useState(false);
-  const togglePublicMenu = () => {
-    setIsOpenPublicMenu((prev) => !prev);
-  };
-  const [selectedPublic, setSelectedPubluc] = useState(workbookInfo.isPublic);
+  const publicMap = [
+    {
+      id: 'public',
+      name: '공개',
+      isPublic: true,
+    },
+    {
+      id: 'private',
+      name: '비공개',
+      isPublic: false,
+    },
+  ];
 
-  const { editWorkbook } = useWorkbookEdit({});
+  const initialPublicState = publicMap.find(
+    (item) => item.isPublic === workbookInfo.isPublic
+  ) as (typeof publicMap)[number];
+  // publicMap에 boolean 타입의 조건이 모두 들어가 있으므로 undefined는 나올 수 없음 => 강제 타입 변환 사용
 
-  const EditWorkbook = () => {
+  const [selectedPublic, setSelectedPublic] = useState(initialPublicState);
+
+  const { editWorkbook } = useWorkbookEdit({
+    onSuccess: () => {
+      toast.success('수정에 성공하였습니다.');
+    },
+  });
+
+  const EditWorkbook = ({
+    id,
+    title: titleProp,
+    content: contentProp,
+    categoryId,
+    isPublic,
+  }: {
+    id?: number;
+    title?: string;
+    content?: string;
+    categoryId?: number;
+    isPublic?: boolean;
+  }) => {
     editWorkbook({
-      workbookId: workbookInfo.workbookId,
-      title: title,
-      content: content,
-      categoryId: selectedCategory.id,
-      isPublic: selectedPublic,
+      workbookId: id ?? workbookInfo.workbookId,
+      title: titleProp ?? title,
+      content: contentProp ?? content,
+      categoryId: categoryId ?? selectedCategory.id,
+      isPublic: isPublic ?? selectedPublic.isPublic,
     });
-    toast.success('성공적으로 문제집이 수정되었습니다.');
   };
+  const save = useDebounce(EditWorkbook, 1000);
+
+  if (!categoryData) return;
 
   return (
     <>
@@ -84,55 +106,26 @@ const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
               align-items: center;
             `}
           >
-            <div
-              css={css`
-                position: relative;
-              `}
-            >
-              <Button
-                css={css`
-                  padding: 0.4rem;
-                  border-radius: 0.5rem;
-                `}
-                variants="secondary"
-                onClick={toggleCategoryMenu}
-              >
-                {selectedCategory.name}
-                <Icon id="arrow-down" />
-              </Button>
-              <Menu open={isOpenCategoryMenu} closeMenu={toggleCategoryMenu}>
-                {categoryData?.map((category) => (
-                  <MenuItem key={category.id}>
-                    <Typography noWrap>{category.name}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </div>
-            <div
-              css={css`
-                position: relative;
-              `}
-            >
-              <Button
-                css={css`
-                  padding: 0.4rem;
-                  border-radius: 0.5rem;
-                `}
-                onClick={togglePublicMenu}
-                variants="secondary"
-              >
-                {selectedPublic ? '공개' : '비공개'}
-                <Icon id="arrow-down" />
-              </Button>
-              <Menu open={isOpenPublicMenu} closeMenu={togglePublicMenu}>
-                <MenuItem>
-                  <Typography noWrap>공개</Typography>
-                </MenuItem>
-                <MenuItem>
-                  <Typography noWrap>비공개</Typography>
-                </MenuItem>
-              </Menu>
-            </div>
+            <QuestionDropdown
+              data={categoryData}
+              selected={selectedCategory}
+              onChange={(e, item) => {
+                setSelectedCategory(item);
+                save({
+                  categoryId: item.id,
+                });
+              }}
+            />
+            <QuestionDropdown
+              data={publicMap}
+              selected={selectedPublic}
+              onChange={(e, item) => {
+                setSelectedPublic(item);
+                save({
+                  isPublic: item.isPublic,
+                });
+              }}
+            />
           </div>
           <Button
             onClick={closeEditMode}
@@ -147,8 +140,25 @@ const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
             <Icon id="close" />
           </Button>
         </div>
-        <Input value={title} onChange={handleTitleChange} />
-        <InputArea value={content} onChange={handleContentChange} rows={2} />
+        <Input
+          value={title}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            handleTitleChange(e);
+            save({
+              title: e.target.value,
+            });
+          }}
+        />
+        <InputArea
+          value={content}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            handleContentChange(e);
+            save({
+              content: e.target.value,
+            });
+          }}
+          rows={2}
+        />
       </div>
       <div
         css={css`
