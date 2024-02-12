@@ -39,7 +39,7 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
 
   const { currentValue, setCurrentValue } = useTabs();
   const [onlySelectedOption, setOnlySelectedOption] = useState(false);
-  const [isEditMode, setIsEditMode] = useState(true);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const toggleShowSelectionOption = () => {
     setOnlySelectedOption((prev) => !prev);
@@ -97,52 +97,55 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
             workbookId={workbook.workbookId}
           />
         </EmptySuspense>
-        <div
-          css={css`
-            display: flex;
-            justify-content: ${isDeviceBreakpoint('tablet')
-              ? 'space-between'
-              : 'flex-end'};
-            align-items: center;
-            column-gap: 0.5rem;
-            padding: 1rem;
-            border-radius: ${isSidebarOpen ? '0 0 1rem 1rem' : '0 0 1rem 0'};
-            background-color: ${theme.colors.surface.default};
-          `}
-        >
-          <Button
-            variants="secondary"
-            onClick={onSidebarToggleClick}
-            visible={isDeviceBreakpoint('tablet')}
-            css={css`
-              bottom: 0.5rem;
-              display: flex;
-              align-items: center;
-              border: none;
-              border-radius: 1rem;
-              padding: 0.5rem;
-            `}
-          >
-            <Icon id="menu" width="24" height="24" />
-          </Button>
+        {!isEditMode && (
           <div
-            onClick={toggleShowSelectionOption}
             css={css`
               display: flex;
-              flex-wrap: wrap;
-              gap: 0.25rem;
-              cursor: pointer;
+              justify-content: ${isDeviceBreakpoint('tablet')
+                ? 'space-between'
+                : 'flex-end'};
+              align-items: center;
+              column-gap: 0.5rem;
+              padding: 1rem;
+              border-radius: ${isSidebarOpen ? '0 0 1rem 1rem' : '0 0 1rem 0'};
+              background-color: ${theme.colors.surface.default};
             `}
           >
-            <Toggle
+            <Button
+              variants="secondary"
+              onClick={onSidebarToggleClick}
+              visible={isDeviceBreakpoint('tablet')}
+              css={css`
+                bottom: 0.5rem;
+                display: flex;
+                align-items: center;
+                border: none;
+                border-radius: 1rem;
+                padding: 0.5rem;
+              `}
+            >
+              <Icon id="menu" width="24" height="24" />
+            </Button>
+
+            <div
               onClick={toggleShowSelectionOption}
-              isToggled={onlySelectedOption}
-            />
-            {!isSidebarOpen && isDeviceBreakpoint('mobile') ? null : (
-              <Typography variant="body3">선택된 질문만 보기</Typography>
-            )}
+              css={css`
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.25rem;
+                cursor: pointer;
+              `}
+            >
+              <Toggle
+                onClick={toggleShowSelectionOption}
+                isToggled={onlySelectedOption}
+              />
+              {!isSidebarOpen && isDeviceBreakpoint('mobile') ? null : (
+                <Typography variant="body3">선택된 질문만 보기</Typography>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </Tabs.TabPanel>
   );
