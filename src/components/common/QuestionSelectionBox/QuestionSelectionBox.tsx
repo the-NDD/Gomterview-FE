@@ -1,4 +1,4 @@
-import TabPanelItem from './QuestionTabPanelItem';
+import TabPanelItem from './QuestionTabPannel/QuestionTabPanelItem';
 import { Box, Tabs } from '@foundation/index';
 import useWorkbookTitleListQuery from '@hooks/apis/queries/useWorkbookTitleListQuery';
 import QuestionTabList from '@common/QuestionSelectionBox/QuestionTabList';
@@ -11,7 +11,7 @@ import {
 import { css } from '@emotion/react';
 import { useState } from 'react';
 import useBreakpoint from '@hooks/useBreakPoint';
-import QuestionTabPanelBlank from '@common/QuestionSelectionBox/QuestionTabPanelBlank';
+import QuestionTabPanelBlank from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionTabPanelBlank';
 
 const QuestionSelectionBox = () => {
   const isDeviceBreakpoint = useBreakpoint();

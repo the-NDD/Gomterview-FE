@@ -7,7 +7,7 @@ import useQuestionWorkbookQuery from '@hooks/apis/queries/useQuestionWorkbookQue
 import { Button, Icon, Tabs, Toggle, Typography } from '@foundation/index';
 import { WorkbookTitleListResDto } from '@/types/workbook';
 import { ExcludeArray } from '@/types/utils';
-import QuestionTabPanelHeader from '@common/QuestionSelectionBox/QuestionTabPanelHeader';
+import QuestionTabPanelHeader from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionTabPanelHeader';
 import useTabs from '@foundation/Tabs/useTabs';
 import useBreakpoint from '@hooks/useBreakPoint';
 import { toast } from '@foundation/Toast/toast';

@@ -1,4 +1,4 @@
-import { css, useTheme } from '@emotion/react';
+import { css } from '@emotion/react';
 import {
   Button,
   Icon,
@@ -13,6 +13,8 @@ import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
 import useInput from '@hooks/useInput';
 import { useState } from 'react';
 import QuestionAddForm from './QuestionAddForm';
+import useWorkbookEdit from '@hooks/useWorkbookEdit';
+import { toast } from '@foundation/Toast/toast';
 
 type QuestionTabPanelEditHeaderProps = {
   workbookInfo: WorkbookQueryResult;
@@ -22,8 +24,6 @@ const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
   workbookInfo,
   closeEditMode,
 }) => {
-  const theme = useTheme();
-
   const { data: categoryData } = useCategoryQuery();
 
   const { value: title, onChange: handleTitleChange } =
@@ -35,10 +35,28 @@ const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
   const toggleCategoryMenu = () => {
     setIsOpenCategoryMenu((prev) => !prev);
   };
+  const [selectedCategory, setSelectedCategory] = useState({
+    id: workbookInfo.categoryId,
+    name: workbookInfo.categoryName,
+  });
 
   const [isOpenPublicMenu, setIsOpenPublicMenu] = useState(false);
   const togglePublicMenu = () => {
     setIsOpenPublicMenu((prev) => !prev);
+  };
+  const [selectedPublic, setSelectedPubluc] = useState(workbookInfo.isPublic);
+
+  const { editWorkbook } = useWorkbookEdit({});
+
+  const EditWorkbook = () => {
+    editWorkbook({
+      workbookId: workbookInfo.workbookId,
+      title: title,
+      content: content,
+      categoryId: selectedCategory.id,
+      isPublic: selectedPublic,
+    });
+    toast.success('성공적으로 문제집이 수정되었습니다.');
   };
 
   return (
@@ -76,10 +94,11 @@ const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
                   padding: 0.4rem;
                   border-radius: 0.5rem;
                 `}
+                variants="secondary"
                 onClick={toggleCategoryMenu}
               >
-                {workbookInfo.categoryName}
-                <Icon id="arrow-down" fill={theme.colors.text.white} />
+                {selectedCategory.name}
+                <Icon id="arrow-down" />
               </Button>
               <Menu open={isOpenCategoryMenu} closeMenu={toggleCategoryMenu}>
                 {categoryData?.map((category) => (
@@ -100,9 +119,10 @@ const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
                   border-radius: 0.5rem;
                 `}
                 onClick={togglePublicMenu}
+                variants="secondary"
               >
-                {workbookInfo.isPublic ? '공개' : '비공개'}
-                <Icon id="arrow-down" fill={theme.colors.text.white} />
+                {selectedPublic ? '공개' : '비공개'}
+                <Icon id="arrow-down" />
               </Button>
               <Menu open={isOpenPublicMenu} closeMenu={togglePublicMenu}>
                 <MenuItem>
