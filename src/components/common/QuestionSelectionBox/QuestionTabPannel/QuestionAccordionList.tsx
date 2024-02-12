@@ -4,6 +4,7 @@ import WorkbookEditModeDialog from '@common/QuestionSelectionBox/WorkbookEditMod
 import useWorkbookQuestionDelete from '@hooks/useWorkbookQuestionDelete';
 import { Question } from '@/types/question';
 import { css } from '@emotion/react';
+import { toast } from '@foundation/Toast/toast';
 
 type QuestionAccordionListProps = {
   isEditMode: boolean;
@@ -29,6 +30,7 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
 
   const handleDeleteQuestion = async () => {
     await deleteCheckedQuestion();
+    toast.success('삭제가 완료되었습니다.');
   };
 
   const getServiceStepID = (index: number, length: number) => {
