@@ -107,7 +107,7 @@ const QuestionTabPanelHeader: React.FC<QuestionTabPanelHeaderProps> = ({
         <div
           css={css`
             line-height: 1.2em;
-            height: calc(1.2em * 3);
+            max-height: calc(1.2em * 3);
             overflow-y: auto;
           `}
         >
