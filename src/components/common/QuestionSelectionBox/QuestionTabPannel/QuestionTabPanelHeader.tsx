@@ -93,7 +93,13 @@ const QuestionTabPanelHeader: React.FC<QuestionTabPanelHeaderProps> = ({
             >
               <Icon id="ellipsis-vertical" />
             </Button>
-            <Menu open={isMenuOpen} closeMenu={toggleMenu}>
+            <Menu
+              open={isMenuOpen}
+              closeMenu={toggleMenu}
+              css={css`
+                right: 0;
+              `}
+            >
               <MenuItem onClick={onEditButtonClick}>
                 <Typography noWrap>면접 세트 편집</Typography>
               </MenuItem>
