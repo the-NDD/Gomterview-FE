@@ -39,10 +39,11 @@ const QuestionAddForm: React.FC<QuestionAddFormProps> = ({ workbookId }) => {
     >
       <Input
         css={css`
-          padding: 0.5rem;
+          padding: 0.8rem;
         `}
         value={value}
         onChange={onChange}
+        placeholder="추가하고 싶은 면접 질문을 입력하세요."
       />
       <Button
         size="md"

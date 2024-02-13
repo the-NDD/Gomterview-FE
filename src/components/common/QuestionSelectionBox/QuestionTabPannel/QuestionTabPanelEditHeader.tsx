@@ -14,41 +14,41 @@ type QuestionTabPanelEditHeaderProps = {
   workbookInfo: WorkbookQueryResult;
   closeEditMode: () => void;
 };
+
+const publicMap = [
+  {
+    id: 'public',
+    name: '공개',
+    isPublic: true,
+  },
+  {
+    id: 'private',
+    name: '비공개',
+    isPublic: false,
+  },
+];
+
 const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
   workbookInfo,
   closeEditMode,
 }) => {
-  const { data: categoryData } = useCategoryQuery();
-
-  const { value: title, onChange: handleTitleChange } =
-    useInput<HTMLInputElement>(workbookInfo.title);
-  const { value: content, onChange: handleContentChange } =
-    useInput<HTMLTextAreaElement>(workbookInfo.content);
-
-  const [selectedCategory, setSelectedCategory] = useState({
-    id: workbookInfo.categoryId,
-    name: workbookInfo.categoryName,
-  });
-
-  const publicMap = [
-    {
-      id: 'public',
-      name: '공개',
-      isPublic: true,
-    },
-    {
-      id: 'private',
-      name: '비공개',
-      isPublic: false,
-    },
-  ];
-
   const initialPublicState = publicMap.find(
     (item) => item.isPublic === workbookInfo.isPublic
   ) as (typeof publicMap)[number];
   // publicMap에 boolean 타입의 조건이 모두 들어가 있으므로 undefined는 나올 수 없음 => 강제 타입 변환 사용
 
   const [selectedPublic, setSelectedPublic] = useState(initialPublicState);
+  const [selectedCategory, setSelectedCategory] = useState({
+    id: workbookInfo.categoryId,
+    name: workbookInfo.categoryName,
+  });
+
+  const { data: categoryData } = useCategoryQuery();
+
+  const { value: title, onChange: handleTitleChange } =
+    useInput<HTMLInputElement>(workbookInfo.title);
+  const { value: content, onChange: handleContentChange } =
+    useInput<HTMLTextAreaElement>(workbookInfo.content);
 
   const { editWorkbook } = useWorkbookEdit({
     onSuccess: () => {
@@ -89,6 +89,7 @@ const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
           flex-direction: column;
           row-gap: 0.5rem;
           padding: 0.5rem;
+          margin-bottom: 0.8rem;
         `}
       >
         <div
