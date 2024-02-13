@@ -10,7 +10,6 @@ import { ExcludeArray } from '@/types/utils';
 import QuestionTabPanelHeader from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionTabPanelHeader';
 import useTabs from '@foundation/Tabs/useTabs';
 import useBreakpoint from '@hooks/useBreakPoint';
-import { toast } from '@foundation/Toast/toast';
 import QuestionAccordionList from './QuestionAccordionList';
 import EmptySuspense from '@foundation/EmptySuspense/EmptySuspense';
 import QuestionTabPanelBlank from './QuestionTabPanelBlank';
@@ -81,11 +80,7 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
           <QuestionTabPanelHeader
             workbookInfo={workbookInfo}
             onWorkbookDelete={() => setCurrentValue('0')}
-            onEditButtonClick={() =>
-              questionData?.length
-                ? setIsEditMode(true)
-                : toast.info('문제가 존재하지 않습니다.')
-            }
+            onEditButtonClick={() => setIsEditMode(true)}
           />
         )}
 
