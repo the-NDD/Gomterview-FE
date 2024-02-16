@@ -37,7 +37,7 @@ const QuestionTabPanelHeader: React.FC<QuestionTabPanelHeaderProps> = ({
           display: flex;
           flex-direction: column;
           row-gap: 0.5rem;
-          padding: 0.5rem;
+          padding: 1rem 1.2rem 0 1.2rem;
         `}
       >
         <div
