@@ -1,4 +1,4 @@
-import LandingPage from '@/page/LandingPage';
+import LandingPage from '@page/landingPage';
 import InterviewSettingPage from '@page/interviewSettingPage';
 import InterviewPage from '@page/interviewPage';
 import MyPage from './page/myPage';
@@ -7,10 +7,10 @@ import { PATH } from '@constants/path';
 import { QueryClient } from '@tanstack/react-query';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import myPageLoader from '@routes/myPageLoader';
-import LinkOnlyVideoPage from '@page/LinkOnlyVideoPage';
+import LinkOnlyVideoPage from '@page/linkOnlyVideoPage';
 import InterviewVideoPublicLoader from '@routes/interviewVideoPublicLoader';
 import rootLoader from '@routes/rootLoader';
-import WorkbookDetailPage from '@page/WorkbookDetailPage';
+import WorkbookDetailPage from '@page/workbookDetailPage';
 import LoaderErrorPage from '@page/errorPage/Loader';
 import interviewWorkbookDetailLoader from '@routes/interviewWorkbookDetailLoader';
 import InterviewVideoListPage from '@page/InterviewVideoListPage';

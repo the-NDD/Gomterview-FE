@@ -6,7 +6,7 @@ import { VideoItemResDto } from '@/types/video';
 import {
   LinkOnlyVideoPageLayout,
   LinkOnlyVideoPlayer,
-} from '@components/LinkOnlyVideoPage';
+} from '@components/linkOnlyVideoPage';
 import useOnlyRelatedVideoQuery from '@hooks/apis/queries/useOnlyRelatedVideoListQuery';
 import { Box, Typography } from '@foundation/index';
 import { css } from '@emotion/react';
