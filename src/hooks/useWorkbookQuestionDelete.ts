@@ -24,7 +24,6 @@ const useWorkbookQuestionDelete = (workbookId: number) => {
   });
   const { data: workbookInfo } = useWorkbookQuery({
     workbookId: workbookId,
-    enabled: workbookId > 0,
   });
 
   const { editWorkbook } = useWorkbookEdit({
