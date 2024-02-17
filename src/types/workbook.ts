@@ -53,3 +53,15 @@ export type WorkbookPatchReqDto = Pick<
   WorkbookEntity,
   'workbookId' | 'title' | 'content' | 'categoryId' | 'isPublic'
 >;
+
+export type WorkbookPatchResDto = Pick<
+  WorkbookEntity,
+  | 'workbookId'
+  | 'title'
+  | 'content'
+  | 'categoryId'
+  | 'isPublic'
+  | 'nickname'
+  | 'profileImg'
+  | 'copyCount'
+>;
