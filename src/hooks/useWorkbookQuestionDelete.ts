@@ -21,7 +21,6 @@ const useWorkbookQuestionDelete = (workbookId: number) => {
 
   const { data: questions } = useQuestionWorkbookQuery({
     workbookId: workbookId,
-    enabled: true,
   });
   const { data: workbookInfo } = useWorkbookQuery({
     workbookId: workbookId,

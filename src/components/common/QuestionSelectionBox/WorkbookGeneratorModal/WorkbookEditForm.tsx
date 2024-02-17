@@ -39,7 +39,6 @@ const WorkbookEditForm: React.FC<WorkbookEditFormProps> = ({
 
   const { data: questions } = useQuestionWorkbookQuery({
     workbookId: workbookId,
-    enabled: true,
   });
 
   const findCategoryIndex = useCallback(
