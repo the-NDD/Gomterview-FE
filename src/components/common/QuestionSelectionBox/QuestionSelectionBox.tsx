@@ -9,9 +9,9 @@ import {
   QuestionSelectionBoxTabPanelAreaDiv,
 } from '@common/QuestionSelectionBox/QuestionSelectionBox.styles';
 import { css } from '@emotion/react';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import useBreakpoint from '@hooks/useBreakPoint';
-import QuestionTabPanelBlank from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionTabPanelBlank';
+import QuestionTabPanelLoading from './QuestionTabPannel/QuestionTabPanelLoading';
 
 const QuestionSelectionBox = () => {
   const isDeviceBreakpoint = useBreakpoint();
@@ -46,23 +46,27 @@ const QuestionSelectionBox = () => {
             <QuestionTabList workbookListData={workbookListData} />
           </QuestionSelectionBoxSidebarAreaDiv>
           <QuestionSelectionBoxTabPanelAreaDiv>
-            {workbookListData.length ? (
-              workbookListData.map((workbook, index) => (
-                <TabPanelItem
-                  key={workbook.workbookId}
-                  tabIndex={index.toString()}
-                  workbook={workbook}
-                  isSidebarOpen={
-                    isSidebarToggleOn && isDeviceBreakpoint('tablet')
-                  }
-                  onSidebarToggleClick={() =>
-                    setIsSidebarToggleOn((prev) => !prev)
-                  }
-                />
-              ))
-            ) : (
-              <QuestionTabPanelBlank />
-            )}
+            {workbookListData.map((workbook, index) => (
+              <Tabs.TabPanel
+                key={`workbook.id-${workbook.workbookId}`}
+                value={index.toString()}
+                css={css`
+                  height: 100%;
+                `}
+              >
+                <Suspense fallback={<QuestionTabPanelLoading />}>
+                  <TabPanelItem
+                    workbook={workbook}
+                    isSidebarOpen={
+                      isSidebarToggleOn && isDeviceBreakpoint('tablet')
+                    }
+                    onSidebarToggleClick={() =>
+                      setIsSidebarToggleOn((prev) => !prev)
+                    }
+                  />
+                </Suspense>
+              </Tabs.TabPanel>
+            ))}
           </QuestionSelectionBoxTabPanelAreaDiv>
         </Tabs>
       </Box>
