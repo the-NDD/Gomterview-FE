@@ -15,7 +15,9 @@ const questionHandlers = [
         ? workbookIdMap.get(question.workbookId)!.push(question)
         : workbookIdMap.set(question.workbookId, [question]);
     });
-    return HttpResponse.json(workbookIdMap.get(Number(workbookId)), {
+    const response = workbookIdMap.get(Number(workbookId)) || [];
+
+    return HttpResponse.json(response, {
       status: 200,
     });
   }),
