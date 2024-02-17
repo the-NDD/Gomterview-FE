@@ -1,6 +1,6 @@
 import { theme } from '@styles/theme';
 import { css } from '@emotion/react';
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import { Button, Icon, Toggle, Typography } from '@foundation/index';
 import { WorkbookTitleListResDto } from '@/types/workbook';
 import { ExcludeArray } from '@/types/utils';
@@ -61,24 +61,12 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
       )}
 
       <EmptySuspense callback={<QuestionTabPanelBlank />}>
-        <Suspense
-          fallback={
-            <div
-              css={css`
-                height: 100vh;
-              `}
-            >
-              Loading...
-            </div>
-          }
-        >
-          <QuestionAccordionList
-            isEditMode={isEditMode}
-            cancelEditMode={() => setIsEditMode(false)}
-            workbookInfo={workbookInfo}
-            onlySelectedOption={onlySelectedOption}
-          />
-        </Suspense>
+        <QuestionAccordionList
+          isEditMode={isEditMode}
+          cancelEditMode={() => setIsEditMode(false)}
+          workbookInfo={workbookInfo}
+          onlySelectedOption={onlySelectedOption}
+        />
       </EmptySuspense>
       {!isEditMode && (
         <div
