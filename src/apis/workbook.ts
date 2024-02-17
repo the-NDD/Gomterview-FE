@@ -5,6 +5,7 @@ import {
   WorkbookAddResDto,
   WorkbookListResDto,
   WorkbookPatchReqDto,
+  WorkbookPatchResDto,
   WorkbookResDto,
   WorkbookTitleListResDto,
 } from '@/types/workbook';
@@ -39,7 +40,7 @@ export const getWorkbookById = async (workbookId: number) => {
 };
 
 export const patchWorkbookById = async (body: WorkbookPatchReqDto) => {
-  return await getAPIResponseData<null, WorkbookPatchReqDto>({
+  return await getAPIResponseData<WorkbookPatchResDto, WorkbookPatchReqDto>({
     method: 'patch',
     url: API.WORKBOOK,
     data: body,

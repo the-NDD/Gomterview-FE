@@ -1,6 +1,8 @@
 import { getQuestion } from '@/apis/question';
 import { QUERY_KEY } from '@/constants/queryKey';
+import { EmptyContext } from '@foundation/EmptySuspense/EmptySuspense';
 import { useQuery } from '@tanstack/react-query';
+import { useContext, useEffect } from 'react';
 
 /**
  * GET /question/${workbookId}
@@ -16,11 +18,20 @@ const useQuestionWorkbookQuery = ({
   workbookId: number;
   enabled?: boolean;
 }) => {
-  return useQuery({
+  const { setIsEmpty } = useContext(EmptyContext);
+  const query = useQuery({
     queryKey: QUERY_KEY.QUESTION_WORKBOOK(workbookId),
     queryFn: () => getQuestion(workbookId),
     enabled,
   });
+
+  useEffect(() => {
+    if (query.isSuccess) {
+      setIsEmpty(query.data?.length === 0);
+    }
+  }, [query.data?.length, query.isSuccess, setIsEmpty]);
+
+  return query;
 };
 
 export default useQuestionWorkbookQuery;

@@ -39,10 +39,9 @@ export const QuestionSelectionBoxSidebarAreaDiv = styled.div<{
         `
       : css`
           ${showSidebar} 0.3s ease-in-out forwards
-        `}}
+        `};
 `;
 
 export const QuestionSelectionBoxTabPanelAreaDiv = styled.div`
   flex: 1 1 calc(100% - 15rem);
-  overflow-x: hidden;
 `;

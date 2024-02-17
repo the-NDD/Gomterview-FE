@@ -2,41 +2,27 @@ import { CheckBox } from '@foundation/index';
 import QuestionSelectionBoxAccordion from '@common/QuestionSelectionBox/QuestionSelectionBoxAccordion';
 import WorkbookEditModeDialog from '@common/QuestionSelectionBox/WorkbookEditModeDialog';
 import useWorkbookQuestionDelete from '@hooks/useWorkbookQuestionDelete';
-import { useRef } from 'react';
-import useOutsideClick from '@hooks/useOutsideClick';
 import { Question } from '@/types/question';
 import { css } from '@emotion/react';
+import { toast } from '@foundation/Toast/toast';
 
 type QuestionAccordionListProps = {
   isEditMode: boolean;
   cancelEditMode: () => void;
-  questionData: Question[];
+  questionData?: Question[];
   workbookId: number;
 };
 const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
   isEditMode,
-  cancelEditMode,
   questionData,
   workbookId,
 }) => {
-  const listRef = useRef<HTMLDivElement>(null);
-
-  useOutsideClick(listRef, () => {
-    handleCancelEditMode();
-  });
-
   const {
     addCheckedQuestion,
-    resetCheckedQuestion,
     deleteCheckedQuestion,
     isCheckedQuestion,
     checkQuestionCount,
   } = useWorkbookQuestionDelete(workbookId);
-
-  const handleCancelEditMode = () => {
-    resetCheckedQuestion();
-    cancelEditMode();
-  };
 
   const handleQuestionChecked = (questionId: number) => {
     isEditMode && addCheckedQuestion(questionId);
@@ -44,7 +30,7 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
 
   const handleDeleteQuestion = async () => {
     await deleteCheckedQuestion();
-    handleCancelEditMode();
+    toast.success('삭제가 완료되었습니다.');
   };
 
   const getServiceStepID = (index: number, length: number) => {
@@ -56,11 +42,11 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
         ? 'virtual-step-target-0'
         : '';
   };
+  if (!questionData) return <></>;
 
   return (
     <>
       <div
-        ref={listRef}
         css={css`
           display: flex;
           flex-direction: column;
@@ -109,7 +95,6 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
         {isEditMode && (
           <WorkbookEditModeDialog
             count={checkQuestionCount()}
-            onCancelClick={handleCancelEditMode}
             onDeleteClick={() => void handleDeleteQuestion()}
           />
         )}
