@@ -57,8 +57,6 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
 
   const questionData = onlySelectedOption ? selectedQuestions : questionAPIData;
 
-  if (!questionData) return <></>;
-
   return (
     <>
       <div
