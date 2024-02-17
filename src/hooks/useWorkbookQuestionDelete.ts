@@ -40,7 +40,7 @@ const useWorkbookQuestionDelete = (workbookId: number) => {
         return deleteQuestionAsync(questionId);
       })
     );
-    if (workbookInfo && questions?.length === checkedQuestion.length) {
+    if (questions.length === checkedQuestion.length) {
       editWorkbook({
         workbookId: workbookId,
         title: workbookInfo.title,

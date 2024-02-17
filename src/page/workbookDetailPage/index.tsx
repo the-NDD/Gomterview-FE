@@ -32,32 +32,26 @@ const WorkbookDetailPage = () => {
   const {
     openModal: openStartWithSelectedQuestionModal,
     closeModal: closeStartWithSelectedQuestionModal,
-  } = useModal(
-    () =>
-      workbookData && (
-        <StartWithSelectedQuestionModal
-          closeModal={closeStartWithSelectedQuestionModal}
-          workbookData={workbookData}
-          questions={selectedQuestion}
-        />
-      )
-  );
+  } = useModal(() => (
+    <StartWithSelectedQuestionModal
+      closeModal={closeStartWithSelectedQuestionModal}
+      workbookData={workbookData}
+      questions={selectedQuestion}
+    />
+  ));
 
   const {
     openModal: openAddWorkbookListModal,
     closeModal: closeAddWorkbookListModal,
-  } = useModal(
-    () =>
-      workbookData && (
-        <AddWorkbookListModal
-          closeModal={closeAddWorkbookListModal}
-          selectedQuestionIds={selectedQuestion.map(
-            (question) => question.questionId
-          )}
-          workbookData={workbookData}
-        />
-      )
-  );
+  } = useModal(() => (
+    <AddWorkbookListModal
+      closeModal={closeAddWorkbookListModal}
+      selectedQuestionIds={selectedQuestion.map(
+        (question) => question.questionId
+      )}
+      workbookData={workbookData}
+    />
+  ));
 
   const selectQuestion = (question: Question) => {
     setSelectedQuestion((prev) =>
@@ -70,9 +64,7 @@ const WorkbookDetailPage = () => {
   };
 
   const allSelectQuestion = () => {
-    setSelectedQuestion(
-      questionWorkbookData?.map((question) => question) || []
-    );
+    setSelectedQuestion(questionWorkbookData.map((question) => question) || []);
   };
 
   const allUnSelectQuestion = () => setSelectedQuestion([]);
@@ -97,8 +89,6 @@ const WorkbookDetailPage = () => {
     }
     return true;
   };
-
-  if (!workbookData) return;
 
   return (
     <>
@@ -163,7 +153,7 @@ const WorkbookDetailPage = () => {
             height: auto;
           `}
         >
-          {questionWorkbookData?.map((question) => {
+          {questionWorkbookData.map((question) => {
             const isSelected = selectedQuestion.includes(question);
             return (
               <QuestionAccordion
