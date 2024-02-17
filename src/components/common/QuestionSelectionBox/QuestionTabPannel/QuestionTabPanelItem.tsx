@@ -37,7 +37,7 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
   const { data: workbookInfo } = useWorkbookQuery({
     workbookId: workbook.workbookId,
   });
-  if (!workbookInfo) return null;
+
   return (
     <div
       css={css`
