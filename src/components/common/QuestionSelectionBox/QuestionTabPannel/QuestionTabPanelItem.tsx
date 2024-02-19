@@ -60,7 +60,10 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
         />
       )}
 
-      <EmptySuspense callback={<QuestionTabPanelBlank />}>
+      <EmptySuspense
+        callback={<QuestionTabPanelBlank />}
+        trigger={onlySelectedOption}
+      >
         <QuestionAccordionList
           isEditMode={isEditMode}
           cancelEditMode={() => setIsEditMode(false)}
