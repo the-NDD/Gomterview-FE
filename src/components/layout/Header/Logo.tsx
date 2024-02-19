@@ -1,4 +1,4 @@
-import logo from '@assets/images/logo.png';
+import logo from '@assets/images/logo.webp';
 import { css } from '@emotion/react';
 import Typography from '@foundation/Typography/Typography';
 import { Link } from 'react-router-dom';

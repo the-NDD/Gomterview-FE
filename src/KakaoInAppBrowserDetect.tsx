@@ -1,9 +1,8 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import useKakaoInAppBrowserDetect from '@hooks/useKakaoInAppBrowserDetect';
-import { useEffect } from 'react';
 import { Button, Typography } from '@foundation/index';
 import { css } from '@emotion/react';
-import LandingBear from '@assets/images/landing-bear.png';
+import LandingBear from '@assets/images/landing-bear.webp';
 
 const KakaoInAppBrowserDetect: React.FC<PropsWithChildren> = ({ children }) => {
   const { isKakaoInAppBrowser, moveOtherBrowser } =

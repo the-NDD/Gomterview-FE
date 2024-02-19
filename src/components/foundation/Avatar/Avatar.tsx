@@ -2,7 +2,7 @@ import { theme } from '@styles/theme';
 import { HTMLElementTypes } from '@/types/utils';
 import { css } from '@emotion/react';
 import React from 'react';
-import logo from '@assets/images/logo.png';
+import logo from '@assets/images/logo.webp';
 
 type AvatarProps = {
   src?: string;

@@ -2,8 +2,7 @@ import { css } from '@emotion/react';
 import { CardCover, Icon, Typography } from '@foundation/index';
 import { theme } from '@styles/theme';
 import { MouseEventHandler } from 'react';
-import logo from '@assets/images/logo.png';
-
+import logo from '@assets/images/logo.webp';
 
 type ThumbnailProps = {
   image: string;
