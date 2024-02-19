@@ -9,8 +9,11 @@ const SomethingWrongErrorPage = () => {
       <img
         src={ErrorBear}
         alt={'노트북을 하는 곰돌이의 뒷모습'}
+        width={480}
+        height={480}
         css={css`
-          max-width: 40vw;
+          width: 40vw;
+          height: auto;
         `}
       />
       <div
