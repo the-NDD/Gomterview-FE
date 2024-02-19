@@ -4,10 +4,11 @@ import WorkbookEditModeDialog from '@common/QuestionSelectionBox/WorkbookEditMod
 import useWorkbookQuestionDelete from '@hooks/useWorkbookQuestionDelete';
 import { css } from '@emotion/react';
 import { toast } from '@foundation/Toast/toast';
-import useQuestionWorkbookQuery from '@hooks/apis/queries/useQuestionWorkbookQuery';
 import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
+import useEmptySuspenseEffect from '@hooks/useEmptySuspenseEffect';
 import { useRecoilValue } from 'recoil';
 import { questionSetting } from '@atoms/interviewSetting';
+import useQuestionWorkbookQuery from '@hooks/apis/queries/useQuestionWorkbookQuery';
 
 type QuestionAccordionListProps = {
   isEditMode: boolean;
@@ -56,6 +57,8 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
   });
 
   const questionData = onlySelectedOption ? selectedQuestions : questionAPIData;
+
+  useEmptySuspenseEffect(questionData);
 
   return (
     <>
