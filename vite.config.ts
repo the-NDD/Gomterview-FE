@@ -40,7 +40,7 @@ export default defineConfig({
     react(),
     ViteImageOptimizer({
       webp: {
-        quality: 75,
+        quality: 60,
       },
       include: /\.(png|jpe?g|gif|svg|webp)$/i,
       exclude: /node_modules/,
