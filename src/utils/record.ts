@@ -120,6 +120,8 @@ export const canUseFFmpeg = async () => {
       '640x360',
       '-r',
       '30', // 프레임 레이트 설정: 30fps
+      '-threads',
+      '4',
       'output.mp4', // 출력 파일
     ],
     10000
