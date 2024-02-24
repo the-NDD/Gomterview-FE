@@ -19,6 +19,10 @@ const useWorkbookDelete = () => {
       QUERY_KEY.WORKBOOK_TITLE,
       (prev) => prev?.filter((item) => item.workbookId !== Number(workbookId))
     );
+
+    void queryClient.invalidateQueries({
+      queryKey: QUERY_KEY.QUESTION_WORKBOOK(workbookId),
+    });
   };
 
   const deleteWorkbook = (workbookId: number) => {
