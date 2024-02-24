@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 import LandingBear from '@assets/images/landing-bear/landing-bear.webp';
-import LandingBear480 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale,w_480.webp';
-import LandingBear734 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale,w_734.webp';
-import LandingBear980 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale,w_980.webp';
-import LandingBear1080 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale,w_1080.webp';
+import LandingBear480 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale_w_480.webp';
+import LandingBear734 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale_w_734.webp';
+import LandingBear980 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale_w_980.webp';
+import LandingBear1080 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale_w_1080.webp';
 
 const LandingImage: React.FC = () => {
   return (
