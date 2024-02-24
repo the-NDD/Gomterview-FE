@@ -31,10 +31,10 @@ const InterviewSettingPage: React.FC = () => {
 
   const [, setIsEncodingAllow] = useRecoilState(encodingState);
   useEffect(() => {
-    async () => {
+    void (async () => {
       const isEncodingAllow = await canUseFFmpeg();
       setIsEncodingAllow({ isEncodingAllow: isEncodingAllow });
-    };
+    })();
   }, [setIsEncodingAllow]);
 
   const pageInfo = [

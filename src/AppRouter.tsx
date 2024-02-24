@@ -21,7 +21,6 @@ import SomethingWrongErrorPage from '@page/errorPage/SomethingWrong';
 import ModalProvider from './modalProvider';
 import MediaStreamPage from '@page/mediaStreamPage';
 import KakaoInAppBrowserDetect from './KakaoInAppBrowserDetect';
-import landingLoader from '@routes/landingLoader';
 
 const AppRouter = ({ queryClient }: { queryClient: QueryClient }) => {
   const routes = createBrowserRouter([
@@ -43,7 +42,6 @@ const AppRouter = ({ queryClient }: { queryClient: QueryClient }) => {
         {
           index: true,
           element: <LandingPage />,
-          loader: async () => await landingLoader(),
         },
         {
           path: PATH.INTERVIEW,
