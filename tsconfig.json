@@ -11,6 +11,7 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "skipLibCheck": true,
+    "noEmit": true,
     "paths": {
       "@common/*": ["./src/components/common/*"],
       "@foundation/*": ["./src/components/foundation/*"],

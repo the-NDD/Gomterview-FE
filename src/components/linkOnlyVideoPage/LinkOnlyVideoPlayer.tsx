@@ -8,6 +8,7 @@ const LinkOnlyVideoPlayer: React.FC<LinkOnlyVideoPlayerProps> = ({
   videoName,
   createdAt,
   nickname,
+  videoAnswer,
 }) => {
   return (
     <VideoPlayerFrame
@@ -15,6 +16,7 @@ const LinkOnlyVideoPlayer: React.FC<LinkOnlyVideoPlayerProps> = ({
       videoName={videoName}
       createdAt={createdAt}
       nickname={nickname}
+      videoAnswer={videoAnswer}
     >
       <VideoPlayer url={url} />
     </VideoPlayerFrame>

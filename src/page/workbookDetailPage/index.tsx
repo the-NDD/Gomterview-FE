@@ -3,9 +3,9 @@ import QuestionAccordion from '@common/QuestionAccordion/QuestionAccordion';
 import { WorkbookCard } from '@common/index';
 import {
   AddWorkbookListModal,
-  WorkbookDetailPageLayout,
   StartWithSelectedQuestionModal,
-} from '@components/WorkbookDetailPage';
+  WorkbookDetailPageLayout,
+} from '@components/workbookDetailPage';
 import { css } from '@emotion/react';
 import { Box, Button, CheckBox } from '@foundation/index';
 import useQuestionWorkbookQuery from '@hooks/apis/queries/useQuestionWorkbookQuery';
