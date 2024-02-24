@@ -3,10 +3,10 @@ import useKakaoInAppBrowserDetect from '@hooks/useKakaoInAppBrowserDetect';
 import { Button, Typography } from '@foundation/index';
 import { css } from '@emotion/react';
 import LandingBear from '@assets/images/landing-bear/landing-bear.webp';
-import LandingBear480 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale_w_480.webp';
-import LandingBear734 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale_w_734.webp';
-import LandingBear980 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale_w_980.webp';
-import LandingBear1080 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale_w_1080.webp';
+import LandingBear480 from '@assets/images/landing-bear/landing-bear-w480.webp';
+import LandingBear734 from '@assets/images/landing-bear/landing-bear-w734.webp';
+import LandingBear980 from '@assets/images/landing-bear/landing-bear-w980.webp';
+import LandingBear1080 from '@assets/images/landing-bear/landing-bear-w1080.webp';
 
 const KakaoInAppBrowserDetect: React.FC<PropsWithChildren> = ({ children }) => {
   const { isKakaoInAppBrowser, moveOtherBrowser } =
@@ -30,7 +30,7 @@ const KakaoInAppBrowserDetect: React.FC<PropsWithChildren> = ({ children }) => {
           loading="lazy"
           src={LandingBear}
           sizes="(max-width: 1080px) 100vw, 1080px"
-          srcSet={`${LandingBear480} 480w, ${LandingBear734} 734w, ${LandingBear980} 980w ${LandingBear1080} 1080w`}
+          srcSet={`${LandingBear480} 480w, ${LandingBear734} 734w, ${LandingBear980} 980w, ${LandingBear1080} 1080w`}
           alt={'노트북을 하는 곰돌이의 뒷모습'}
           width={480}
           height={480}
