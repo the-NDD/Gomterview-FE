@@ -6,6 +6,7 @@ import { QUERY_KEY } from '@constants/queryKey';
 import { getWorkbookById } from '@/apis/workbook';
 import useCategoryQuery from './useCategoryQuery';
 import { WorkbookEntity } from '@/types/workbook';
+import useUserInfo from '@hooks/useUserInfo';
 
 export type WorkbookQueryResult = WorkbookEntity & {
   categoryName: string;
@@ -23,12 +24,16 @@ const useWorkbookQuery = ({
 }: {
   workbookId: number;
 }): UseSuspenseQueryResult<WorkbookQueryResult, unknown> => {
+  const userInfo = useUserInfo();
   const { data: categories } = useCategoryQuery();
   const findCategoryName = (categoryId?: number) =>
     categories?.find((category) => category.id === categoryId)?.name ?? '';
 
   return useSuspenseQuery({
     queryKey: QUERY_KEY.WORKBOOK_ID(workbookId),
+    refetchOnMount: userInfo ? true : false,
+    refetchOnWindowFocus: userInfo ? true : false,
+    refetchOnReconnect: userInfo ? true : false,
     queryFn: () => getWorkbookById(workbookId),
     select: (data) => {
       const categoryName = findCategoryName(data.categoryId);
