@@ -1,5 +1,9 @@
 import { css } from '@emotion/react';
-import LandingBear from '@assets/images/landing-bear.webp';
+import LandingBear from '@assets/images/landing-bear/landing-bear.webp';
+import LandingBear480 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale,w_480.webp';
+import LandingBear734 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale,w_734.webp';
+import LandingBear980 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale,w_980.webp';
+import LandingBear1080 from '@assets/images/landing-bear/landing-bear_g8bwr9_c_scale,w_1080.webp';
 
 const LandingImage: React.FC = () => {
   return (
@@ -15,6 +19,8 @@ const LandingImage: React.FC = () => {
       <img
         loading="lazy"
         src={LandingBear}
+        sizes="(max-width: 1080px) 100vw, 1080px"
+        srcSet={`${LandingBear480} 480w, ${LandingBear734} 734w, ${LandingBear980} 980w ${LandingBear1080} 1080w`}
         alt={'노트북을 하는 곰돌이의 뒷모습'}
         width={480}
         height={480}
