@@ -1,5 +1,5 @@
 import { css, keyframes } from '@emotion/react';
-import logo from '@assets/images/logo.png';
+import logo from '@assets/images/logo.webp';
 
 const LoadingBounce = () => {
   const bounce = keyframes`
