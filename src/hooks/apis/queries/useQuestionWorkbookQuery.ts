@@ -16,9 +16,9 @@ const useQuestionWorkbookQuery = ({ workbookId }: { workbookId: number }) => {
   const query = useSuspenseQuery({
     queryKey: QUERY_KEY.QUESTION_WORKBOOK(workbookId),
     queryFn: () => getQuestion(workbookId),
-    refetchOnMount: userInfo ? true : false,
-    refetchOnWindowFocus: userInfo ? true : false,
-    refetchOnReconnect: userInfo ? true : false,
+    refetchOnMount: !!userInfo,
+    refetchOnWindowFocus: !!userInfo,
+    refetchOnReconnect: !!userInfo,
   });
 
   return query;
