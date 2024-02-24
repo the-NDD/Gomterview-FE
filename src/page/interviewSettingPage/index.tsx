@@ -16,6 +16,9 @@ import StepPage from '@foundation/StepPages';
 import { InterviewSettingPageLayout } from '@components/interviewSettingPage';
 import ServiceTermsPage from './ServiceTermsPage';
 import { toast } from '@foundation/Toast/toast';
+import { encodingState } from '@atoms/encoding';
+import { useEffect } from 'react';
+import { canUseFFmpeg } from '@/utils/record';
 
 const FIRST_PAGE_INDEX = 0;
 const PREV_PAGE_INDEX = -1;
@@ -24,8 +27,15 @@ const InterviewSettingPage: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [questionSettingState] = useRecoilState(questionSetting);
-
   const currentPage = searchParams.get('page');
+
+  const [, setIsEncodingAllow] = useRecoilState(encodingState);
+  useEffect(() => {
+    async () => {
+      const isEncodingAllow = await canUseFFmpeg();
+      setIsEncodingAllow({ isEncodingAllow: isEncodingAllow });
+    };
+  }, [setIsEncodingAllow]);
 
   const pageInfo = [
     {

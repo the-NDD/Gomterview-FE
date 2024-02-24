@@ -25,6 +25,7 @@ const WorkbookEditForm: React.FC<WorkbookEditFormProps> = ({
     useWorkbookQuery({
       workbookId: workbookId,
     });
+
   const { data: categories } = useCategoryQuery();
   const [activeValidationError, setActiveValidationError] = useState(false);
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
