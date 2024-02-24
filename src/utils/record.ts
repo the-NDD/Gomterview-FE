@@ -2,7 +2,7 @@ import { SelectedQuestion } from '@/atoms/interviewSetting';
 import React, { MutableRefObject } from 'react';
 import { toast } from '@foundation/Toast/toast';
 import { FFmpeg } from '@ffmpeg/ffmpeg';
-import { toBlobURL, fetchFile } from '@ffmpeg/util';
+import { fetchFile, toBlobURL } from '@ffmpeg/util';
 import { isAndroid, isIOSUser } from '@/utils/userAgent';
 import { FFMPEG_URL } from '@constants/api';
 
@@ -191,6 +191,8 @@ export const EncodingWebmToMp4 = async (blob: Blob, recordTime: string) => {
       '640x360',
       '-r',
       '30', // 프레임 레이트 설정: 30fps
+      '-threads',
+      '4',
       'output.mp4', // 출력 파일
     ]);
 
