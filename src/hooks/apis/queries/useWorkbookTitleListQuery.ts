@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
 import { getWorkbookTitle } from '@/apis/workbook';
+import useUserInfo from '@hooks/useUserInfo';
 
 /**
  * GET /workbook/title
@@ -10,9 +11,14 @@ import { getWorkbookTitle } from '@/apis/workbook';
  * 비회원은 탑5 문제집이 조회되고, 회원은 나의 문제집이 조회됩니다.
  */
 const useWorkbookTitleListQuery = () => {
+  const userInfo = useUserInfo();
+
   return useQuery({
     queryKey: QUERY_KEY.WORKBOOK_TITLE,
     queryFn: () => getWorkbookTitle(),
+    refetchOnMount: userInfo ? true : false,
+    refetchOnWindowFocus: userInfo ? true : false,
+    refetchOnReconnect: userInfo ? true : false,
   });
 };
 
