@@ -6,7 +6,7 @@ import { VideoItem } from '@common/VideoItem';
 import { Thumbnail } from '@components/myPage';
 import { PATH } from '@constants/path';
 import dayjs from 'dayjs';
-import BlankBear from '@assets/images/blank-bear.png';
+import BlankBear from '@assets/images/blank-bear.webp';
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
 import { Typography } from '@foundation/index';

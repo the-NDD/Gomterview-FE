@@ -1,5 +1,5 @@
 import ErrorPageLayout from '@components/errorPage/ErrorPageLayout';
-import ErrorBear from '@assets/images/error-bear.png';
+import ErrorBear from '@assets/images/error-bear.webp';
 import { css } from '@emotion/react';
 import { Typography } from '@foundation/index';
 import { useRouteError } from 'react-router-dom';

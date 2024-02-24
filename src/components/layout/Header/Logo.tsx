@@ -1,4 +1,4 @@
-import logo from '@assets/images/logo.png';
+import logo from '@assets/images/logo.webp';
 import { css } from '@emotion/react';
 import Typography from '@foundation/Typography/Typography';
 import { Link } from 'react-router-dom';
@@ -27,8 +27,11 @@ const Logo: React.FC = () => {
       <img
         src={logo}
         alt={'곰돌이 로고'}
+        width={40}
+        height={40}
         css={css`
           width: 2.5rem;
+          height: 2.5rem;
         `}
       />
       <Typography variant="title2" color={theme.colors.text.default}>

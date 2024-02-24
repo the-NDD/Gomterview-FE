@@ -1,6 +1,6 @@
 import { Typography } from '@foundation/index';
 import { css } from '@emotion/react';
-import BlankBear from '@assets/images/blank-bear.png';
+import BlankBear from '@assets/images/blank-bear.webp';
 
 const QuestionTabPanelBlank = () => {
   return (
