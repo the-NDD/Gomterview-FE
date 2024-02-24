@@ -49,7 +49,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     <div
       css={css`
         position: relative;
-        &:hover > :first-child {
+        &:hover > :first-of-type {
           display: ${!disabled && 'block'};
           animation: ${fadeIn} 0.2s linear;
         }
