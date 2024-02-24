@@ -9,6 +9,7 @@ import LandingPageServiceTour from '@components/landingPage/LadingPageServiceTou
 import { css } from '@emotion/react';
 
 const LandingPage: React.FC = () => {
+
   return (
     <>
       <LandingPageLayout>
