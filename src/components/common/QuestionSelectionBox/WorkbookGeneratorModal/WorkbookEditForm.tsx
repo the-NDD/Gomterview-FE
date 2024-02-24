@@ -16,6 +16,7 @@ type WorkbookEditFormProps = {
   workbookId: number;
   closeModal: () => void;
 };
+
 const WorkbookEditForm: React.FC<WorkbookEditFormProps> = ({
   workbookId,
   closeModal,
@@ -23,7 +24,6 @@ const WorkbookEditForm: React.FC<WorkbookEditFormProps> = ({
   const { data: workbookInfo, isFetching: isWorkbookFetching } =
     useWorkbookQuery({
       workbookId: workbookId,
-      enabled: workbookId > 0,
     });
   const { data: categories } = useCategoryQuery();
   const [activeValidationError, setActiveValidationError] = useState(false);
