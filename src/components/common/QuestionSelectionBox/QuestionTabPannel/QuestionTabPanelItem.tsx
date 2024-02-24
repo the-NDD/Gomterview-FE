@@ -7,11 +7,11 @@ import { ExcludeArray } from '@/types/utils';
 import QuestionTabPanelHeader from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionTabPanelHeader';
 import useTabs from '@foundation/Tabs/useTabs';
 import useBreakpoint from '@hooks/useBreakPoint';
-import QuestionAccordionList from './QuestionAccordionList';
-import EmptySuspense from '@foundation/EmptySuspense/EmptySuspense';
-import QuestionTabPanelBlank from './QuestionTabPanelBlank';
 import QuestionTabPanelEditHeader from './QuestionTabPanelEditHeader';
 import useWorkbookQuery from '@hooks/apis/queries/useWorkbookQuery';
+import EmptySuspense from '@foundation/EmptySuspense/EmptySuspense';
+import QuestionTabPanelBlank from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionTabPanelBlank';
+import QuestionAccordionList from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionAccordionList';
 
 type TabPanelItemProps = {
   workbook: ExcludeArray<WorkbookTitleListResDto>;
@@ -28,7 +28,7 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
 
   const [onlySelectedOption, setOnlySelectedOption] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
-
+  const [isQuestionAdd, setIsQuestionAdd] = useState(false);
   const { setCurrentValue } = useTabs();
 
   const toggleShowSelectionOption = () => {
@@ -51,6 +51,7 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
         <QuestionTabPanelEditHeader
           workbookInfo={workbookInfo}
           closeEditMode={() => setIsEditMode(false)}
+          onQuestionAdd={() => setIsQuestionAdd((prev) => !prev)}
         />
       ) : (
         <QuestionTabPanelHeader
@@ -59,10 +60,9 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
           onEditButtonClick={() => setIsEditMode(true)}
         />
       )}
-
       <EmptySuspense
         callback={<QuestionTabPanelBlank />}
-        trigger={onlySelectedOption}
+        trigger={onlySelectedOption || isQuestionAdd}
       >
         <QuestionAccordionList
           isEditMode={isEditMode}

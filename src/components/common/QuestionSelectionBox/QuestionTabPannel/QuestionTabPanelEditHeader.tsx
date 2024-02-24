@@ -13,6 +13,7 @@ import { toast } from '@foundation/Toast/toast';
 type QuestionTabPanelEditHeaderProps = {
   workbookInfo: WorkbookQueryResult;
   closeEditMode: () => void;
+  onQuestionAdd: () => void;
 };
 
 const publicMap = [
@@ -31,6 +32,7 @@ const publicMap = [
 const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
   workbookInfo,
   closeEditMode,
+  onQuestionAdd,
 }) => {
   const initialPublicState = publicMap.find(
     (item) => item.isPublic === workbookInfo.isPublic
@@ -166,7 +168,10 @@ const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
           padding: 0 0.5rem;
         `}
       >
-        <QuestionAddForm workbookId={workbookInfo.workbookId} />
+        <QuestionAddForm
+          workbookId={workbookInfo.workbookId}
+          onQuestionAdd={onQuestionAdd}
+        />
       </div>
     </>
   );

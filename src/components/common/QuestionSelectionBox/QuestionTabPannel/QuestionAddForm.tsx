@@ -3,14 +3,20 @@ import useQuestionAdd from '@hooks/useQuestionAdd';
 import { css } from '@emotion/react';
 import { Button, Input } from '@foundation/index';
 import { toast } from '@foundation/Toast/toast';
+
 type QuestionAddFormProps = {
   workbookId: number;
+  onQuestionAdd: () => void;
 };
 
-const QuestionAddForm: React.FC<QuestionAddFormProps> = ({ workbookId }) => {
+const QuestionAddForm: React.FC<QuestionAddFormProps> = ({
+  workbookId,
+  onQuestionAdd,
+}) => {
   const { addQuestion } = useQuestionAdd(workbookId, {
     onSuccess: () => {
       clearInput();
+      onQuestionAdd();
     },
   });
 
