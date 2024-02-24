@@ -16,7 +16,7 @@ export const useUploadToIDrive = () => {
   const { mutateAsync: getPreSignedUrl } = useGetPreSignedUrlMutation();
   const { mutate: videoToServer } = useAddVideoMutation();
 
-  const uploadToIDrive = async ({
+  const uploadToIDriveWithMP4 = async ({
     blob,
     currentQuestion,
     recordTime,
@@ -25,7 +25,6 @@ export const useUploadToIDrive = () => {
       const thumbnailBlob = await getThumbnailBlob(blob);
       const mp4Blob = await EncodingWebmToMp4(blob, recordTime);
 
-      toast.success('성공적으로 서버에 업로드를 준비합니다.');
       const { video, thumbnail } = await getPreSignedUrl();
 
       await putBlobDataToIdrive({
@@ -58,5 +57,45 @@ export const useUploadToIDrive = () => {
     }
   };
 
-  return uploadToIDrive;
+  const uploadToIDriveWithWebm = async ({
+    blob,
+    currentQuestion,
+    recordTime,
+  }: UploadParams): Promise<void> => {
+    try {
+      const thumbnailBlob = await getThumbnailBlob(blob);
+
+      const { video, thumbnail } = await getPreSignedUrl();
+
+      await putBlobDataToIdrive({
+        url: thumbnail?.preSignedUrl,
+        blob: thumbnailBlob,
+      });
+
+      await putBlobDataToIdrive({
+        url: video?.preSignedUrl,
+        blob: blob,
+      });
+
+      videoToServer({
+        questionId: currentQuestion.questionId,
+        videoName: currentQuestion.questionContent,
+        videoAnswer: `${
+          currentQuestion?.answerContent
+            ? currentQuestion.answerContent
+            : '답변이 작성되지 않았습니다.'
+        }`,
+        url: `${IDRIVE_URL}/videos/${video.key}`,
+        thumbnail: `${IDRIVE_URL}/thumbnail/${thumbnail.key}`,
+        videoLength: recordTime,
+      });
+
+      toast.success('성공적으로 서버에 업로드 되었습니다😊');
+    } catch (error) {
+      toast.error('업로드 중 오류 발생');
+      throw error; // 오류를 다시 throw하여 호출자에게 전파
+    }
+  };
+
+  return { uploadToIDriveWithMP4, uploadToIDriveWithWebm };
 };

@@ -1,7 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { recordSetting } from '@/atoms/interviewSetting';
-import { localDownload, startRecording, stopRecording } from '@/utils/record';
+import {
+  localDownloadWithMp4,
+  localDownloadWithWebm,
+  startRecording,
+  stopRecording,
+} from '@/utils/record';
 import { useUploadToIDrive } from '@/hooks/useUploadToIdrive';
 import useTimeTracker from '@/hooks/useTimeTracker';
 import useInterviewFlow from '@hooks/pages/Interview/useInterviewFlow';
@@ -9,6 +14,7 @@ import useInterviewSettings from '@/hooks/atoms/useInterviewSettings';
 import useMedia from '@hooks/useMedia';
 import useDevice from '@hooks/useDevice';
 import { recordingState } from '@atoms/interview';
+import { encodingState } from '@atoms/encoding';
 
 const useInterview = () => {
   const {
@@ -20,7 +26,7 @@ const useInterview = () => {
   } = useTimeTracker();
   const { isAllSuccess } = useInterviewSettings();
   const { method } = useRecoilValue(recordSetting);
-  const uploadToDrive = useUploadToIDrive();
+  const { uploadToIDriveWithMP4, uploadToIDriveWithWebm } = useUploadToIDrive();
   const { currentQuestion, getNextQuestion, isLastQuestion } =
     useInterviewFlow();
 
@@ -30,10 +36,10 @@ const useInterview = () => {
 
   const [{ isRecording: isRecording }, setIsRecording] =
     useRecoilState(recordingState);
+  const { isEncodingAllow: isEncodingAllow } = useRecoilValue(encodingState);
   const [isScriptInView, setIsScriptInView] = useState(true);
   const [recordedBlobs, setRecordedBlobs] = useState<Blob[]>([]);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-
   const [timeOverModalIsOpen, setTimeOverModalIsOpen] =
     useState<boolean>(false);
 
@@ -72,10 +78,18 @@ const useInterview = () => {
 
     switch (method) {
       case 'idrive':
-        void uploadToDrive({ blob, currentQuestion, recordTime });
+        if (isEncodingAllow) {
+          void uploadToIDriveWithMP4({ blob, currentQuestion, recordTime });
+        } else {
+          void uploadToIDriveWithWebm({ blob, currentQuestion, recordTime });
+        }
         break;
       case 'local':
-        void localDownload(blob, currentQuestion, recordTime);
+        if (isEncodingAllow) {
+          void localDownloadWithMp4(blob, currentQuestion, recordTime);
+        } else {
+          void localDownloadWithWebm(blob, currentQuestion);
+        }
         break;
     }
 
@@ -84,12 +98,9 @@ const useInterview = () => {
   }, [
     recordedBlobs,
     isProcessing,
-    setIsProcessing,
     selectedMimeType,
     calculateDuration,
     method,
-    setProcessQueue,
-    uploadToDrive,
     currentQuestion,
   ]);
 
