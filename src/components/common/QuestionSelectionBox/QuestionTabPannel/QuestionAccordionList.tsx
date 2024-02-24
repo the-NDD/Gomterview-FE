@@ -2,27 +2,31 @@ import { CheckBox } from '@foundation/index';
 import QuestionSelectionBoxAccordion from '@common/QuestionSelectionBox/QuestionSelectionBoxAccordion';
 import WorkbookEditModeDialog from '@common/QuestionSelectionBox/WorkbookEditModeDialog';
 import useWorkbookQuestionDelete from '@hooks/useWorkbookQuestionDelete';
-import { Question } from '@/types/question';
 import { css } from '@emotion/react';
 import { toast } from '@foundation/Toast/toast';
+import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
+import useEmptySuspenseEffect from '@hooks/useEmptySuspenseEffect';
+import { useRecoilValue } from 'recoil';
+import { questionSetting } from '@atoms/interviewSetting';
+import useQuestionWorkbookQuery from '@hooks/apis/queries/useQuestionWorkbookQuery';
 
 type QuestionAccordionListProps = {
   isEditMode: boolean;
   cancelEditMode: () => void;
-  questionData?: Question[];
-  workbookId: number;
+  workbookInfo: WorkbookQueryResult;
+  onlySelectedOption: boolean;
 };
 const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
   isEditMode,
-  questionData,
-  workbookId,
+  workbookInfo,
+  onlySelectedOption,
 }) => {
   const {
     addCheckedQuestion,
     deleteCheckedQuestion,
     isCheckedQuestion,
     checkQuestionCount,
-  } = useWorkbookQuestionDelete(workbookId);
+  } = useWorkbookQuestionDelete(workbookInfo.workbookId);
 
   const handleQuestionChecked = (questionId: number) => {
     isEditMode && addCheckedQuestion(questionId);
@@ -42,7 +46,19 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
         ? 'virtual-step-target-0'
         : '';
   };
-  if (!questionData) return <></>;
+
+  const settingPage = useRecoilValue(questionSetting);
+  const selectedQuestions = settingPage.selectedData.filter(
+    (question) => question.workbookId === workbookInfo.workbookId
+  );
+
+  const { data: questionAPIData } = useQuestionWorkbookQuery({
+    workbookId: workbookInfo.workbookId,
+  });
+
+  const questionData = onlySelectedOption ? selectedQuestions : questionAPIData;
+
+  useEmptySuspenseEffect(questionData);
 
   return (
     <>
@@ -86,7 +102,7 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
               <QuestionSelectionBoxAccordion
                 key={question.questionId}
                 question={question}
-                workbookId={workbookId}
+                workbookId={workbookInfo.workbookId}
                 isSelectable={!isEditMode}
               />
             </div>
