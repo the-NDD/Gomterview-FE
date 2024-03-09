@@ -3,17 +3,17 @@ import { Box, SelectionBox, Tabs, Typography } from '@foundation/index';
 import QuestionSelectTabPanel from './TabPanel/QuestionSelectTabPanel';
 import VideoListTabPanel from './TabPanel/VideoListTabPanel';
 import { useLocation } from 'react-router-dom';
-import { Location } from '@remix-run/router';
 import { Suspense } from 'react';
 import { LoadingBounce } from '@common/index';
 import { CenterLayout } from '@components/layout';
 
 const MyPageTabs: React.FC = () => {
-  const location = useLocation() as Location<{ tabIndex: string }>;
+  const location = useLocation();
+  const state = location.state as { tabIndex: string };
 
   return (
     <Tabs
-      initialValue={location?.state?.tabIndex ?? '2'}
+      initialValue={state?.tabIndex ?? '2'}
       css={css`
         display: flex;
         flex-direction: column;
