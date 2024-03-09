@@ -11,7 +11,10 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "skipLibCheck": true,
-    "noEmit": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationDir": "./types",
     "paths": {
       "@/*": ["./src/*"]
     }

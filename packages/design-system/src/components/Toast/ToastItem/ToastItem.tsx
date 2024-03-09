@@ -13,9 +13,9 @@ import {
   ToastFadeOutUpAnimation,
   ToastHideAnimation,
   ToastProgressBarAnimation,
-} from '@components/Toast/styles/ToastAnimation.styles';
-import { TOAST_DEFAULT_POSITION } from '@components/Toast/constants';
-import ToastToggleButton from '@components/Toast/ToastItem/ToastToggleButton';
+} from '@/components/Toast/styles/ToastAnimation.styles';
+import { TOAST_DEFAULT_POSITION } from '@/components/Toast/constants';
+import ToastToggleButton from '@/components/Toast/ToastItem/ToastToggleButton';
 
 const ToastItem: React.FC<ToastProps> = ({
   toastId,

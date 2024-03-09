@@ -4,8 +4,17 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    tsconfigPaths(),
-  ],
+  build: {
+    lib: {
+      entry: './src/index.ts',
+      name: 'design-system',
+      fileName: 'index',
+      formats: ['es'],
+    },
+    rollupOptions: {
+      input: './src/index.ts',
+      external: ['react', 'react-dom'],
+    },
+  },
+  plugins: [react(), tsconfigPaths()],
 });
