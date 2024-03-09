@@ -9,12 +9,14 @@
     "jsxImportSource": "@emotion/react",
     "strict": true,
     "noImplicitAny": true,
-    "baseUrl": ".",
     "skipLibCheck": true,
+    "isolatedModules": true,
     "noEmit": false,
     "emitDeclarationOnly": true,
     "declaration": true,
     "declarationDir": "./types",
+
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }

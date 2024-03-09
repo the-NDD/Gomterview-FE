@@ -10,9 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/the-NDD/Gomterview-FE.git"
   },
-  "main": "index.ts",
+  "main": "src/index.ts",
   "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
