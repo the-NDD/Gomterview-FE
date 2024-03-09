@@ -9,9 +9,10 @@
     "jsxImportSource": "@emotion/react",
     "strict": true,
     "noImplicitAny": true,
-    "baseUrl": "../..",
+    "baseUrl": ".",
     "skipLibCheck": true,
     "noEmit": true,
+    "rootDir": "src",
     "paths": {
       "@common/*": ["./src/components/common/*"],
       "@foundation/*": ["./src/components/foundation/*"],
