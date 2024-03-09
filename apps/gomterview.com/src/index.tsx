@@ -64,5 +64,5 @@ deferRender()
     );
   })
   .catch((err) => {
-    console.error('Failed to start mock service worker', err);
+    console.error('Failed to start mock gomterview.com worker', err);
   });

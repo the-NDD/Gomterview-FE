@@ -9,7 +9,7 @@
     "jsxImportSource": "@emotion/react",
     "strict": true,
     "noImplicitAny": true,
-    "baseUrl": ".",
+    "baseUrl": "../..",
     "skipLibCheck": true,
     "noEmit": true,
     "paths": {

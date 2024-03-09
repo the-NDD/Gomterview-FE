@@ -1,4 +1,4 @@
-import { API, BASE_URL } from '@/constants/api';
+import { API, BASE_URL } from '../constants/api';
 import { PATH } from '@constants/path';
 import axios, { AxiosError } from 'axios';
 

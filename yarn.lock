@@ -3233,6 +3233,12 @@ __metadata:
 "gomterview-fe@workspace:.":
   version: 0.0.0-use.local
   resolution: "gomterview-fe@workspace:."
+  languageName: unknown
+  linkType: soft
+
+"gomterview.com@workspace:apps/gomterview.com":
+  version: 0.0.0-use.local
+  resolution: "gomterview.com@workspace:apps/gomterview.com"
   dependencies:
     "@emotion/babel-plugin": "npm:^11.11.0"
     "@emotion/react": "npm:^11.11.3"
