@@ -3237,35 +3237,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gomterview-fe@workspace:.":
+"gomterview-com@workspace:apps/gomterview-com":
   version: 0.0.0-use.local
-  resolution: "gomterview-fe@workspace:."
-  dependencies:
-    "@types/react": "npm:^18.2.43"
-    "@types/react-dom": "npm:^18.2.17"
-    "@typescript-eslint/eslint-plugin": "npm:^6.14.0"
-    "@typescript-eslint/parser": "npm:^6.14.0"
-    "@vitejs/plugin-react": "npm:^4.2.1"
-    eslint: "npm:^8.55.0"
-    eslint-config-prettier: "npm:^9.0.0"
-    eslint-plugin-prettier: "npm:^5.0.1"
-    eslint-plugin-react: "npm:^7.33.2"
-    eslint-plugin-react-hooks: "npm:^4.6.0"
-    eslint-plugin-react-refresh: "npm:^0.4.5"
-    eslint-plugin-unused-imports: "npm:^3.0.0"
-    prettier: "npm:^3.0.3"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
-    typescript: "npm:^5.3.3"
-    vite: "npm:^5.0.8"
-    vite-plugin-image-optimizer: "npm:^1.1.7"
-    vite-tsconfig-paths: "npm:^4.3.1"
-  languageName: unknown
-  linkType: soft
-
-"gomterview.com@workspace:apps/gomterview.com":
-  version: 0.0.0-use.local
-  resolution: "gomterview.com@workspace:apps/gomterview.com"
+  resolution: "gomterview-com@workspace:apps/gomterview-com"
   dependencies:
     "@emotion/babel-plugin": "npm:^11.11.0"
     "@emotion/react": "npm:^11.11.3"
@@ -3304,6 +3278,32 @@ __metadata:
     react-router-dom: "npm:^6.18.0"
     recoil: "npm:^0.7.7"
     sharp: "npm:^0.33.2"
+    typescript: "npm:^5.3.3"
+    vite: "npm:^5.0.8"
+    vite-plugin-image-optimizer: "npm:^1.1.7"
+    vite-tsconfig-paths: "npm:^4.3.1"
+  languageName: unknown
+  linkType: soft
+
+"gomterview-fe@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "gomterview-fe@workspace:."
+  dependencies:
+    "@types/react": "npm:^18.2.43"
+    "@types/react-dom": "npm:^18.2.17"
+    "@typescript-eslint/eslint-plugin": "npm:^6.14.0"
+    "@typescript-eslint/parser": "npm:^6.14.0"
+    "@vitejs/plugin-react": "npm:^4.2.1"
+    eslint: "npm:^8.55.0"
+    eslint-config-prettier: "npm:^9.0.0"
+    eslint-plugin-prettier: "npm:^5.0.1"
+    eslint-plugin-react: "npm:^7.33.2"
+    eslint-plugin-react-hooks: "npm:^4.6.0"
+    eslint-plugin-react-refresh: "npm:^0.4.5"
+    eslint-plugin-unused-imports: "npm:^3.0.0"
+    prettier: "npm:^3.0.3"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
     typescript: "npm:^5.3.3"
     vite: "npm:^5.0.8"
     vite-plugin-image-optimizer: "npm:^1.1.7"
