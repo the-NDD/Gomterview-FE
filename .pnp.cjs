@@ -16,11 +16,16 @@ const RAW_RUNTIME_STATE =
     {\
       "name": "gomterview-com",\
       "reference": "workspace:apps/gomterview-com"\
+    },\
+    {\
+      "name": "design-system",\
+      "reference": "workspace:packages/design-system"\
     }\
   ],\
   "enableTopLevelFallback": true,\
   "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
   "fallbackExclusionList": [\
+    ["design-system", ["workspace:packages/design-system"]],\
     ["gomterview-com", ["workspace:apps/gomterview-com"]],\
     ["gomterview-fe", ["workspace:."]]\
   ],\
@@ -2929,6 +2934,36 @@ const RAW_RUNTIME_STATE =
           ["delayed-stream", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
+      }]\
+    ]],\
+    ["design-system", [\
+      ["workspace:packages/design-system", {\
+        "packageLocation": "./packages/design-system/",\
+        "packageDependencies": [\
+          ["design-system", "workspace:packages/design-system"],\
+          ["@emotion/babel-plugin", "npm:11.11.0"],\
+          ["@emotion/react", "virtual:16f2254267c6102c7d59fc546e5490176aee98eed874f2f4007351ed3e4f45221230bc4b39b99c2cc6afac1f16ef699e1c2c8cc63bc115a539dab89953d45665#npm:11.11.4"],\
+          ["@emotion/styled", "virtual:16f2254267c6102c7d59fc546e5490176aee98eed874f2f4007351ed3e4f45221230bc4b39b99c2cc6afac1f16ef699e1c2c8cc63bc115a539dab89953d45665#npm:11.11.0"],\
+          ["@types/react", "npm:18.2.64"],\
+          ["@types/react-dom", "npm:18.2.21"],\
+          ["@typescript-eslint/eslint-plugin", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:6.21.0"],\
+          ["@typescript-eslint/parser", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:6.21.0"],\
+          ["@vitejs/plugin-react", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:4.2.1"],\
+          ["eslint", "npm:8.57.0"],\
+          ["eslint-config-prettier", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:9.1.0"],\
+          ["eslint-plugin-prettier", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:5.1.3"],\
+          ["eslint-plugin-react", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:7.34.0"],\
+          ["eslint-plugin-react-hooks", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:4.6.0"],\
+          ["eslint-plugin-react-refresh", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:0.4.5"],\
+          ["eslint-plugin-unused-imports", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:3.1.0"],\
+          ["prettier", "npm:3.2.5"],\
+          ["react", "npm:18.2.0"],\
+          ["react-dom", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:18.2.0"],\
+          ["typescript", "patch:typescript@npm%3A5.4.2#optional!builtin<compat/typescript>::version=5.4.2&hash=5adc0c"],\
+          ["vite", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:5.1.5"],\
+          ["vite-tsconfig-paths", "virtual:557ed4c5fbf749393ea861bbfbe253d503c491b37922af11b9b9b4c08dc5f2747547c60500bee44ef13201352bccbae0fe46c519578834cadfb0bfe42adf9704#npm:4.3.1"]\
+        ],\
+        "linkType": "SOFT"\
       }]\
     ]],\
     ["detect-libc", [\
