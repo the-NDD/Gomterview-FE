@@ -4,9 +4,9 @@
   "version": "1.4.0",
   "type": "module",
   "scripts": {
-    "gomterview:dev": "yarn workspace gomterview.com dev",
-    "gomterview:local": "yarn workspace gomterview.com local",
-    "gomterview:build": "yarn workspace gomterview.com build"
+    "gomterview:dev": "yarn workspace gomterview-com dev",
+    "gomterview:local": "yarn workspace gomterview-com local",
+    "gomterview:build": "yarn workspace gomterview-com build"
   },
   "workspaces": [
     "apps/*",
