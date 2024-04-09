@@ -8,8 +8,7 @@
     "local": "vite --mode localhost",
     "build": "tsc && vite build --mode production",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview --mode production",
-    "setup": "git config core.hooksPath ./.githooks && chmod +x ./.githooks/pre-commit"
+    "preview": "vite preview --mode production"
   },
   "main": "src/index.tsx",
   "dependencies": {
@@ -59,12 +58,6 @@
   },
   "msw": {
     "workerDirectory": "public"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint",
-      "prettier --write"
-    ]
   },
   "packageManager": "yarn@4.1.1"
 }
