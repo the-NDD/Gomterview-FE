@@ -23,7 +23,9 @@ dist-ssr
 *.sw?
 
 .env.*
-src/dev/
+
+# gomterview-com
+apps/gomterview-com/src/dev/
 
 # yarn berry zero install
 .yarn/*
