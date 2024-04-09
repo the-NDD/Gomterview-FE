@@ -11,7 +11,7 @@ const redirectToGoogleLogin = async () => {
 
   const cookieGeneratorModule = await dynamicImport<{
     cookieGenerator: () => Promise<void>;
-  }>('@/dev/cookieGenerator');
+  }>('../dev/cookieGenerator.ts');
 
   if (!cookieGeneratorModule) return;
 
