@@ -1,17 +1,7 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "target": "ES2015", // 결과 파일 형식
-    "module": "es2020", // module 형식
-    "resolveJsonModule": true,
-    "esModuleInterop": true, // import시 namespace alias 가능
-    "moduleResolution": "bundler",
-    "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react",
-    "strict": true,
-    "noImplicitAny": true,
     "baseUrl": ".",
-    "skipLibCheck": true,
-    "noEmit": true,
     "rootDir": "src",
     "paths": {
       "@common/*": ["./src/components/common/*"],

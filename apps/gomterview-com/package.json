@@ -8,8 +8,7 @@
     "local": "vite --mode localhost",
     "build": "tsc && vite build --mode production",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview --mode production",
-    "setup": "git config core.hooksPath ./.githooks && chmod +x ./.githooks/pre-commit"
+    "preview": "vite preview --mode production"
   },
   "main": "src/index.tsx",
   "dependencies": {
@@ -37,21 +36,9 @@
     "@emotion/babel-plugin": "^11.11.0",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
-    "@typescript-eslint/eslint-plugin": "^6.14.0",
-    "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.55.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "eslint-plugin-unused-imports": "^3.0.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
     "msw": "^2.0.3",
-    "prettier": "^3.0.3",
-    "sharp": "^0.33.2",
+    "sharp": "^0.33.3",
     "typescript": "^5.3.3",
     "vite": "^5.0.8",
     "vite-plugin-image-optimizer": "^1.1.7",
@@ -59,12 +46,6 @@
   },
   "msw": {
     "workerDirectory": "public"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint",
-      "prettier --write"
-    ]
   },
   "packageManager": "yarn@4.1.1"
 }

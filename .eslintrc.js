@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   env: {
@@ -7,9 +7,9 @@ module.export = {
     es6: true,
   },
   parserOptions: {
-    project: ['./tsconfig.base.json'],
+    project: true,
   },
-  plugins: ['@typescript-eslint', 'prettier', 'unused-imports'],
+  plugins: ['@typescript-eslint', 'prettier', 'unused-imports', 'react'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -19,7 +19,7 @@ module.export = {
     'plugin:react-hooks/recommended',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.json', 'vite.config.ts'],
+  ignorePatterns: ['dist', '.eslintrc.js', 'vite.config.ts'],
   rules: {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'off',

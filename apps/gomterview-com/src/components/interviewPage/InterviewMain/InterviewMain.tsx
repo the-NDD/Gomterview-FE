@@ -4,7 +4,6 @@ import { Mirror } from '@common/index';
 import { theme } from '@styles/theme';
 import { InterviewQuestion, InterviewAnswer } from './index';
 import { ConnectStatus } from '@atoms/media';
-import { Tooltip } from '@foundation/index';
 
 type InterviewMainProps = {
   mirrorVideoRef: RefObject<HTMLVideoElement>;

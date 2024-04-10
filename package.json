@@ -2,11 +2,11 @@
   "name": "gomterview-fe",
   "private": true,
   "version": "1.4.0",
-  "type": "module",
   "scripts": {
-    "gomterview:dev": "yarn workspace gomterview.com dev",
-    "gomterview:local": "yarn workspace gomterview.com local",
-    "gomterview:build": "yarn workspace gomterview.com build"
+    "gomterview:dev": "yarn workspace gomterview-com dev",
+    "gomterview:local": "yarn workspace gomterview-com local",
+    "gomterview:build": "yarn workspace gomterview-com build",
+    "setup": "git config core.hooksPath ./.githooks && chmod +x ./.githooks/pre-commit"
   },
   "workspaces": [
     "apps/*",
@@ -17,11 +17,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
-    "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.55.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
@@ -29,11 +26,16 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-plugin-unused-imports": "^3.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.2",
     "prettier": "^3.0.3",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.8",
-    "vite-plugin-image-optimizer": "^1.1.7",
-    "vite-tsconfig-paths": "^4.3.1"
+    "typescript": "^5.3.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn run eslint",
+      "yarn run prettier --write"
+    ]
   },
   "packageManager": "yarn@4.1.1"
 }
