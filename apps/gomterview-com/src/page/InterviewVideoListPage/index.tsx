@@ -25,7 +25,9 @@ const InterviewVideoListPage: React.FC = () => {
       <Box
         css={css`
           display: grid;
-          grid-template-columns: ${allVideoList ? 'repeat(2, 1fr)' : 'none'};
+          grid-template-columns: ${allVideoList
+            ? 'repeat(2, minmax(0, 1fr));'
+            : 'none'};
           justify-content: center;
           gap: 1.5rem;
           padding: 1.5rem;

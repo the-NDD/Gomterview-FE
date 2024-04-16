@@ -24,8 +24,6 @@ const VideoItem: React.FC<VideoItemProps> = ({
     <Link
       to={path}
       css={css`
-        display: flex;
-        flex-direction: column;
         text-decoration: none;
         color: ${theme.colors.text.default};
       `}
@@ -38,7 +36,6 @@ const VideoItem: React.FC<VideoItemProps> = ({
           justify-content: space-between;
           row-gap: 0.5rem;
           padding: 1rem 0.5rem;
-          height: 100%;
           cursor: pointer;
         `}
       >
@@ -58,22 +55,27 @@ const VideoItem: React.FC<VideoItemProps> = ({
         <div
           css={css`
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
+            gap: 0.6rem;
           `}
         >
-          <div
-            css={css`
-              display: flex;
-              gap: 0.625rem;
-            `}
-          >
-            {userThumbnail && nickname && (
-              <>
-                <Avatar src={userThumbnail} width="1.5rem" height="1.5rem" />
-                <Typography variant="body3">{nickname}</Typography>
-              </>
-            )}
-          </div>
+          {userThumbnail && nickname && (
+            <>
+              <Avatar src={userThumbnail} width="1.5rem" height="1.5rem" />
+              <Typography
+                variant="body3"
+                noWrap
+                css={css`
+                  overflow: hidden;
+                  flex-grow: 1;
+                  text-overflow: ellipsis; // 넘치는 텍스트에 말줄임표 표시
+                `}
+              >
+                {nickname}
+              </Typography>
+            </>
+          )}
           <Typography variant="body3" color={theme.colors.text.subStrong}>
             {date}
           </Typography>
