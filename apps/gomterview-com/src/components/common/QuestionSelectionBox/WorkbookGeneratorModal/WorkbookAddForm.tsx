@@ -1,4 +1,4 @@
-import { Button, Input, InputArea, Tooltip } from '@foundation/index';
+import { Button, Input, InputArea, Typography } from '@foundation/index';
 import { css } from '@emotion/react';
 import { FormEventHandler, useState } from 'react';
 import LabelBox from '@common/QuestionSelectionBox/WorkbookGeneratorModal/LabelBox';
@@ -8,7 +8,6 @@ import { theme } from '@styles/theme';
 import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
 import useWorkbookAdd from '@hooks/useWorkbookAdd';
 import { toast } from '@foundation/Toast/toast';
-import { ShareRangeToggle } from '@common/index';
 
 type WorkbookAddFormProps = {
   closeModal: () => void;
@@ -112,22 +111,14 @@ const WorkbookAddForm: React.FC<WorkbookAddFormProps> = ({ closeModal }) => {
         />
       </LabelBox>
       <LabelBox labelName="공개 범위">
-        <Tooltip
-          title={'문제를 추가하여 공개로 전환할 수 있습니다.'}
-          position="bottom"
+        <Typography
+          variant="captionWeak"
+          css={css`
+            padding-left: 0.25rem;
+          `}
         >
-          <ShareRangeToggle
-            isPublic={false}
-            onClick={() =>
-              toast.info('문제가 존재하지 않아 공개로 전환할 수 없습니다.')
-            }
-            publicText={{
-              text: '곰터뷰의 모든 사용자',
-              description:
-                '비회원을 포함한 곰터뷰의 모든 사용자에게 공개됩니다.',
-            }}
-          />
-        </Tooltip>
+          문제 추가 후 수정에서 공개로 전환할 수 있습니다.
+        </Typography>
       </LabelBox>
       <LabelBox labelName="설명">
         <InputArea

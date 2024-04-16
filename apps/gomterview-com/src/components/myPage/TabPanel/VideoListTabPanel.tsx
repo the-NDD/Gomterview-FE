@@ -4,7 +4,6 @@ import { Box } from '@foundation/index';
 import useDeleteVideoMutation from '@hooks/apis/mutations/useDeleteVideoMutation';
 import useVideoListQuery from '@hooks/apis/queries/useVideoListQuery';
 import { theme } from '@styles/theme';
-import dayjs from 'dayjs';
 import DeleteCheckModal from '../DeleteCheckModal';
 import Thumbnail from '@common/Thumbnail/Thumbnail';
 import { VideoItem } from '@common/VideoItem';
@@ -38,7 +37,7 @@ const MyVideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
     <VideoItem
       key={video.id}
       videoName={video.videoName}
-      date={dayjs(Number(video.createdAt)).format('YYYY-MM-DD')}
+      date={video.createdAt}
       path={`${PATH.INTERVIEW_VIDEO(video.id)}`}
     >
       <Thumbnail

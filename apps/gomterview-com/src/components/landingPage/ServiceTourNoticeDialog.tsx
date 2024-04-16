@@ -1,22 +1,31 @@
-import { Box, Button, Icon, Typography } from '@foundation/index';
+import { Box, Button, Typography } from '@foundation/index';
 import { css, keyframes } from '@emotion/react';
 import { theme } from '@styles/theme';
-import { useEffect, useState } from 'react';
 import { runState } from '@atoms/serviceTour';
 import { useRecoilState } from 'recoil';
+import { useEffect, useState } from 'react';
 
-const ShowDialog = keyframes`
+const showDialogAnimation = keyframes`
   0% {
-    transform: translateX(-100%);
+    transform: translateX(100%);
   }
   100% {
     transform: translateX(0);
   }
 `;
 
+const hideDialogAnimation = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(110%);
+  }
+`;
+
 const ServiceTourNoticeDialog = () => {
-  const [visible, setVisible] = useState(false);
-  const [{ isRunning: isRunning }, setInRunning] = useRecoilState(runState);
+  const [{ isRunning }, setInRunning] = useRecoilState(runState);
+  const [visible, setVisible] = useState(!isRunning);
 
   useEffect(() => {
     if (!isRunning) {
@@ -26,58 +35,51 @@ const ServiceTourNoticeDialog = () => {
     }
   }, [isRunning]);
 
-  if (!visible) return null;
   return (
     <Box
       css={css`
         position: fixed;
-        left: 1rem;
+        right: 1rem;
         bottom: 1rem;
-        display: flex;
+        display: ${isRunning ? 'none' : 'flex'};
         flex-direction: column;
-        align-items: flex-end;
-        row-gap: 0.5rem;
-        margin-right: 30rem;
-        padding: 0.5rem;
+        row-gap: 0.8rem;
+        padding: 1rem;
         width: 15rem;
         height: auto;
 
         background-color: ${theme.colors.surface.default};
         z-index: ${theme.zIndex.contentOverlay.overlay5};
-        animation: 1s cubic-bezier(0.5, 1.5, 0.5, 1) 0s 1 ${ShowDialog};
+
+        animation: 1s cubic-bezier(0.4, 0, 0.2, 1) 0s 1
+          ${visible ? showDialogAnimation : hideDialogAnimation};
+        animation-fill-mode: forwards;
       `}
     >
-      <Button
-        variants="secondary"
-        size="sm"
-        onClick={() => setVisible(false)}
-        css={css`
-          position: absolute;
-          top: 0.5rem;
-          right: 0.5rem;
-          display: flex;
-          border: none;
-          z-index: ${theme.zIndex.contentOverlay.overlay5};
-        `}
-      >
-        <Icon id="close-black" />
-      </Button>
+      <Typography variant="body1">
+        아직 곰터뷰가 어려우신가요😂
+        <br />
+        튜토리얼을 통해서 곰터뷰에 <br />
+        익숙해지는건 어떨까요?
+      </Typography>
       <div
         css={css`
-          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          white-space: nowrap;
         `}
       >
-        <Typography variant="body1">
-          <br />
-          아직 곰터뷰가 어려우신가요😂
-          <br />
-          튜토리얼을 통해서 곰터뷰에 <br />
-          익숙해지는건 어떨까요?
-        </Typography>
+        <Button
+          size="sm"
+          variants="secondary"
+          onClick={() => setVisible(false)}
+        >
+          닫기
+        </Button>
+        <Button size="sm" onClick={() => setInRunning({ isRunning: true })}>
+          튜토리얼 시작하기
+        </Button>
       </div>
-      <Button size="sm" onClick={() => setInRunning({ isRunning: true })}>
-        튜토리얼 시작하기
-      </Button>
     </Box>
   );
 };

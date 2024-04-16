@@ -1,36 +1,13 @@
-import { PropsWithChildren, useEffect, useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import Joyride, { CallBackProps, Step } from 'react-joyride';
 import { runState } from '@atoms/serviceTour';
 import { useRecoilState } from 'recoil';
-import { useLocation } from 'react-router-dom';
 import { theme } from '@styles/theme';
-import { PATH } from '@constants/path';
 import ServiceTourNoticeDialog from './ServiceTourNoticeDialog';
 
 const LandingPageServiceTour: React.FC<PropsWithChildren> = () => {
   const [{ isRunning: isRunning }, setInRunning] = useRecoilState(runState);
   const [stepIndex, setStepIndex] = useState(0);
-  const { pathname: curPath } = useLocation();
-
-  useEffect(() => {
-    if (curPath === PATH.ROOT && checkIsSkipped()) {
-      setInRunning({ isRunning: true });
-      setStepIndex(0);
-    } else {
-      setInRunning({ isRunning: false });
-    }
-  }, [setInRunning, curPath, setStepIndex]);
-
-  const checkIsSkipped = () => {
-    const skippedDate = localStorage.getItem('skipped');
-    if (skippedDate) {
-      const now = new Date();
-      const skippedTime = new Date(skippedDate).getTime();
-      const diff = now.getTime() - skippedTime;
-      return diff > 24 * 60 * 10 * 1000;
-    }
-    return true;
-  };
 
   const handleJoyrideCallback = (data: CallBackProps) => {
     const { action, index } = data;

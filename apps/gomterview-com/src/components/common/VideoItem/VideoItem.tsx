@@ -24,10 +24,15 @@ const VideoItem: React.FC<VideoItemProps> = ({
     <Link
       to={path}
       css={css`
-        display: flex;
-        flex-direction: column;
         text-decoration: none;
         color: ${theme.colors.text.default};
+
+        &:hover {
+          > div {
+            text-decoration: underline;
+            text-decoration-color: ${theme.colors.text.subStrong};
+          }
+        }
       `}
     >
       {children}
@@ -38,19 +43,18 @@ const VideoItem: React.FC<VideoItemProps> = ({
           justify-content: space-between;
           row-gap: 0.5rem;
           padding: 1rem 0.5rem;
-          height: 100%;
           cursor: pointer;
         `}
       >
         <Typography
           variant="body2"
           css={css`
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
             line-height: 1.25rem;
-
-            &:hover {
-              text-decoration: underline;
-              text-decoration-color: ${theme.colors.text.subStrong};
-            }
           `}
         >
           {videoName}
@@ -58,22 +62,34 @@ const VideoItem: React.FC<VideoItemProps> = ({
         <div
           css={css`
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
+            gap: 0.6rem;
           `}
         >
-          <div
-            css={css`
-              display: flex;
-              gap: 0.625rem;
-            `}
-          >
-            {userThumbnail && nickname && (
-              <>
-                <Avatar src={userThumbnail} width="1.5rem" height="1.5rem" />
-                <Typography variant="body3">{nickname}</Typography>
-              </>
-            )}
-          </div>
+          {userThumbnail && nickname && (
+            <>
+              <Avatar
+                src={userThumbnail}
+                css={css`
+                  max-width: 1.5rem;
+                  min-width: 1.5rem;
+                  height: auto;
+                `}
+              />
+              <Typography
+                variant="body3"
+                noWrap
+                css={css`
+                  overflow: hidden;
+                  flex-grow: 1;
+                  text-overflow: ellipsis; // 넘치는 텍스트에 말줄임표 표시
+                `}
+              >
+                {nickname}
+              </Typography>
+            </>
+          )}
           <Typography variant="body3" color={theme.colors.text.subStrong}>
             {date}
           </Typography>

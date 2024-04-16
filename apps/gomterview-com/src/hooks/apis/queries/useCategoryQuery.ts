@@ -1,6 +1,6 @@
 import { getCategory } from '@/apis/category';
 import { QUERY_KEY } from '@/constants/queryKey';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 /**
  * GET /category
@@ -10,7 +10,7 @@ import { useQuery } from '@tanstack/react-query';
  * ex) FE, BE, CS, Android
  */
 const useCategoryQuery = () => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: QUERY_KEY.CATEGORY,
     queryFn: getCategory,
   });

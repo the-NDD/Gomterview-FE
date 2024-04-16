@@ -5,11 +5,11 @@ import {
 import { VideoItem } from '@common/VideoItem';
 import { Thumbnail } from '@components/myPage';
 import { PATH } from '@constants/path';
-import dayjs from 'dayjs';
 import BlankBear from '@assets/images/blank-bear.webp';
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
 import { Typography } from '@foundation/index';
+import logo from '@assets/images/logo.webp';
 
 type VideoListProps = {
   videoList: PublicVideoListResDto | OnlyRelatedVideoListResDto;
@@ -33,13 +33,14 @@ const VideoList: React.FC<VideoListProps> = ({ videoList }) => {
               <VideoItem
                 key={video.id}
                 videoName={video.videoName}
-                date={dayjs(Number(video.createdAt)).format('YYYY-MM-DD')}
+                date={video.createdAt}
                 nickname={video.nickname}
                 userThumbnail={video.userThumbnail}
                 path={`${PATH.INTERVIEW_VIDEO(video.id)}`}
               >
                 <Thumbnail
-                  image={video.thumbnail ?? ''}
+                  image={video.thumbnail ?? logo}
+                  // TODO: thumbnail이 없을 경우 url자체를 주지 않도록 변환
                   videoName={video.videoName}
                   videoLength={video.videoLength}
                 />
@@ -52,7 +53,7 @@ const VideoList: React.FC<VideoListProps> = ({ videoList }) => {
               <VideoItem
                 key={video.id}
                 videoName={video.videoName}
-                date={dayjs(Number(video.createdAt)).format('YYYY-MM-DD')}
+                date={video.createdAt}
                 path={`${PATH.INTERVIEW_VIDEO(video.id)}`}
               >
                 <Thumbnail

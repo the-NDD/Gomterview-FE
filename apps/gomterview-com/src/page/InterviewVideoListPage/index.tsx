@@ -20,12 +20,14 @@ const InterviewVideoListPage: React.FC = () => {
           align-self: flex-start;
         `}
       >
-        면접 영상 목록
+        공개된 면접 영상
       </Typography>
       <Box
         css={css`
           display: grid;
-          grid-template-columns: ${allVideoList ? 'repeat(2, 1fr)' : 'none'};
+          grid-template-columns: ${allVideoList
+            ? 'repeat(2, minmax(0, 1fr));'
+            : 'none'};
           justify-content: center;
           gap: 1.5rem;
           padding: 1.5rem;
