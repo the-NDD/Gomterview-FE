@@ -4,7 +4,7 @@ import App from '@/App';
 import * as Sentry from '@sentry/react';
 
 async function deferRender() {
-  if (import.meta.env.VITE_APP_MSW_ENABLE !== 'true') {
+  if (import.meta.env.NODE_ENV !== 'development') {
     return;
   }
   const { worker } = await import('./mocks/browser.js');
