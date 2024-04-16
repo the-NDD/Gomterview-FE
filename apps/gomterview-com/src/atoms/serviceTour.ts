@@ -5,7 +5,7 @@ export const runState = atom<{
 }>({
   key: 'runState',
   default: {
-    isRunning: false,
+    isRunning: true,
   },
 });
 
