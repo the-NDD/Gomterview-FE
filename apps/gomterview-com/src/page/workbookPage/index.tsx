@@ -2,7 +2,6 @@ import {
   CategoryMenu,
   WorkbookList,
   WorkbookPageLayout,
-  WorkbookPlusButton,
 } from '@components/workbookPage';
 import { css } from '@emotion/react';
 
@@ -25,11 +24,10 @@ const WorkbookPage: React.FC = () => {
           margin: 0 0.5rem;
         `}
       >
-        면접 세트 목록
+        공개된 면접 세트
       </Typography>
       <CategoryMenu onTabChange={handleTabChange} />
       <WorkbookList selectedCategoryId={selectedCategoryId} />
-      <WorkbookPlusButton />
     </WorkbookPageLayout>
   );
 };

@@ -14,13 +14,13 @@ const Navigations: React.FC = () => {
   const navigationList = [
     {
       path: PATH.INTERVIEW_VIDEO_LIST,
-      text: '면접 영상 목록',
+      text: '공개된 면접 영상',
       visibility: true,
       message: '다른 사람들의 다양한 영상들을 구경해보세요😊',
     },
     {
       path: PATH.WORKBOOK,
-      text: '면접 세트 목록',
+      text: '공개된 면접 세트',
       visibility: true,
       message: '다른 사람들의 다양한 질문들을 구경해보세요😊',
     },

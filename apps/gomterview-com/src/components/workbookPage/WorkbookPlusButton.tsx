@@ -7,6 +7,9 @@ import { RequestLoginModal } from '@components/common';
 import useModal from '@hooks/useModal';
 import { WorkbookGeneratorModal } from '@common/index';
 
+/**
+ * @deprecated
+ */
 const WorkbookPlusButton: React.FC = () => {
   const isLogin = useUserInfo();
   const { openModal, closeModal } = useModal(() => {

@@ -20,7 +20,7 @@ const InterviewVideoListPage: React.FC = () => {
           align-self: flex-start;
         `}
       >
-        면접 영상 목록
+        공개된 면접 영상
       </Typography>
       <Box
         css={css`
