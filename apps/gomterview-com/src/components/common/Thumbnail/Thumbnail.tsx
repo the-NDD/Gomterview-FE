@@ -100,12 +100,13 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
           crossOrigin="use-credentials"
           src={image}
           onError={(e) => (e.currentTarget.src = `${logo}`)}
+          // TODO: 에러 부분 때문에 첫 로딩시 layout shift가 발생합니다.
           alt={videoName}
           css={css`
-            aspect-ratio: 3 / 2;
+            aspect-ratio: 3 /2;
             width: 100%;
             height: auto;
-            object-fit: contain;
+            object-fit: cover;
             border-radius: 1rem;
           `}
         />

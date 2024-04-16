@@ -26,6 +26,13 @@ const VideoItem: React.FC<VideoItemProps> = ({
       css={css`
         text-decoration: none;
         color: ${theme.colors.text.default};
+
+        &:hover {
+          > div {
+            text-decoration: underline;
+            text-decoration-color: ${theme.colors.text.subStrong};
+          }
+        }
       `}
     >
       {children}
@@ -42,12 +49,12 @@ const VideoItem: React.FC<VideoItemProps> = ({
         <Typography
           variant="body2"
           css={css`
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
             line-height: 1.25rem;
-
-            &:hover {
-              text-decoration: underline;
-              text-decoration-color: ${theme.colors.text.subStrong};
-            }
           `}
         >
           {videoName}
@@ -62,7 +69,14 @@ const VideoItem: React.FC<VideoItemProps> = ({
         >
           {userThumbnail && nickname && (
             <>
-              <Avatar src={userThumbnail} width="1.5rem" height="1.5rem" />
+              <Avatar
+                src={userThumbnail}
+                css={css`
+                  max-width: 1.5rem;
+                  min-width: 1.5rem;
+                  height: auto;
+                `}
+              />
               <Typography
                 variant="body3"
                 noWrap
