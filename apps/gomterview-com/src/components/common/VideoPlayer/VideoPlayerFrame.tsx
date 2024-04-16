@@ -3,7 +3,6 @@ import Typography from '@foundation/Typography/Typography';
 import { theme } from '@styles/theme';
 import React, { PropsWithChildren } from 'react';
 import { VideoItemResDto } from '@/types/video';
-import dayjs from 'dayjs';
 import { Box } from '@foundation/index';
 
 type VideoItemProps = PropsWithChildren &
@@ -52,7 +51,7 @@ const VideoPlayerFrame: React.FC<VideoItemProps> = ({
           <Typography variant="title4">{nickname}</Typography>
 
           <Typography variant="body3" color={theme.colors.text.subStrong}>
-            {dayjs(Number(createdAt)).format('YYYY.MM.DD')}
+            {createdAt}
           </Typography>
         </div>
         <Typography
