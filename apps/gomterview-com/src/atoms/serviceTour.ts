@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { atom } from 'recoil';
 
 export const runState = atom<{
@@ -5,7 +6,13 @@ export const runState = atom<{
 }>({
   key: 'runState',
   default: {
-    isRunning: true,
+    isRunning: (() => {
+      const skipped = localStorage.getItem('skipped');
+      if (!skipped) {
+        return true;
+      }
+      return dayjs(skipped).isAfter(dayjs());
+    })(),
   },
 });
 
