@@ -5,7 +5,6 @@ import {
 import { VideoItem } from '@common/VideoItem';
 import { Thumbnail } from '@components/myPage';
 import { PATH } from '@constants/path';
-import dayjs from 'dayjs';
 import BlankBear from '@assets/images/blank-bear.webp';
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
@@ -33,7 +32,7 @@ const VideoList: React.FC<VideoListProps> = ({ videoList }) => {
               <VideoItem
                 key={video.id}
                 videoName={video.videoName}
-                date={dayjs(Number(video.createdAt)).format('YYYY-MM-DD')}
+                date={video.createdAt}
                 nickname={video.nickname}
                 userThumbnail={video.userThumbnail}
                 path={`${PATH.INTERVIEW_VIDEO(video.id)}`}
@@ -52,7 +51,7 @@ const VideoList: React.FC<VideoListProps> = ({ videoList }) => {
               <VideoItem
                 key={video.id}
                 videoName={video.videoName}
-                date={dayjs(Number(video.createdAt)).format('YYYY-MM-DD')}
+                date={video.createdAt}
                 path={`${PATH.INTERVIEW_VIDEO(video.id)}`}
               >
                 <Thumbnail
