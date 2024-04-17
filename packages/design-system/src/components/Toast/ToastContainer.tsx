@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
-import { ToastPositionStyle } from '@/components/Toast/styles/Toast.styles';
-import useToastContainer from '@/components/Toast/useToastContainer';
-import ToastItem from '@/components/Toast/ToastItem/ToastItem';
-import { theme } from '@/styles/theme';
+import { ToastPositionStyle } from './styles/Toast.styles';
+import useToastContainer from './useToastContainer';
+import ToastItem from './ToastItem/ToastItem';
+import { theme } from '../../styles/theme';
 
 export const ToastContainer = () => {
   const { getToastPositionGroupToRender } = useToastContainer();

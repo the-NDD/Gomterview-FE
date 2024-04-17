@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { TabContext } from '@/components/Tabs/index';
+import { TabContext } from './index';
 
 const useTabs = () => {
   return useContext(TabContext);

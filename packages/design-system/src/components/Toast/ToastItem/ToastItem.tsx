@@ -1,21 +1,21 @@
 import { useRef, useState } from 'react';
-import { ToastEvent, ToastProps } from '@/components/Toast/type';
+import { ToastEvent, ToastProps } from '../type';
 import { css } from '@emotion/react';
-import { theme } from '@/styles/theme';
-import { Box, Icon, Typography } from '@/components/index';
-import { collapseToast } from '@/components/Toast/collapseToast';
-import { eventManager } from '@/components/Toast/eventManger';
+import { theme } from '../../../styles/theme';
+import { Box, Icon, Typography } from '../../index';
+import { collapseToast } from '../collapseToast';
+import { eventManager } from '../eventManger';
 import {
   ToastProgressBarStyle,
   ToastTypeIconName,
-} from '@/components/Toast/styles/Toast.styles';
+} from '../styles/Toast.styles';
 import {
   ToastFadeOutUpAnimation,
   ToastHideAnimation,
   ToastProgressBarAnimation,
-} from '@/components/Toast/styles/ToastAnimation.styles';
-import { TOAST_DEFAULT_POSITION } from '@/components/Toast/constants';
-import ToastToggleButton from '@/components/Toast/ToastItem/ToastToggleButton';
+} from '../styles/ToastAnimation.styles';
+import { TOAST_DEFAULT_POSITION } from '../constants';
+import ToastToggleButton from '../ToastItem/ToastToggleButton';
 
 const ToastItem: React.FC<ToastProps> = ({
   toastId,

@@ -1,7 +1,7 @@
-import { ToastPosition } from '@/components/Toast/type';
-import { Button, Icon } from '@/components/index';
+import { ToastPosition } from '../type';
+import { Button, Icon } from '../../index';
 import { css } from '@emotion/react';
-import { theme } from '@/styles/theme';
+import { theme } from '../../../styles/theme';
 
 type ToastToggleButtonProps = {
   position: ToastPosition;

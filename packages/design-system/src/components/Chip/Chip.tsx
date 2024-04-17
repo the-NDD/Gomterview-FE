@@ -1,4 +1,4 @@
-import { HTMLElementTypes, NestedObjectKey } from '@/types/utils';
+import { HTMLElementTypes, NestedObjectKey } from '../../types/utils';
 import { Theme } from '@emotion/react';
 import { css, useTheme } from '@emotion/react';
 import React from 'react';

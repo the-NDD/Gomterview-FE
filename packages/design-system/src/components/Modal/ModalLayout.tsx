@@ -1,7 +1,7 @@
 import { css, keyframes } from '@emotion/react';
-import { theme } from '@/styles/theme';
-import { HTMLElementTypes } from '@/types/utils';
-import { Box } from '@/components';
+import { theme } from '../../styles/theme';
+import { HTMLElementTypes } from '../../types/utils';
+import { Box } from '../../components';
 
 export type ModalLayoutProps = {
   children?: React.ReactNode;

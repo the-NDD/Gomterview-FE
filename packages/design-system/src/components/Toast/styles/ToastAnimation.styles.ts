@@ -1,5 +1,5 @@
 import { keyframes } from '@emotion/react';
-import { ToastPosition } from '@/components/Toast/type';
+import { ToastPosition } from '../type';
 
 export const ToastFadeOutUpAnimation = keyframes`
   from {

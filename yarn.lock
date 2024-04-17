@@ -2545,28 +2545,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"design-system@workspace:packages/design-system":
-  version: 0.0.0-use.local
-  resolution: "design-system@workspace:packages/design-system"
-  dependencies:
-    "@emotion/babel-plugin": "npm:^11.11.0"
-    "@emotion/react": "npm:^11.11.3"
-    "@emotion/styled": "npm:^11.11.0"
-    "@types/react": "npm:^18.2.43"
-    "@types/react-dom": "npm:^18.2.17"
-    "@vitejs/plugin-react": "npm:^4.2.1"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
-    typescript: "npm:^5.3.3"
-    vite: "npm:^5.0.8"
-    vite-plugin-dts: "npm:^3.7.3"
-    vite-tsconfig-paths: "npm:^4.3.1"
-  peerDependencies:
-    react: ">=16"
-    react-dom: ">=16"
-  languageName: unknown
-  linkType: soft
-
 "detect-libc@npm:^2.0.3":
   version: 2.0.3
   resolution: "detect-libc@npm:2.0.3"
@@ -3536,6 +3514,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:^4.2.1"
     axios: "npm:^1.6.1"
     dayjs: "npm:^1.11.10"
+    gomterview-design-system: "workspace:^"
     msw: "npm:^2.0.3"
     re-resizable: "npm:^6.9.11"
     react: "npm:^18.2.0"
@@ -3551,6 +3530,28 @@ __metadata:
     vite: "npm:^5.0.8"
     vite-plugin-image-optimizer: "npm:^1.1.7"
     vite-tsconfig-paths: "npm:^4.3.1"
+  languageName: unknown
+  linkType: soft
+
+"gomterview-design-system@workspace:^, gomterview-design-system@workspace:packages/design-system":
+  version: 0.0.0-use.local
+  resolution: "gomterview-design-system@workspace:packages/design-system"
+  dependencies:
+    "@emotion/babel-plugin": "npm:^11.11.0"
+    "@emotion/react": "npm:^11.11.3"
+    "@emotion/styled": "npm:^11.11.0"
+    "@types/react": "npm:^18.2.43"
+    "@types/react-dom": "npm:^18.2.17"
+    "@vitejs/plugin-react": "npm:^4.2.1"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
+    typescript: "npm:^5.3.3"
+    vite: "npm:^5.0.8"
+    vite-plugin-dts: "npm:^3.7.3"
+    vite-tsconfig-paths: "npm:^4.3.1"
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
   languageName: unknown
   linkType: soft
 

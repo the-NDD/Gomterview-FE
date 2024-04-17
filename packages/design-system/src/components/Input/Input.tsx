@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { theme } from '@/styles/theme';
-import { HTMLElementTypes } from '@/types/utils';
+import { theme } from '../../styles/theme';
+import { HTMLElementTypes } from '../../types/utils';
 import React from 'react';
 
 type InputProps = HTMLElementTypes<HTMLInputElement> &

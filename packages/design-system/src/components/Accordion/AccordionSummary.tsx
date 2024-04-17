@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { css, Interpolation, Theme } from '@emotion/react';
-import { HTMLElementTypes } from '@/types/utils';
+import { HTMLElementTypes } from '../../types/utils';
 
 type AccordionSummaryProps = {
   children: ReactNode;

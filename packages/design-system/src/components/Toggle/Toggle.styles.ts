@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { theme } from '@/styles/theme';
+import { theme } from '../../styles/theme';
 
 export const ToggleLabelStyle = css`
   position: relative;

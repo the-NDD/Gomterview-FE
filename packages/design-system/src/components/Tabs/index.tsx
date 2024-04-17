@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
-import { HTMLElementTypes } from '@/types/utils';
+import { HTMLElementTypes } from '../../types/utils';
 import TabPanel from './TabPanel';
-import Tab from '@/components/Tabs/Tab';
+import Tab from './Tab';
 
 type TabProviderProps = {
   children: React.ReactNode;

@@ -1,5 +1,5 @@
-import { ToastEvent, ToastProps, ToastType } from '@/components/Toast/type';
-import { eventManager } from '@/components/Toast/eventManger';
+import { ToastEvent, ToastProps, ToastType } from './type';
+import { eventManager } from './eventManger';
 
 type ToastAddFunctionProps = Omit<ToastProps, 'toastId' | 'type'>;
 type ToastOptions = Omit<ToastProps, 'toastId' | 'type' | 'text'>;

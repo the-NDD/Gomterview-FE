@@ -1,5 +1,5 @@
-import { theme } from '@/styles/theme';
-import { HTMLElementTypes } from '@/types/utils';
+import { theme } from '../../styles/theme';
+import { HTMLElementTypes } from '../../types/utils';
 import { css } from '@emotion/react';
 import React from 'react';
 
@@ -27,7 +27,9 @@ const Avatar: React.FC<AvatarProps> = ({
       <img
         src={src}
         loading="lazy"
-        onError={(e) => (e.currentTarget.src = `https://raw.githubusercontent.com/the-NDD/Gomterview-FE/main/src/assets/images/logo.webp`)}
+        onError={(e) =>
+          (e.currentTarget.src = `https://raw.githubusercontent.com/the-NDD/Gomterview-FE/main/src/assets/images/logo.webp`)
+        }
         crossOrigin="anonymous"
         css={css`
           border-radius: 50%;

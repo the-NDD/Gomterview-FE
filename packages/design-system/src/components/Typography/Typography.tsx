@@ -1,7 +1,7 @@
 import React, { ElementType, ReactNode } from 'react';
 import { css, Theme } from '@emotion/react';
-import { theme } from '@/styles/theme';
-import { HTMLElementTypes } from '@/types/utils';
+import { theme } from '../../styles/theme';
+import { HTMLElementTypes } from '../../types/utils';
 
 type Props = {
   component?: ElementType;

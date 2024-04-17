@@ -1,6 +1,6 @@
-import { theme } from '@/styles/theme';
+import { theme } from '../../styles/theme';
 import { css } from '@emotion/react';
-import Icon from '@/components/Icon/Icon';
+import Icon from '../../components/Icon/Icon';
 
 export type ModalHeaderProps = {
   children?: React.ReactNode;

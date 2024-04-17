@@ -1,9 +1,9 @@
-import { colors } from '@/styles/_colors';
-import { typography } from '@/styles/_typography';
-import { shadow } from '@/styles/_shadow';
-import { gradient } from '@/styles/_gradient';
-import { breakpoints } from '@/styles/_breakpoints';
-import { zIndex } from '@/styles/_zIndex';
+import { colors } from './_colors';
+import { typography } from './_typography';
+import { shadow } from './_shadow';
+import { gradient } from './_gradient';
+import { breakpoints } from './_breakpoints';
+import { zIndex } from './_zIndex';
 
 export const theme = {
   colors,

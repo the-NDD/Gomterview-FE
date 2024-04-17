@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import { HTMLElementTypes } from '@/types/utils';
+import { HTMLElementTypes } from '../../types/utils';
 import { css } from '@emotion/react';
-import { Button } from '@/components/index';
+import { Button } from '../../components/index';
 
 type MenuItemProps = {
   children: ReactNode;

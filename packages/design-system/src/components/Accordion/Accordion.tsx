@@ -1,8 +1,8 @@
 import React, { ReactNode, SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
-import { theme } from '@/styles/theme';
-import { HTMLElementTypes } from '@/types/utils';
-import enhanceChildElement from '@/utils/enhanceChildElement';
+import { theme } from '../../styles/theme';
+import { HTMLElementTypes } from '../../types/utils';
+import enhanceChildElement from '../../utils/enhanceChildElement';
 
 type AccordionProps = {
   children: ReactNode[];

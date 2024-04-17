@@ -1,4 +1,4 @@
-import { EventManager } from '@/components/Toast/type';
+import { EventManager } from './type';
 
 export const eventManager: EventManager = {
   list: new Map(), // 이벤트 리스너 저장

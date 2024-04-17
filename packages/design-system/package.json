@@ -1,6 +1,6 @@
 {
-  "name": "design-system",
-  "version": "0.0.1",
+  "name": "gomterview-design-system",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "build": "tsc && vite build"
@@ -9,6 +9,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/the-NDD/Gomterview-FE.git"
+  },
+  "exports": {
+    ".": "./src/index.ts"
   },
   "main": "src/index.ts",
   "module": "dist/index.js",
