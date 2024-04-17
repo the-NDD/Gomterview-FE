@@ -3,8 +3,6 @@ import useWorkbookListQuery from '@hooks/apis/queries/useWorkbookListQuery';
 import useBreakpoint from '@hooks/useBreakPoint';
 import Workbook from './Workbook';
 import GridWorkbookList from './GridWorkbookList';
-import { CenterLayout } from '@components/layout';
-import { LoadingBounce } from '@common/index';
 
 type WorkbookListProps = {
   selectedCategoryId: string;
@@ -13,14 +11,6 @@ type WorkbookListProps = {
 const WorkbookList: React.FC<WorkbookListProps> = ({ selectedCategoryId }) => {
   const isDeviceBreakpoint = useBreakpoint();
   const { data: workbookList } = useWorkbookListQuery(selectedCategoryId);
-
-  if (!workbookList) {
-    return (
-      <CenterLayout>
-        <LoadingBounce />
-      </CenterLayout>
-    );
-  }
 
   if (isDeviceBreakpoint('tablet')) {
     return (

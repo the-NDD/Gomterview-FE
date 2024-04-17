@@ -1,3 +1,5 @@
+import { LoadingBounce } from '@common/index';
+import { CenterLayout } from '@components/layout';
 import {
   CategoryMenu,
   WorkbookList,
@@ -7,7 +9,7 @@ import { css } from '@emotion/react';
 
 import { Typography } from '@foundation/index';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 
 const WorkbookPage: React.FC = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
@@ -26,8 +28,16 @@ const WorkbookPage: React.FC = () => {
       >
         공개된 면접 세트
       </Typography>
-      <CategoryMenu onTabChange={handleTabChange} />
-      <WorkbookList selectedCategoryId={selectedCategoryId} />
+      <Suspense
+        fallback={
+          <CenterLayout>
+            <LoadingBounce />
+          </CenterLayout>
+        }
+      >
+        <CategoryMenu onTabChange={handleTabChange} />
+        <WorkbookList selectedCategoryId={selectedCategoryId} />
+      </Suspense>
     </WorkbookPageLayout>
   );
 };
