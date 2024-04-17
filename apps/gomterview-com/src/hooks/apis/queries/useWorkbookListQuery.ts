@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
 import { getWorkbookByCategory } from '@/apis/workbook';
 
@@ -10,7 +10,7 @@ import { getWorkbookByCategory } from '@/apis/workbook';
  * 문제집 리스트 페이지에서 사용됩니다.
  */
 const useWorkbookListQuery = (categoryId: string) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: QUERY_KEY.WORKBOOK_CATEGORY(categoryId),
     queryFn: () => getWorkbookByCategory(categoryId),
   });
