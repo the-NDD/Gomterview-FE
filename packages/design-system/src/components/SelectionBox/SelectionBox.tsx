@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { selectionBox, selectionBoxDirection } from './SelectionBox.styles';
 import { HTMLElementTypes } from '../../types/utils';
-import { theme } from '../../styles/theme';
+import { theme } from '@gomterview/_theme';
 
 type SelectionButtonProps = {
   children: React.ReactNode;

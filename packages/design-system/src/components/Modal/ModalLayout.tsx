@@ -1,5 +1,5 @@
 import { css, keyframes } from '@emotion/react';
-import { theme } from '../../styles/theme';
+import { theme } from '@gomterview/_theme';
 import { HTMLElementTypes } from '../../types/utils';
 import { Box } from '../../components';
 

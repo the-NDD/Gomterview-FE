@@ -22,6 +22,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@gomterview/_theme": "workspace:^",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

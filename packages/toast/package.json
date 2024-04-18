@@ -1,0 +1,25 @@
+{
+  "name": "@gomterview/toast",
+  "type": "module",
+  "version": "1.0.0",
+  "author": "ndd <developndd@gmail.com> (https://blog.gomterview.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-NDD/Gomterview-FE.git"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@gomterview/_theme": "workspace:^",
+    "gomterview-design-system": "workspace:^",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@emotion/babel-plugin": "^11.11.0",
+    "@types/react": "^18.2.43",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "packageManager": "yarn@4.1.1"
+}

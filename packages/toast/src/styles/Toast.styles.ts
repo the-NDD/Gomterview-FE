@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { theme } from '../../../styles/theme';
+import { theme } from '@gomterview/_theme';
 
 const TOAST_GAP = '0.75rem';
 export const ToastProgressBarStyle = {

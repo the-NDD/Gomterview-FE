@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { theme } from '../../styles/theme';
+import { theme } from '@gomterview/_theme';
 import { HTMLElementTypes } from '../../types/utils';
 
 type MenuProps = {

@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import { ToastPositionStyle } from './styles/Toast.styles';
 import useToastContainer from './useToastContainer';
 import ToastItem from './ToastItem/ToastItem';
-import { theme } from '../../styles/theme';
+import { theme } from '@gomterview/_theme';
 
 export const ToastContainer = () => {
   const { getToastPositionGroupToRender } = useToastContainer();

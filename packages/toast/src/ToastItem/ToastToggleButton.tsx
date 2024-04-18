@@ -1,7 +1,7 @@
 import { ToastPosition } from '../type';
-import { Button, Icon } from '../../index';
+import { Button, Icon } from 'gomterview-design-system';
 import { css } from '@emotion/react';
-import { theme } from '../../../styles/theme';
+import { theme } from '@gomterview/_theme';
 
 type ToastToggleButtonProps = {
   position: ToastPosition;

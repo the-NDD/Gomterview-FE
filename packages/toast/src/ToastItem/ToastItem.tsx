@@ -1,8 +1,12 @@
 import { useRef, useState } from 'react';
 import { ToastEvent, ToastProps } from '../type';
 import { css } from '@emotion/react';
-import { theme } from '../../../styles/theme';
-import { Box, Icon, Typography } from '../../index';
+import { theme } from '@gomterview/_theme';
+import {
+  Box,
+  Icon,
+  Typography,
+} from '/Users/yhm/project/Gomterview-FE/packages/design-system/src/components';
 import { collapseToast } from '../collapseToast';
 import { eventManager } from '../eventManger';
 import {
@@ -15,7 +19,7 @@ import {
   ToastProgressBarAnimation,
 } from '../styles/ToastAnimation.styles';
 import { TOAST_DEFAULT_POSITION } from '../constants';
-import ToastToggleButton from '../ToastItem/ToastToggleButton';
+import ToastToggleButton from './ToastToggleButton';
 
 const ToastItem: React.FC<ToastProps> = ({
   toastId,
