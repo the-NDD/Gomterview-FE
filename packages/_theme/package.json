@@ -2,7 +2,8 @@
   "name": "@gomterview/_theme",
   "type": "module",
   "exports": {
-    ".": "./src/theme.ts"
+    ".": "./src/theme.ts",
+    "./global": "./src/_global.ts"
   },
   "version": "1.0.0",
   "author": "ndd <developndd@gmail.com> (https://blog.gomterview.com)",

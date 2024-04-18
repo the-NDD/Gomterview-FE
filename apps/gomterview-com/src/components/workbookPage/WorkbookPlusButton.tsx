@@ -1,8 +1,7 @@
 import { css } from '@emotion/react';
 import { Icon, Tooltip } from 'gomterview-design-system';
 import useUserInfo from '@hooks/useUserInfo';
-import { breakpoints } from '@styles/_breakpoints';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { RequestLoginModal } from '@components/common';
 import useModal from '@hooks/useModal';
 import { WorkbookGeneratorModal } from '@common/index';
@@ -46,19 +45,19 @@ const WorkbookPlusButton: React.FC = () => {
             transform: scale(1.1);
           }
 
-          @media (max-width: ${breakpoints.laptopL}) {
+          @media (max-width: ${theme.breakpoints.laptopL}) {
             right: 20%;
           }
 
-          @media (max-width: ${breakpoints.laptop}) {
+          @media (max-width: ${theme.breakpoints.laptop}) {
             right: 15%;
           }
 
-          @media (max-width: ${breakpoints.tablet}) {
+          @media (max-width: ${theme.breakpoints.tablet}) {
             right: 10%;
           }
 
-          @media (max-width: ${breakpoints.mobileL}) {
+          @media (max-width: ${theme.breakpoints.mobileL}) {
             right: 5%;
           }
         `}

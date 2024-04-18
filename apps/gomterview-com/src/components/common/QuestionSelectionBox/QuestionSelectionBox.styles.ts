@@ -1,5 +1,5 @@
 import { css, keyframes } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import styled from '@emotion/styled';
 
 export const hideSidebar = keyframes`

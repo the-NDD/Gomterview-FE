@@ -1,6 +1,6 @@
 import { WorkbookEntity } from '@/types/workbook';
 import { Box, Avatar, Typography, Icon } from 'gomterview-design-system';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { css } from '@emotion/react';
 import { HTMLElementTypes } from '@/types/utils';
 

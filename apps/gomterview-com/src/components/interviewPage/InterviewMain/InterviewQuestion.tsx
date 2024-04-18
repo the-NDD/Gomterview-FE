@@ -1,6 +1,6 @@
 import { Typography } from 'gomterview-design-system';
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { useEffect, useState } from 'react';
 import { ServiceTourStep } from '@common/index';
 type InterviewQuestionProps = {

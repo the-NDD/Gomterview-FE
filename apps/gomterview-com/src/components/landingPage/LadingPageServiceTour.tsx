@@ -2,7 +2,7 @@ import { PropsWithChildren, useState } from 'react';
 import Joyride, { CallBackProps, Step } from 'react-joyride';
 import { runState } from '@atoms/serviceTour';
 import { useRecoilState } from 'recoil';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import ServiceTourNoticeDialog from './ServiceTourNoticeDialog';
 
 const LandingPageServiceTour: React.FC<PropsWithChildren> = () => {

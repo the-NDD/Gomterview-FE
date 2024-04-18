@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 
 import { Typography, Modal, Button } from 'gomterview-design-system';
 import { useEffect } from 'react';

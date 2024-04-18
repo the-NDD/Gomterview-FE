@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import useMemberNameQuery from '@/hooks/apis/queries/useMemberNameQuery';
 import { Typography } from 'gomterview-design-system';
 

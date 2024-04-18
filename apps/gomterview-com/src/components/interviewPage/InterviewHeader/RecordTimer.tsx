@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
 
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { Icon, Typography } from 'gomterview-design-system';
 import { ServiceTourStep } from '@common/index';
 

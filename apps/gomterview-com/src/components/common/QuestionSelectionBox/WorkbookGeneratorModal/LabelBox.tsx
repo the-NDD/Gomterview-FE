@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { Typography } from 'gomterview-design-system';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 
 type LabelBoxProps = {
   children: React.ReactNode;

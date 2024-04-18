@@ -1,9 +1,13 @@
 import { css } from '@emotion/react';
-import Modal from '@foundation/Modal';
-import { Button, CheckBox, Input, Typography } from 'gomterview-design-system';
+import {
+  Button,
+  CheckBox,
+  Input,
+  Typography,
+  Modal,
+} from 'gomterview-design-system';
 
-import { theme } from '@styles/theme';
-import ModalHeader from '@foundation/Modal/ModalHeader';
+import { theme } from '@gomterview/_theme';
 import LabelBox from '@common/QuestionSelectionBox/WorkbookGeneratorModal/LabelBox';
 import useInput from '@hooks/useInput';
 import { toast } from '@gomterview/toast';
@@ -128,7 +132,7 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
         }
       `}
     >
-      <ModalHeader closeModal={closeModal}>면접 영상 정보 수정</ModalHeader>
+      <Modal.header closeModal={closeModal}>면접 영상 정보 수정</Modal.header>
       <div
         css={css`
           max-height: 80vh;

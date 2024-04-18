@@ -1,15 +1,14 @@
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { css } from '@emotion/react';
 import { useState } from 'react';
 import { Button, Icon, Toggle, Typography } from 'gomterview-design-system';
 import { WorkbookTitleListResDto } from '@/types/workbook';
 import { ExcludeArray } from '@/types/utils';
 import QuestionTabPanelHeader from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionTabPanelHeader';
-import useTabs from '@foundation/Tabs/useTabs';
+import { useTabs, EmptySuspense } from 'gomterview-design-system';
 import useBreakpoint from '@hooks/useBreakPoint';
 import QuestionTabPanelEditHeader from './QuestionTabPanelEditHeader';
 import useWorkbookQuery from '@hooks/apis/queries/useWorkbookQuery';
-import EmptySuspense from '@foundation/EmptySuspense/EmptySuspense';
 import QuestionTabPanelBlank from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionTabPanelBlank';
 import QuestionAccordionList from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionAccordionList';
 

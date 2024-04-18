@@ -1,4 +1,4 @@
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { Button, Icon, Typography } from 'gomterview-design-system';
 import WorkbookGeneratorModal from '@common/QuestionSelectionBox/WorkbookGeneratorModal/WorkbookGeneratorModal';
 import useModal from '@hooks/useModal';

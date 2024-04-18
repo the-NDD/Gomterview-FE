@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import { PATH } from '@constants/path';
-import Button from '@foundation/Button/Button';
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
-import { Tooltip } from 'gomterview-design-system';
+import { theme } from '@gomterview/_theme';
+import { Tooltip, Button } from 'gomterview-design-system';
 import useUserInfo from '@hooks/useUserInfo';
 
 const InterviewStartButton: React.FC = () => {

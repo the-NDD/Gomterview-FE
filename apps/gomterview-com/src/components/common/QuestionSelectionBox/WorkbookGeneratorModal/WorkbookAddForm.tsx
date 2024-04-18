@@ -4,7 +4,7 @@ import { FormEventHandler, useState } from 'react';
 import LabelBox from '@common/QuestionSelectionBox/WorkbookGeneratorModal/LabelBox';
 import WorkbookCategory from '@common/QuestionSelectionBox/WorkbookGeneratorModal/WorkbookCategory';
 import useInput from '@hooks/useInput';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
 import useWorkbookAdd from '@hooks/useWorkbookAdd';
 import { toast } from '@gomterview/toast';

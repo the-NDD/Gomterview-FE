@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { MenuItem, Typography } from 'gomterview-design-system';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { PATH } from '@constants/path';
 import useUserInfo from '@hooks/useUserInfo';
 import redirectToGoogleLogin from '@/utils/redirectToGoogleLogin';

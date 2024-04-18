@@ -11,7 +11,7 @@ import { Box, Button, CheckBox } from 'gomterview-design-system';
 import useQuestionWorkbookQuery from '@hooks/apis/queries/useQuestionWorkbookQuery';
 import useWorkbookQuery from '@hooks/apis/queries/useWorkbookQuery';
 import useUserInfo from '@hooks/useUserInfo';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { toast } from '@gomterview/toast';

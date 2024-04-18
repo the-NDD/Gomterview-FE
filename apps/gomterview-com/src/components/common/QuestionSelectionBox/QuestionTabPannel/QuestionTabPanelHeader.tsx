@@ -5,11 +5,11 @@ import {
   Menu,
   MenuItem,
   Typography,
+  Chip,
 } from 'gomterview-design-system';
 import { useState } from 'react';
 import useWorkbookDelete from '@hooks/useWorkbookDelete';
 import { toast } from '@gomterview/toast';
-import Chip from '@foundation/Chip/Chip';
 import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
 
 type QuestionTabPanelHeaderProps = {

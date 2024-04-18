@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { Avatar, Typography } from 'gomterview-design-system';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { Link } from 'react-router-dom';
 
 type VideoItemProps = {

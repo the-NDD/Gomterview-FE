@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from 'gomterview-design-system';
 import { css, keyframes } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { runState } from '@atoms/serviceTour';
 import { useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';

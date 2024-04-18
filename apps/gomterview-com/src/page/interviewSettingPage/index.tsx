@@ -12,7 +12,7 @@ import { css } from '@emotion/react';
 import RecordSettingPage from './RecordSettingPage';
 import VideoSettingPage from './VideoSettingPage';
 import { ProgressStepBar } from '@common/index';
-import StepPage from '@foundation/StepPages';
+import { StepPage } from 'gomterview-design-system';
 import { InterviewSettingPageLayout } from '@components/interviewSettingPage';
 import ServiceTermsPage from './ServiceTermsPage';
 import { toast } from '@gomterview/toast';

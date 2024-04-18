@@ -1,7 +1,5 @@
-import Button from '@foundation/Button/Button';
-import { theme } from '@styles/theme';
-import Icon from '@foundation/Icon/Icon';
-import Typography from '@foundation/Typography/Typography';
+import { theme } from '@gomterview/_theme';
+import { Typography, Icon, Button } from 'gomterview-design-system';
 import { css } from '@emotion/react';
 import { MouseEventHandler } from 'react';
 

@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
-import Toggle from '@foundation/Toggle/Toggle';
-import { Typography } from 'gomterview-design-system';
-import { theme } from '@styles/theme';
+import { Typography, Toggle } from 'gomterview-design-system';
+import { theme } from '@gomterview/_theme';
 import ShareRangeIcon from '../../interviewVideoPage/ShareRangeModal/ShareRangeIcon';
 
 type ShareRangeToggleProps = {

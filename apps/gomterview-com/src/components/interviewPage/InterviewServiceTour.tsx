@@ -2,7 +2,7 @@ import { PropsWithChildren, useEffect } from 'react';
 import Joyride, { CallBackProps, Step } from 'react-joyride';
 import { runState, stepIndexState } from '@atoms/serviceTour';
 import { useRecoilState } from 'recoil';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { recordingState } from '@atoms/interview';
 
 const InterviewPageServiceTour: React.FC<PropsWithChildren> = () => {

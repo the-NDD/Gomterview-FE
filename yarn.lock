@@ -3532,6 +3532,7 @@ __metadata:
     "@emotion/styled": "npm:^11.11.0"
     "@ffmpeg/ffmpeg": "npm:^0.12.10"
     "@ffmpeg/util": "npm:^0.12.1"
+    "@gomterview/_theme": "workspace:^"
     "@gomterview/toast": "workspace:^"
     "@sentry/react": "npm:^7.81.1"
     "@tanstack/react-query": "npm:^5.8.1"

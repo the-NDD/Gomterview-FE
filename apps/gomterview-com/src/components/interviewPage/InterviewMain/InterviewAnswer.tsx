@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 
 import { Typography } from 'gomterview-design-system';
 import { Resizable } from 're-resizable';

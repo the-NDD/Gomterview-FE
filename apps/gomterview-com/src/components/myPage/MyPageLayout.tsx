@@ -1,6 +1,6 @@
 import Layout from '@components/layout/Layout';
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { Header } from '@components/layout';
 import { MyPageHeader } from '@components/myPage/index';
 

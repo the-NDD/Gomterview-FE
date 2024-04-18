@@ -3,7 +3,8 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    ".": "./src/toast.ts"
+    ".": "./src/toast.ts",
+    "./toastContainer": "./src/ToastContainer.tsx"
   },
   "author": "ndd <developndd@gmail.com> (https://blog.gomterview.com)",
   "repository": {

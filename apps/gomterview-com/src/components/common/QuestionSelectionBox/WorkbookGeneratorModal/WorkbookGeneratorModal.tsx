@@ -1,8 +1,7 @@
 import { css } from '@emotion/react';
 import WorkbookAddForm from '@common/QuestionSelectionBox/WorkbookGeneratorModal/WorkbookAddForm';
-import ModalHeader from '@foundation/Modal/ModalHeader';
 import { Modal } from 'gomterview-design-system';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 
 type WorkbookGeneratorModalProps = {
   closeModal: () => void;
@@ -25,7 +24,7 @@ const WorkbookGeneratorModal: React.FC<WorkbookGeneratorModalProps> = ({
         }
       `}
     >
-      <ModalHeader closeModal={closeModal}>새 면접 세트</ModalHeader>
+      <Modal.header closeModal={closeModal}>새 면접 세트</Modal.header>
       <div
         css={css`
           max-height: 80vh;

@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { RefObject } from 'react';
 import { Mirror } from '@common/index';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { InterviewQuestion, InterviewAnswer } from './index';
 import { ConnectStatus } from '@atoms/media';
 
