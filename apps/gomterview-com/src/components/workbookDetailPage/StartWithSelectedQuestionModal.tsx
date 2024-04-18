@@ -8,7 +8,7 @@ import { questionSetting, serviceTerms } from '@atoms/interviewSetting';
 import { Question } from '@/types/question';
 import { PATH } from '@constants/path';
 import { Description } from '@components/interviewSettingPage';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 
 const StartWithSelectedQuestionModal = ({
   closeModal,

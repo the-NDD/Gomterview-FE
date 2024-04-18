@@ -8,7 +8,7 @@ import useVideoPatchMutation from '@hooks/apis/mutations/useVideoPatchMutation';
 import { PATH } from '@constants/path';
 import { Button } from 'gomterview-design-system';
 import { theme } from '@styles/theme';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 
 type DefaultVideoPlayerProps = {
   videoId: string;

@@ -2,6 +2,9 @@
   "name": "@gomterview/toast",
   "type": "module",
   "version": "1.0.0",
+  "exports": {
+    ".": "./src/toast.ts"
+  },
   "author": "ndd <developndd@gmail.com> (https://blog.gomterview.com)",
   "repository": {
     "type": "git",

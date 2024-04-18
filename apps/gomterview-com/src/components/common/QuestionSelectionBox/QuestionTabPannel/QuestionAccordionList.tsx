@@ -3,7 +3,7 @@ import QuestionSelectionBoxAccordion from '@common/QuestionSelectionBox/Question
 import WorkbookEditModeDialog from '@common/QuestionSelectionBox/WorkbookEditModeDialog';
 import useWorkbookQuestionDelete from '@hooks/useWorkbookQuestionDelete';
 import { css } from '@emotion/react';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
 import useEmptySuspenseEffect from '@hooks/useEmptySuspenseEffect';
 import { useRecoilValue } from 'recoil';

@@ -8,7 +8,7 @@ import { useState } from 'react';
 import NewWorkbookListButton from './NewWorkbookListButton';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '@constants/path';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 
 const AddWorkbookListModal = ({
   closeModal,

@@ -728,7 +728,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@gomterview/toast@workspace:packages/toast":
+"@gomterview/toast@workspace:^, @gomterview/toast@workspace:packages/toast":
   version: 0.0.0-use.local
   resolution: "@gomterview/toast@workspace:packages/toast"
   dependencies:
@@ -3532,6 +3532,7 @@ __metadata:
     "@emotion/styled": "npm:^11.11.0"
     "@ffmpeg/ffmpeg": "npm:^0.12.10"
     "@ffmpeg/util": "npm:^0.12.1"
+    "@gomterview/toast": "workspace:^"
     "@sentry/react": "npm:^7.81.1"
     "@tanstack/react-query": "npm:^5.8.1"
     "@tanstack/react-query-devtools": "npm:^5.8.1"

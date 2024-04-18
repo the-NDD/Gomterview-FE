@@ -15,7 +15,7 @@ import { ProgressStepBar } from '@common/index';
 import StepPage from '@foundation/StepPages';
 import { InterviewSettingPageLayout } from '@components/interviewSettingPage';
 import ServiceTermsPage from './ServiceTermsPage';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 import { encodingState } from '@atoms/encoding';
 import { useEffect } from 'react';
 import { canUseFFmpeg } from '@/utils/record';

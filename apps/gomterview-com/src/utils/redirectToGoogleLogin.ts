@@ -1,6 +1,6 @@
 import { API, BASE_URL } from '@constants/api';
 import { PATH } from '@constants/path';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 import dynamicImport from '@/utils/dynamicImport';
 
 const redirectToGoogleLogin = async () => {

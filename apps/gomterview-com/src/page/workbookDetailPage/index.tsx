@@ -14,7 +14,7 @@ import useUserInfo from '@hooks/useUserInfo';
 import { theme } from '@styles/theme';
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 import useModal from '@hooks/useModal';
 import { RequestLoginModal } from '@components/common';
 

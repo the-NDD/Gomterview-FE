@@ -1,6 +1,6 @@
 import { SelectedQuestion } from '@/atoms/interviewSetting';
 import React, { MutableRefObject } from 'react';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 import { FFmpeg } from '@ffmpeg/ffmpeg';
 import { fetchFile, toBlobURL } from '@ffmpeg/util';
 import { isAndroid, isIOSUser } from '@/utils/userAgent';

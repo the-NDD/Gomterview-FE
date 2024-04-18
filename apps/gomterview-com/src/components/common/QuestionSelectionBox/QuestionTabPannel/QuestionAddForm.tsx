@@ -2,7 +2,7 @@ import useInput from '@hooks/useInput';
 import useQuestionAdd from '@hooks/useQuestionAdd';
 import { css } from '@emotion/react';
 import { Button, Input } from 'gomterview-design-system';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 
 type QuestionAddFormProps = {
   workbookId: number;

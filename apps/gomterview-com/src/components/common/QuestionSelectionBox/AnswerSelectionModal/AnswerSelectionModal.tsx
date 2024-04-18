@@ -7,7 +7,7 @@ import AnswerForm from './AnswerForm';
 import useAnswerDefaultMutation from '@/hooks/apis/mutations/useAnswerDefaultMutation';
 import { Question } from '@/types/question';
 import { Typography } from 'gomterview-design-system';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 
 type AnswerSelectionModalProps = {
   workbookId: number;

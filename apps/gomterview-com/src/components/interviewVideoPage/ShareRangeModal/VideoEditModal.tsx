@@ -6,7 +6,7 @@ import { theme } from '@styles/theme';
 import ModalHeader from '@foundation/Modal/ModalHeader';
 import LabelBox from '@common/QuestionSelectionBox/WorkbookGeneratorModal/LabelBox';
 import useInput from '@hooks/useInput';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 import { FormEventHandler, useEffect, useState } from 'react';
 import useRelatedInfoListQuery from '@hooks/apis/queries/useVideoRelatedInfoListQuery';
 

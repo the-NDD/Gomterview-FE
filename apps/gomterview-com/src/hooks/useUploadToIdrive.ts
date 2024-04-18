@@ -2,7 +2,7 @@ import { SelectedQuestion } from '@/atoms/interviewSetting';
 import useGetPreSignedUrlMutation from '@/hooks/apis/mutations/useGetPreSignedUrlMutation';
 import { putBlobDataToIdrive } from '@/apis/idrive';
 import useAddVideoMutation from '@/hooks/apis/mutations/useAddVideoMutation';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 import { EncodingWebmToMp4, getThumbnailBlob } from '@/utils/record';
 import { IDRIVE_URL } from '@constants/api';
 

@@ -8,7 +8,7 @@ import QuestionAddForm from './QuestionAddForm';
 import useWorkbookEdit from '@hooks/useWorkbookEdit';
 import QuestionDropdown from './QuestionDropdown';
 import useDebounce from '@hooks/useDebounce';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 
 type QuestionTabPanelEditHeaderProps = {
   workbookInfo: WorkbookQueryResult;
