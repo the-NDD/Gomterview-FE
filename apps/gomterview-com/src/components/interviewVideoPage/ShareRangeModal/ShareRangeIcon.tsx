@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { Icon } from '@foundation/index';
-import { theme } from '@styles/theme';
+import { Icon } from 'gomterview-design-system';
+import { theme } from '@gomterview/_theme';
 
 type ShareRangeIconProps = {
   isPublic: boolean;

@@ -1,4 +1,4 @@
-import { HTMLElementTypes } from '@/types/utils';
+import { HTMLElementTypes } from '../../types/utils';
 
 type SvgIconProps = {
   id: string;

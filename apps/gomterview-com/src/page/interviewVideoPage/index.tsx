@@ -10,9 +10,9 @@ import { PATH } from '@constants/path';
 import { ErrorBoundary } from 'react-error-boundary';
 import { isAxiosError } from 'axios';
 import useOnlyRelatedVideoQuery from '@hooks/apis/queries/useOnlyRelatedVideoListQuery';
-import { Box, Typography } from '@foundation/index';
+import { Box, Typography } from 'gomterview-design-system';
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 
 const InterviewVideoPage: React.FC = () => {
   const { videoId } = useParams();

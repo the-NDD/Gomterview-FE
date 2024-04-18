@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Button, Menu, MenuItem } from '@foundation/index';
+import { Button, Menu, MenuItem } from 'gomterview-design-system';
 import useDevice from '@hooks/useDevice';
 import useMedia from '@hooks/useMedia';
 import { useState } from 'react';

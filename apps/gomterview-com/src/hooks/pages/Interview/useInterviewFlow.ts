@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useRecoilValue } from 'recoil';
 import { questionSetting } from '@atoms/interviewSetting';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 
 function useInterviewFlow() {
   const { selectedData } = useRecoilValue(questionSetting);

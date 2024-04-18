@@ -1,11 +1,11 @@
 import { css } from '@emotion/react';
-import { MenuItem, Typography } from '@foundation/index';
-import { theme } from '@styles/theme';
+import { MenuItem, Typography } from 'gomterview-design-system';
+import { theme } from '@gomterview/_theme';
 import { PATH } from '@constants/path';
 import useUserInfo from '@hooks/useUserInfo';
 import redirectToGoogleLogin from '@/utils/redirectToGoogleLogin';
 import { Link } from 'react-router-dom';
-import { Tooltip } from '@foundation/index';
+import { Tooltip } from 'gomterview-design-system';
 import { useErrorBoundary } from 'react-error-boundary';
 
 const Navigations: React.FC = () => {

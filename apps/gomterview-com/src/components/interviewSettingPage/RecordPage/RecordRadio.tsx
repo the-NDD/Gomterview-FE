@@ -1,7 +1,5 @@
-import Box from '@/components/foundation/Box/Box';
-import Icon from '@/components/foundation/Icon/Icon';
-import Typography from '@/components/foundation/Typography/Typography';
-import { theme } from '@/styles/theme';
+import { Typography, Icon, Box } from 'gomterview-design-system';
+import { theme } from '@gomterview/_theme';
 import { css } from '@emotion/react';
 
 type RecordRadioProps = {

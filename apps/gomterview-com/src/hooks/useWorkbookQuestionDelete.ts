@@ -9,7 +9,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import useQuestionWorkbookQuery from './apis/queries/useQuestionWorkbookQuery';
 import useWorkbookQuery from './apis/queries/useWorkbookQuery';
 import useWorkbookEdit from './useWorkbookEdit';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 
 const useWorkbookQuestionDelete = (workbookId: number) => {
   const userInfo = useUserInfo();

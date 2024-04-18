@@ -1,6 +1,6 @@
 import React, { SyntheticEvent } from 'react';
-import useTabs from '@/components/Tabs/useTabs';
-import enhanceChildElement from '@/utils/enhanceChildElement';
+import useTabs from './useTabs';
+import enhanceChildElement from '../../utils/enhanceChildElement';
 
 type TabProps = {
   children?: React.ReactNode;

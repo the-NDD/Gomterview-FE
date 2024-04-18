@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
-import { Box, Button, Icon, Typography } from '@foundation/index';
+import { theme } from '@gomterview/_theme';
+import { Box, Button, Icon, Typography } from 'gomterview-design-system';
 
 type WorkbookEditModeDialogProps = {
   count: number;

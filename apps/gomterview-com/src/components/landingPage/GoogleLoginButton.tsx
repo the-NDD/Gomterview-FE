@@ -1,9 +1,9 @@
 import { HTMLElementTypes } from '@/types/utils';
 import redirectToGoogleLogin from '@/utils/redirectToGoogleLogin';
 import { css } from '@emotion/react';
-import { Icon, Typography } from '@foundation/index';
+import { Icon, Typography } from 'gomterview-design-system';
 import useUserInfo from '@hooks/useUserInfo';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 
 type GoogleLoginButtonProps = HTMLElementTypes<HTMLButtonElement>;
 

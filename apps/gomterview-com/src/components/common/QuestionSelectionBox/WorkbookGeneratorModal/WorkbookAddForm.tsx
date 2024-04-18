@@ -1,13 +1,13 @@
-import { Button, Input, InputArea, Typography } from '@foundation/index';
+import { Button, Input, InputArea, Typography } from 'gomterview-design-system';
 import { css } from '@emotion/react';
 import { FormEventHandler, useState } from 'react';
 import LabelBox from '@common/QuestionSelectionBox/WorkbookGeneratorModal/LabelBox';
 import WorkbookCategory from '@common/QuestionSelectionBox/WorkbookGeneratorModal/WorkbookCategory';
 import useInput from '@hooks/useInput';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
 import useWorkbookAdd from '@hooks/useWorkbookAdd';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 
 type WorkbookAddFormProps = {
   closeModal: () => void;

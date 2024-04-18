@@ -1,14 +1,13 @@
 import { WorkbookEntity } from '@/types/workbook';
 import { css } from '@emotion/react';
-import Modal from '@foundation/Modal';
-import { Button, CheckBox } from '@foundation/index';
+import { Button, CheckBox, Modal } from 'gomterview-design-system';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { questionSetting, serviceTerms } from '@atoms/interviewSetting';
 import { Question } from '@/types/question';
 import { PATH } from '@constants/path';
 import { Description } from '@components/interviewSettingPage';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 
 const StartWithSelectedQuestionModal = ({
   closeModal,

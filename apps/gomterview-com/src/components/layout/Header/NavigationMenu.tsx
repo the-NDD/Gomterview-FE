@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useState } from 'react';
 import { css, keyframes } from '@emotion/react';
-import { Button, Icon, Menu } from '@foundation/index';
-import { theme } from '@styles/theme';
+import { Button, Icon, Menu } from 'gomterview-design-system';
+import { theme } from '@gomterview/_theme';
 
 const dropDown = keyframes`
   from {

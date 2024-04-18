@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
-import { Typography } from '@foundation/index';
+import { theme } from '@gomterview/_theme';
+import { Typography } from 'gomterview-design-system';
 import { CategoryListResDto } from '@/types/category';
 
 type WorkbookCategoryProps = {

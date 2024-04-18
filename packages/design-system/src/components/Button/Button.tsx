@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { HTMLElementTypes } from '@/types/utils';
-import { buttonSize, buttonVariants } from '@/components/Button/Button.styles';
+import { HTMLElementTypes } from '../../types/utils';
+import { buttonSize, buttonVariants } from './Button.styles';
 
 type ButtonProps = {
   size?: keyof typeof buttonSize;

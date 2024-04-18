@@ -1,6 +1,6 @@
-import enhanceChildElement from '@/utils/enhanceChildElement';
+import enhanceChildElement from '../../utils/enhanceChildElement';
 import { css } from '@emotion/react';
-import Step from '@/components/StepPages/Step';
+import Step from './Step';
 
 type StepPageProps<T> = {
   page: T;

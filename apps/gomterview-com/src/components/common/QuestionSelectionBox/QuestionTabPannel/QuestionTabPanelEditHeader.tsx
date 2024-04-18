@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Button, Icon, Input, InputArea } from '@foundation/index';
+import { Button, Icon, Input, InputArea } from 'gomterview-design-system';
 import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
 import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
 import useInput from '@hooks/useInput';
@@ -8,7 +8,7 @@ import QuestionAddForm from './QuestionAddForm';
 import useWorkbookEdit from '@hooks/useWorkbookEdit';
 import QuestionDropdown from './QuestionDropdown';
 import useDebounce from '@hooks/useDebounce';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 
 type QuestionTabPanelEditHeaderProps = {
   workbookInfo: WorkbookQueryResult;

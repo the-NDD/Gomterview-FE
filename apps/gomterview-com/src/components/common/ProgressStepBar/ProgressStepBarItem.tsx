@@ -1,5 +1,5 @@
-import Typography from '@/components/foundation/Typography/Typography';
-import { theme } from '@/styles/theme';
+import { Typography } from 'gomterview-design-system';
+import { theme } from '@gomterview/_theme';
 import { HTMLElementTypes } from '@/types/utils';
 import { css, keyframes } from '@emotion/react';
 

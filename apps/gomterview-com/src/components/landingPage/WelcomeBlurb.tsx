@@ -1,5 +1,5 @@
 import { css, keyframes } from '@emotion/react';
-import { Typography } from '@foundation/index';
+import { Typography } from 'gomterview-design-system';
 
 const WelcomeBlurb: React.FC = () => {
   return (

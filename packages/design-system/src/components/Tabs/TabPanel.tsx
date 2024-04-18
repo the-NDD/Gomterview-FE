@@ -1,5 +1,5 @@
-import { HTMLElementTypes } from '@/types/utils';
-import useTabs from '@/components/Tabs/useTabs';
+import { HTMLElementTypes } from '../../types/utils';
+import useTabs from '../../components/Tabs/useTabs';
 
 type TabPanelProps = {
   children: React.ReactNode;

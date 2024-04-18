@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { HTMLElementTypes } from '@/types/utils';
-import { theme } from '@/styles/theme';
+import { HTMLElementTypes } from '../../types/utils';
+import { theme } from '@gomterview/_theme';
 
 type CardCoverProps = {
   children: React.ReactNode;

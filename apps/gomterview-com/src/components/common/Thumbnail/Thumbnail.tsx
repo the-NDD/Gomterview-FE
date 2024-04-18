@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { CardCover, Icon, Typography } from '@foundation/index';
-import { theme } from '@styles/theme';
+import { CardCover, Icon, Typography } from 'gomterview-design-system';
+import { theme } from '@gomterview/_theme';
 import { MouseEventHandler } from 'react';
 import logo from '@assets/images/logo.webp';
 

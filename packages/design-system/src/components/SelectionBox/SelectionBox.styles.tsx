@@ -1,4 +1,4 @@
-import { theme } from '@/styles/theme';
+import { theme } from '@gomterview/_theme';
 import { css } from '@emotion/react';
 
 export const selectionBox = css`

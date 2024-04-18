@@ -1,7 +1,7 @@
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { css } from '@emotion/react';
-import { Tooltip } from '@foundation/index';
-import { Icon, Typography } from '@foundation/index';
+import { Tooltip } from 'gomterview-design-system';
+import { Icon, Typography } from 'gomterview-design-system';
 
 type InterviewExitButtonProps = {
   handleInterviewExit: () => void;

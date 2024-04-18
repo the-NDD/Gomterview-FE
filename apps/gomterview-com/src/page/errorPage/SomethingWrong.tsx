@@ -1,7 +1,7 @@
 import ErrorPageLayout from '@components/errorPage/ErrorPageLayout';
 import ErrorBear from '@assets/images/error-bear.webp';
 import { css } from '@emotion/react';
-import { Typography } from '@foundation/index';
+import { Typography } from 'gomterview-design-system';
 
 const SomethingWrongErrorPage = () => {
   return (

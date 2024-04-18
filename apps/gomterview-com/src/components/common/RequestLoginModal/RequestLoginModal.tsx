@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
-import { Typography, Modal, Button } from '@foundation/index';
+import { theme } from '@gomterview/_theme';
+import { Typography, Modal, Button } from 'gomterview-design-system';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '@constants/path';
 

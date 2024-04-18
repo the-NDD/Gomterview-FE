@@ -1,0 +1,23 @@
+{
+  "name": "@gomterview/_theme",
+  "type": "module",
+  "exports": {
+    ".": "./src/theme.ts",
+    "./global": "./src/_global.ts"
+  },
+  "version": "1.0.0",
+  "author": "ndd <developndd@gmail.com> (https://blog.gomterview.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-NDD/Gomterview-FE.git"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "yarn@4.1.1"
+}

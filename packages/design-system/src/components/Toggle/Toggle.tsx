@@ -1,9 +1,6 @@
-import {
-  ToggleInputStyle,
-  ToggleLabelStyle,
-} from '@/components/Toggle/Toggle.styles';
+import { ToggleInputStyle, ToggleLabelStyle } from './Toggle.styles';
 import { useId } from 'react';
-import { HTMLElementTypes } from '@/types/utils';
+import { HTMLElementTypes } from '../../types/utils';
 
 type ToggleProps = {
   isToggled: boolean;

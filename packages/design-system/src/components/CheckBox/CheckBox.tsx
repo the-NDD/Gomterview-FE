@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { Icon } from '..';
-import { theme } from '@/styles/theme';
-import { HTMLElementTypes } from '@/types/utils';
+import { theme } from '@gomterview/_theme';
+import { HTMLElementTypes } from '../../types/utils';
 
 type CheckBoxProps = {
   id: string;

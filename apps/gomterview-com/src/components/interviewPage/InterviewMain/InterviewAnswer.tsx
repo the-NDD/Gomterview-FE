@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 
-import { Typography } from '@foundation/index';
+import { Typography } from 'gomterview-design-system';
 import { Resizable } from 're-resizable';
 import { useState } from 'react';
 
@@ -58,7 +58,6 @@ const InterviewAnswer: React.FC<InterviewAnswerProps> = ({ answer }) => {
           `
               animation: blinkingBorder 1.5s linear infinite;
           `}
-
 
           &:hover {
             border-top: 5px solid ${theme.colors.point.primary.default};

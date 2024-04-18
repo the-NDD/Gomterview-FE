@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { questionSetting } from '@atoms/interviewSetting';
 import { PATH, SETTING_PATH } from '@constants/path';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 
 const QuestionSelectPageServiceTour: React.FC<PropsWithChildren> = () => {
   const [{ isRunning: isRunning }, setInRunning] = useRecoilState(runState);

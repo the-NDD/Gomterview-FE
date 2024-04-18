@@ -1,6 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 
 type InterviewPageLayoutProps = {
   children: React.ReactNode;

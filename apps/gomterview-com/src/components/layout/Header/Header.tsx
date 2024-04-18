@@ -1,7 +1,7 @@
 import { Logo } from '@common/index';
 import { css } from '@emotion/react';
 import NavigationMenu from '@components/layout/Header/NavigationMenu';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import Navigations from '@components/layout/Header/Navigations';
 
 const Header: React.FC = () => {

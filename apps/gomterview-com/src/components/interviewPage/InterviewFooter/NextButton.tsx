@@ -1,7 +1,7 @@
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { css } from '@emotion/react';
 
-import { Icon, Tooltip, Typography } from '@foundation/index';
+import { Icon, Tooltip, Typography } from 'gomterview-design-system';
 
 type NextButtonProps = {
   handleNext: () => void;

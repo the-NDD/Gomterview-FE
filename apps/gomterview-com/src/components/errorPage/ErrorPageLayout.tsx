@@ -1,7 +1,7 @@
 import Layout from '../layout/Layout';
 import { PropsWithChildren } from 'react';
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { Header } from '@components/layout';
 
 const ErrorPageLayout: React.FC<PropsWithChildren> = ({ children }) => {

@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { videoSetting } from '@atoms/interviewSetting';
 import { PATH, SETTING_PATH } from '@constants/path';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 
 const VideoSettingPageServiceTour: React.FC<PropsWithChildren> = () => {
   const [{ isRunning: isRunning }, setIsRunning] = useRecoilState(runState);

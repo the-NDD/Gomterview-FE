@@ -8,9 +8,9 @@ import {
   LinkOnlyVideoPlayer,
 } from '@components/linkOnlyVideoPage';
 import useOnlyRelatedVideoQuery from '@hooks/apis/queries/useOnlyRelatedVideoListQuery';
-import { Box, Typography } from '@foundation/index';
+import { Box, Typography } from 'gomterview-design-system';
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { VideoList } from '@common/index';
 
 const LinkOnlyVideoPage: React.FC = () => {

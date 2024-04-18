@@ -1,8 +1,8 @@
 import logo from '@assets/images/logo.webp';
 import { css } from '@emotion/react';
-import Typography from '@foundation/Typography/Typography';
+import { Typography } from 'gomterview-design-system';
 import { Link } from 'react-router-dom';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { PATH } from '@constants/path';
 import { useErrorBoundary } from 'react-error-boundary';
 

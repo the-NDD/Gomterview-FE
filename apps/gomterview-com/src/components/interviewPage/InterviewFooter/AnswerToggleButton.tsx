@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
-import { Tooltip } from '@foundation/index';
-import { Icon, Typography } from '@foundation/index';
-import { theme } from '@styles/theme';
+import { Tooltip } from 'gomterview-design-system';
+import { Icon, Typography } from 'gomterview-design-system';
+import { theme } from '@gomterview/_theme';
 
 type AnswerToggleButtonProps = {
   handleAnswerToggle: () => void;

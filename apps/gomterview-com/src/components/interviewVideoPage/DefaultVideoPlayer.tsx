@@ -6,9 +6,9 @@ import { css } from '@emotion/react';
 import useUserInfo from '@hooks/useUserInfo';
 import useVideoPatchMutation from '@hooks/apis/mutations/useVideoPatchMutation';
 import { PATH } from '@constants/path';
-import { Button } from '@foundation/index';
-import { theme } from '@styles/theme';
-import { toast } from '@foundation/Toast/toast';
+import { Button } from 'gomterview-design-system';
+import { theme } from '@gomterview/_theme';
+import { toast } from '@gomterview/toast';
 
 type DefaultVideoPlayerProps = {
   videoId: string;

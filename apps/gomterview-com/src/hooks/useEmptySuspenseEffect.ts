@@ -1,4 +1,4 @@
-import { EmptyContext } from '@foundation/EmptySuspense/EmptySuspense';
+import { EmptyContext } from 'gomterview-design-system';
 import { useContext, useEffect } from 'react';
 
 const useEmptySuspenseEffect = (data: unknown) => {

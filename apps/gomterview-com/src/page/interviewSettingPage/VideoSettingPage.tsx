@@ -1,5 +1,5 @@
 import { videoSetting } from '@/atoms/interviewSetting';
-import { theme } from '@/styles/theme';
+import { theme } from '@gomterview/_theme';
 import { Mirror, ServiceTourStep } from '@common/index';
 import { RecordStatus } from '@components/interviewPage/InterviewHeader';
 import { Description } from '@components/interviewSettingPage';

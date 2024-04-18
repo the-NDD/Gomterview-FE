@@ -1,9 +1,8 @@
 import { css } from '@emotion/react';
-import Typography from '@foundation/Typography/Typography';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import React, { PropsWithChildren } from 'react';
 import { VideoItemResDto } from '@/types/video';
-import { Box } from '@foundation/index';
+import { Box, Typography } from 'gomterview-design-system';
 
 type VideoItemProps = PropsWithChildren &
   Pick<VideoItemResDto, 'videoName' | 'createdAt' | 'nickname' | 'videoAnswer'>;

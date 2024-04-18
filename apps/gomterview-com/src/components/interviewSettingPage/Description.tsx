@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Typography } from '@foundation/index';
+import { Typography } from 'gomterview-design-system';
 
 type DescriptionProps = {
   title: string;

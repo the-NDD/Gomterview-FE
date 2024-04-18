@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import NextButton from './NextButton';
 import { useState } from 'react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 
 import {
   InterviewExitButton,

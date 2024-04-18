@@ -1,6 +1,6 @@
-import { Box, Button, Icon, Typography } from '@foundation/index';
+import { Box, Button, Icon, Typography } from 'gomterview-design-system';
 import { css, keyframes } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { PATH } from '@constants/path';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';

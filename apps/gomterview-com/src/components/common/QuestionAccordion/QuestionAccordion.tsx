@@ -2,13 +2,13 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-} from '@foundation/Accordion';
-import Icon from '@foundation/Icon/Icon';
-import Typography from '@foundation/Typography/Typography';
-import { theme } from '@styles/theme';
+  Typography,
+  Icon,
+} from 'gomterview-design-system';
+import { theme } from '@gomterview/_theme';
 import { Question } from '@/types/question';
 import { css } from '@emotion/react';
-import { LeadingDot } from '@foundation/index';
+import { LeadingDot } from 'gomterview-design-system';
 import useUserInfo from '@hooks/useUserInfo';
 import useModal from '@hooks/useModal';
 import AnswerSelectionModal from '@common/QuestionSelectionBox/AnswerSelectionModal/AnswerSelectionModal';

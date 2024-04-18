@@ -2,7 +2,7 @@ import ModalContent from './ModalContent';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
 import ModalLayout, { ModalLayoutProps } from './ModalLayout';
-import enhanceChildElement from '@/utils/enhanceChildElement';
+import enhanceChildElement from '../../utils/enhanceChildElement';
 
 const Modal = ({ children, isOpen, closeModal, ...args }: ModalLayoutProps) => {
   return (

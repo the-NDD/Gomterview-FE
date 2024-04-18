@@ -1,14 +1,13 @@
 import { WorkbookEntity } from '@/types/workbook';
 import { css } from '@emotion/react';
-import Modal from '@foundation/Modal';
-import { Button, CheckBox, Typography } from '@foundation/index';
+import { Button, CheckBox, Typography, Modal } from 'gomterview-design-system';
 import useQuestionCopyMutation from '@hooks/apis/mutations/useQuestionCopyMutation';
 import useWorkbookTitleListQuery from '@hooks/apis/queries/useWorkbookTitleListQuery';
 import { useState } from 'react';
 import NewWorkbookListButton from './NewWorkbookListButton';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '@constants/path';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 
 const AddWorkbookListModal = ({
   closeModal,

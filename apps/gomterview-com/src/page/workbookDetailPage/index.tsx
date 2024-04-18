@@ -7,14 +7,14 @@ import {
   WorkbookDetailPageLayout,
 } from '@components/workbookDetailPage';
 import { css } from '@emotion/react';
-import { Box, Button, CheckBox } from '@foundation/index';
+import { Box, Button, CheckBox } from 'gomterview-design-system';
 import useQuestionWorkbookQuery from '@hooks/apis/queries/useQuestionWorkbookQuery';
 import useWorkbookQuery from '@hooks/apis/queries/useWorkbookQuery';
 import useUserInfo from '@hooks/useUserInfo';
-import { theme } from '@styles/theme';
+import { theme } from '@gomterview/_theme';
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { toast } from '@foundation/Toast/toast';
+import { toast } from '@gomterview/toast';
 import useModal from '@hooks/useModal';
 import { RequestLoginModal } from '@components/common';
 

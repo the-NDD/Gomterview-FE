@@ -1,9 +1,15 @@
 import { css, useTheme } from '@emotion/react';
-import { Button, Icon, Menu, MenuItem, Typography } from '@foundation/index';
+import {
+  Button,
+  Icon,
+  Menu,
+  MenuItem,
+  Typography,
+  Chip,
+} from 'gomterview-design-system';
 import { useState } from 'react';
 import useWorkbookDelete from '@hooks/useWorkbookDelete';
-import { toast } from '@foundation/Toast/toast';
-import Chip from '@foundation/Chip/Chip';
+import { toast } from '@gomterview/toast';
 import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
 
 type QuestionTabPanelHeaderProps = {
