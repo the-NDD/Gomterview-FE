@@ -1,7 +1,7 @@
 import useInput from '@hooks/useInput';
 import useQuestionAdd from '@hooks/useQuestionAdd';
 import { css } from '@emotion/react';
-import { Button, Input } from '@foundation/index';
+import { Button, Input } from 'gomterview-design-system';
 import { toast } from '@foundation/Toast/toast';
 
 type QuestionAddFormProps = {

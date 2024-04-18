@@ -1,4 +1,4 @@
-import { Button } from '@foundation/index';
+import { Button } from 'gomterview-design-system';
 import { css } from '@emotion/react';
 import { InterviewSettingFooter } from '@components/interviewSettingPage/interviewSettingFooter';
 import { ServiceTourStep } from '@common/index';

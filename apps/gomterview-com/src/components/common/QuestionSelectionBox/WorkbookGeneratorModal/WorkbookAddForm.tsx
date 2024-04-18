@@ -1,4 +1,4 @@
-import { Button, Input, InputArea, Typography } from '@foundation/index';
+import { Button, Input, InputArea, Typography } from 'gomterview-design-system';
 import { css } from '@emotion/react';
 import { FormEventHandler, useState } from 'react';
 import LabelBox from '@common/QuestionSelectionBox/WorkbookGeneratorModal/LabelBox';

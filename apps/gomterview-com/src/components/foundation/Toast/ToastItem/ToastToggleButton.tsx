@@ -1,5 +1,5 @@
 import { ToastPosition } from '@foundation/Toast/type';
-import { Button, Icon } from '@foundation/index';
+import { Button, Icon } from 'gomterview-design-system';
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
 

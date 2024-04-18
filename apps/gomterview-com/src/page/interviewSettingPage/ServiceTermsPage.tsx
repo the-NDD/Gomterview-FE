@@ -3,7 +3,7 @@ import {
   Description,
   TermPageServiceTour,
 } from '@components/interviewSettingPage';
-import { CheckBox } from '@foundation/index';
+import { CheckBox } from 'gomterview-design-system';
 import { useRecoilState } from 'recoil';
 import InterviewSettingContentLayout from '@components/interviewSettingPage/InterviewSettingContentLayout';
 import { ServiceTourStep } from '@common/index';

@@ -1,7 +1,7 @@
 import { WorkbookEntity } from '@/types/workbook';
 import { css } from '@emotion/react';
 import Modal from '@foundation/Modal';
-import { Button, CheckBox } from '@foundation/index';
+import { Button, CheckBox } from 'gomterview-design-system';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { questionSetting, serviceTerms } from '@atoms/interviewSetting';

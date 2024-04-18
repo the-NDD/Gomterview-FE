@@ -8,7 +8,7 @@ import { PATH } from '@constants/path';
 import BlankBear from '@assets/images/blank-bear.webp';
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
-import { Typography } from '@foundation/index';
+import { Typography } from 'gomterview-design-system';
 import logo from '@assets/images/logo.webp';
 
 type VideoListProps = {

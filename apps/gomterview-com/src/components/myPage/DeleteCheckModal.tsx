@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import Modal from '@foundation/Modal';
-import { Typography, Button } from '@foundation/index';
+import { Typography, Button } from 'gomterview-design-system';
 
 type DeleteCheckModalProps = {
   content: string;

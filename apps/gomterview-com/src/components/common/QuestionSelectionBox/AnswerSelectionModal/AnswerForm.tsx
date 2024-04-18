@@ -1,7 +1,7 @@
 import useQuestionAnswerMutation from '@/hooks/apis/mutations/useQuestionAnswerMutation';
 import useInput from '@hooks/useInput';
 import { css } from '@emotion/react';
-import { Box, Button, InputArea, Typography } from '@foundation/index';
+import { Box, Button, InputArea, Typography } from 'gomterview-design-system';
 import { toast } from '@foundation/Toast/toast';
 
 type AnswerFormProps = {

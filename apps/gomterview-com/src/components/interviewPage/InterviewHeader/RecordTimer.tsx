@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
 
 import { theme } from '@styles/theme';
-import { Icon, Typography } from '@foundation/index';
+import { Icon, Typography } from 'gomterview-design-system';
 import { ServiceTourStep } from '@common/index';
 
 interface RecordTimerProps {

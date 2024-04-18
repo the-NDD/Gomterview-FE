@@ -1,4 +1,4 @@
-import { SelectionBox, Tabs, Typography } from '@foundation/index';
+import { SelectionBox, Tabs, Typography } from 'gomterview-design-system';
 import { WorkbookTitleListResDto } from '@/types/workbook';
 import { css } from '@emotion/react';
 

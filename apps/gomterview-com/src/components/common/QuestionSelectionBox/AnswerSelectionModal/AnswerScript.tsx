@@ -1,7 +1,7 @@
 import { theme } from '@styles/theme';
 import { AnswerEntity } from '@/types/answer';
 import { css } from '@emotion/react';
-import { Avatar, Box, Typography } from '@foundation/index';
+import { Avatar, Box, Typography } from 'gomterview-design-system';
 
 type AnswerScriptProps = {
   answer: AnswerEntity;

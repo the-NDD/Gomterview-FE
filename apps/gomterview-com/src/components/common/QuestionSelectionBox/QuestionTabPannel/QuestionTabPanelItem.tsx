@@ -1,7 +1,7 @@
 import { theme } from '@styles/theme';
 import { css } from '@emotion/react';
 import { useState } from 'react';
-import { Button, Icon, Toggle, Typography } from '@foundation/index';
+import { Button, Icon, Toggle, Typography } from 'gomterview-design-system';
 import { WorkbookTitleListResDto } from '@/types/workbook';
 import { ExcludeArray } from '@/types/utils';
 import QuestionTabPanelHeader from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionTabPanelHeader';

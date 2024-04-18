@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Box, SelectionBox, Tabs, Typography } from '@foundation/index';
+import { Box, SelectionBox, Tabs, Typography } from 'gomterview-design-system';
 import QuestionSelectTabPanel from './TabPanel/QuestionSelectTabPanel';
 import VideoListTabPanel from './TabPanel/VideoListTabPanel';
 import { useLocation } from 'react-router-dom';

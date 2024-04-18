@@ -3,7 +3,7 @@ import Typography from '@foundation/Typography/Typography';
 import { theme } from '@styles/theme';
 import React, { PropsWithChildren } from 'react';
 import { VideoItemResDto } from '@/types/video';
-import { Box } from '@foundation/index';
+import { Box } from 'gomterview-design-system';
 
 type VideoItemProps = PropsWithChildren &
   Pick<VideoItemResDto, 'videoName' | 'createdAt' | 'nickname' | 'videoAnswer'>;

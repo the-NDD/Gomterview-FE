@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Icon, Tooltip } from '@foundation/index';
+import { Icon, Tooltip } from 'gomterview-design-system';
 import useUserInfo from '@hooks/useUserInfo';
 import { breakpoints } from '@styles/_breakpoints';
 import { theme } from '@styles/theme';

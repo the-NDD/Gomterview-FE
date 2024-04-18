@@ -1,6 +1,6 @@
 import { PATH } from '@constants/path';
 import { css } from '@emotion/react';
-import { Box, Avatar, Typography } from '@foundation/index';
+import { Box, Avatar, Typography } from 'gomterview-design-system';
 import useUserInfo from '@hooks/useUserInfo';
 import { Navigate } from 'react-router-dom';
 

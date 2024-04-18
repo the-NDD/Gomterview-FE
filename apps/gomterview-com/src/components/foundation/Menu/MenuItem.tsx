@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { HTMLElementTypes } from '@/types/utils';
 import { css } from '@emotion/react';
-import { Button } from '@foundation/index';
+import { Button } from 'gomterview-design-system';
 
 type MenuItemProps = {
   children: ReactNode;

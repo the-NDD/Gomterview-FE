@@ -1,4 +1,4 @@
-import { Typography } from '@foundation/index';
+import { Typography } from 'gomterview-design-system';
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
 import { useEffect, useState } from 'react';

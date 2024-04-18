@@ -1,5 +1,5 @@
 import TabPanelItem from './QuestionTabPannel/QuestionTabPanelItem';
-import { Box, Tabs } from '@foundation/index';
+import { Box, Tabs } from 'gomterview-design-system';
 import useWorkbookTitleListQuery from '@hooks/apis/queries/useWorkbookTitleListQuery';
 import QuestionTabList from '@common/QuestionSelectionBox/QuestionTabList';
 import WorkbookAddButton from '@common/QuestionSelectionBox/WorkbookAddButton';

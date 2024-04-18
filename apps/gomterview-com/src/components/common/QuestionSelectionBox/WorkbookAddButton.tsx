@@ -1,5 +1,5 @@
 import { theme } from '@styles/theme';
-import { Button, Icon, Typography } from '@foundation/index';
+import { Button, Icon, Typography } from 'gomterview-design-system';
 import WorkbookGeneratorModal from '@common/QuestionSelectionBox/WorkbookGeneratorModal/WorkbookGeneratorModal';
 import useModal from '@hooks/useModal';
 import { css } from '@emotion/react';

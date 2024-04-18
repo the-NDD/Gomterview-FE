@@ -1,5 +1,5 @@
 import { theme } from '@styles/theme';
-import { Typography, LeadingDot } from '@foundation/index';
+import { Typography, LeadingDot } from 'gomterview-design-system';
 import { ServiceTourStep } from '@common/index';
 
 type RecordStatusType = {

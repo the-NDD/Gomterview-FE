@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import Modal from '@foundation/Modal';
-import { Button, CheckBox, Input, Typography } from '@foundation/index';
+import { Button, CheckBox, Input, Typography } from 'gomterview-design-system';
 
 import { theme } from '@styles/theme';
 import ModalHeader from '@foundation/Modal/ModalHeader';

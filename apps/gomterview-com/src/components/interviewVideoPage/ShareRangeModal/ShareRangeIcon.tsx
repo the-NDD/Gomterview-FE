@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Icon } from '@foundation/index';
+import { Icon } from 'gomterview-design-system';
 import { theme } from '@styles/theme';
 
 type ShareRangeIconProps = {

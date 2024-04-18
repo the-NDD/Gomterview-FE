@@ -1,7 +1,7 @@
 import { WorkbookEntity } from '@/types/workbook';
 import { css } from '@emotion/react';
 import Modal from '@foundation/Modal';
-import { Button, CheckBox, Typography } from '@foundation/index';
+import { Button, CheckBox, Typography } from 'gomterview-design-system';
 import useQuestionCopyMutation from '@hooks/apis/mutations/useQuestionCopyMutation';
 import useWorkbookTitleListQuery from '@hooks/apis/queries/useWorkbookTitleListQuery';
 import { useState } from 'react';

@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import WorkbookAddForm from '@common/QuestionSelectionBox/WorkbookGeneratorModal/WorkbookAddForm';
 import ModalHeader from '@foundation/Modal/ModalHeader';
-import { Modal } from '@foundation/index';
+import { Modal } from 'gomterview-design-system';
 import { theme } from '@styles/theme';
 
 type WorkbookGeneratorModalProps = {

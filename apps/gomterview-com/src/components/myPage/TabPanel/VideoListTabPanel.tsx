@@ -1,6 +1,6 @@
 import { PATH } from '@constants/path';
 import { css } from '@emotion/react';
-import { Box } from '@foundation/index';
+import { Box } from 'gomterview-design-system';
 import useDeleteVideoMutation from '@hooks/apis/mutations/useDeleteVideoMutation';
 import useVideoListQuery from '@hooks/apis/queries/useVideoListQuery';
 import { theme } from '@styles/theme';

@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { ToastEvent, ToastProps } from '@foundation/Toast/type';
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
-import { Box, Icon, Typography } from '@foundation/index';
+import { Box, Icon, Typography } from 'gomterview-design-system';
 import { collapseToast } from '@foundation/Toast/collapseToast';
 import { eventManager } from '@foundation/Toast/eventManger';
 import {

@@ -1,4 +1,4 @@
-import { CheckBox } from '@foundation/index';
+import { CheckBox } from 'gomterview-design-system';
 import QuestionSelectionBoxAccordion from '@common/QuestionSelectionBox/QuestionSelectionBoxAccordion';
 import WorkbookEditModeDialog from '@common/QuestionSelectionBox/WorkbookEditModeDialog';
 import useWorkbookQuestionDelete from '@hooks/useWorkbookQuestionDelete';

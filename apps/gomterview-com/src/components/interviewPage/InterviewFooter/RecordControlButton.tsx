@@ -1,7 +1,7 @@
 import { theme } from '@styles/theme';
-import { Tooltip } from '@foundation/index';
+import { Tooltip } from 'gomterview-design-system';
 import { css } from '@emotion/react';
-import { Icon, Typography } from '@foundation/index';
+import { Icon, Typography } from 'gomterview-design-system';
 
 import RecordStartModal from '../InterviewModal/RecordStartModal';
 import { useEffect, useState } from 'react';

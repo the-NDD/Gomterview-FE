@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import Toggle from '@foundation/Toggle/Toggle';
-import { Typography } from '@foundation/index';
+import { Typography } from 'gomterview-design-system';
 import { theme } from '@styles/theme';
 import ShareRangeIcon from '../../interviewVideoPage/ShareRangeModal/ShareRangeIcon';
 

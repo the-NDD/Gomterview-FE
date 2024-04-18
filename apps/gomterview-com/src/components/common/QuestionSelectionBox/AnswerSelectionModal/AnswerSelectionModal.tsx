@@ -6,7 +6,7 @@ import AnswerScript from './AnswerScript';
 import AnswerForm from './AnswerForm';
 import useAnswerDefaultMutation from '@/hooks/apis/mutations/useAnswerDefaultMutation';
 import { Question } from '@/types/question';
-import { Typography } from '@foundation/index';
+import { Typography } from 'gomterview-design-system';
 import { toast } from '@foundation/Toast/toast';
 
 type AnswerSelectionModalProps = {

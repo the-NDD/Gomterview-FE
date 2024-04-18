@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect } from 'react';
 import useKakaoInAppBrowserDetect from '@hooks/useKakaoInAppBrowserDetect';
-import { Button, Typography } from '@foundation/index';
+import { Button, Typography } from 'gomterview-design-system';
 import { css } from '@emotion/react';
 import LandingBear from '@assets/images/landing-bear/landing-bear.webp';
 import LandingBear480 from '@assets/images/landing-bear/landing-bear-w480.webp';

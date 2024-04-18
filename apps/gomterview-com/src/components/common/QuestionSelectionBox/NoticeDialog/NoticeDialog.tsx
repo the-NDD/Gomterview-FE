@@ -1,4 +1,4 @@
-import { Box, Button, Icon, Typography } from '@foundation/index';
+import { Box, Button, Icon, Typography } from 'gomterview-design-system';
 import { css, keyframes } from '@emotion/react';
 import { theme } from '@styles/theme';
 import { PATH } from '@constants/path';

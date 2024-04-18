@@ -1,4 +1,4 @@
-import { Typography } from '@foundation/index';
+import { Typography } from 'gomterview-design-system';
 import { css } from '@emotion/react';
 import BlankBear from '@assets/images/blank-bear.webp';
 

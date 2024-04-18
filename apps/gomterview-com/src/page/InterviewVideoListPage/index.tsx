@@ -4,7 +4,7 @@ import { CenterLayout } from '@components/layout';
 
 import { css } from '@emotion/react';
 
-import { Box, Typography } from '@foundation/index';
+import { Box, Typography } from 'gomterview-design-system';
 import usePublicVideoListQuery from '@hooks/apis/queries/usePublicVideoListQuery';
 import { theme } from '@styles/theme';
 

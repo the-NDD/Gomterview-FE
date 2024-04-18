@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Button, Icon, Input, InputArea } from '@foundation/index';
+import { Button, Icon, Input, InputArea } from 'gomterview-design-system';
 import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
 import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
 import useInput from '@hooks/useInput';

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
-import { Typography, Modal, Button } from '@foundation/index';
+import { Typography, Modal, Button } from 'gomterview-design-system';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '@constants/path';
 import useInterviewSettings from '@/hooks/atoms/useInterviewSettings';

@@ -6,7 +6,7 @@ import { PATH } from '@constants/path';
 import Confetti from 'react-confetti';
 import useWindowSize from '@/hooks/useWindowSize';
 import useUserInfo from '@hooks/useUserInfo';
-import { Typography, Modal, Button } from '@foundation/index';
+import { Typography, Modal, Button } from 'gomterview-design-system';
 
 type InterviewFinishModalProps = {
   isOpen: boolean;

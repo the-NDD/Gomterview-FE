@@ -1,6 +1,6 @@
 import { PATH } from '@constants/path';
 import { css } from '@emotion/react';
-import { Button } from '@foundation/index';
+import { Button } from 'gomterview-design-system';
 import { theme } from '@styles/theme';
 
 type VideoShareModalFooterProps = {

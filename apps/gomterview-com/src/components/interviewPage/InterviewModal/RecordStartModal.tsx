@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { theme } from '@styles/theme';
 
-import { Typography, Modal, Button } from '@foundation/index';
+import { Typography, Modal, Button } from 'gomterview-design-system';
 import { useEffect } from 'react';
 
 type RecordStartModalProps = {

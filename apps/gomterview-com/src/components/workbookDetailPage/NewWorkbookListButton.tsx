@@ -1,6 +1,6 @@
 import { WorkbookEntity } from '@/types/workbook';
 import { css } from '@emotion/react';
-import { Icon, Typography } from '@foundation/index';
+import { Icon, Typography } from 'gomterview-design-system';
 import useQuestionCopyMutation from '@hooks/apis/mutations/useQuestionCopyMutation';
 import useWorkbookPostMutation from '@hooks/apis/mutations/useWorkbookPostMutation';
 import { toast } from '@foundation/Toast/toast';
