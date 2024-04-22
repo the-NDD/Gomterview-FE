@@ -744,6 +744,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@gomterview/useModal@workspace:^, @gomterview/useModal@workspace:packages/useModal":
+  version: 0.0.0-use.local
+  resolution: "@gomterview/useModal@workspace:packages/useModal"
+  dependencies:
+    "@types/react": "npm:^18.2.43"
+    react: "npm:^18.2.0"
+    typescript: "npm:^5.3.3"
+  peerDependencies:
+    react: ">=16"
+  languageName: unknown
+  linkType: soft
+
 "@humanwhocodes/config-array@npm:^0.11.14":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -3534,6 +3546,7 @@ __metadata:
     "@ffmpeg/util": "npm:^0.12.1"
     "@gomterview/_theme": "workspace:^"
     "@gomterview/toast": "workspace:^"
+    "@gomterview/useModal": "workspace:^"
     "@sentry/react": "npm:^7.81.1"
     "@tanstack/react-query": "npm:^5.8.1"
     "@tanstack/react-query-devtools": "npm:^5.8.1"
