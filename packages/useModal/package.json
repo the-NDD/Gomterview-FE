@@ -6,10 +6,12 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
+    "@testing-library/react": "^15.0.2",
     "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.25",
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=18"
   }
 }
