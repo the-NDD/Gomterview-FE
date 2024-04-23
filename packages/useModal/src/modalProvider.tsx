@@ -1,8 +1,8 @@
-import { PropsWithChildren, createContext, useState } from 'react';
+import React, { PropsWithChildren, createContext, useState } from 'react';
 
 interface ModalElement {
   id: string;
-  element: React.FC; // FC는 Function Component의 약자입니다.
+  element: React.FC;
 }
 
 export const ModalContext = createContext<{
@@ -19,10 +19,10 @@ const ModalProvider = ({ children }: PropsWithChildren) => {
     <>
       <ModalContext.Provider value={{ modalElements, setModalElements }}>
         {children}
+        {modalElements.map(({ id, element }) => {
+          return <Component key={id} component={element} />;
+        })}
       </ModalContext.Provider>
-      {modalElements.map(({ id, element }) => {
-        return <Component key={id} component={element} />;
-      })}
     </>
   );
 };
