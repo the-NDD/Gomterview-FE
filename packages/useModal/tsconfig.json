@@ -9,5 +9,6 @@
     "baseUrl": ".",
     "jsxImportSource": "react"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/*.test.*"]
 }
