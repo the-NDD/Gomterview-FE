@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil';
 import { connectStatusState, mediaState } from '@atoms/media';
 import { useCallback, useEffect } from 'react';
 import { closeMedia, getMedia } from '@/utils/media';
-import { useModal } from '@gomterview/useModal';
+import { useModal } from '@gomterview/use-modal';
 import { MediaDisconnectedModal } from '@components/interviewPage/InterviewModal';
 
 /**

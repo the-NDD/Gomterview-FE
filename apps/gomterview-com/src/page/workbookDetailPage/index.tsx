@@ -15,7 +15,7 @@ import { theme } from '@gomterview/_theme';
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { toast } from '@gomterview/toast';
-import { useModal } from '@gomterview/useModal';
+import { useModal } from '@gomterview/use-modal';
 import { RequestLoginModal } from '@components/common';
 
 const WorkbookDetailPage = () => {

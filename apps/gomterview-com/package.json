@@ -18,7 +18,7 @@
     "@ffmpeg/util": "^0.12.1",
     "@gomterview/_theme": "workspace:^",
     "@gomterview/toast": "workspace:^",
-    "@gomterview/useModal": "workspace:^",
+    "@gomterview/use-modal": "workspace:^",
     "@sentry/react": "^7.81.1",
     "@tanstack/react-query": "^5.8.1",
     "@tanstack/react-query-devtools": "^5.8.1",

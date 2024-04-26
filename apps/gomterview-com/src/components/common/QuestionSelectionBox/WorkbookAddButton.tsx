@@ -1,7 +1,7 @@
 import { theme } from '@gomterview/_theme';
 import { Button, Icon, Typography } from 'gomterview-design-system';
 import WorkbookGeneratorModal from '@common/QuestionSelectionBox/WorkbookGeneratorModal/WorkbookGeneratorModal';
-import { useModal } from '@gomterview/useModal';
+import { useModal } from '@gomterview/use-modal';
 import { css } from '@emotion/react';
 
 const WorkbookAddButton: React.FC = () => {

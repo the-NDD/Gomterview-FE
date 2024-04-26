@@ -2080,9 +2080,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@gomterview/useModal@workspace:^, @gomterview/useModal@workspace:packages/useModal":
+"@gomterview/use-modal@workspace:^, @gomterview/use-modal@workspace:packages/useModal":
   version: 0.0.0-use.local
-  resolution: "@gomterview/useModal@workspace:packages/useModal"
+  resolution: "@gomterview/use-modal@workspace:packages/useModal"
   dependencies:
     "@babel/core": "npm:^7.24.4"
     "@babel/preset-env": "npm:^7.24.4"
@@ -6045,7 +6045,7 @@ __metadata:
     "@ffmpeg/util": "npm:^0.12.1"
     "@gomterview/_theme": "workspace:^"
     "@gomterview/toast": "workspace:^"
-    "@gomterview/useModal": "workspace:^"
+    "@gomterview/use-modal": "workspace:^"
     "@sentry/react": "npm:^7.81.1"
     "@tanstack/react-query": "npm:^5.8.1"
     "@tanstack/react-query-devtools": "npm:^5.8.1"

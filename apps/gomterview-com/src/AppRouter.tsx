@@ -18,7 +18,7 @@ import WorkbookPage from '@page/workbookPage';
 import UnknownErrorBoundary from './UnknownErrorBoundary';
 import APIErrorBoundary from './APIErrorBoundary';
 import SomethingWrongErrorPage from '@page/errorPage/SomethingWrong';
-import { ModalProvider } from '@gomterview/useModal';
+import { ModalProvider } from '@gomterview/use-modal';
 import MediaStreamPage from '@page/mediaStreamPage';
 import KakaoInAppBrowserDetect from './KakaoInAppBrowserDetect';
 

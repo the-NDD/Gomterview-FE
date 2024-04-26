@@ -7,7 +7,7 @@ import { theme } from '@gomterview/_theme';
 import DeleteCheckModal from '../DeleteCheckModal';
 import Thumbnail from '@common/Thumbnail/Thumbnail';
 import { VideoItem } from '@common/VideoItem';
-import { useModal } from '@gomterview/useModal';
+import { useModal } from '@gomterview/use-modal';
 import { MyVideoListResDto } from '@/types/video';
 import { ExcludeArray } from '@/types/utils';
 

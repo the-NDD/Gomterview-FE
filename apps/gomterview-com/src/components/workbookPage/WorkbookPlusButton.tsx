@@ -3,7 +3,7 @@ import { Icon, Tooltip } from 'gomterview-design-system';
 import useUserInfo from '@hooks/useUserInfo';
 import { theme } from '@gomterview/_theme';
 import { RequestLoginModal } from '@components/common';
-import { useModal } from '@gomterview/useModal';
+import { useModal } from '@gomterview/use-modal';
 import { WorkbookGeneratorModal } from '@common/index';
 
 /**
