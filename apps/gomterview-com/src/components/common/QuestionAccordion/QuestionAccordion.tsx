@@ -10,7 +10,7 @@ import { Question } from '@/types/question';
 import { css } from '@emotion/react';
 import { LeadingDot } from 'gomterview-design-system';
 import useUserInfo from '@hooks/useUserInfo';
-import useModal from '@hooks/useModal';
+import { useModal } from '@gomterview/use-modal';
 import AnswerSelectionModal from '@common/QuestionSelectionBox/AnswerSelectionModal/AnswerSelectionModal';
 import { RequestLoginModal } from '@components/common';
 

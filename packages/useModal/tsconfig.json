@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "isolatedModules": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationDir": "./types",
+    "baseUrl": ".",
+    "jsxImportSource": "react"
+  },
+  "include": ["src"],
+  "exclude": ["**/*.test.*"]
+}

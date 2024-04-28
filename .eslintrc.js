@@ -19,7 +19,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.js', 'vite.config.ts'],
+  ignorePatterns: ['dist', '.eslintrc.js', 'vite.config.ts', '**.config.js'],
   rules: {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
