@@ -31,7 +31,7 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "tsc --emitDeclarationOnly --outDir ./dist/types && rollup --config && rm -rf ./types"
+    "build": "tsc -p tsconfig.build.json && rollup --config && rm -rf ./types"
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",
