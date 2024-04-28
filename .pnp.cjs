@@ -3649,7 +3649,7 @@ const RAW_RUNTIME_STATE =
           ["@rollup/plugin-node-resolve", "virtual:6c5b5d9cc4ba1e90e27d651e705664ab355e30fbe411b77fc89154cb06078a7441523bfc214849048458f0f867118a97664789e852065d1429b02cd7dd91fcb8#npm:15.2.3"],\
           ["@testing-library/dom", "npm:10.0.0"],\
           ["@testing-library/jest-dom", "virtual:6c5b5d9cc4ba1e90e27d651e705664ab355e30fbe411b77fc89154cb06078a7441523bfc214849048458f0f867118a97664789e852065d1429b02cd7dd91fcb8#npm:6.4.2"],\
-          ["@testing-library/react", "virtual:f025dd47b60e50d448d544af28436b3fd28793369291bdb08ba317b8456969dc38457ee55a327a0976a92ad33c2e257ed3535dec9c4dae23c03623fc4dd61552#npm:15.0.2"],\
+          ["@testing-library/react", "virtual:6c5b5d9cc4ba1e90e27d651e705664ab355e30fbe411b77fc89154cb06078a7441523bfc214849048458f0f867118a97664789e852065d1429b02cd7dd91fcb8#npm:15.0.2"],\
           ["@testing-library/user-event", "virtual:6c5b5d9cc4ba1e90e27d651e705664ab355e30fbe411b77fc89154cb06078a7441523bfc214849048458f0f867118a97664789e852065d1429b02cd7dd91fcb8#npm:14.5.2"],\
           ["@types/jest", "npm:29.5.12"],\
           ["@types/react", "npm:18.2.64"],\
@@ -3657,6 +3657,7 @@ const RAW_RUNTIME_STATE =
           ["babel-jest", "virtual:6c5b5d9cc4ba1e90e27d651e705664ab355e30fbe411b77fc89154cb06078a7441523bfc214849048458f0f867118a97664789e852065d1429b02cd7dd91fcb8#npm:29.7.0"],\
           ["jest", "virtual:6c5b5d9cc4ba1e90e27d651e705664ab355e30fbe411b77fc89154cb06078a7441523bfc214849048458f0f867118a97664789e852065d1429b02cd7dd91fcb8#npm:29.7.0"],\
           ["jest-environment-jsdom", "virtual:6c5b5d9cc4ba1e90e27d651e705664ab355e30fbe411b77fc89154cb06078a7441523bfc214849048458f0f867118a97664789e852065d1429b02cd7dd91fcb8#npm:29.7.0"],\
+          ["react", "npm:18.2.0"],\
           ["rollup", "npm:4.16.4"],\
           ["rollup-plugin-dts", "virtual:6c5b5d9cc4ba1e90e27d651e705664ab355e30fbe411b77fc89154cb06078a7441523bfc214849048458f0f867118a97664789e852065d1429b02cd7dd91fcb8#npm:6.1.0"],\
           ["typescript", "patch:typescript@npm%3A5.4.2#optional!builtin<compat/typescript>::version=5.4.2&hash=5adc0c"]\
@@ -5169,25 +5170,6 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "npm:18.2.64"],\
           ["@types/react-dom", "npm:18.2.25"],\
           ["react", "npm:18.2.0"],\
-          ["react-dom", null]\
-        ],\
-        "packagePeers": [\
-          "@types/react-dom",\
-          "@types/react",\
-          "react-dom",\
-          "react"\
-        ],\
-        "linkType": "HARD"\
-      }],\
-      ["virtual:f025dd47b60e50d448d544af28436b3fd28793369291bdb08ba317b8456969dc38457ee55a327a0976a92ad33c2e257ed3535dec9c4dae23c03623fc4dd61552#npm:15.0.2", {\
-        "packageLocation": "./.yarn/__virtual__/@testing-library-react-virtual-ffeee9c452/0/cache/@testing-library-react-npm-15.0.2-095a436fff-8d75e4850f.zip/node_modules/@testing-library/react/",\
-        "packageDependencies": [\
-          ["@testing-library/react", "virtual:f025dd47b60e50d448d544af28436b3fd28793369291bdb08ba317b8456969dc38457ee55a327a0976a92ad33c2e257ed3535dec9c4dae23c03623fc4dd61552#npm:15.0.2"],\
-          ["@babel/runtime", "npm:7.24.0"],\
-          ["@testing-library/dom", "npm:10.0.0"],\
-          ["@types/react", "npm:18.2.64"],\
-          ["@types/react-dom", "npm:18.2.25"],\
-          ["react", null],\
           ["react-dom", null]\
         ],\
         "packagePeers": [\
