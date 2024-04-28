@@ -2,6 +2,8 @@
 
 Allows modal components to be used without dependency on JSX.
 
+You can use codesandbox to see the example [here](https://codesandbox.io/p/sandbox/usemodal-ktv8ws)
+
 ## Example
 
 Modal is even better when used with the Compound Component pattern

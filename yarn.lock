@@ -2101,6 +2101,7 @@ __metadata:
     babel-jest: "npm:^29.7.0"
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
+    react: "npm:^18.2.0"
     rollup: "npm:^4.16.4"
     rollup-plugin-dts: "npm:^6.1.0"
     typescript: "npm:^5.3.3"

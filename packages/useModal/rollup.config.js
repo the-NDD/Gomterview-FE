@@ -23,6 +23,7 @@ module.exports = [
       commonjs(),
       babel({ extensions, babelHelpers: 'bundled' }),
     ],
+    external: ['react', 'react-dom'],
   },
   {
     input: 'types/index.d.ts',

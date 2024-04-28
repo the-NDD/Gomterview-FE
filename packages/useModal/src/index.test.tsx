@@ -83,6 +83,25 @@ describe('useModal의 기본 동작 테스트', () => {
     // assert: 테스트 결과 확인
     expect(screen.queryByText('Test Modal')).not.toBeInTheDocument();
   });
+  it('openModal을 여러번 호출해도 Modal은 하나만 랜더링 된다.', async () => {
+    //arrange: 테스트 환경 구성
+    const user = userEvent.setup();
+
+    // act: dom에 컴포넌트 랜더링
+    renderWithModalProvider(<TestComponent />);
+    const openButton = await screen.findByText('open');
+    await user.click(openButton);
+    await user.click(openButton);
+    await user.click(openButton);
+    await user.click(openButton);
+    await user.click(openButton);
+    await user.click(openButton);
+
+    const modals = screen.getAllByText('Test Modal');
+
+    // assert: 테스트 결과 확인
+    expect(modals).toHaveLength(1);
+  });
 });
 
 describe('useModal 추가 동작 테스트', () => {

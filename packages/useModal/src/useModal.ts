@@ -10,10 +10,11 @@ const useModal = (component: React.FC) => {
   const id = useId();
 
   const openModal = useCallback(() => {
+    if (isOpen) return;
     setIsOpen(true);
     setModalElements((pre) => [...pre, { id: id, element: component }]);
     document.body.style.overflow = 'hidden';
-  }, [component, id, setModalElements]);
+  }, [component, id, isOpen, setModalElements]);
 
   const closeModal = useCallback(() => {
     setIsOpen(false);
