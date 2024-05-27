@@ -4456,6 +4456,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@playwright/test", [\
+      ["npm:1.44.1", {\
+        "packageLocation": "./.yarn/cache/@playwright-test-npm-1.44.1-5cd8170a08-f72669db3d.zip/node_modules/@playwright/test/",\
+        "packageDependencies": [\
+          ["@playwright/test", "npm:1.44.1"],\
+          ["playwright", "npm:1.44.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@remix-run/router", [\
       ["npm:1.15.3", {\
         "packageLocation": "./.yarn/cache/@remix-run-router-npm-1.15.3-68c33b33e6-aea197447c.zip/node_modules/@remix-run/router/",\
@@ -8192,6 +8202,14 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["fsevents", [\
+      ["patch:fsevents@npm%3A2.3.2#optional!builtin<compat/fsevents>::version=2.3.2&hash=df0bf1", {\
+        "packageLocation": "./.yarn/unplugged/fsevents-patch-19706e7e35/node_modules/fsevents/",\
+        "packageDependencies": [\
+          ["fsevents", "patch:fsevents@npm%3A2.3.2#optional!builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"],\
+          ["node-gyp", "npm:10.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["patch:fsevents@npm%3A2.3.3#optional!builtin<compat/fsevents>::version=2.3.3&hash=df0bf1", {\
         "packageLocation": "./.yarn/unplugged/fsevents-patch-6b67494872/node_modules/fsevents/",\
         "packageDependencies": [\
@@ -8431,6 +8449,7 @@ const RAW_RUNTIME_STATE =
           ["@gomterview/_theme", "workspace:packages/_theme"],\
           ["@gomterview/toast", "virtual:16f2254267c6102c7d59fc546e5490176aee98eed874f2f4007351ed3e4f45221230bc4b39b99c2cc6afac1f16ef699e1c2c8cc63bc115a539dab89953d45665#workspace:packages/toast"],\
           ["@gomterview/use-modal", "virtual:16f2254267c6102c7d59fc546e5490176aee98eed874f2f4007351ed3e4f45221230bc4b39b99c2cc6afac1f16ef699e1c2c8cc63bc115a539dab89953d45665#workspace:packages/useModal"],\
+          ["@playwright/test", "npm:1.44.1"],\
           ["@sentry/react", "virtual:16f2254267c6102c7d59fc546e5490176aee98eed874f2f4007351ed3e4f45221230bc4b39b99c2cc6afac1f16ef699e1c2c8cc63bc115a539dab89953d45665#npm:7.106.0"],\
           ["@tanstack/react-query", "virtual:16f2254267c6102c7d59fc546e5490176aee98eed874f2f4007351ed3e4f45221230bc4b39b99c2cc6afac1f16ef699e1c2c8cc63bc115a539dab89953d45665#npm:5.25.0"],\
           ["@tanstack/react-query-devtools", "virtual:16f2254267c6102c7d59fc546e5490176aee98eed874f2f4007351ed3e4f45221230bc4b39b99c2cc6afac1f16ef699e1c2c8cc63bc115a539dab89953d45665#npm:5.25.0"],\
@@ -11150,6 +11169,26 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["pkg-dir", "npm:4.2.0"],\
           ["find-up", "npm:4.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["playwright", [\
+      ["npm:1.44.1", {\
+        "packageLocation": "./.yarn/cache/playwright-npm-1.44.1-48cda4a2b6-de827d1774.zip/node_modules/playwright/",\
+        "packageDependencies": [\
+          ["playwright", "npm:1.44.1"],\
+          ["fsevents", "patch:fsevents@npm%3A2.3.2#optional!builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"],\
+          ["playwright-core", "npm:1.44.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["playwright-core", [\
+      ["npm:1.44.1", {\
+        "packageLocation": "./.yarn/unplugged/playwright-core-npm-1.44.1-20a69ac9fc/node_modules/playwright-core/",\
+        "packageDependencies": [\
+          ["playwright-core", "npm:1.44.1"]\
         ],\
         "linkType": "HARD"\
       }]\
