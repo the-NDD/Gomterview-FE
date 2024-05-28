@@ -18,7 +18,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
   ...args
 }) => {
   return (
-    <div>
+    <>
       <input
         id={id}
         type="checkbox"
@@ -50,7 +50,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
         />
         {children}
       </label>
-    </div>
+    </>
   );
 };
 
