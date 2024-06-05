@@ -1,7 +1,8 @@
-import { API, BASE_URL } from '@constants/api';
+import { API } from '@constants/api';
 import { PATH } from '@constants/path';
 import { toast } from '@gomterview/toast';
 import dynamicImport from '@/utils/dynamicImport';
+import { BASE_URL } from '@/apis/axios';
 
 const redirectToGoogleLogin = async () => {
   if (import.meta.env.MODE === 'production') {

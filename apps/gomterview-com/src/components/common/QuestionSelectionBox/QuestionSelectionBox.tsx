@@ -29,6 +29,7 @@ const QuestionSelectionBox = () => {
           width: 100%;
           height: 40rem;
         `}
+        data-testid="question-selection-box"
       >
         <Tabs
           css={css`
