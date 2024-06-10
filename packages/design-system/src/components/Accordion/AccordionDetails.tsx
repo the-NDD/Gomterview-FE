@@ -25,6 +25,7 @@ export const AccordionDetails: FC<AccordionDetailsProps> = ({
           color: ${theme.colors.text.default};
           background-color: ${theme.colors.surface.default};
         `}
+        role="region"
         {...args}
       >
         {children}

@@ -7,7 +7,7 @@ type AccordionSummaryProps = {
   expanded?: boolean;
   defaultStyle?: Interpolation<Theme>;
   expandedStyle?: Interpolation<Theme>;
-} & HTMLElementTypes<HTMLDivElement>;
+} & HTMLElementTypes<HTMLButtonElement>;
 export const AccordionSummary: FC<AccordionSummaryProps> = ({
   children,
   expanded,
@@ -19,18 +19,20 @@ export const AccordionSummary: FC<AccordionSummaryProps> = ({
     expanded && expandedStyle ? expandedStyle : defaultStyle;
 
   return (
-    <div
+    <button
       css={[
         css`
           display: flex;
           padding: 1rem;
           border-radius: ${expanded ? '0.625rem 0.625rem 0 0' : '0.625rem'};
+          border: none;
+          cursor: pointer;
         `,
         optionalStyle,
       ]}
       {...args}
     >
       {children}
-    </div>
+    </button>
   );
 };
