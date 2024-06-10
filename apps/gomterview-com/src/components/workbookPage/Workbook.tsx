@@ -10,7 +10,7 @@ const Workbook: React.FC<WorkbookProps> = (props) => {
   const navigate = useNavigate();
 
   return (
-    <div
+    <li
       onClick={() => navigate(PATH.INTERVIEW_WORKBOOK_DETAIL(props.workbookId))}
     >
       <WorkbookCard
@@ -28,7 +28,7 @@ const Workbook: React.FC<WorkbookProps> = (props) => {
           }
         `}
       />
-    </div>
+    </li>
   );
 };
 

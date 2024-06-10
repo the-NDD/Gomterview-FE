@@ -22,7 +22,7 @@ const ResponsiveMenu: React.FC<ResponsiveMenuType> = ({
   const translateY = useThrottleScroll(100, top);
 
   return (
-    <div
+    <nav
       css={[
         css`
           height: auto;
@@ -45,7 +45,7 @@ const ResponsiveMenu: React.FC<ResponsiveMenuType> = ({
       {...arg}
     >
       {children}
-    </div>
+    </nav>
   );
 };
 
