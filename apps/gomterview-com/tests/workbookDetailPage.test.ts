@@ -128,8 +128,13 @@ test.describe('회원 상태', () => {
     await page.goto(PATH.MYPAGE);
     await page.getByText('질문 추가').click();
 
-    await page.getByText('e2e 테스트를 위한 세트 복사본').waitFor();
-    await page.getByText('e2e 테스트를 위한 세트 복사본').click();
+    const CopyWorkbook = await page
+      .getByText('e2e 테스트를 위한 세트 복사본')
+      .all();
+    for (const workbook of CopyWorkbook) {
+      await workbook.waitFor();
+      await workbook.click();
+    }
 
     const Menu = page.locator('button[aria-label="더보기"]');
     await Menu.waitFor();
@@ -146,11 +151,14 @@ test.describe('회원 상태', () => {
       .filter({ hasText: '면접 세트 편집' })
       .click();
 
-    const DeleteTarget = page.getByText(
-      '브라우저 렌더링 과정에 대해서 설명해주세요'
-    );
-    await DeleteTarget.waitFor();
-    await DeleteTarget.click();
+    const DeleteTarget = await page
+      .getByText('브라우저 렌더링 과정에 대해서 설명해주세요')
+      .all();
+
+    for (const target of DeleteTarget) {
+      await target.waitFor();
+      await target.click();
+    }
     await page.locator('button[aria-label="삭제"]').click();
   });
 });
