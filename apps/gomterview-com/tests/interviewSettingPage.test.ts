@@ -93,7 +93,9 @@ test.describe('듀토리얼이 설정이 안된 상태', () => {
     await AgreeButton.waitFor();
     await AgreeButton.click();
 
-    await expect(page).toHaveScreenshot('../playwright/snapshots/step1.png');
+    await expect(page.getByTestId('setting-page-content')).toHaveScreenshot(
+      'step1.png'
+    );
     // step1 스냅샷 저장
     await Step1NextButton.click();
 
@@ -107,7 +109,10 @@ test.describe('듀토리얼이 설정이 안된 상태', () => {
     );
     await Step2Question.waitFor();
     await Step2Question.click();
-    await expect(page).toHaveScreenshot('../playwright/snapshots/step2.png');
+
+    await expect(page.getByTestId('setting-page-content')).toHaveScreenshot(
+      'step2.png'
+    );
     await Step2NextButton.click();
 
     const Step3NextButton = page.getByRole('button', { name: '다음' });
@@ -116,25 +121,27 @@ test.describe('듀토리얼이 설정이 안된 상태', () => {
     const NotSaveButton = page.getByText('저장하지 않음');
     await NotSaveButton.waitFor();
     await NotSaveButton.click();
-    await expect(page).toHaveScreenshot('../playwright/snapshots/step3.png');
+    await expect(page.getByTestId('setting-page-content')).toHaveScreenshot(
+      'step3.png'
+    );
     await Step3NextButton.click();
 
     await page.getByRole('button', { name: '이전' }).click();
 
-    await expect(page).toHaveScreenshot('../playwright/snapshots/step3.png');
+    await expect(page.getByTestId('setting-page-content')).toHaveScreenshot(
+      'step3.png'
+    );
 
     await page.getByRole('button', { name: '이전' }).click();
 
-    await expect(page).toHaveScreenshot('../playwright/snapshots/step2.png', {
-      maxDiffPixels: 1537,
-      // 페이지 진행 상단 바에 대한 스냅샷은 테스트 항목에서 제거해야힘
-    });
+    await expect(page.getByTestId('setting-page-content')).toHaveScreenshot(
+      'step2.png'
+    );
     await page.getByRole('button', { name: '이전' }).click();
 
-    await expect(page).toHaveScreenshot('../playwright/snapshots/step1.png', {
-      maxDiffPixels: 3074,
-      // 페이지 진행 상단 바에 대한 스냅샷은 테스트 항목에서 제거해야힘
-    });
+    await expect(page.getByTestId('setting-page-content')).toHaveScreenshot(
+      'step1.png'
+    );
   });
 });
 
