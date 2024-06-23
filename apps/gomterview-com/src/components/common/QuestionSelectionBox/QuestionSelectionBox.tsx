@@ -12,15 +12,19 @@ import { css } from '@emotion/react';
 import { Suspense, useState } from 'react';
 import useBreakpoint from '@hooks/useBreakPoint';
 import QuestionTabPanelLoading from './QuestionTabPannel/QuestionTabPanelLoading';
+import { useRecoilValue } from 'recoil';
+import { questionSetting } from '@atoms/interviewSetting';
 
 const QuestionSelectionBox = () => {
   const isDeviceBreakpoint = useBreakpoint();
 
   const { data: workbookListData } = useWorkbookTitleListQuery();
+  const { lastSelectedCategory } = useRecoilValue(questionSetting);
 
   const [isSidebarToggleOn, setIsSidebarToggleOn] = useState(true);
 
   if (!workbookListData) return null;
+
   return (
     <>
       <Box
@@ -38,6 +42,7 @@ const QuestionSelectionBox = () => {
             height: 100%;
             row-gap: 1.5rem;
           `}
+          initialValue={lastSelectedCategory || '0'}
         >
           <QuestionSelectionBoxSidebarAreaDiv
             isSidebarToggleOn={isSidebarToggleOn}
