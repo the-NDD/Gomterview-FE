@@ -1,6 +1,8 @@
 import { Typography, Icon, Box } from 'gomterview-design-system';
 import { theme } from '@gomterview/_theme';
 import { css } from '@emotion/react';
+import { useModal } from '@gomterview/use-modal';
+import { RequestLoginModal } from '@common/index';
 
 type RecordRadioProps = {
   group: string;
@@ -19,6 +21,10 @@ const RecordRadio: React.FC<RecordRadioProps> = ({
   defaultChecked,
   disabled,
 }) => {
+  const { openModal, closeModal } = useModal(() => (
+    <RequestLoginModal closeModal={closeModal} />
+  ));
+
   return (
     <>
       <input
@@ -37,7 +43,7 @@ const RecordRadio: React.FC<RecordRadioProps> = ({
       />
       <label
         htmlFor={`record-${IconId}`}
-        onClick={() => disabled && alert('로그인 후 이용해 주세요.')}
+        onClick={() => disabled && openModal()}
       >
         <Box
           css={css`

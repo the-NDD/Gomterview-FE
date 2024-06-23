@@ -7,12 +7,13 @@ type StepPageProps<T> = {
   children?: React.ReactNode;
 };
 
-const StepPage = <T,>({ page, children }: StepPageProps<T>) => {
+const StepPage = <T,>({ page, children, ...args }: StepPageProps<T>) => {
   return (
     <div
       css={css`
         height: 100%;
       `}
+      {...args}
     >
       {enhanceChildElement({
         children,

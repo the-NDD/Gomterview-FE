@@ -9,14 +9,14 @@ type TabProps = {
   onTabChange?: (e: SyntheticEvent, value: string) => void;
 };
 
-const Tab: React.FC<TabProps> = ({ children, value }) => {
+const Tab: React.FC<TabProps> = ({ children, value, ...args }) => {
   const { currentValue, setCurrentValue } = useTabs();
   const handleClick = () => {
     setCurrentValue(value);
   };
 
   return (
-    <div onClick={handleClick}>
+    <div onClick={handleClick} {...args} role="tab">
       {enhanceChildElement({
         children: children,
         newProps: {

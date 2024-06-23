@@ -1,6 +1,8 @@
-import { API, BASE_URL } from '../constants/api';
+import { API } from '../constants/api';
 import { PATH } from '@constants/path';
 import axios, { AxiosError } from 'axios';
+
+export const BASE_URL = import.meta.env.VITE_APP_BASE_API_URL;
 
 const api = axios.create({
   baseURL: BASE_URL,

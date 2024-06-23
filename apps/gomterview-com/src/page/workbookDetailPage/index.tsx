@@ -143,34 +143,37 @@ const WorkbookDetailPage = () => {
           </div>
         </div>
 
-        <Box
-          css={css`
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            padding: 1rem;
-            background-color: ${theme.colors.border.weak};
-            height: auto;
-          `}
-        >
-          {questionWorkbookData.map((question) => {
-            const isSelected = selectedQuestion.includes(question);
-            return (
-              <QuestionAccordion
-                question={question}
-                workbookId={workbookId}
-                isSelected={isSelected}
-                isEditable={false}
-                toggleSelected={() =>
-                  isSelected
-                    ? selectQuestion(question)
-                    : unSelectQuestion(question)
-                }
-                key={question.questionId}
-              />
-            );
-          })}
-        </Box>
+        <ul>
+          <Box
+            css={css`
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+              padding: 1rem;
+              background-color: ${theme.colors.border.weak};
+              height: auto;
+            `}
+          >
+            {questionWorkbookData.map((question) => {
+              const isSelected = selectedQuestion.includes(question);
+              return (
+                <li key={question.questionId}>
+                  <QuestionAccordion
+                    question={question}
+                    workbookId={workbookId}
+                    isSelected={isSelected}
+                    isEditable={false}
+                    toggleSelected={() =>
+                      isSelected
+                        ? selectQuestion(question)
+                        : unSelectQuestion(question)
+                    }
+                  />
+                </li>
+              );
+            })}
+          </Box>
+        </ul>
       </WorkbookDetailPageLayout>
     </>
   );

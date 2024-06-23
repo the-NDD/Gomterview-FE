@@ -14,6 +14,7 @@ const useSelectQuestions = ({
 
   const setUnselected = () => {
     setSelectedQuestions((prevState) => ({
+      ...prevState,
       isSuccess: prevState.selectedData.length > 1,
       selectedData: prevState.selectedData.filter(
         (item) => item.questionId !== question.questionId
@@ -23,6 +24,7 @@ const useSelectQuestions = ({
 
   const setSelected = () => {
     setSelectedQuestions((prevState) => ({
+      ...prevState,
       isSuccess: true,
       selectedData: [
         ...prevState.selectedData,

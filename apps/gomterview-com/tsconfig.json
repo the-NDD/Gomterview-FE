@@ -2,7 +2,6 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "rootDir": "src",
     "paths": {
       "@common/*": ["./src/components/common/*"],
       "@foundation/*": ["./src/components/foundation/*"],
@@ -17,5 +16,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "tests", "tests-examples", "playwright.config.ts"]
 }

@@ -134,7 +134,7 @@ const InterviewSettingPage: React.FC = () => {
           ))}
         </ProgressStepBar>
       </div>
-      <StepPage page={currentPage}>
+      <StepPage page={currentPage} data-testid={'setting-page-content'}>
         {pageInfo.map((item) => (
           <StepPage.step key={item.path} path={item.path} page={currentPage}>
             {item.page}

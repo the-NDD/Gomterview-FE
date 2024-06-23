@@ -20,7 +20,9 @@ const Tabs = ({ children, initialValue = '0', ...args }: TabProviderProps) => {
 
   return (
     <TabContext.Provider value={{ currentValue, setCurrentValue }}>
-      <div {...args}>{children}</div>
+      <div role="tablist" {...args}>
+        {children}
+      </div>
     </TabContext.Provider>
   );
 };

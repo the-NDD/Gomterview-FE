@@ -96,6 +96,7 @@ const QuestionTabPanelHeader: React.FC<QuestionTabPanelHeaderProps> = ({
                 border: none;
                 background-color: inherit;
               `}
+              aria-label="더보기"
             >
               <Icon id="ellipsis-vertical" />
             </Button>

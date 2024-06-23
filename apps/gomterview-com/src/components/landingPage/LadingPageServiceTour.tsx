@@ -43,8 +43,8 @@ const LandingPageServiceTour: React.FC<PropsWithChildren> = () => {
       spotlightClicks: true,
       spotlightPadding: 20,
       styles: {
-        options: {
-          zIndex: 10000,
+        overlay: {
+          pointerEvents: 'none',
         },
         spotlight: {
           borderRadius: 30,

@@ -16,16 +16,23 @@ const MenuItem: React.FC<MenuItemProps> = ({
 }) => {
   if (!visible) return null;
   return (
-    <Button
-      variants="secondary"
+    <li
       css={css`
-        border: none;
-        background-color: transparent;
+        list-style: none;
       `}
-      {...args}
+      role="menuitem"
     >
-      {children}
-    </Button>
+      <Button
+        variants="secondary"
+        css={css`
+          border: none;
+          background-color: transparent;
+        `}
+        {...args}
+      >
+        {children}
+      </Button>
+    </li>
   );
 };
 

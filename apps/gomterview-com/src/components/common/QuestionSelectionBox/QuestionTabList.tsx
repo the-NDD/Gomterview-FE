@@ -1,6 +1,8 @@
 import { SelectionBox, Tabs, Typography } from 'gomterview-design-system';
 import { WorkbookTitleListResDto } from '@/types/workbook';
 import { css } from '@emotion/react';
+import { useSetRecoilState } from 'recoil';
+import { questionSetting } from '@atoms/interviewSetting';
 
 type QuestionTabListProps = {
   workbookListData: WorkbookTitleListResDto;
@@ -8,6 +10,7 @@ type QuestionTabListProps = {
 const QuestionTabList: React.FC<QuestionTabListProps> = ({
   workbookListData,
 }) => {
+  const setQuestionSetting = useSetRecoilState(questionSetting);
   return (
     <div
       css={css`
@@ -21,6 +24,12 @@ const QuestionTabList: React.FC<QuestionTabListProps> = ({
           <SelectionBox
             id={`workbook-${workbook.workbookId.toString()}`}
             name="workbook"
+            onClick={() => {
+              setQuestionSetting((pre) => ({
+                ...pre,
+                lastSelectedCategory: index.toString(),
+              }));
+            }}
           >
             <Typography variant="title4" noWrap component="p">
               {workbook.title}

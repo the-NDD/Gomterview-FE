@@ -8,7 +8,8 @@
     "local": "vite --mode localhost",
     "build": "tsc && vite build --mode production",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview --mode production"
+    "preview": "vite preview --mode production",
+    "e2e": "playwright test --ui"
   },
   "main": "src/index.tsx",
   "dependencies": {
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.11.0",
+    "@playwright/test": "^1.44.1",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",

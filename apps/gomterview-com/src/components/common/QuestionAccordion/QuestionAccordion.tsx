@@ -72,6 +72,7 @@ const QuestionAccordion: React.FC<QuestionAccordionProps> = ({
         width: 100%;
         min-width: calc(100% - 2rem);
       `}
+      data-testid="question-accordion"
     >
       <AccordionSummary
         css={[

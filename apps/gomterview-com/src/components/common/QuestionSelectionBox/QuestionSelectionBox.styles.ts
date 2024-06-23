@@ -32,14 +32,13 @@ export const QuestionSelectionBoxSidebarAreaDiv = styled.div<{
   background-color: ${theme.colors.surface.default};
   overflow-y: auto;
   flex: 1 1 15rem;
-  animation: ${(props) =>
-    props.isSidebarToggleOn && props.isTabletWidth
-      ? css`
-          ${hideSidebar} 0.3s ease-in-out forwards
-        `
-      : css`
-          ${showSidebar} 0.3s ease-in-out forwards
-        `};
+
+  ${(props) =>
+    props.isTabletWidth &&
+    css`
+      animation: ${props.isSidebarToggleOn ? hideSidebar : showSidebar} 0.3s
+        ease-in-out forwards;
+    `}
 `;
 
 export const QuestionSelectionBoxTabPanelAreaDiv = styled.div`

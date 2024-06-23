@@ -51,6 +51,7 @@ const WorkbookEditModeDialog: React.FC<WorkbookEditModeDialogProps> = ({
           border: none;
           padding-bottom: 0.125rem;
         `}
+        aria-label="삭제"
       >
         <Icon id="trash" width="16" height="16" />
       </Button>

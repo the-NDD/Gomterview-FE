@@ -20,7 +20,8 @@ const Menu: React.FC<MenuProps> = ({
 
   return (
     <>
-      <div
+      <ul
+        role="menu"
         onClick={closeMenu}
         css={css`
           position: fixed;

@@ -67,6 +67,7 @@ const VideoListTabPanel: React.FC = () => {
           padding: 1rem;
         }
       `}
+      data-testid="video-list-tab-panel"
     >
       {data.map((video) => (
         <MyVideoListItem key={video.id} video={video} />
