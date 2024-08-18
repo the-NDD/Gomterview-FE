@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { getAPIResponseData } from '../utils/get-api-response-data';
 
-export class Auth {
+export class AuthApi {
   private readonly instance: AxiosInstance;
 
   constructor(instance: AxiosInstance) {

@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 import { MemberNicknameResponseDto, MemberResponseDto } from '../dto/dto';
 import { getAPIResponseData } from '../utils/get-api-response-data';
 
-export class Member {
+export class MemberApi {
   private readonly instance: AxiosInstance;
 
   constructor(instance: AxiosInstance) {

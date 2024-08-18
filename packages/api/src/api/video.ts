@@ -11,7 +11,7 @@ import {
 } from '../dto/dto';
 import { getAPIResponseData } from '../utils/get-api-response-data';
 
-export class Video {
+export class VideoApi {
   private readonly instance: AxiosInstance;
 
   constructor(instance: AxiosInstance) {

@@ -8,7 +8,7 @@ import {
 } from '../dto/dto';
 import { getAPIResponseData } from '../utils/get-api-response-data';
 
-export class Workbook {
+export class WorkbookApi {
   private readonly instance: AxiosInstance;
 
   constructor(instance: AxiosInstance) {

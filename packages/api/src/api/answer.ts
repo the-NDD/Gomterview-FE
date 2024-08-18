@@ -6,7 +6,7 @@ import {
 } from '../dto/dto';
 import { getAPIResponseData } from '../utils/get-api-response-data';
 
-export class Answer {
+export class AnswerApi {
   private readonly instance: AxiosInstance;
 
   constructor(instance: AxiosInstance) {

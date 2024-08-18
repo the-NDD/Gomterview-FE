@@ -12,7 +12,7 @@ import { AxiosInstance } from 'axios';
 import { <%~ dataContracts.join(", ") %> } from "../dto/dto"
 <% } %>
 
-export class <%= apiClassName %> {
+export class <%= apiClassName %>Api {
 private readonly instance: AxiosInstance;
 
 constructor(instance: AxiosInstance) {
