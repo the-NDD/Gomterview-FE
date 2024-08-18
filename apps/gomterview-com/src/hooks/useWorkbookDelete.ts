@@ -1,6 +1,6 @@
 import useUserInfo from '@hooks/useUserInfo';
 import { useQueryClient } from '@tanstack/react-query';
-import useWorkbookDeleteMutation from '@hooks/apis/mutations/useWorkbookDeleteMutation';
+import useWorkbookDeleteMutation from '@/entities/workbook/model/mutations/useWorkbookDeleteMutation';
 import { WorkbookTitleListResDto } from '@/types/workbook';
 import { QUERY_KEY } from '@constants/queryKey';
 

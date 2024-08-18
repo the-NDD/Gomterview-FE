@@ -1,13 +1,13 @@
 import useUserInfo from '@hooks/useUserInfo';
 import { useState } from 'react';
-import useDeleteQuestionMutation from '@hooks/apis/mutations/useDeleteQuestionMutation';
+import useDeleteQuestionMutation from '@/entities/question/model/mutations/useDeleteQuestionMutation';
 import { useRecoilState } from 'recoil';
 import { questionSetting } from '@atoms/interviewSetting';
 import { QUERY_KEY } from '@constants/queryKey';
 import { Question } from '@/types/question';
 import { useQueryClient } from '@tanstack/react-query';
-import useQuestionWorkbookQuery from './apis/queries/useQuestionWorkbookQuery';
-import useWorkbookQuery from './apis/queries/useWorkbookQuery';
+import useQuestionWorkbookQuery from '../entities/workbook/model/queries/useQuestionWorkbookQuery';
+import useWorkbookQuery from '../entities/workbook/model/queries/useWorkbookQuery';
 import useWorkbookEdit from './useWorkbookEdit';
 import { toast } from '@gomterview/toast';
 

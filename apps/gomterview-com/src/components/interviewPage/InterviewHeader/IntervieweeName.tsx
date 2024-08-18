@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { theme } from '@gomterview/_theme';
-import useMemberNameQuery from '@/hooks/apis/queries/useMemberNameQuery';
+import useMemberNameQuery from '@/entities/member/model/queries/useMemberNameQuery';
 import { Typography } from 'gomterview-design-system';
 
 const IntervieweeName: React.FC = () => {

@@ -5,7 +5,7 @@ import LabelBox from '@common/QuestionSelectionBox/WorkbookGeneratorModal/LabelB
 import WorkbookCategory from '@common/QuestionSelectionBox/WorkbookGeneratorModal/WorkbookCategory';
 import useInput from '@hooks/useInput';
 import { theme } from '@gomterview/_theme';
-import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
+import useCategoryQuery from '@/entities/category/model/queries/useCategoryQuery';
 import useWorkbookAdd from '@hooks/useWorkbookAdd';
 import { toast } from '@gomterview/toast';
 

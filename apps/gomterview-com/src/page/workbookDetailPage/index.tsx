@@ -8,8 +8,8 @@ import {
 } from '@components/workbookDetailPage';
 import { css } from '@emotion/react';
 import { Box, Button, CheckBox } from 'gomterview-design-system';
-import useQuestionWorkbookQuery from '@hooks/apis/queries/useQuestionWorkbookQuery';
-import useWorkbookQuery from '@hooks/apis/queries/useWorkbookQuery';
+import useQuestionWorkbookQuery from '@/entities/workbook/model/queries/useQuestionWorkbookQuery';
+import useWorkbookQuery from '@/entities/workbook/model/queries/useWorkbookQuery';
 import useUserInfo from '@hooks/useUserInfo';
 import { theme } from '@gomterview/_theme';
 import { useState } from 'react';

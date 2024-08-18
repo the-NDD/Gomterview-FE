@@ -3,8 +3,8 @@ import {
   Button,
   CheckBox,
   Input,
-  Typography,
   Modal,
+  Typography,
 } from 'gomterview-design-system';
 
 import { theme } from '@gomterview/_theme';
@@ -12,7 +12,7 @@ import LabelBox from '@common/QuestionSelectionBox/WorkbookGeneratorModal/LabelB
 import useInput from '@hooks/useInput';
 import { toast } from '@gomterview/toast';
 import { FormEventHandler, useEffect, useState } from 'react';
-import useRelatedInfoListQuery from '@hooks/apis/queries/useVideoRelatedInfoListQuery';
+import useRelatedInfoListQuery from '@/entities/video/model/queries/useVideoRelatedInfoListQuery';
 
 const visibilityOptions: {
   title: string;

@@ -7,7 +7,7 @@ import {
   LinkOnlyVideoPageLayout,
   LinkOnlyVideoPlayer,
 } from '@components/linkOnlyVideoPage';
-import useOnlyRelatedVideoQuery from '@hooks/apis/queries/useOnlyRelatedVideoListQuery';
+import useOnlyRelatedVideoQuery from '@/entities/video/model/queries/useOnlyRelatedVideoListQuery';
 import { Box, Typography } from 'gomterview-design-system';
 import { css } from '@emotion/react';
 import { theme } from '@gomterview/_theme';

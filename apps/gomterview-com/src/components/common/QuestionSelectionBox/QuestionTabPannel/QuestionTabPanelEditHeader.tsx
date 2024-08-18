@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { Button, Icon, Input, InputArea } from 'gomterview-design-system';
-import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
-import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
+import useCategoryQuery from '@/entities/category/model/queries/useCategoryQuery';
+import { WorkbookQueryResult } from '@/entities/workbook/model/queries/useWorkbookQuery';
 import useInput from '@hooks/useInput';
 import { useState } from 'react';
 import QuestionAddForm from './QuestionAddForm';

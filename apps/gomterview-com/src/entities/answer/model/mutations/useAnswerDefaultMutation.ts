@@ -1,5 +1,5 @@
 import { postDefaultAnswer } from '@/apis/answer';
-import { QUERY_KEY } from '@/constants/queryKey';
+import { QUERY_KEY } from '@constants/queryKey';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 /**

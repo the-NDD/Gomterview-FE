@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import useWorkbookListQuery from '@hooks/apis/queries/useWorkbookListQuery';
+import useWorkbookListQuery from '@/entities/workbook/model/queries/useWorkbookListQuery';
 import useBreakpoint from '@hooks/useBreakPoint';
 import Workbook from './Workbook';
 import GridWorkbookList from './GridWorkbookList';

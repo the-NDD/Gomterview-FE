@@ -1,5 +1,5 @@
 import { getQuestion } from '@/apis/question';
-import { QUERY_KEY } from '@/constants/queryKey';
+import { QUERY_KEY } from '@constants/queryKey';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import useUserInfo from '@hooks/useUserInfo';
 

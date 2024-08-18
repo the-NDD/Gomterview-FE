@@ -1,11 +1,11 @@
 import { css } from '@emotion/react';
 import { theme } from '@gomterview/_theme';
-import useQuestionAnswerQuery from '@/hooks/apis/queries/useQuestionAnswerQuery';
+import useQuestionAnswerQuery from '@/entities/answer/model/queries/useQuestionAnswerQuery';
 import AnswerScript from './AnswerScript';
 import AnswerForm from './AnswerForm';
-import useAnswerDefaultMutation from '@/hooks/apis/mutations/useAnswerDefaultMutation';
+import useAnswerDefaultMutation from '@/entities/answer/model/mutations/useAnswerDefaultMutation';
 import { Question } from '@/types/question';
-import { Typography, Modal } from 'gomterview-design-system';
+import { Modal, Typography } from 'gomterview-design-system';
 import { toast } from '@gomterview/toast';
 
 type AnswerSelectionModalProps = {

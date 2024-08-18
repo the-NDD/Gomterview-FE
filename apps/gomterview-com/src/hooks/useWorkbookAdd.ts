@@ -1,5 +1,5 @@
 import useUserInfo from '@hooks/useUserInfo';
-import useWorkbookPostMutation from '@hooks/apis/mutations/useWorkbookPostMutation';
+import useWorkbookPostMutation from '@/entities/workbook/model/mutations/useWorkbookPostMutation';
 import {
   WorkbookAddReqDto,
   WorkbookResDto,

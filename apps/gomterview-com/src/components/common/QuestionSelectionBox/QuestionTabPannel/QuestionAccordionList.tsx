@@ -4,11 +4,11 @@ import WorkbookEditModeDialog from '@common/QuestionSelectionBox/WorkbookEditMod
 import useWorkbookQuestionDelete from '@hooks/useWorkbookQuestionDelete';
 import { css } from '@emotion/react';
 import { toast } from '@gomterview/toast';
-import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
+import { WorkbookQueryResult } from '@/entities/workbook/model/queries/useWorkbookQuery';
 import useEmptySuspenseEffect from '@hooks/useEmptySuspenseEffect';
 import { useRecoilValue } from 'recoil';
 import { questionSetting } from '@atoms/interviewSetting';
-import useQuestionWorkbookQuery from '@hooks/apis/queries/useQuestionWorkbookQuery';
+import useQuestionWorkbookQuery from '@/entities/workbook/model/queries/useQuestionWorkbookQuery';
 
 type QuestionAccordionListProps = {
   isEditMode: boolean;

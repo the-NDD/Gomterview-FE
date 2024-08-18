@@ -1,5 +1,5 @@
 import { getQuestionAnswer } from '@/apis/answer';
-import { QUERY_KEY } from '@/constants/queryKey';
+import { QUERY_KEY } from '@constants/queryKey';
 import { useQuery } from '@tanstack/react-query';
 
 /**

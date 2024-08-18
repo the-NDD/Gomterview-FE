@@ -1,10 +1,10 @@
 import { IconButton, VideoPlayer, VideoPlayerFrame } from '@common/VideoPlayer';
-import useVideoItemQuery from '@hooks/apis/queries/useVideoItemQuery';
+import useVideoItemQuery from '@/entities/video/model/queries/useVideoItemQuery';
 import { VideoEditModal } from '@components/interviewVideoPage/ShareRangeModal';
 import { useState } from 'react';
 import { css } from '@emotion/react';
 import useUserInfo from '@hooks/useUserInfo';
-import useVideoPatchMutation from '@hooks/apis/mutations/useVideoPatchMutation';
+import useVideoPatchMutation from '@/entities/video/model/mutations/useVideoPatchMutation';
 import { PATH } from '@constants/path';
 import { Button } from 'gomterview-design-system';
 import { theme } from '@gomterview/_theme';

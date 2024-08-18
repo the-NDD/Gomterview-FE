@@ -1,5 +1,5 @@
 import { getCategory } from '@/apis/category';
-import { QUERY_KEY } from '@/constants/queryKey';
+import { QUERY_KEY } from '@constants/queryKey';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 /**

@@ -1,8 +1,8 @@
 import { PATH } from '@constants/path';
 import { css } from '@emotion/react';
 import { Box } from 'gomterview-design-system';
-import useDeleteVideoMutation from '@hooks/apis/mutations/useDeleteVideoMutation';
-import useVideoListQuery from '@hooks/apis/queries/useVideoListQuery';
+import useDeleteVideoMutation from '@/entities/video/model/mutations/useDeleteVideoMutation';
+import useVideoListQuery from '@/entities/video/model/queries/useVideoListQuery';
 import { theme } from '@gomterview/_theme';
 import DeleteCheckModal from '../DeleteCheckModal';
 import Thumbnail from '@common/Thumbnail/Thumbnail';

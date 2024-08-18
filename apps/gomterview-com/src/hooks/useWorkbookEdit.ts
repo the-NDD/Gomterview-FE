@@ -6,7 +6,7 @@ import {
 } from '@/types/workbook';
 import { QUERY_KEY } from '@constants/queryKey';
 import { useQueryClient } from '@tanstack/react-query';
-import useWorkbookPatchMutation from '@hooks/apis/mutations/useWorkbookPatchMutation';
+import useWorkbookPatchMutation from '@/entities/workbook/model/mutations/useWorkbookPatchMutation';
 
 type useWorkbookEditProps = {
   onSuccess?: () => void;

@@ -5,7 +5,7 @@ import { CenterLayout } from '@components/layout';
 import { css } from '@emotion/react';
 
 import { Box, Typography } from 'gomterview-design-system';
-import usePublicVideoListQuery from '@hooks/apis/queries/usePublicVideoListQuery';
+import usePublicVideoListQuery from '@/entities/video/model/queries/usePublicVideoListQuery';
 import { theme } from '@gomterview/_theme';
 
 const InterviewVideoListPage: React.FC = () => {

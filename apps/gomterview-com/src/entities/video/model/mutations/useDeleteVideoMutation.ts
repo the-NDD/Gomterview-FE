@@ -1,4 +1,4 @@
-import { QUERY_KEY } from '@/constants/queryKey';
+import { QUERY_KEY } from '@constants/queryKey';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteVideoById } from '@/apis/video';
 import { MyVideoListResDto } from '@/types/video';
