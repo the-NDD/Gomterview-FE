@@ -20,7 +20,7 @@ export class WorkbookApi {
       this.instance,
       {
         method: 'post',
-        url: `/api/workbook`,
+        url: `/workbook`,
         data,
       }
     );
@@ -29,7 +29,7 @@ export class WorkbookApi {
   getWorkbook(params: { category: number }) {
     return getAPIResponseData<WorkbookResponseDto[]>(this.instance, {
       method: 'get',
-      url: `/api/workbook`,
+      url: `/workbook`,
       params,
     });
   }
@@ -39,7 +39,7 @@ export class WorkbookApi {
       this.instance,
       {
         method: 'patch',
-        url: `/api/workbook`,
+        url: `/workbook`,
         data,
       }
     );
@@ -48,21 +48,21 @@ export class WorkbookApi {
   getWorkbookTitle() {
     return getAPIResponseData<WorkbookTitleResponseDto[]>(this.instance, {
       method: 'get',
-      url: `/api/workbook/title`,
+      url: `/workbook/title`,
     });
   }
 
   getWorkbookByWorkbookId(workbookId: number) {
     return getAPIResponseData<WorkbookResponseDto>(this.instance, {
       method: 'get',
-      url: `/api/workbook/${workbookId}`,
+      url: `/workbook/${workbookId}`,
     });
   }
 
   deleteWorkbookByWorkbookId(workbookId: number) {
     return getAPIResponseData<void>(this.instance, {
       method: 'delete',
-      url: `/api/workbook/${workbookId}`,
+      url: `/workbook/${workbookId}`,
     });
   }
 }

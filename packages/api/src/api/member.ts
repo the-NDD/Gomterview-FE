@@ -12,14 +12,14 @@ export class MemberApi {
   getMember() {
     return getAPIResponseData<MemberResponseDto>(this.instance, {
       method: 'get',
-      url: `/api/member`,
+      url: `/member`,
     });
   }
 
   getMemberName() {
     return getAPIResponseData<MemberNicknameResponseDto>(this.instance, {
       method: 'get',
-      url: `/api/member/name`,
+      url: `/member/name`,
     });
   }
 }

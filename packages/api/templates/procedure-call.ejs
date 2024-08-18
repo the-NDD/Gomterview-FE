@@ -28,7 +28,7 @@ const query = route.request.query;
 %>) {
 return getAPIResponseData<<%= responseType %>, <%= payload ? payload.type: '' %>>(this.instance, {
 method: '<%= route.request.method %>',
-url: `<%= route.request.path.replace(/{/g, '{').replace(/}/g, '}') %>`,
+url: `<%= route.request.path.replace(/{/g, '{').replace(/}/g, '}').replace('/api','') %>`,
 <% if (query) { %>
     params,
 <% } %>

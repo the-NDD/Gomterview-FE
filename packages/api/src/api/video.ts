@@ -21,7 +21,7 @@ export class VideoApi {
   postVideo(data: CreateVideoRequestDto) {
     return getAPIResponseData<void, CreateVideoRequestDto>(this.instance, {
       method: 'post',
-      url: `/api/video`,
+      url: `/video`,
       data,
     });
   }
@@ -29,56 +29,56 @@ export class VideoApi {
   postVideoPreSigned() {
     return getAPIResponseData<PreSignedUrlResponseDto>(this.instance, {
       method: 'post',
-      url: `/api/video/pre-signed`,
+      url: `/video/pre-signed`,
     });
   }
 
   getVideoAll() {
     return getAPIResponseData<SingleVideoResponseDto[]>(this.instance, {
       method: 'get',
-      url: `/api/video/all`,
+      url: `/video/all`,
     });
   }
 
   getVideoHashByHash(hash: string) {
     return getAPIResponseData<VideoDetailResponseDto>(this.instance, {
       method: 'get',
-      url: `/api/video/hash/${hash}`,
+      url: `/video/hash/${hash}`,
     });
   }
 
   getVideoRelateByVideoId(videoId: number) {
     return getAPIResponseData<RelatableVideoResponseDto[]>(this.instance, {
       method: 'get',
-      url: `/api/video/relate/${videoId}`,
+      url: `/video/relate/${videoId}`,
     });
   }
 
   getVideoRelatedByVideoId(videoId: number) {
     return getAPIResponseData<SingleVideoResponseDto[]>(this.instance, {
       method: 'get',
-      url: `/api/video/related/${videoId}`,
+      url: `/video/related/${videoId}`,
     });
   }
 
   getVideoPublic() {
     return getAPIResponseData<MemberVideoResponseDto[]>(this.instance, {
       method: 'get',
-      url: `/api/video/public`,
+      url: `/video/public`,
     });
   }
 
   getVideoByVideoId(videoId: number) {
     return getAPIResponseData<VideoDetailResponseDto>(this.instance, {
       method: 'get',
-      url: `/api/video/${videoId}`,
+      url: `/video/${videoId}`,
     });
   }
 
   patchVideoByVideoId(videoId: number, data: UpdateVideoRequestDto) {
     return getAPIResponseData<void, UpdateVideoRequestDto>(this.instance, {
       method: 'patch',
-      url: `/api/video/${videoId}`,
+      url: `/video/${videoId}`,
       data,
     });
   }
@@ -86,14 +86,14 @@ export class VideoApi {
   deleteVideoByVideoId(videoId: number) {
     return getAPIResponseData<void>(this.instance, {
       method: 'delete',
-      url: `/api/video/${videoId}`,
+      url: `/video/${videoId}`,
     });
   }
 
   patchVideoIndex(data: UpdateVideoIndexRequestDto) {
     return getAPIResponseData<void, UpdateVideoIndexRequestDto>(this.instance, {
       method: 'patch',
-      url: `/api/video/index`,
+      url: `/video/index`,
       data,
     });
   }

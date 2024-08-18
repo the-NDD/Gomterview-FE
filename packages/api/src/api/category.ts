@@ -12,7 +12,7 @@ export class CategoryApi {
   getCategory() {
     return getAPIResponseData<CategoryResponseDto[]>(this.instance, {
       method: 'get',
-      url: `/api/category`,
+      url: `/category`,
     });
   }
 }

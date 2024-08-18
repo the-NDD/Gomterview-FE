@@ -11,28 +11,28 @@ export class AuthApi {
   getAuthLogin() {
     return getAPIResponseData<void>(this.instance, {
       method: 'get',
-      url: `/api/auth/login`,
+      url: `/auth/login`,
     });
   }
 
   getAuthGoogle() {
     return getAPIResponseData<void>(this.instance, {
       method: 'get',
-      url: `/api/auth/google`,
+      url: `/auth/google`,
     });
   }
 
   deleteAuthLogout() {
     return getAPIResponseData<void>(this.instance, {
       method: 'delete',
-      url: `/api/auth/logout`,
+      url: `/auth/logout`,
     });
   }
 
   patchAuthReissue() {
     return getAPIResponseData<void>(this.instance, {
       method: 'patch',
-      url: `/api/auth/reissue`,
+      url: `/auth/reissue`,
     });
   }
 }
