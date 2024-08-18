@@ -1,0 +1,1970 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/member": {
+      "get": {
+        "operationId": "MemberController_getMyInfo",
+        "summary": "회원 정보를 반환하는 메서드",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "현재 사용자의 정보를 반환한다.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "member"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/member/name": {
+      "get": {
+        "operationId": "MemberController_getNameForInterview",
+        "summary": "면접 화면에 표출할 이름을 반환하는 메서드",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "면접 화면에 표출할 이름(회원의 경우 저장된 이름을, 비회원의 경우 '면접자')을 반환한다.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberNicknameResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "T01"
+          },
+          "410": {
+            "description": "T02"
+          }
+        },
+        "tags": [
+          "member"
+        ]
+      }
+    },
+    "/api/auth/login": {
+      "get": {
+        "operationId": "AuthController_oauthByGoogle",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "회원가입을 위한 요청 api, 구글 로그인 페이지로 리다이렉트"
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/api/auth/google": {
+      "get": {
+        "operationId": "AuthController_googleAuthCallback",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "로그인 응답 api, access token을 쿠키에 담아 반환한다.",
+            "headers": {
+              "Set-Cookie": {
+                "description": "Access Token Cookie",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/api/auth/logout": {
+      "delete": {
+        "operationId": "AuthController_logout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "로그아웃 api, 회원의 토큰 정보를 db에서 삭제한다."
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/api/auth/reissue": {
+      "patch": {
+        "operationId": "AuthController_reissue",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "토큰 재발행 api, 새로운 access token을 쿠키에 담아 반환한다.",
+            "headers": {
+              "Set-Cookie": {
+                "description": "Access Token Cookie",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/api/category": {
+      "get": {
+        "operationId": "CategoryController_findCategories",
+        "summary": "전체 카테고리를 조회한다.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "사용중인 카테고리 조회 추가",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "category"
+        ]
+      }
+    },
+    "/api/question": {
+      "post": {
+        "operationId": "QuestionController_createCustomQuestion",
+        "summary": "커스텀 질문 저장",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateQuestionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "커스텀 질문 저장 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "T01"
+          },
+          "403": {
+            "description": "W02"
+          },
+          "404": {
+            "description": "W01"
+          },
+          "410": {
+            "description": "T02"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "question"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/question/copy": {
+      "post": {
+        "operationId": "QuestionController_copyQuestions",
+        "summary": "질문 복제",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CopyQuestionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "질문 복제",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkbookIdResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "T01"
+          },
+          "403": {
+            "description": "W02"
+          },
+          "404": {
+            "description": "W01"
+          },
+          "410": {
+            "description": "T02"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "question"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/question/{workbookId}": {
+      "get": {
+        "operationId": "QuestionController_findWorkbookQuestions",
+        "summary": "카테고리별 질문 리스트 조회",
+        "parameters": [
+          {
+            "name": "workbookId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "QuestionResponse 리스트",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuestionResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "W03"
+          },
+          "401": {
+            "description": "T01"
+          },
+          "410": {
+            "description": "T02"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "question"
+        ]
+      }
+    },
+    "/api/question/index": {
+      "patch": {
+        "operationId": "QuestionController_updateIndex",
+        "summary": "질문들의 인덱스 조정",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateIndexInWorkbookRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "없음"
+          },
+          "400": {
+            "description": "W03"
+          },
+          "401": {
+            "description": "T01"
+          },
+          "403": {
+            "description": "W02"
+          },
+          "404": {
+            "description": "W01"
+          },
+          "410": {
+            "description": "T02"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "question"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/question/{questionId}": {
+      "delete": {
+        "operationId": "QuestionController_deleteQuestionById",
+        "summary": "질문 삭제",
+        "parameters": [
+          {
+            "name": "questionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "질문 삭제"
+          },
+          "401": {
+            "description": "T01"
+          },
+          "403": {
+            "description": "W02"
+          },
+          "404": {
+            "description": "W01, Q01"
+          },
+          "410": {
+            "description": "T02"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "question"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/video": {
+      "post": {
+        "operationId": "VideoController_createVideo",
+        "summary": "비디오 정보를 DB에 저장",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVideoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "비디오 정보 저장 완료"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "video"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/video/pre-signed": {
+      "post": {
+        "operationId": "VideoController_getPreSignedUrl",
+        "summary": "Pre-Signed URL을 발급",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Pre-Signed URL 발급 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreSignedUrlResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "V01, SERVER"
+          }
+        },
+        "tags": [
+          "video"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/video/all": {
+      "get": {
+        "operationId": "VideoController_getAllVideo",
+        "summary": "자신의 모든 비디오 정보를 반환",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "모든 비디오 조회 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SingleVideoResponse"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "video"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/video/hash/{hash}": {
+      "get": {
+        "operationId": "VideoController_getVideoDetailByHash",
+        "summary": "해시값으로 비디오 정보 불러오기",
+        "parameters": [
+          {
+            "name": "hash",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "해시값을 사용하여 비디오 정보 조회 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideoDetailResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "V10"
+          },
+          "403": {
+            "description": "V02"
+          },
+          "404": {
+            "description": "V03, V04, V09, M01"
+          },
+          "500": {
+            "description": "V06"
+          }
+        },
+        "tags": [
+          "video"
+        ]
+      }
+    },
+    "/api/video/relate/{videoId}": {
+      "get": {
+        "operationId": "VideoController_getRelatableVideos",
+        "summary": "연관영상으로 등록할 수 있는 모든 영상을 조회한다.",
+        "parameters": [
+          {
+            "name": "videoId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "연관영상으로 등록할 수 있는 모든 영상 조회 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelatableVideoResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "V02"
+          },
+          "404": {
+            "description": "V03"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "video"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/video/related/{videoId}": {
+      "get": {
+        "operationId": "VideoController_findRelatedVideoById",
+        "summary": "관계된 비디오 정보 조회",
+        "parameters": [
+          {
+            "name": "videoId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "관계된 비디오 조회 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SingleVideoResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "V03"
+          }
+        },
+        "tags": [
+          "video"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/video/public": {
+      "get": {
+        "operationId": "VideoController_findPublicVideos",
+        "summary": "공개된 영상 조회",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "PUBLIC 영상 조회 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MemberVideoResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "video"
+        ]
+      }
+    },
+    "/api/video/{videoId}": {
+      "get": {
+        "operationId": "VideoController_getVideoDetail",
+        "summary": "비디오 상세 정보를 반환",
+        "parameters": [
+          {
+            "name": "videoId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "비디오 상세 정보 조회 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideoDetailResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "V02"
+          },
+          "404": {
+            "description": "V03"
+          },
+          "500": {
+            "description": "V08, SERVER"
+          }
+        },
+        "tags": [
+          "video"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "VideoController_updateVideoInfo",
+        "summary": "비디오 정보 수정(이름/공개여부/관계 영상/썸네일/답변 수정)",
+        "parameters": [
+          {
+            "name": "videoId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVideoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "비디오 수정 완료"
+          },
+          "403": {
+            "description": "V02"
+          },
+          "404": {
+            "description": "V03"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "video"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "VideoController_deleteVideo",
+        "summary": "비디오 삭제",
+        "parameters": [
+          {
+            "name": "videoId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "비디오 삭제 완료"
+          },
+          "403": {
+            "description": "V02"
+          },
+          "404": {
+            "description": "V03"
+          },
+          "500": {
+            "description": "V12, SERVER"
+          }
+        },
+        "tags": [
+          "video"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/video/index": {
+      "patch": {
+        "operationId": "VideoController_updateIndex",
+        "summary": "비디오 순서 변경",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVideoIndexRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "비디오 순서 변경 완료"
+          },
+          "403": {
+            "description": "V02"
+          },
+          "404": {
+            "description": "V03"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "video"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/answer": {
+      "post": {
+        "operationId": "AnswerController_createAnswer",
+        "summary": "질문에 새로운 답변 추가",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAnswerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "답변 생성 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnswerResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "T01"
+          },
+          "404": {
+            "description": "Q01"
+          },
+          "410": {
+            "description": "T02"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "answer"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/answer/default": {
+      "post": {
+        "operationId": "AnswerController_updateDefaultAnswer",
+        "summary": "질문의 대표답변 설정",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DefaultAnswerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "대표답변 설정 완료"
+          },
+          "401": {
+            "description": "T01"
+          },
+          "403": {
+            "description": "Q02"
+          },
+          "404": {
+            "description": "A01"
+          },
+          "410": {
+            "description": "T02"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "answer"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/answer/{questionId}": {
+      "get": {
+        "operationId": "AnswerController_getQuestionAnswers",
+        "summary": "질문의 답변 리스트 반환",
+        "parameters": [
+          {
+            "name": "questionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "답변 리스트 캡슐화해 반환",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AnswerResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Q01"
+          }
+        },
+        "tags": [
+          "answer"
+        ]
+      }
+    },
+    "/api/answer/{answerId}": {
+      "delete": {
+        "operationId": "AnswerController_deleteAnswer",
+        "summary": "답변 삭제",
+        "parameters": [
+          {
+            "name": "answerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "답변 삭제 완료"
+          },
+          "401": {
+            "description": "T01"
+          },
+          "403": {
+            "description": "A02"
+          },
+          "404": {
+            "description": "A01"
+          },
+          "410": {
+            "description": "T02"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "answer"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/workbook": {
+      "post": {
+        "operationId": "WorkbookController_createAnswer",
+        "summary": "새로운 문제집 추가 추가",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWorkbookRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "문제집 생성 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkbookIdResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "T01"
+          },
+          "404": {
+            "description": "C02"
+          },
+          "410": {
+            "description": "T02"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "workbook"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "WorkbookController_findWorkbooks",
+        "summary": "카테고리별(null이면 전체) 문제집 조회",
+        "parameters": [
+          {
+            "name": "category",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "카테고리별(null이면 전체) 문제집 조회",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkbookResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "C02"
+          }
+        },
+        "tags": [
+          "workbook"
+        ]
+      },
+      "patch": {
+        "operationId": "WorkbookController_updateAnswer",
+        "summary": "문제집 수정",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWorkbookRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "문제집 수정 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkbookResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "W02"
+          },
+          "404": {
+            "description": "C02"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "workbook"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    },
+    "/api/workbook/title": {
+      "get": {
+        "operationId": "WorkbookController_findMembersWorkbook",
+        "summary": "회원의(null이면 Top5) 문제집 조회",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "회원의(null이면 Top5) 문제집 조회",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkbookTitleResponse"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "T01"
+          },
+          "410": {
+            "description": "T02"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "workbook"
+        ]
+      }
+    },
+    "/api/workbook/{workbookId}": {
+      "get": {
+        "operationId": "WorkbookController_findSingleWorkbook",
+        "summary": "문제집 단건 조회",
+        "parameters": [
+          {
+            "name": "workbookId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "문제집 단건 조회",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkbookResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "W01"
+          }
+        },
+        "tags": [
+          "workbook"
+        ]
+      },
+      "delete": {
+        "operationId": "WorkbookController_deleteAnswer",
+        "summary": "문제집 삭제",
+        "parameters": [
+          {
+            "name": "workbookId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "문제집 삭제 완료"
+          },
+          "403": {
+            "description": "W02"
+          },
+          "404": {
+            "description": "W01"
+          },
+          "500": {
+            "description": "SERVER"
+          }
+        },
+        "tags": [
+          "workbook"
+        ],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "NDD",
+    "description": "봉준호, BTS, 손흥민, NDD Let's go",
+    "version": "1.0.0",
+    "contact": {
+    }
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "MemberResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1,
+            "description": "회원의 ID"
+          },
+          "email": {
+            "type": "string",
+            "example": "foo@example.com",
+            "description": "회원의 이메일"
+          },
+          "nickname": {
+            "type": "string",
+            "example": "foobar",
+            "description": "회원의 닉네임"
+          },
+          "profileImg": {
+            "type": "string",
+            "example": "https://example.com",
+            "description": "프로필 이미지의 주소"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "nickname",
+          "profileImg"
+        ]
+      },
+      "MemberNicknameResponse": {
+        "type": "object",
+        "properties": {
+          "nickname": {
+            "type": "string",
+            "example": "foobar",
+            "description": "회원의 닉네임"
+          }
+        },
+        "required": [
+          "nickname"
+        ]
+      },
+      "CategoryResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1,
+            "description": "카테고리 ID"
+          },
+          "name": {
+            "type": "string",
+            "example": "BE",
+            "description": "카테고리 이름"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "CreateQuestionRequest": {
+        "type": "object",
+        "properties": {
+          "workbookId": {
+            "type": "number",
+            "example": "1",
+            "description": "문제집 id"
+          },
+          "content": {
+            "type": "string",
+            "example": "이장희는 누구일까요",
+            "description": "질문 내용"
+          }
+        },
+        "required": [
+          "workbookId",
+          "content"
+        ]
+      },
+      "QuestionResponse": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "number",
+            "example": 1,
+            "description": "질문의 ID"
+          },
+          "questionContent": {
+            "type": "string",
+            "example": "이장희는 누구인가요?",
+            "description": "질문 내용"
+          },
+          "answerId": {
+            "type": "number",
+            "example": 1,
+            "description": "대표답변의 ID"
+          },
+          "answerContent": {
+            "type": "string",
+            "example": "존잘 백엔드 캠퍼!",
+            "description": "대표답변 내용"
+          }
+        },
+        "required": [
+          "questionId",
+          "questionContent",
+          "answerId",
+          "answerContent"
+        ]
+      },
+      "CopyQuestionRequest": {
+        "type": "object",
+        "properties": {
+          "workbookId": {
+            "type": "number",
+            "example": "1",
+            "description": "문제집 id"
+          },
+          "questionIds": {
+            "type": "number",
+            "example": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "description": "복사할 질문들의 id"
+          }
+        },
+        "required": [
+          "workbookId",
+          "questionIds"
+        ]
+      },
+      "WorkbookIdResponse": {
+        "type": "object",
+        "properties": {
+          "workbookId": {
+            "type": "number",
+            "example": 1,
+            "description": "답변 ID"
+          }
+        },
+        "required": [
+          "workbookId"
+        ]
+      },
+      "UpdateIndexInWorkbookRequest": {
+        "type": "object",
+        "properties": {
+          "workbookId": {
+            "type": "number",
+            "example": "1",
+            "description": "문제집 id"
+          },
+          "ids": {
+            "example": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "description": "질문의 id",
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "required": [
+          "workbookId",
+          "ids"
+        ]
+      },
+      "CreateVideoRequest": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "number",
+            "example": 1,
+            "description": "문제 ID"
+          },
+          "videoName": {
+            "type": "string",
+            "example": "example.mp4",
+            "description": "비디오 파일 이름"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://u2e0.c18.e2-4.dev/videos/example.mp4",
+            "description": "비디오 URL"
+          },
+          "thumbnail": {
+            "type": "string",
+            "example": "https://thumb-example.com",
+            "description": "비디오 썸네일 URL"
+          },
+          "videoLength": {
+            "type": "string",
+            "example": "03:29",
+            "description": "비디오 길이"
+          },
+          "videoAnswer": {
+            "type": "string",
+            "example": "예시 답변입니다.",
+            "description": "답변 스크립트"
+          }
+        },
+        "required": [
+          "questionId",
+          "videoName",
+          "url",
+          "thumbnail",
+          "videoLength",
+          "videoAnswer"
+        ]
+      },
+      "PreSignedUrlResponse": {
+        "type": "object",
+        "properties": {
+          "video": {
+            "type": "object",
+            "example": {
+              "preSignedUrl": "https://video-example.com",
+              "key": "video-example.mp4"
+            },
+            "description": "비디오 업로드를 위한 Pre-Signed URL과 파일명"
+          },
+          "thumbnail": {
+            "type": "object",
+            "example": {
+              "preSignedUrl": "https://thumbnail-example.com",
+              "key": "thumbnail-example.png"
+            },
+            "description": "썸네일 업로드를 위한 Pre-Signed URL과 파일명"
+          }
+        },
+        "required": [
+          "video",
+          "thumbnail"
+        ]
+      },
+      "SingleVideoResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1,
+            "description": "비디오 ID"
+          },
+          "thumbnail": {
+            "type": "string",
+            "example": "https://thumbnail.com",
+            "description": "비디오 썸네일 이미지"
+          },
+          "videoName": {
+            "type": "string",
+            "example": "test.webm",
+            "description": "비디오 이름"
+          },
+          "videoLength": {
+            "type": "string",
+            "example": "03:29",
+            "description": "비디오 길이"
+          },
+          "visibility": {
+            "type": "string",
+            "example": "PUBLIC / PRIVATE / LINK_ONLY",
+            "description": "비디오 공개 여부"
+          },
+          "createdAt": {
+            "type": "number",
+            "example": "1998.09.05",
+            "description": "영상 생성 일자"
+          }
+        },
+        "required": [
+          "id",
+          "thumbnail",
+          "videoName",
+          "videoLength",
+          "visibility",
+          "createdAt"
+        ]
+      },
+      "VideoDetailResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1,
+            "description": "비디오의 ID"
+          },
+          "memberId": {
+            "type": "number",
+            "example": 1,
+            "description": "회원의 ID"
+          },
+          "nickname": {
+            "type": "string",
+            "example": "foobar",
+            "description": "회원의 닉네임"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://example-video.com",
+            "description": "비디오의 URL"
+          },
+          "videoName": {
+            "type": "string",
+            "example": "example-video.webm",
+            "description": "비디오 파일의 이름"
+          },
+          "hash": {
+            "type": "string",
+            "nullable": true,
+            "example": "65f031b26799cc74755bdd3ef4a304eaec197e402582ef4a834edb58e71261a0",
+            "description": "비디오의 URL 해시값"
+          },
+          "createdAt": {
+            "type": "number",
+            "example": "1998.09.05",
+            "description": "영상 생성 일자"
+          },
+          "visibility": {
+            "type": "string",
+            "example": "PUBLIC",
+            "description": "영상 공개여부"
+          },
+          "thumbnail": {
+            "type": "string",
+            "example": "https://example.com",
+            "description": "비디오 썸네일"
+          },
+          "videoAnswer": {
+            "type": "string",
+            "example": "예시 답변입니다.",
+            "description": "답변 스크립트"
+          }
+        },
+        "required": [
+          "id",
+          "memberId",
+          "nickname",
+          "url",
+          "videoName",
+          "hash",
+          "createdAt",
+          "visibility",
+          "thumbnail",
+          "videoAnswer"
+        ]
+      },
+      "RelatableVideoResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1,
+            "description": "비디오 ID"
+          },
+          "isRelated": {
+            "type": "boolean",
+            "example": true,
+            "description": "이미 연관되어있는지 여부"
+          },
+          "visibility": {
+            "type": "string",
+            "example": "PUBLIC",
+            "description": "공개여부"
+          },
+          "videoName": {
+            "type": "string",
+            "example": "츄 직캠",
+            "description": "영상 이름"
+          },
+          "createdAt": {
+            "type": "number",
+            "example": "1998.09.05",
+            "description": "생성일자"
+          }
+        },
+        "required": [
+          "id",
+          "isRelated",
+          "visibility",
+          "videoName",
+          "createdAt"
+        ]
+      },
+      "MemberVideoResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1,
+            "description": "비디오 ID"
+          },
+          "thumbnail": {
+            "type": "string",
+            "example": "https://jangsarchive.tistory.com",
+            "description": "영상 썸네일"
+          },
+          "videoName": {
+            "type": "string",
+            "example": "RESTful하다는 것은 무엇일까요?",
+            "description": "영상 이름"
+          },
+          "videoLength": {
+            "type": "string",
+            "example": "03:00",
+            "description": "영상 길이"
+          },
+          "createdAt": {
+            "type": "number",
+            "example": "1998.09.05",
+            "description": "영상 생성 일자"
+          },
+          "nickname": {
+            "type": "string",
+            "example": "장아장",
+            "description": "회원 닉네임"
+          },
+          "userThumbnail": {
+            "type": "string",
+            "example": "https://jangsarchive.tistory.com",
+            "description": "회원 프로필"
+          }
+        },
+        "required": [
+          "id",
+          "thumbnail",
+          "videoName",
+          "videoLength",
+          "createdAt",
+          "nickname",
+          "userThumbnail"
+        ]
+      },
+      "UpdateVideoIndexRequest": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "example": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "description": "영상의 id",
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "required": [
+          "ids"
+        ]
+      },
+      "UpdateVideoRequest": {
+        "type": "object",
+        "properties": {
+          "videoName": {
+            "type": "string",
+            "example": "example.mp4",
+            "description": "비디오 파일 이름"
+          },
+          "visibility": {
+            "type": "string",
+            "example": "PRIVATE",
+            "description": "비디오 공개 상태"
+          },
+          "relatedVideoIds": {
+            "example": [
+              1,
+              4,
+              3,
+              2
+            ],
+            "description": "연관 비디오 id배열",
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "thumbnail": {
+            "type": "string",
+            "example": "https://exmaple-thumnail.com",
+            "description": "비디오 썸네일 주소"
+          },
+          "videoAnswer": {
+            "type": "string",
+            "example": "예시 답변입니다.",
+            "description": "답변 스크립트"
+          }
+        },
+        "required": [
+          "videoName",
+          "visibility",
+          "relatedVideoIds",
+          "thumbnail",
+          "videoAnswer"
+        ]
+      },
+      "CreateAnswerRequest": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "number",
+            "example": 1,
+            "description": "문제 ID"
+          },
+          "content": {
+            "type": "string",
+            "example": "이장희는 존잘 백엔드 캠퍼!",
+            "description": "등록할 답변 내용"
+          }
+        },
+        "required": [
+          "questionId",
+          "content"
+        ]
+      },
+      "AnswerResponse": {
+        "type": "object",
+        "properties": {
+          "answerId": {
+            "type": "number",
+            "example": 1,
+            "description": "답변 ID"
+          },
+          "content": {
+            "type": "string",
+            "example": "답변 내용입니다",
+            "description": "답변 내용"
+          },
+          "memberId": {
+            "type": "number",
+            "example": 1,
+            "description": "회원 ID"
+          },
+          "memberName": {
+            "type": "string",
+            "example": "이장희",
+            "description": "회원 이름"
+          },
+          "profileImg": {
+            "type": "string",
+            "example": "https://jangsarchive.tistory.com/",
+            "description": "회원 프로필 이미지 주소"
+          }
+        },
+        "required": [
+          "answerId",
+          "content",
+          "memberId",
+          "memberName",
+          "profileImg"
+        ]
+      },
+      "DefaultAnswerRequest": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "number",
+            "example": 1,
+            "description": "문제 ID"
+          },
+          "answerId": {
+            "type": "number",
+            "example": 1,
+            "description": "답변 ID"
+          }
+        },
+        "required": [
+          "questionId",
+          "answerId"
+        ]
+      },
+      "CreateWorkbookRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "장희문제집",
+            "description": "문제집 이름"
+          },
+          "content": {
+            "type": "string",
+            "example": "나만볼꺼다요 메롱",
+            "description": "문제집에 대한 설명"
+          },
+          "categoryId": {
+            "type": "number",
+            "example": 1,
+            "description": "카테고리 id"
+          },
+          "isPublic": {
+            "type": "boolean",
+            "example": true,
+            "description": "문제집 공개여부"
+          }
+        },
+        "required": [
+          "title",
+          "content",
+          "categoryId",
+          "isPublic"
+        ]
+      },
+      "WorkbookResponse": {
+        "type": "object",
+        "properties": {
+          "workbookId": {
+            "type": "number",
+            "example": 1,
+            "description": "문제집 ID"
+          },
+          "categoryId": {
+            "type": "number",
+            "example": 1,
+            "description": "카테고리 ID"
+          },
+          "nickname": {
+            "type": "string",
+            "example": "이장희",
+            "description": "회원 닉네임"
+          },
+          "profileImg": {
+            "type": "string",
+            "example": "https://jangsarchive.tistory.com",
+            "description": "회원 프로필 사진 주소"
+          },
+          "copyCount": {
+            "type": "number",
+            "example": 1,
+            "description": "문제집 복사 횟수"
+          },
+          "title": {
+            "type": "string",
+            "example": "이장희의 면접 문제집",
+            "description": "문제집 제목"
+          },
+          "content": {
+            "type": "string",
+            "example": "내꺼 건들 ㄴㄴ해",
+            "description": "문제집 설명"
+          },
+          "isPublic": {
+            "type": "boolean",
+            "example": true,
+            "description": "문제집 공개여부"
+          }
+        },
+        "required": [
+          "workbookId",
+          "categoryId",
+          "nickname",
+          "profileImg",
+          "copyCount",
+          "title",
+          "content",
+          "isPublic"
+        ]
+      },
+      "WorkbookTitleResponse": {
+        "type": "object",
+        "properties": {
+          "workbookId": {
+            "type": "number",
+            "example": 1,
+            "description": "문제집 ID"
+          },
+          "title": {
+            "type": "string",
+            "example": "이장희의 면접 문제집",
+            "description": "문제집 제목"
+          }
+        },
+        "required": [
+          "workbookId",
+          "title"
+        ]
+      },
+      "UpdateWorkbookRequest": {
+        "type": "object",
+        "properties": {
+          "workbookId": {
+            "type": "number",
+            "example": 1,
+            "description": "문제집 id"
+          },
+          "title": {
+            "type": "string",
+            "example": "장희문제집",
+            "description": "문제집 이름"
+          },
+          "content": {
+            "type": "string",
+            "example": "나만볼꺼다요 메롱",
+            "description": "문제집에 대한 설명"
+          },
+          "categoryId": {
+            "type": "number",
+            "example": 1,
+            "description": "카테고리 id"
+          },
+          "isPublic": {
+            "type": "boolean",
+            "example": true,
+            "description": "문제집 공개여부"
+          }
+        },
+        "required": [
+          "workbookId",
+          "title",
+          "content",
+          "categoryId",
+          "isPublic"
+        ]
+      }
+    }
+  }
+}
