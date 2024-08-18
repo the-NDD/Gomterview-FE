@@ -1,0 +1,39 @@
+<%
+const camelCase = (str) => str.replace(/([-_][a-zA-z])/g, (group) => group.toUpperCase().replace('-', '').replace('_', ''))
+                .replace(/By([A-Z])/g, (group) => `By${group.slice(2)}`);
+
+const { utils, route, config } = it;
+const { _ } = utils;
+
+const functionName = camelCase(`${route.request.method}_${route.request.path
+                .split('/')
+                .slice(2,)
+                .map((segment) =>
+                        segment.includes('${') ? `By_${segment.replace(/[${}]/g, '')}` : segment
+                )
+                .join('_')}`)
+const responseType = route.responseBodyInfo?.success?.type || 'any';
+const pathParams = _.values(route.request.parameters);
+const hasPathParams = pathParams.length > 0;
+const payload = route.request.payload;
+const query = route.request.query;
+%>
+
+<%= functionName %>(<%=
+[
+    ...(hasPathParams ? pathParams.map(param => `${param.name}: ${param.type}`) : []),
+    ...(query ? [`params: ${query.type}`] : []),
+    ...(payload ? [`data: ${payload.type}`] : [])
+].join(', ')
+%>) {
+return getAPIResponseData<<%= responseType %>, <%= payload ? payload.type: '' %>>(this.instance, {
+method: '<%= route.request.method %>',
+url: `<%= route.request.path.replace(/{/g, '{').replace(/}/g, '}') %>`,
+<% if (query) { %>
+    params,
+<% } %>
+<% if (payload) { %>
+    data,
+<% } %>
+});
+}

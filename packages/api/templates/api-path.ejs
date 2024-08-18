@@ -1,0 +1,19 @@
+<%
+const { utils, routes } = it;
+const { camelCase } = utils;
+%>
+
+export const API = {
+<% for (const [path, methods] of Object.entries(routes)) { %>
+    <% for (const [method, operation] of Object.entries(methods)) {
+        // Generate operation ID using method and path
+        const operationId = camelCase(`${method}${path.split('/').map(segment =>
+                segment.includes('{') ? `By${segment.replace(/[{}]/g, '')}` : segment
+        ).join('')}`);
+        // Handle dynamic path segments (e.g., /video/{id})
+        const pathWithParams = path.replace(/{/g, '${').replace(/}/g, '}');
+    %>
+    <%= operationId %>: <%= path.includes('{') ? `(${path.match(/{\w+}/g)?.map(param => param.replace(/[{}]/g, '')).join(', ')}) =>` : '' %> `/<%= pathWithParams %>`,
+    <% } %>
+<% } %>
+} as const;
