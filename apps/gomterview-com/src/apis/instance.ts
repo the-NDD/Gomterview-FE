@@ -4,7 +4,7 @@ import axios, { AxiosError } from 'axios';
 
 export const BASE_URL = import.meta.env.VITE_APP_BASE_API_URL;
 
-const api = axios.create({
+const instance = axios.create({
   baseURL: BASE_URL,
   timeout: 3000,
 
@@ -17,7 +17,7 @@ const api = axios.create({
 
 let error410Count = 0; // 410 에러 카운터
 
-api.interceptors.response.use(
+instance.interceptors.response.use(
   (response) => {
     error410Count = 0;
     return response;
@@ -29,7 +29,7 @@ api.interceptors.response.use(
         // EDGE: 비정상적인 410 반환 시 10번 이상 재시도 시 그냥
         return Promise.reject(error);
       }
-      await api({
+      await instance({
         method: 'patch',
         url: API.REISSUE(),
       });
@@ -47,4 +47,4 @@ api.interceptors.response.use(
   }
 );
 
-export default api;
+export default instance;
