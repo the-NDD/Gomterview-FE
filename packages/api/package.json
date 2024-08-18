@@ -1,0 +1,22 @@
+{
+  "name": "@gomterview/api",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "author": "ndd <developndd@gmail.com> (https://blog.gomterview.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-NDD/Gomterview-FE.git"
+  },
+  "devDependencies": {
+    "@types/node": "^22.4.0",
+    "swagger-typescript-api": "^13.0.16",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.3"
+  },
+  "packageManager": "yarn@4.1.1"
+}
