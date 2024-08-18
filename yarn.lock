@@ -2071,12 +2071,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@gomterview/api@workspace:packages/api":
+"@gomterview/api@workspace:^, @gomterview/api@workspace:packages/api":
   version: 0.0.0-use.local
   resolution: "@gomterview/api@workspace:packages/api"
   dependencies:
     "@types/node": "npm:^22.4.0"
-    axios: "npm:^1.7.3"
+    axios: "npm:^1.7.4"
     swagger-typescript-api: "npm:^13.0.16"
     typescript: "npm:^5.3.3"
   languageName: unknown
@@ -4245,25 +4245,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.1":
-  version: 1.6.7
-  resolution: "axios@npm:1.6.7"
-  dependencies:
-    follow-redirects: "npm:^1.15.4"
-    form-data: "npm:^4.0.0"
-    proxy-from-env: "npm:^1.1.0"
-  checksum: 10c0/131bf8e62eee48ca4bd84e6101f211961bf6a21a33b95e5dfb3983d5a2fe50d9fffde0b57668d7ce6f65063d3dc10f2212cbcb554f75cfca99da1c73b210358d
-  languageName: node
-  linkType: hard
-
-"axios@npm:^1.7.3":
-  version: 1.7.3
-  resolution: "axios@npm:1.7.3"
+"axios@npm:^1.7.4":
+  version: 1.7.4
+  resolution: "axios@npm:1.7.4"
   dependencies:
     follow-redirects: "npm:^1.15.6"
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10c0/a18cbe559203efa05fb1fec2d1898e23bf6329bd2575784ee32aa11b5bbe1d54b9f472c49a261294125519cf62aa4fe5ef6e647bb7482eafc15bffe15ab314ce
+  checksum: 10c0/5ea1a93140ca1d49db25ef8e1bd8cfc59da6f9220159a944168860ad15a2743ea21c5df2967795acb15cbe81362f5b157fdebbea39d53117ca27658bab9f7f17
   languageName: node
   linkType: hard
 
@@ -5864,16 +5853,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.15.4":
-  version: 1.15.5
-  resolution: "follow-redirects@npm:1.15.5"
-  peerDependenciesMeta:
-    debug:
-      optional: true
-  checksum: 10c0/418d71688ceaf109dfd6f85f747a0c75de30afe43a294caa211def77f02ef19865b547dfb73fde82b751e1cc507c06c754120b848fe5a7400b0a669766df7615
-  languageName: node
-  linkType: hard
-
 "follow-redirects@npm:^1.15.6":
   version: 1.15.6
   resolution: "follow-redirects@npm:1.15.6"
@@ -6196,6 +6175,7 @@ __metadata:
     "@ffmpeg/ffmpeg": "npm:^0.12.10"
     "@ffmpeg/util": "npm:^0.12.1"
     "@gomterview/_theme": "workspace:^"
+    "@gomterview/api": "workspace:^"
     "@gomterview/toast": "workspace:^"
     "@gomterview/use-modal": "workspace:^"
     "@playwright/test": "npm:^1.44.1"
@@ -6206,7 +6186,7 @@ __metadata:
     "@types/react": "npm:^18.2.43"
     "@types/react-dom": "npm:^18.2.17"
     "@vitejs/plugin-react": "npm:^4.2.1"
-    axios: "npm:^1.6.1"
+    axios: "npm:^1.7.4"
     dayjs: "npm:^1.11.10"
     gomterview-design-system: "workspace:^"
     msw: "npm:^2.0.3"
