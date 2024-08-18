@@ -1,6 +1,7 @@
-import { postAnswer } from '@/apis/answer';
 import { QUERY_KEY } from '@constants/queryKey';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { answerApi } from '@/entities/answer/api';
+import { CreateAnswerRequestDto } from '@gomterview/api';
 
 /**
  * POST /answer
@@ -11,7 +12,7 @@ const useQuestionAnswerMutation = (questionId: number) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: postAnswer,
+    mutationFn: (data: CreateAnswerRequestDto) => answerApi.postAnswer(data),
     onSuccess: () => {
       void queryClient.invalidateQueries({
         queryKey: QUERY_KEY.QUESTION_ANSWER(questionId),

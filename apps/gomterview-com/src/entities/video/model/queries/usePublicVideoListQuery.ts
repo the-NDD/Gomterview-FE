@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
-import { getPublicVideoList } from '@/apis/video';
+import { videoApi } from '@/entities/video/api';
 
 /**
  * GET /video/all
@@ -12,7 +12,7 @@ import { getPublicVideoList } from '@/apis/video';
 const usePublicVideoListQuery = () => {
   return useQuery({
     queryKey: QUERY_KEY.VIDEO_PUBLIC,
-    queryFn: () => getPublicVideoList(),
+    queryFn: () => videoApi.getVideoPublic(),
   });
 };
 

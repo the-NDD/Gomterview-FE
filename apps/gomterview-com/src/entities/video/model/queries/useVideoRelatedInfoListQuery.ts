@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
-import { getVideoRelatedInfoList } from '@/apis/video';
 import { isAxiosError } from 'axios';
+import { videoApi } from '@/entities/video/api';
 
 /**
  * GET video/relate/${videoId}
@@ -13,7 +13,7 @@ import { isAxiosError } from 'axios';
 const useRelatedInfoListQuery = (videoId: number) => {
   return useQuery({
     queryKey: QUERY_KEY.VIDEO_ID_RELATED_INFO(videoId),
-    queryFn: () => getVideoRelatedInfoList(videoId),
+    queryFn: () => videoApi.getVideoRelateByVideoId(videoId),
     retry: (_, error) => {
       if (isAxiosError(error)) {
         const statusCode = error.response?.status;

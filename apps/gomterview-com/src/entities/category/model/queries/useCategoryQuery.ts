@@ -1,6 +1,6 @@
-import { getCategory } from '@/apis/category';
 import { QUERY_KEY } from '@constants/queryKey';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { categoryApi } from '@/entities/category/api';
 
 /**
  * GET /category
@@ -12,7 +12,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 const useCategoryQuery = () => {
   return useSuspenseQuery({
     queryKey: QUERY_KEY.CATEGORY,
-    queryFn: getCategory,
+    queryFn: () => categoryApi.getCategory(),
   });
 };
 

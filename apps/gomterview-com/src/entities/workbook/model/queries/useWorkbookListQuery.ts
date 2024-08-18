@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
-import { getWorkbookByCategory } from '@/apis/workbook';
+import { workbookApi } from '@/entities/workbook/api';
 
 /**
  * GET /workbook?category=${categoryId}
@@ -12,7 +12,7 @@ import { getWorkbookByCategory } from '@/apis/workbook';
 const useWorkbookListQuery = (categoryId: string) => {
   return useSuspenseQuery({
     queryKey: QUERY_KEY.WORKBOOK_CATEGORY(categoryId),
-    queryFn: () => getWorkbookByCategory(categoryId),
+    queryFn: () => workbookApi.getWorkbook({ category: Number(categoryId) }),
   });
 };
 

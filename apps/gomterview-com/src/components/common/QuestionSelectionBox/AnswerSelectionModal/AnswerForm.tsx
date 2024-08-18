@@ -1,4 +1,4 @@
-import useQuestionAnswerMutation from '@/entities/question/model/mutations/useQuestionAnswerMutation';
+import useQuestionAnswerMutation from '@/entities/answer/model/mutations/useQuestionAnswerMutation';
 import useInput from '@hooks/useInput';
 import { css } from '@emotion/react';
 import { Box, Button, InputArea, Typography } from 'gomterview-design-system';

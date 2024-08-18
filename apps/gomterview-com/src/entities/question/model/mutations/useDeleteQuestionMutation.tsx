@@ -1,5 +1,5 @@
-import { deleteQuestionById } from '@/apis/question';
 import { useMutation } from '@tanstack/react-query';
+import { questionApi } from '@/entities/question/api';
 
 /**
  * DELETE /question/${questionId}
@@ -8,7 +8,8 @@ import { useMutation } from '@tanstack/react-query';
  */
 const useDeleteQuestionMutation = () => {
   return useMutation({
-    mutationFn: deleteQuestionById,
+    mutationFn: (questionId: number) =>
+      questionApi.deleteQuestionByQuestionId(questionId),
   });
 };
 

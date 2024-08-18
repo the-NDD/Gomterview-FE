@@ -1,7 +1,7 @@
 import { QUERY_KEY } from '@constants/queryKey';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteVideoById } from '@/apis/video';
 import { MyVideoListResDto } from '@/types/video';
+import { videoApi } from '@/entities/video/api';
 
 /**
  * DELETE /video/${videoId}
@@ -11,7 +11,7 @@ import { MyVideoListResDto } from '@/types/video';
 const useDeleteVideoMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: deleteVideoById,
+    mutationFn: (videoId: number) => videoApi.deleteVideoByVideoId(videoId),
     onSuccess: () => {
       void queryClient.invalidateQueries({
         queryKey: QUERY_KEY.VIDEO,

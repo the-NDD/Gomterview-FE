@@ -3,10 +3,10 @@ import {
   UseSuspenseQueryResult,
 } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
-import { getWorkbookById } from '@/apis/workbook';
 import useCategoryQuery from '../../../category/model/queries/useCategoryQuery';
 import { WorkbookEntity } from '@/types/workbook';
 import useUserInfo from '@hooks/useUserInfo';
+import { workbookApi } from '@/entities/workbook/api';
 
 export type WorkbookQueryResult = WorkbookEntity & {
   categoryName: string;
@@ -34,7 +34,7 @@ const useWorkbookQuery = ({
     refetchOnMount: userInfo ? true : false,
     refetchOnWindowFocus: userInfo ? true : false,
     refetchOnReconnect: userInfo ? true : false,
-    queryFn: () => getWorkbookById(workbookId),
+    queryFn: () => workbookApi.getWorkbookByWorkbookId(workbookId),
     select: (data) => {
       const categoryName = findCategoryName(data.categoryId);
       return {

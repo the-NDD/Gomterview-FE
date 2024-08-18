@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteWorkbookById } from '@/apis/workbook';
 import { QUERY_KEY } from '@constants/queryKey';
+import { workbookApi } from '@/entities/workbook/api';
 
 /**
  * DELETE /workbook/${workbookId}
@@ -10,7 +10,8 @@ import { QUERY_KEY } from '@constants/queryKey';
 const useWorkbookDeleteMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: deleteWorkbookById,
+    mutationFn: (workbookId: number) =>
+      workbookApi.deleteWorkbookByWorkbookId(workbookId),
     onSuccess: () => {
       void queryClient.invalidateQueries({
         queryKey: QUERY_KEY.WORKBOOK_TITLE,

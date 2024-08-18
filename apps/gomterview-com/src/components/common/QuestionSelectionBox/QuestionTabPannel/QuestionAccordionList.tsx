@@ -8,7 +8,7 @@ import { WorkbookQueryResult } from '@/entities/workbook/model/queries/useWorkbo
 import useEmptySuspenseEffect from '@hooks/useEmptySuspenseEffect';
 import { useRecoilValue } from 'recoil';
 import { questionSetting } from '@atoms/interviewSetting';
-import useQuestionWorkbookQuery from '@/entities/workbook/model/queries/useQuestionWorkbookQuery';
+import useQuestionWorkbookQuery from '@/entities/question/model/queries/useQuestionWorkbookQuery';
 
 type QuestionAccordionListProps = {
   isEditMode: boolean;

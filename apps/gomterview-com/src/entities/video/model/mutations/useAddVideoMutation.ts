@@ -1,6 +1,7 @@
 import { QUERY_KEY } from '@constants/queryKey';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postVideo } from '@/apis/video';
+import { videoApi } from '@/entities/video/api';
+import { CreateVideoRequestDto } from '@gomterview/api';
 
 /**
  * POST /video
@@ -10,7 +11,7 @@ import { postVideo } from '@/apis/video';
 const useAddVideoMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: postVideo,
+    mutationFn: (data: CreateVideoRequestDto) => videoApi.postVideo(data),
     onSuccess: () => {
       void queryClient.invalidateQueries({
         queryKey: QUERY_KEY.VIDEO,

@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
-import { getVideoById } from '@/apis/video';
 import { isAxiosError } from 'axios';
+import { videoApi } from '@/entities/video/api';
 
 /**
  * GET /video/${videoId}
@@ -13,7 +13,7 @@ import { isAxiosError } from 'axios';
 const useVideoItemQuery = (videoId: number) => {
   return useSuspenseQuery({
     queryKey: QUERY_KEY.VIDEO_ID(videoId),
-    queryFn: () => getVideoById(videoId),
+    queryFn: () => videoApi.getVideoByVideoId(videoId),
     retry: (_, error) => {
       if (isAxiosError(error)) {
         const statusCode = error.response?.status;

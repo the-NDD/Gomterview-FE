@@ -3,9 +3,10 @@ import {
   UseMutationOptions,
   useQueryClient,
 } from '@tanstack/react-query';
-import { patchWorkbookById } from '@/apis/workbook';
 import { WorkbookPatchReqDto, WorkbookPatchResDto } from '@/types/workbook';
 import { QUERY_KEY } from '@constants/queryKey';
+import { workbookApi } from '@/entities/workbook/api';
+import { UpdateWorkbookRequestDto } from '@gomterview/api';
 
 /**
  * PATCH /workbook
@@ -17,7 +18,8 @@ const useWorkbookPatchMutation = (
 ) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: patchWorkbookById,
+    mutationFn: (data: UpdateWorkbookRequestDto) =>
+      workbookApi.patchWorkbook(data),
     ...options,
     onSuccess: ({ workbookId }) => {
       void queryClient.invalidateQueries({

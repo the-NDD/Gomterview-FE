@@ -1,6 +1,7 @@
-import { postDefaultAnswer } from '@/apis/answer';
 import { QUERY_KEY } from '@constants/queryKey';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { answerApi } from '@/entities/answer/api';
+import { DefaultAnswerRequestDto } from '@gomterview/api';
 
 /**
  * POST /answer/default
@@ -11,7 +12,8 @@ const useAnswerDefaultMutation = (categoryId: number) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: postDefaultAnswer,
+    mutationFn: (data: DefaultAnswerRequestDto) =>
+      answerApi.postAnswerDefault(data),
     onSuccess: () => {
       void queryClient.invalidateQueries({
         queryKey: QUERY_KEY.QUESTION_WORKBOOK(categoryId),

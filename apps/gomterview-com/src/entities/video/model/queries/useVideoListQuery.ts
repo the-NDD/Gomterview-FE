@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
-import { getMyVideoList } from '@/apis/video';
+import { videoApi } from '@/entities/video/api';
 
 /**
  * GET /video/all
@@ -12,7 +12,7 @@ import { getMyVideoList } from '@/apis/video';
 const useVideoListQuery = () => {
   return useSuspenseQuery({
     queryKey: QUERY_KEY.VIDEO,
-    queryFn: () => getMyVideoList(),
+    queryFn: () => videoApi.getVideoAll(),
   });
 };
 

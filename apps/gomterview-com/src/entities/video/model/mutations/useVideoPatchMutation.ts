@@ -1,6 +1,7 @@
 import { QUERY_KEY } from '@constants/queryKey';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { patchVideoPublic } from '@/apis/video';
+import { videoApi } from '@/entities/video/api';
+import { UpdateVideoRequestDto } from '@gomterview/api';
 
 /**
  * PATCH /video/${videoId}
@@ -14,26 +15,12 @@ const useVideoPatchMutation = (videoId: number) => {
 
   return useMutation({
     mutationFn: ({
-      videoName,
-      videoAnswer,
-      thumbnail,
-      visibility,
-      relatedVideoIds,
+      videoId,
+      data,
     }: {
-      videoName: string;
-      videoAnswer: string;
-      thumbnail: string;
-      visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE';
-      relatedVideoIds: number[];
-    }) =>
-      patchVideoPublic(
-        videoId,
-        videoName,
-        videoAnswer,
-        thumbnail,
-        visibility,
-        relatedVideoIds
-      ),
+      videoId: number;
+      data: UpdateVideoRequestDto;
+    }) => videoApi.patchVideoByVideoId(videoId, data),
     onSuccess: () => {
       void queryClient.invalidateQueries({
         queryKey: QUERY_KEY.VIDEO_ID(videoId),

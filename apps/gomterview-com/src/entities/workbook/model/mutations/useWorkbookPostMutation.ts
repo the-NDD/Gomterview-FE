@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postWorkbook } from '@/apis/workbook';
 import { QUERY_KEY } from '@constants/queryKey';
+import { WorkbookAddReqDto } from '@/types/workbook';
+import { workbookApi } from '@/entities/workbook/api';
 
 /**
  * POST /workbook
@@ -10,7 +11,7 @@ import { QUERY_KEY } from '@constants/queryKey';
 const useWorkbookPostMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: postWorkbook,
+    mutationFn: (data: WorkbookAddReqDto) => workbookApi.postWorkbook(data),
     onSuccess: () => {
       void queryClient.invalidateQueries({
         queryKey: QUERY_KEY.WORKBOOK_TITLE,

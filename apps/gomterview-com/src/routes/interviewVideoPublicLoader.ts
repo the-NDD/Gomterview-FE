@@ -1,7 +1,7 @@
 import { QUERY_KEY } from '@constants/queryKey';
 import { Params } from 'react-router-dom';
-import { getVideoByHash } from '@/apis/video';
 import { QueryClient } from '@tanstack/react-query';
+import { videoApi } from '@/entities/video/api';
 
 const interviewVideoPublicLoader = async ({
   params,
@@ -13,7 +13,7 @@ const interviewVideoPublicLoader = async ({
   const { videoHash = '' } = params;
   await queryClient.ensureQueryData({
     queryKey: QUERY_KEY.VIDEO_HASH(videoHash),
-    queryFn: () => getVideoByHash(videoHash),
+    queryFn: () => videoApi.getVideoHashByHash(videoHash),
   });
   return null;
 };

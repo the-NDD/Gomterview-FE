@@ -1,7 +1,7 @@
-import { getQuestion } from '@/apis/question';
 import { QUERY_KEY } from '@constants/queryKey';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import useUserInfo from '@hooks/useUserInfo';
+import { questionApi } from '@/entities/question/api';
 
 /**
  * GET /question/${workbookId}
@@ -15,7 +15,7 @@ const useQuestionWorkbookQuery = ({ workbookId }: { workbookId: number }) => {
 
   const query = useSuspenseQuery({
     queryKey: QUERY_KEY.QUESTION_WORKBOOK(workbookId),
-    queryFn: () => getQuestion(workbookId),
+    queryFn: () => questionApi.getQuestionByWorkbookId(workbookId),
     refetchOnMount: !!userInfo,
     refetchOnWindowFocus: !!userInfo,
     refetchOnReconnect: !!userInfo,
