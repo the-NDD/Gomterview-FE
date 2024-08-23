@@ -1,0 +1,115 @@
+<%
+const { utils: { pascalCase }, route, modelTypes } = it;
+
+const { moduleName, routes } = route;
+
+const camelCase = (str) => str.replace(/([-_][a-zA-z])/g, (group) => group.toUpperCase().replace('-', '').replace('_', ''))
+        .replace(/By([A-Z])/g, (group) => `By${group.slice(2)}`);
+
+const getFunctionName = ({ request: { method, path } }) =>
+        `${method}_${path
+                .split('/')
+                .slice(2)
+                .map(segment =>
+                        segment.includes('${')
+                                ? `By_${segment.replace(/[${}]/g, '')}`
+                                : segment
+                )
+                .join('_')}`;
+
+const buildQueryKey = ({ path }) =>
+        path
+                .split('/')
+                .filter(segment => segment && segment !== 'api')
+                .map(segment =>
+                        segment.match(/\${/)
+                                ? segment.replace(/[${}]/g, '').toUpperCase()
+                                : segment.toUpperCase()
+                )
+                .join('_');
+
+const buildPathQueryKey = ({ path }) =>
+        path
+                .split('/')
+                .filter(segment => segment && segment !== 'api')
+                .map(segment =>
+                        segment.match(/\${/)
+                                ? segment.replace(/[${}]/g, '')
+                                : `'${segment}'`
+                );
+
+const getRequestParams = ({ parameters = [], query, payload }) => ({
+    withTypes: [
+        ...parameters.map(({ name, type }) => `${name}: ${type}`),
+        query ? `params: ${query.type}` : '',
+        payload ? `data: ${payload.type}` : '',
+    ].filter(Boolean).join(', '),
+    withoutTypes: [
+        ...parameters.map(({ name }) => `${name}`),
+        query ? `params` : '',
+        payload ? `data` : '',
+    ].filter(Boolean).join(', ')
+});
+
+const config = routes
+        .filter(({ request: { method } }) => method === 'get')
+        .map(route => {
+            const functionName = getFunctionName(route);
+            const { request, response } = route;
+            const queryKeyName = buildQueryKey(request);
+            const pathQueryKey = buildPathQueryKey(request);
+            const { withTypes: requestParams, withoutTypes: requestParamsWithoutTypes } = getRequestParams(request);
+
+            return {
+                moduleName,
+                functionName: camelCase(functionName),
+                hookName: `use${pascalCase(functionName)}Query`,
+                responseDto: response.type === 'void'
+                        ? response.type
+                        : response.type.replace(/[()]/g, '').replace(/([a-zA-Z]+)(?=\[|$)/, '$1Dto'),
+                requestParams,
+                requestParamsWithoutTypes,
+                queryKeyName: `GET_${queryKeyName}`,
+                queryKey: `(${requestParams}) => [${[
+                    ...pathQueryKey,
+                    request.query ? '...params' : null,
+                    request.payload ? '...data' : null,
+                ].filter(Boolean).join(', ')}]`,
+            };
+        });
+
+const allDto = config.map(v=>v.responseDto.replace(/[\[\]]/g, '')).join(',');
+%>
+
+import { DefaultError, useQuery, UseQueryOptions } from '@tanstack/react-query';
+
+import { <%~ allDto %> } from '@gomterview/api';
+import { <%~ moduleName %>Api } from '@/entities/<%~ moduleName %>/api';
+
+
+export const <% ~moduleName %>_QUERY_KEY = {
+<% for (const queryConfig of config) { %>
+    <% ~queryConfig.queryKeyName %>: <% ~queryConfig.queryKey %>,
+<% } %>
+}
+
+const queries = {
+<% for (const queryConfig of config) { %>
+    <% ~queryConfig.functionName %>: (<% ~queryConfig.requestParams %>) => ({
+    queryKey: <% ~moduleName %>_QUERY_KEY.<% ~queryConfig.queryKeyName %>(<% ~queryConfig.requestParamsWithoutTypes %>),
+    queryFn: () => <% ~moduleName %>Api.<% ~queryConfig.functionName %>(<% ~queryConfig.requestParamsWithoutTypes %>)
+    }),
+<% } %>
+}
+
+<% for (const queryConfig of config) { %>
+   export const <%~ queryConfig.hookName %> = <TData = <%~ queryConfig.responseDto %>>(
+    <%~ queryConfig.requestParams ? `${queryConfig.requestParams},`:''%>
+    options?: Omit<UseQueryOptions<<%~ queryConfig.responseDto %>,DefaultError, TData>,'queryKey' | 'queryFn' >) => {
+        return useQuery({
+            ...queries.<% ~queryConfig.functionName %>(<% ~queryConfig.requestParamsWithoutTypes %>),
+            ...options,
+        })
+    }
+
+<% } %>

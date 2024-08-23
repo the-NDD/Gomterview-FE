@@ -8,5 +8,6 @@
     "declarationDir": "./types",
     "baseUrl": "."
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["scripts/generate-api.js"]
 }

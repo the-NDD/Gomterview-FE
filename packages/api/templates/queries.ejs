@@ -1,0 +1,103 @@
+<%
+const {
+    utils: { pascalCase },
+    routes: { combined },
+} = it;
+
+const camelCase = (str) => str.replace(/([-_][a-zA-z])/g, (group) => group.toUpperCase().replace('-', '').replace('_', ''))
+        .replace(/By([A-Z])/g, (group) => `By${group.slice(2)}`);
+
+const getFunctionName = ({ request: { method, path } }) =>
+        `${method}_${path
+                .split('/')
+                .slice(2)
+                .map(segment =>
+                        segment.includes('${')
+                                ? `By_${segment.replace(/[${}]/g, '')}`
+                                : segment
+                )
+                .join('_')}`;
+
+const buildQueryKey = ({ path }) =>
+        path
+                .split('/')
+                .filter(segment => segment && segment !== 'api')
+                .map(segment =>
+                        segment.match(/\${/)
+                                ? segment.replace(/[${}]/g, '').toUpperCase()
+                                : segment.toUpperCase()
+                )
+                .join('_');
+
+const buildPathQueryKey = ({ path }) =>
+        path
+                .split('/')
+                .filter(segment => segment && segment !== 'api')
+                .map(segment =>
+                        segment.match(/\${/)
+                                ? segment.replace(/[${}]/g, '')
+                                : `'${segment}'`
+                );
+
+const getRequestParams = ({ parameters = [], query, payload }) => ({
+    withTypes: [
+        ...parameters.map(({ name, type }) => `${name}: ${type}`),
+        query ? `params: ${query.type}` : '',
+        payload ? `data: ${payload.type}` : '',
+    ].filter(Boolean).join(', '),
+    withoutTypes: [
+        ...parameters.map(({ name }) => `${name}`),
+        query ? `params` : '',
+        payload ? `data` : '',
+    ].filter(Boolean).join(', ')
+});
+
+const moduleConfigMap = combined.reduce((combinedContent, { moduleName, routes }) => {
+    const content = routes
+            .filter(({ request: { method } }) => method === 'get')
+            .map(route => {
+                const functionName = getFunctionName(route);
+                const { request, response } = route;
+                const queryKeyName = buildQueryKey(request);
+                const pathQueryKey = buildPathQueryKey(request);
+                const { withTypes: requestParams, withoutTypes: requestParamsWithoutTypes } = getRequestParams(request);
+
+                return {
+                    moduleName,
+                    functionName: camelCase(functionName),
+                    hookName: `use${pascalCase(functionName)}Query`,
+                    responseDto: response.type.replace(/[$()]/g, ''),
+                    requestParams,
+                    requestParamsWithoutTypes,
+                    queryKeyName: `GET_${queryKeyName}`,
+                    queryKey: `(${requestParams}) => [${[
+                        ...pathQueryKey,
+                        request.query ? '...params' : null,
+                        request.payload ? '...data' : null,
+                    ].filter(Boolean).join(', ')}]`,
+                };
+            });
+
+    combinedContent.set(moduleName, content);
+    return combinedContent;
+}, new Map());
+
+console.log(moduleConfigMap)
+%>
+
+
+<% for (const {moduleName} of combined) { %>
+export const <%~ moduleName %>_QUERY_KEY = {
+    <% for (const queryConfig of moduleConfigMap.get(moduleName)) {%>
+        <%~ queryConfig.queryKeyName %>: <%~ queryConfig.queryKey %>,
+    <% } %>
+}
+const queries = {
+    <% for (const queryConfig of moduleConfigMap.get(moduleName)) {%>
+        <%~ queryConfig.functionName %>: (<%~ queryConfig.requestParams %>) => ({
+            queryKey: <%~ moduleName %>_QUERY_KEY.<%~ queryConfig.queryKeyName %>(<%~ queryConfig.requestParamsWithoutTypes %>),
+            queryFn: () => <%~ moduleName %>Api.<%~ queryConfig.functionName %>(<%~ queryConfig.requestParamsWithoutTypes %>)
+        }),
+    <% } %>
+}
+<% } %>
