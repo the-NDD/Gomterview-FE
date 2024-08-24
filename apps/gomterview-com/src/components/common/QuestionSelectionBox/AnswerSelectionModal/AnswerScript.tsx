@@ -1,10 +1,10 @@
 import { theme } from '@gomterview/_theme';
-import { AnswerEntity } from '@/types/answer';
 import { css } from '@emotion/react';
 import { Avatar, Box, Typography } from 'gomterview-design-system';
+import { AnswerResponseDto } from '@gomterview/api';
 
 type AnswerScriptProps = {
-  answer: AnswerEntity;
+  answer: AnswerResponseDto;
   onClick: () => void;
 };
 
@@ -27,7 +27,7 @@ const AnswerScript: React.FC<AnswerScriptProps> = ({ answer, onClick }) => {
           border-radius: 1rem 1rem 0 0;
         `}
       >
-        <Avatar width="1.5rem" height="1.5rem" src={answer.memberImage} />
+        <Avatar width="1.5rem" height="1.5rem" src={answer.profileImg} />
         <Typography>{answer.memberName}</Typography>
       </div>
       <Typography

@@ -1,8 +1,8 @@
-import useQuestionAnswerMutation from '@/entities/answer/model/mutations/useQuestionAnswerMutation';
 import useInput from '@hooks/useInput';
 import { css } from '@emotion/react';
 import { Box, Button, InputArea, Typography } from 'gomterview-design-system';
 import { toast } from '@gomterview/toast';
+import { usePostAnswerMutation } from '@/entities/answer/api/mutations';
 
 type AnswerFormProps = {
   questionId: number;
@@ -16,7 +16,7 @@ const AnswerForm: React.FC<AnswerFormProps> = ({ questionId, question }) => {
     isEmpty: isCustomAnswerEmpty,
     clearInput: clearCustomAnswer,
   } = useInput<HTMLTextAreaElement>('');
-  const { mutate } = useQuestionAnswerMutation(questionId);
+  const { mutate } = usePostAnswerMutation();
 
   const handleCustomAnswerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,8 +24,10 @@ const AnswerForm: React.FC<AnswerFormProps> = ({ questionId, question }) => {
 
     mutate(
       {
-        questionId,
-        content: customAnswer,
+        body: {
+          questionId,
+          content: customAnswer,
+        },
       },
       {
         onSuccess: () => {

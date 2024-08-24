@@ -1,12 +1,12 @@
 import { css } from '@emotion/react';
 import { theme } from '@gomterview/_theme';
-import useQuestionAnswerQuery from '@/entities/answer/model/queries/useQuestionAnswerQuery';
 import AnswerScript from './AnswerScript';
 import AnswerForm from './AnswerForm';
-import useAnswerDefaultMutation from '@/entities/answer/model/mutations/useAnswerDefaultMutation';
 import { Question } from '@/types/question';
 import { Modal, Typography } from 'gomterview-design-system';
 import { toast } from '@gomterview/toast';
+import { useGetAnswerByQuestionIdQuery } from '@/entities/answer/api/queries';
+import useAnswerDefaultMutation from '@/entities/answer/model/mutations/useAnswerDefaultMutation';
 
 type AnswerSelectionModalProps = {
   workbookId: number;
@@ -19,7 +19,7 @@ const AnswerSelectionModal: React.FC<AnswerSelectionModalProps> = ({
   closeModal,
   question,
 }) => {
-  const { data } = useQuestionAnswerQuery(question.questionId);
+  const { data } = useGetAnswerByQuestionIdQuery(question.questionId);
 
   const { mutate: selectAnswerMutate } = useAnswerDefaultMutation(workbookId);
 
@@ -70,8 +70,10 @@ const AnswerSelectionModal: React.FC<AnswerSelectionModalProps> = ({
                 onClick={() =>
                   selectAnswerMutate(
                     {
-                      questionId: question.questionId,
-                      answerId: answer.answerId,
+                      body: {
+                        questionId: question.questionId,
+                        answerId: answer.answerId,
+                      },
                     },
                     {
                       onSuccess: () => {
