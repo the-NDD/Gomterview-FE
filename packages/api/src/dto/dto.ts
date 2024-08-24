@@ -146,16 +146,32 @@ export interface CreateVideoRequestDto {
 }
 
 export interface PreSignedUrlResponseDto {
-  /**
-   * 비디오 업로드를 위한 Pre-Signed URL과 파일명
-   * @example {"preSignedUrl":"https://video-example.com","key":"video-example.mp4"}
-   */
-  video: object;
-  /**
-   * 썸네일 업로드를 위한 Pre-Signed URL과 파일명
-   * @example {"preSignedUrl":"https://thumbnail-example.com","key":"thumbnail-example.png"}
-   */
-  thumbnail: object;
+  /** 비디오 업로드를 위한 Pre-Signed URL과 파일명 */
+  video: {
+    /**
+     * 비디오 업로드를 위한 Pre-Signed URL
+     * @example "https://video-example.com"
+     */
+    preSignedUrl: string;
+    /**
+     * video 파일명
+     * @example "video-example.mp4"
+     */
+    key: string;
+  };
+  /** 썸네일 업로드를 위한 Pre-Signed URL과 파일명 */
+  thumbnail: {
+    /**
+     * 썸네일 업로드를 위한 Pre-Signed URL
+     * @example "https://thumbnail-example.com"
+     */
+    preSignedUrl: string;
+    /**
+     * 썸네일 파일명
+     * @example "thumbnail-example.png"
+     */
+    key: string;
+  };
 }
 
 export interface SingleVideoResponseDto {

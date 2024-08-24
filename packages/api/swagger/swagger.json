@@ -1464,18 +1464,36 @@
         "properties": {
           "video": {
             "type": "object",
-            "example": {
-              "preSignedUrl": "https://video-example.com",
-              "key": "video-example.mp4"
+            "properties": {
+              "preSignedUrl": {
+                "type": "string",
+                "example": "https://video-example.com",
+                "description": "비디오 업로드를 위한 Pre-Signed URL"
+              },
+              "key": {
+                "type": "string",
+                "example": "video-example.mp4",
+                "description": "video 파일명"
+              }
             },
+            "required": ["preSignedUrl", "key"],
             "description": "비디오 업로드를 위한 Pre-Signed URL과 파일명"
           },
           "thumbnail": {
             "type": "object",
-            "example": {
-              "preSignedUrl": "https://thumbnail-example.com",
-              "key": "thumbnail-example.png"
+            "properties": {
+              "preSignedUrl": {
+                "type": "string",
+                "example": "https://thumbnail-example.com",
+                "description": "썸네일 업로드를 위한 Pre-Signed URL"
+              },
+              "key": {
+                "type": "string",
+                "example": "thumbnail-example.png",
+                "description": "썸네일 파일명"
+              }
             },
+            "required": ["preSignedUrl", "key"],
             "description": "썸네일 업로드를 위한 Pre-Signed URL과 파일명"
           }
         },
