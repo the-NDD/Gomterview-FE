@@ -8,6 +8,9 @@ export class AuthApi {
     this.instance = instance;
   }
 
+  /**
+   * @tags auth
+   * @request GET:/api/auth/login*/
   getAuthLogin() {
     return getAPIResponseData<void>(this.instance, {
       method: 'get',
@@ -15,6 +18,9 @@ export class AuthApi {
     });
   }
 
+  /**
+   * @tags auth
+   * @request GET:/api/auth/google*/
   getAuthGoogle() {
     return getAPIResponseData<void>(this.instance, {
       method: 'get',
@@ -22,6 +28,9 @@ export class AuthApi {
     });
   }
 
+  /**
+   * @tags auth
+   * @request DELETE:/api/auth/logout*/
   deleteAuthLogout() {
     return getAPIResponseData<void>(this.instance, {
       method: 'delete',
@@ -29,6 +38,9 @@ export class AuthApi {
     });
   }
 
+  /**
+   * @tags auth
+   * @request PATCH:/api/auth/reissue*/
   patchAuthReissue() {
     return getAPIResponseData<void>(this.instance, {
       method: 'patch',

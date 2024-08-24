@@ -15,6 +15,11 @@ export class QuestionApi {
     this.instance = instance;
   }
 
+  /**
+   * @tags question
+   * @summary 커스텀 질문 저장
+   * @request POST:/api/question
+   * @secure*/
   postQuestion(data: CreateQuestionRequestDto) {
     return getAPIResponseData<QuestionResponseDto, CreateQuestionRequestDto>(
       this.instance,
@@ -26,6 +31,11 @@ export class QuestionApi {
     );
   }
 
+  /**
+   * @tags question
+   * @summary 질문 복제
+   * @request POST:/api/question/copy
+   * @secure*/
   postQuestionCopy(data: CopyQuestionRequestDto) {
     return getAPIResponseData<WorkbookIdResponseDto, CopyQuestionRequestDto>(
       this.instance,
@@ -37,6 +47,10 @@ export class QuestionApi {
     );
   }
 
+  /**
+   * @tags question
+   * @summary 카테고리별 질문 리스트 조회
+   * @request GET:/api/question/{workbookId}*/
   getQuestionByWorkbookId(workbookId: number) {
     return getAPIResponseData<QuestionResponseDto[]>(this.instance, {
       method: 'get',
@@ -44,6 +58,11 @@ export class QuestionApi {
     });
   }
 
+  /**
+   * @tags question
+   * @summary 질문들의 인덱스 조정
+   * @request PATCH:/api/question/index
+   * @secure*/
   patchQuestionIndex(data: UpdateIndexInWorkbookRequestDto) {
     return getAPIResponseData<void, UpdateIndexInWorkbookRequestDto>(
       this.instance,
@@ -55,6 +74,11 @@ export class QuestionApi {
     );
   }
 
+  /**
+   * @tags question
+   * @summary 질문 삭제
+   * @request DELETE:/api/question/{questionId}
+   * @secure*/
   deleteQuestionByQuestionId(questionId: number) {
     return getAPIResponseData<void>(this.instance, {
       method: 'delete',

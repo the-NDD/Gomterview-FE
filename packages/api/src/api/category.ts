@@ -9,6 +9,10 @@ export class CategoryApi {
     this.instance = instance;
   }
 
+  /**
+   * @tags category
+   * @summary 전체 카테고리를 조회한다.
+   * @request GET:/api/category*/
   getCategory() {
     return getAPIResponseData<CategoryResponseDto[]>(this.instance, {
       method: 'get',

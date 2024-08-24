@@ -9,6 +9,11 @@ export class MemberApi {
     this.instance = instance;
   }
 
+  /**
+   * @tags member
+   * @summary 회원 정보를 반환하는 메서드
+   * @request GET:/api/member
+   * @secure*/
   getMember() {
     return getAPIResponseData<MemberResponseDto>(this.instance, {
       method: 'get',
@@ -16,6 +21,10 @@ export class MemberApi {
     });
   }
 
+  /**
+   * @tags member
+   * @summary 면접 화면에 표출할 이름을 반환하는 메서드
+   * @request GET:/api/member/name*/
   getMemberName() {
     return getAPIResponseData<MemberNicknameResponseDto>(this.instance, {
       method: 'get',

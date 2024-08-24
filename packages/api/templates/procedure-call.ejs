@@ -4,6 +4,7 @@ const camelCase = (str) => str.replace(/([-_][a-zA-z])/g, (group) => group.toUpp
 
 const { utils, route, config } = it;
 const { _ } = utils;
+const routeDocs = includeFile("./route-docs", { config, route, utils });
 
 const functionName = camelCase(`${route.request.method}_${route.request.path
                 .split('/')
@@ -19,6 +20,9 @@ const payload = route.request.payload;
 const query = route.request.query;
 %>
 
+/**
+<%~ routeDocs.lines %>
+*/
 <%= functionName %>(<%=
 [
     ...(hasPathParams ? pathParams.map(param => `${param.name}: ${param.type}`) : []),
