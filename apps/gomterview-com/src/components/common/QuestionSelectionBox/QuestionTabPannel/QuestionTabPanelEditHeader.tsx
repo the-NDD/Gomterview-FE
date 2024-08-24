@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import { Button, Icon, Input, InputArea } from 'gomterview-design-system';
-import useCategoryQuery from '@/entities/category/model/queries/useCategoryQuery';
 import { WorkbookQueryResult } from '@/entities/workbook/model/queries/useWorkbookQuery';
 import useInput from '@hooks/useInput';
 import { useState } from 'react';
@@ -9,6 +8,7 @@ import useWorkbookEdit from '@hooks/useWorkbookEdit';
 import QuestionDropdown from './QuestionDropdown';
 import useDebounce from '@hooks/useDebounce';
 import { toast } from '@gomterview/toast';
+import { useGetCategoryQuery } from '@/entities/category/api/queries';
 
 type QuestionTabPanelEditHeaderProps = {
   workbookInfo: WorkbookQueryResult;
@@ -45,7 +45,7 @@ const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
     name: workbookInfo.categoryName,
   });
 
-  const { data: categoryData } = useCategoryQuery();
+  const { data: categoryData } = useGetCategoryQuery();
 
   const { value: title, onChange: handleTitleChange } =
     useInput<HTMLInputElement>(workbookInfo.title);
