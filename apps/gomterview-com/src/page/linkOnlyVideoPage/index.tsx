@@ -7,18 +7,20 @@ import {
   LinkOnlyVideoPageLayout,
   LinkOnlyVideoPlayer,
 } from '@components/linkOnlyVideoPage';
-import useOnlyRelatedVideoQuery from '@/entities/video/model/queries/useOnlyRelatedVideoListQuery';
 import { Box, Typography } from 'gomterview-design-system';
 import { css } from '@emotion/react';
 import { theme } from '@gomterview/_theme';
 import { VideoList } from '@common/index';
+import { useGetVideoRelatedByVideoIdQuery } from '@/entities/video/api/queries';
 
 const LinkOnlyVideoPage: React.FC = () => {
   const { videoHash = '' } = useParams();
   const data = useQueryClient().getQueryData<VideoItemResDto>(
     QUERY_KEY.VIDEO_HASH(videoHash)
   );
-  const { data: relatedVideoItem } = useOnlyRelatedVideoQuery(Number(data?.id));
+  const { data: relatedVideoItem } = useGetVideoRelatedByVideoIdQuery(
+    Number(data?.id)
+  );
 
   if (!data) return <Navigate to={PATH.NOT_FOUND} />;
 

@@ -9,15 +9,17 @@ import { CenterLayout } from '@components/layout';
 import { PATH } from '@constants/path';
 import { ErrorBoundary } from 'react-error-boundary';
 import { isAxiosError } from 'axios';
-import useOnlyRelatedVideoQuery from '@/entities/video/model/queries/useOnlyRelatedVideoListQuery';
 import { Box, Typography } from 'gomterview-design-system';
 import { css } from '@emotion/react';
 import { theme } from '@gomterview/_theme';
+import { useGetVideoRelatedByVideoIdQuery } from '@/entities/video/api/queries';
 
 const InterviewVideoPage: React.FC = () => {
   const { videoId } = useParams();
   const [errorInfo, setErrorInfo] = useState<Partial<Response>>();
-  const { data: relatedVideoItem } = useOnlyRelatedVideoQuery(Number(videoId));
+  const { data: relatedVideoItem } = useGetVideoRelatedByVideoIdQuery(
+    Number(videoId)
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);

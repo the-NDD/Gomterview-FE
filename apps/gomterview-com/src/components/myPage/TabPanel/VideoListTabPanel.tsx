@@ -1,7 +1,6 @@
 import { PATH } from '@constants/path';
 import { css } from '@emotion/react';
 import { Box } from 'gomterview-design-system';
-import useDeleteVideoMutation from '@/entities/video/model/mutations/useDeleteVideoMutation';
 import { theme } from '@gomterview/_theme';
 import DeleteCheckModal from '../DeleteCheckModal';
 import Thumbnail from '@common/Thumbnail/Thumbnail';
@@ -9,13 +8,14 @@ import { VideoItem } from '@common/VideoItem';
 import { useModal } from '@gomterview/use-modal';
 import { useSuspenseGetVideoAllQuery } from '@/entities/video/api/queries';
 import { SingleVideoResponseDto } from '@gomterview/api';
+import { useDeleteVideoByVideoIdMutation } from '@/entities/video/api/mutations';
 
 type VideoListItemProps = {
   video: SingleVideoResponseDto;
 };
 
 const MyVideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
-  const { mutate } = useDeleteVideoMutation();
+  const { mutate } = useDeleteVideoByVideoIdMutation();
   const { openModal: openDeleteCheckModal, closeModal: closeDeleteCheckModal } =
     useModal(() => {
       return (
@@ -29,7 +29,7 @@ const MyVideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
 
   const handleConfirmModal = () => {
     closeDeleteCheckModal();
-    mutate(video.id);
+    mutate({ videoId: video.id });
   };
 
   return (
