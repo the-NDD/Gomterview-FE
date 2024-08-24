@@ -6,8 +6,8 @@ import {
   UseSuspenseQueryOptions,
 } from '@tanstack/react-query';
 
-import { answerApi } from '@/entities/answer/api';
 import { AnswerResponseDto } from '@gomterview/api';
+import { answerApi } from '../api';
 
 export const ANSWER_QUERY_KEY = {
   GET_ANSWER_QUESTIONID: (questionId: number) => ['answer', questionId],

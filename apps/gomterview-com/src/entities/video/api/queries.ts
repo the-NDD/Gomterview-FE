@@ -6,13 +6,13 @@ import {
   UseSuspenseQueryOptions,
 } from '@tanstack/react-query';
 
-import { videoApi } from '@/entities/video/api';
 import {
   MemberVideoResponseDto,
   RelatableVideoResponseDto,
   SingleVideoResponseDto,
   VideoDetailResponseDto,
 } from '@gomterview/api';
+import { videoApi } from '../api';
 
 export const VIDEO_QUERY_KEY = {
   GET_VIDEO_ALL: () => ['video', 'all'],

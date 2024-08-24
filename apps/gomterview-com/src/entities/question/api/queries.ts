@@ -6,8 +6,8 @@ import {
   UseSuspenseQueryOptions,
 } from '@tanstack/react-query';
 
-import { questionApi } from '@/entities/question/api/index';
 import { QuestionResponseDto } from '@gomterview/api';
+import { questionApi } from '../api';
 
 export const QUESTION_QUERY_KEY = {
   GET_QUESTION_WORKBOOKID: (workbookId: number) => ['question', workbookId],
@@ -25,7 +25,7 @@ const queries = {
  * @tags question
  * @summary 카테고리별 질문 리스트 조회
  * @request GET:/api/question/{workbookId}*/
-export const useGetQuestionByWorkbookIdQuery = <TData = QuestionResponseDto[]>(
+export const useGetQuestionByWorkbookIdQuery = <TData = QuestionResponseDto[],>(
   workbookId: number,
   options?: Omit<
     UseQueryOptions<QuestionResponseDto[], DefaultError, TData>,

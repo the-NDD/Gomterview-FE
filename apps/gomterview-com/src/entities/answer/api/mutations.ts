@@ -1,4 +1,3 @@
-import { answerApi } from '@/entities/answer/api';
 import {
   AnswerResponseDto,
   CreateAnswerRequestDto,
@@ -9,6 +8,7 @@ import {
   useMutation,
   UseMutationOptions,
 } from '@tanstack/react-query';
+import { answerApi } from '../api';
 
 const mutations = {
   postAnswer: () => ({

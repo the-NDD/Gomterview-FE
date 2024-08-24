@@ -6,8 +6,8 @@ import {
   UseSuspenseQueryOptions,
 } from '@tanstack/react-query';
 
-import { categoryApi } from '@/entities/category/api';
 import { CategoryResponseDto } from '@gomterview/api';
+import { categoryApi } from '../api';
 
 export const CATEGORY_QUERY_KEY = {
   GET_CATEGORY: () => ['category'],

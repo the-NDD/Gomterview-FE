@@ -6,8 +6,8 @@ import {
   UseSuspenseQueryOptions,
 } from '@tanstack/react-query';
 
-import { workbookApi } from '@/entities/workbook/api';
 import { WorkbookResponseDto, WorkbookTitleResponseDto } from '@gomterview/api';
+import { workbookApi } from '../api';
 
 export const WORKBOOK_QUERY_KEY = {
   GET_WORKBOOK: (params: { category: number }) => ['workbook', params],

@@ -1,4 +1,3 @@
-import { workbookApi } from '@/entities/workbook/api';
 import {
   CreateWorkbookRequestDto,
   UpdateWorkbookRequestDto,
@@ -10,6 +9,7 @@ import {
   useMutation,
   UseMutationOptions,
 } from '@tanstack/react-query';
+import { workbookApi } from '../api';
 
 const mutations = {
   postWorkbook: () => ({

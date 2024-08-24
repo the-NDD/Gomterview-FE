@@ -6,7 +6,7 @@ import {
   UseSuspenseQueryOptions,
 } from '@tanstack/react-query';
 
-import { authApi } from '@/entities/auth/api';
+import { authApi } from '../api';
 
 export const AUTH_QUERY_KEY = {
   GET_AUTH_LOGIN: () => ['auth', 'login'],

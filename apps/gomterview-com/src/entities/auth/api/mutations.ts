@@ -1,9 +1,9 @@
-import { authApi } from '@/entities/auth/api';
 import {
   DefaultError,
   useMutation,
   UseMutationOptions,
 } from '@tanstack/react-query';
+import { authApi } from '../api';
 
 const mutations = {
   deleteAuthLogout: () => ({

@@ -6,8 +6,8 @@ import {
   UseSuspenseQueryOptions,
 } from '@tanstack/react-query';
 
-import { memberApi } from '@/entities/member/api';
 import { MemberNicknameResponseDto, MemberResponseDto } from '@gomterview/api';
+import { memberApi } from '../api';
 
 export const MEMBER_QUERY_KEY = {
   GET_MEMBER: () => ['member'],

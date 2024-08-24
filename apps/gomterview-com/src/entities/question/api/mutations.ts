@@ -1,4 +1,3 @@
-import { questionApi } from '@/entities/question/api/index';
 import {
   CopyQuestionRequestDto,
   CreateQuestionRequestDto,
@@ -11,6 +10,7 @@ import {
   useMutation,
   UseMutationOptions,
 } from '@tanstack/react-query';
+import { questionApi } from '../api';
 
 const mutations = {
   postQuestion: () => ({

@@ -1,4 +1,3 @@
-import { videoApi } from '@/entities/video/api';
 import {
   CreateVideoRequestDto,
   PreSignedUrlResponseDto,
@@ -10,6 +9,7 @@ import {
   useMutation,
   UseMutationOptions,
 } from '@tanstack/react-query';
+import { videoApi } from '../api';
 
 const mutations = {
   postVideo: () => ({
