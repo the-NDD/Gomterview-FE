@@ -70,6 +70,7 @@ const queryConfigs = routes
                 route,
                 functionName: camelCase(functionName),
                 hookName: `use${pascalCase(functionName)}Query`,
+                suspenseHookName: `useSuspense${pascalCase(functionName)}Query`,
                 responseDto: addDtoSuffix(response.type),
                 requestParams,
                 requestParamsWithoutTypes,
@@ -85,7 +86,7 @@ const queryConfigs = routes
 const allDto = queryConfigs.map(v=>v.responseDto.replace(/[\[\]]/g, '')).join(',');
 %>
 
-import { DefaultError, useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { DefaultError, useQuery, useSuspenseQuery, UseQueryOptions, UseSuspenseQueryOptions } from '@tanstack/react-query';
 
 import { <%~ allDto %> } from '@gomterview/api';
 import { <%~ moduleName %>Api } from '@/entities/<%~ moduleName %>/api';
@@ -106,19 +107,36 @@ const queries = {
 <% } %>
 }
 
+// ---------------------- Query ------------------------------
 <% for (const queryConfig of queryConfigs) {
     const routeDocs = includeFile("../route-docs.ejs", { config, route: queryConfig.route, utils });
 %>
 /**
 <%~ routeDocs.lines %>
 */
-   export const <%~ queryConfig.hookName %> = <TData = <%~ queryConfig.responseDto %>>(
-    <%~ queryConfig.requestParams ? `${queryConfig.requestParams},`:''%>
-    options?: Omit<UseQueryOptions<<%~ queryConfig.responseDto %>,DefaultError, TData>,'queryKey' | 'queryFn' >) => {
-        return useQuery({
-            ...queries.<% ~queryConfig.functionName %>(<% ~queryConfig.requestParamsWithoutTypes %>),
-            ...options,
-        })
-    }
+export const <%~ queryConfig.hookName %> = <TData = <%~ queryConfig.responseDto %>>(
+<%~ queryConfig.requestParams ? `${queryConfig.requestParams},`:''%>
+options?: Omit<UseQueryOptions<<%~ queryConfig.responseDto %>,DefaultError, TData>,'queryKey' | 'queryFn' >) => {
+return useQuery({
+...queries.<% ~queryConfig.functionName %>(<% ~queryConfig.requestParamsWithoutTypes %>),
+...options,
+})
+}
+<% } %>
 
+// ------------------ Suspense Query --------------------------
+<% for (const queryConfig of queryConfigs) {
+    const routeDocs = includeFile("../route-docs.ejs", { config, route: queryConfig.route, utils });
+%>
+/**
+<%~ routeDocs.lines %>
+*/
+export const <%~ queryConfig.suspenseHookName %> = <TData = <%~ queryConfig.responseDto %>>(
+<%~ queryConfig.requestParams ? `${queryConfig.requestParams},`:''%>
+options?: Omit<UseSuspenseQueryOptions<<%~ queryConfig.responseDto %>,DefaultError, TData>,'queryKey' | 'queryFn' >) => {
+return useSuspenseQuery({
+...queries.<% ~queryConfig.functionName %>(<% ~queryConfig.requestParamsWithoutTypes %>),
+...options,
+})
+}
 <% } %>
