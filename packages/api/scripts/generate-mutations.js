@@ -13,8 +13,6 @@ if (!userInputPath) {
   process.exit(1);
 }
 
-const packageRoot = path.resolve(__dirname, userInputPath);
-
 generateApi({
   input: path.resolve(__dirname, '../swagger/swagger.json'),
   templates: path.resolve(__dirname, '../templates/mutations'),
@@ -38,14 +36,16 @@ generateApi({
       if (fileName === 'http-client' || fileName === 'data-contracts') return;
 
       const directoryPath = path.resolve(
-        packageRoot,
-        `src/entities/${fileName.toLowerCase()}/model`
+        userInputPath,
+        `src/entities/${fileName.toLowerCase()}/api`
       );
       const fileOutputPath = path.join(directoryPath, 'mutations.ts');
 
       fs.mkdir(directoryPath, { recursive: true }, (err) => {
         if (err) {
-          console.error(`☠️   Failed to create directory ${directoryPath}: ${err}`);
+          console.error(
+            `☠️   Failed to create directory ${directoryPath}: ${err}`
+          );
           return;
         }
 
@@ -53,7 +53,7 @@ generateApi({
           console.log(
             err
               ? `☠️   Failed to write file ${fileName.toLowerCase()}.ts: ${err}`
-              : `✅   Successfully wrote file ${fileName.toLowerCase()}.ts`,
+              : `✅   Successfully wrote file ${fileName.toLowerCase()}.ts`
           );
         });
       });

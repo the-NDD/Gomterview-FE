@@ -65,7 +65,7 @@ UseMutationOptions,
 useQueryClient,
 } from '@tanstack/react-query';
 import { <%= [...mutationConfigs.map(c => c.responseDto), ...mutationConfigs.map(c => c.requestParams)].join(', ') %> } from '@gomterview/api';
-import { <%= moduleName %>Api } from '@/entities/<%= moduleName %>/api';
+import { <%= moduleName %>Api } from '../api';
 
 const mutations = {
 <% for (const config of mutationConfigs) { %>

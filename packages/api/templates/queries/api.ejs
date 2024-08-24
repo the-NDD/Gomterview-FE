@@ -89,7 +89,7 @@ const allDto = queryConfigs.map(v=>v.responseDto.replace(/[\[\]]/g, '')).join(',
 import { DefaultError, useQuery, useSuspenseQuery, UseQueryOptions, UseSuspenseQueryOptions } from '@tanstack/react-query';
 
 import { <%~ allDto %> } from '@gomterview/api';
-import { <%~ moduleName %>Api } from '@/entities/<%~ moduleName %>/api';
+import { <%~ moduleName %>Api } from '../api';
 
 
 export const <% ~moduleName.toUpperCase() %>_QUERY_KEY = {

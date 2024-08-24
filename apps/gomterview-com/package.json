@@ -10,7 +10,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --mode production",
     "e2e": "playwright test --ui",
-    "generate-queries": "node ../../packages/api/scripts/generate-queries.js ./"
+    "generate-queries": "node ../../packages/api/scripts/generate-queries.js ./",
+    "generate-mutation": "node ../../packages/api/scripts/generate-mutations.js ./"
   },
   "main": "src/index.tsx",
   "dependencies": {
