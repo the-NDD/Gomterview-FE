@@ -37,8 +37,10 @@ const NewWorkbookListButton = ({
     });
 
     await newQuestionCopyMutate({
-      workbookId: result.workbookId,
-      questionIds: selectedQuestionIds,
+      body: {
+        workbookId: result.workbookId,
+        questionIds: selectedQuestionIds,
+      },
     });
 
     toast.success('새로운 문제집에 선택된 질문들이 추가되었습니다.');

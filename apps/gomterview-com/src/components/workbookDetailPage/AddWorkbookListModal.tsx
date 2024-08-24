@@ -41,8 +41,10 @@ const AddWorkbookListModal = ({
         const workbookId = parseInt(item);
 
         return mutateAsync({
-          workbookId: workbookId,
-          questionIds: selectedQuestionIds,
+          body: {
+            workbookId: workbookId,
+            questionIds: selectedQuestionIds,
+          },
         });
       })
     );

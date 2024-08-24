@@ -81,14 +81,14 @@ export interface QuestionResponseDto {
 export interface CopyQuestionRequestDto {
   /**
    * 문제집 id
-   * @example "1"
+   * @example 1
    */
   workbookId: number;
   /**
    * 복사할 질문들의 id
    * @example [1,2,3,4,5]
    */
-  questionIds: number;
+  questionIds: number[];
 }
 
 export interface WorkbookIdResponseDto {

@@ -13,7 +13,7 @@ const QuestionAddForm: React.FC<QuestionAddFormProps> = ({
   workbookId,
   onQuestionAdd,
 }) => {
-  const { addQuestion } = useQuestionAdd(workbookId, {
+  const { addQuestion } = useQuestionAdd({
     onSuccess: () => {
       clearInput();
       onQuestionAdd();

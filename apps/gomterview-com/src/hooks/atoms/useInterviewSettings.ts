@@ -1,8 +1,8 @@
 import { useRecoilState } from 'recoil';
 import {
   questionSetting,
-  videoSetting,
   recordSetting,
+  videoSetting,
 } from '@atoms/interviewSetting';
 import { useCallback } from 'react';
 
@@ -16,7 +16,12 @@ function useInterviewSettings() {
   const isAllSuccess = questionSuccess && videoSuccess && recordSuccess;
 
   const resetAllSettings = useCallback(() => {
-    setQuestion({ isSuccess: false, selectedData: [], from: undefined });
+    setQuestion((prev) => ({
+      ...prev,
+      isSuccess: false,
+      selectedData: [],
+      from: undefined,
+    }));
     setVideo({ isSuccess: false });
     setRecord({ isSuccess: false, method: undefined });
   }, [setQuestion, setRecord, setVideo]);

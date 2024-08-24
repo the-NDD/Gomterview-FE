@@ -1047,11 +1047,13 @@
         "parameters": [
           {
             "name": "category",
-            "required": true,
+            "required": false,
             "in": "query",
             "schema": {
-              "type": "number"
-            }
+              "type": "number",
+              "nullable": true
+            },
+            "description": "카테고리 ID (null이면 전체)"
           }
         ],
         "responses": {
@@ -1355,18 +1357,15 @@
         "properties": {
           "workbookId": {
             "type": "number",
-            "example": "1",
+            "example": 1,
             "description": "문제집 id"
           },
           "questionIds": {
-            "type": "number",
-            "example": [
-              1,
-              2,
-              3,
-              4,
-              5
-            ],
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "example": [1, 2, 3, 4, 5],
             "description": "복사할 질문들의 id"
           }
         },
