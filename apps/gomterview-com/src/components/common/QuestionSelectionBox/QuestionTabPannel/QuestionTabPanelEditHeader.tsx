@@ -8,7 +8,7 @@ import useWorkbookEdit from '@hooks/useWorkbookEdit';
 import QuestionDropdown from './QuestionDropdown';
 import useDebounce from '@hooks/useDebounce';
 import { toast } from '@gomterview/toast';
-import { useGetCategoryQuery } from '@/entities/category/api/queries';
+import { useSuspenseGetCategoryQuery } from '@/entities/category/api/queries';
 
 type QuestionTabPanelEditHeaderProps = {
   workbookInfo: WorkbookQueryResult;
@@ -45,7 +45,7 @@ const QuestionTabPanelEditHeader: React.FC<QuestionTabPanelEditHeaderProps> = ({
     name: workbookInfo.categoryName,
   });
 
-  const { data: categoryData } = useGetCategoryQuery();
+  const { data: categoryData } = useSuspenseGetCategoryQuery();
 
   const { value: title, onChange: handleTitleChange } =
     useInput<HTMLInputElement>(workbookInfo.title);

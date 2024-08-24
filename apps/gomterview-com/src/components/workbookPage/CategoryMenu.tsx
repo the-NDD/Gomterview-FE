@@ -2,14 +2,14 @@ import { css } from '@emotion/react';
 import { Box, SelectionBox, Tabs, Typography } from 'gomterview-design-system';
 import { ResponsiveMenu } from '@common/index';
 import useBreakpoint from '@hooks/useBreakPoint';
-import { useGetCategoryQuery } from '@/entities/category/api/queries';
+import { useSuspenseGetCategoryQuery } from '@/entities/category/api/queries';
 
 type CategoryMenuProps = {
   onTabChange: (v: string) => void;
 };
 
 const CategoryMenu: React.FC<CategoryMenuProps> = ({ onTabChange }) => {
-  const { data: categories } = useGetCategoryQuery();
+  const { data: categories } = useSuspenseGetCategoryQuery();
 
   const isDeviceBreakpoint = useBreakpoint();
 
