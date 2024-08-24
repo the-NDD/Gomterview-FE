@@ -4,9 +4,9 @@ import {
   WorkbookResDto,
   WorkbookTitleListResDto,
 } from '@/types/workbook';
-import { QUERY_KEY } from '@constants/queryKey';
 import { useQueryClient } from '@tanstack/react-query';
 import { usePostWorkbookMutation } from '@/entities/workbook/api/mutations';
+import { WORKBOOK_QUERY_KEY } from '@/entities/workbook/api/queries';
 
 type useWorkbookAddProps = {
   onSuccess?: () => void;
@@ -20,7 +20,9 @@ const useWorkbookAdd = ({ onSuccess }: useWorkbookAddProps) => {
   const generateNewWorkbookId = () => {
     const lastId =
       queryClient
-        .getQueryData<WorkbookTitleListResDto>(QUERY_KEY.WORKBOOK_TITLE)
+        .getQueryData<WorkbookTitleListResDto>(
+          WORKBOOK_QUERY_KEY.GET_WORKBOOK_TITLE()
+        )
         ?.at(-1)?.workbookId ?? 0;
 
     return lastId > 0 ? 0 : lastId - 1;
@@ -57,14 +59,14 @@ const useWorkbookAdd = ({ onSuccess }: useWorkbookAddProps) => {
     const newId = generateNewWorkbookId();
 
     queryClient.setQueryData<WorkbookTitleListResDto | []>(
-      QUERY_KEY.WORKBOOK_TITLE,
+      WORKBOOK_QUERY_KEY.GET_WORKBOOK_TITLE(),
       (prev) =>
         !prev || !prev.length
           ? [createNewWorkbookTitleItem(workbook, newId)]
           : [...prev, createNewWorkbookTitleItem(workbook, newId)]
     );
     queryClient.setQueryData<WorkbookResDto>(
-      QUERY_KEY.WORKBOOK_ID(newId),
+      WORKBOOK_QUERY_KEY.GET_WORKBOOK_WORKBOOKID(newId),
       (_) => createNewWorkbookEntity(workbook, newId)
     );
   };

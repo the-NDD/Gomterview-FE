@@ -1,7 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { PATH } from '@constants/path';
 import { useQueryClient } from '@tanstack/react-query';
-import { QUERY_KEY } from '@constants/queryKey';
 import { VideoItemResDto } from '@/types/video';
 import {
   LinkOnlyVideoPageLayout,
@@ -11,12 +10,15 @@ import { Box, Typography } from 'gomterview-design-system';
 import { css } from '@emotion/react';
 import { theme } from '@gomterview/_theme';
 import { VideoList } from '@common/index';
-import { useGetVideoRelatedByVideoIdQuery } from '@/entities/video/api/queries';
+import {
+  useGetVideoRelatedByVideoIdQuery,
+  VIDEO_QUERY_KEY,
+} from '@/entities/video/api/queries';
 
 const LinkOnlyVideoPage: React.FC = () => {
   const { videoHash = '' } = useParams();
   const data = useQueryClient().getQueryData<VideoItemResDto>(
-    QUERY_KEY.VIDEO_HASH(videoHash)
+    VIDEO_QUERY_KEY.GET_VIDEO_HASH_HASH(videoHash)
   );
   const { data: relatedVideoItem } = useGetVideoRelatedByVideoIdQuery(
     Number(data?.id)

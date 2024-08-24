@@ -2,7 +2,6 @@ import useUserInfo from '@hooks/useUserInfo';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { questionSetting } from '@atoms/interviewSetting';
-import { QUERY_KEY } from '@constants/queryKey';
 import { Question } from '@/types/question';
 import { useQueryClient } from '@tanstack/react-query';
 import useQuestionWorkbookQuery from '../entities/question/model/queries/useQuestionWorkbookQuery';
@@ -10,6 +9,7 @@ import useWorkbookQuery from '../entities/workbook/model/queries/useWorkbookQuer
 import useWorkbookEdit from './useWorkbookEdit';
 import { toast } from '@gomterview/toast';
 import { useDeleteQuestionByQuestionIdMutation } from '@/entities/question/api/mutations';
+import { QUESTION_QUERY_KEY } from '@/entities/question/api/queries';
 
 const useWorkbookQuestionDelete = (workbookId: number) => {
   const userInfo = useUserInfo();
@@ -51,13 +51,13 @@ const useWorkbookQuestionDelete = (workbookId: number) => {
       });
     }
     void queryClient.invalidateQueries({
-      queryKey: QUERY_KEY.QUESTION_WORKBOOK(workbookId),
+      queryKey: QUESTION_QUERY_KEY.GET_QUESTION_WORKBOOKID(workbookId),
     });
   };
 
   const deleteStateQuestion = () => {
     queryClient.setQueryData<Question[]>(
-      QUERY_KEY.QUESTION_WORKBOOK(workbookId),
+      QUESTION_QUERY_KEY.GET_QUESTION_WORKBOOKID(workbookId),
       (prev) => {
         return prev?.filter(
           (item) => !checkedQuestion.includes(item.questionId)

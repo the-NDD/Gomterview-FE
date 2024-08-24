@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { QUERY_KEY } from '@constants/queryKey';
 import { usePostQuestionCopyMutation } from '@/entities/question/api/mutations';
+import { WORKBOOK_QUERY_KEY } from '@/entities/workbook/api/queries';
 
 /**
  * POST question/copy
@@ -17,7 +17,7 @@ const useQuestionCopyMutation = () => {
       } = req;
 
       void queryClient.invalidateQueries({
-        queryKey: QUERY_KEY.WORKBOOK_ID(workbookId),
+        queryKey: WORKBOOK_QUERY_KEY.GET_WORKBOOK_WORKBOOKID(workbookId),
       });
     },
   });
