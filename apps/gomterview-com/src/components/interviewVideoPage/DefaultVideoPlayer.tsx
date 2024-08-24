@@ -1,23 +1,25 @@
 import { IconButton, VideoPlayer, VideoPlayerFrame } from '@common/VideoPlayer';
-import useVideoItemQuery from '@/entities/video/model/queries/useVideoItemQuery';
 import { VideoEditModal } from '@components/interviewVideoPage/ShareRangeModal';
 import { useState } from 'react';
 import { css } from '@emotion/react';
 import useUserInfo from '@hooks/useUserInfo';
-import useVideoPatchMutation from '@/entities/video/model/mutations/useVideoPatchMutation';
 import { PATH } from '@constants/path';
 import { Button } from 'gomterview-design-system';
 import { theme } from '@gomterview/_theme';
 import { toast } from '@gomterview/toast';
+import { usePatchVideoByVideoIdMutation } from '@/entities/video/api/mutations';
+import { useSuspenseGetVideoByVideoIdQuery } from '@/entities/video/api/queries';
 
 type DefaultVideoPlayerProps = {
   videoId: string;
 };
 const DefaultVideoPlayer: React.FC<DefaultVideoPlayerProps> = ({ videoId }) => {
-  const { data: videoItem } = useVideoItemQuery(Number(videoId));
+  const { data: videoItem } = useSuspenseGetVideoByVideoIdQuery(
+    Number(videoId)
+  );
   const userInfo = useUserInfo();
   const [isOpen, setIsOpen] = useState(false);
-  const { mutate } = useVideoPatchMutation(Number(videoId));
+  const { mutate } = usePatchVideoByVideoIdMutation();
 
   const editVideo = (
     videoName: string,
@@ -27,11 +29,14 @@ const DefaultVideoPlayer: React.FC<DefaultVideoPlayerProps> = ({ videoId }) => {
     relatedVideoIds: number[]
   ) => {
     mutate({
-      videoName,
-      videoAnswer,
-      thumbnail,
-      visibility,
-      relatedVideoIds,
+      videoId: Number(videoId),
+      body: {
+        videoName,
+        videoAnswer,
+        thumbnail,
+        visibility,
+        relatedVideoIds,
+      },
     });
   };
   const handleCopyLink = async () => {

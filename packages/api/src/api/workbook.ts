@@ -35,7 +35,7 @@ export class WorkbookApi {
    * @tags workbook
    * @summary 카테고리별(null이면 전체) 문제집 조회
    * @request GET:/api/workbook*/
-  getWorkbook(params: { category: number | null }) {
+  getWorkbook(params: { category: number }) {
     return getAPIResponseData<WorkbookResponseDto[]>(this.instance, {
       method: 'get',
       url: `/workbook`,

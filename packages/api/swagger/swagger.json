@@ -1527,11 +1527,12 @@
           },
           "visibility": {
             "type": "string",
-            "example": "PUBLIC / PRIVATE / LINK_ONLY",
-            "description": "비디오 공개 여부"
+            "enum": ["PUBLIC", "LINK_ONLY", "PRIVATE"],
+            "example": "PUBLIC",
+            "description": "영상 공개여부"
           },
           "createdAt": {
-            "type": "number",
+            "type": "string",
             "example": "1998.09.05",
             "description": "영상 생성 일자"
           }
@@ -1580,12 +1581,13 @@
             "description": "비디오의 URL 해시값"
           },
           "createdAt": {
-            "type": "number",
+            "type": "string",
             "example": "1998.09.05",
             "description": "영상 생성 일자"
           },
           "visibility": {
             "type": "string",
+            "enum": ["PUBLIC", "LINK_ONLY", "PRIVATE"],
             "example": "PUBLIC",
             "description": "영상 공개여부"
           },
@@ -1628,8 +1630,9 @@
           },
           "visibility": {
             "type": "string",
+            "enum": ["PUBLIC", "LINK_ONLY", "PRIVATE"],
             "example": "PUBLIC",
-            "description": "공개여부"
+            "description": "영상 공개여부"
           },
           "videoName": {
             "type": "string",
@@ -1637,7 +1640,7 @@
             "description": "영상 이름"
           },
           "createdAt": {
-            "type": "number",
+            "type": "string",
             "example": "1998.09.05",
             "description": "생성일자"
           }
@@ -1674,7 +1677,7 @@
             "description": "영상 길이"
           },
           "createdAt": {
-            "type": "number",
+            "type": "string",
             "example": "1998.09.05",
             "description": "영상 생성 일자"
           },
@@ -1731,8 +1734,9 @@
           },
           "visibility": {
             "type": "string",
-            "example": "PRIVATE",
-            "description": "비디오 공개 상태"
+            "enum": ["PUBLIC", "LINK_ONLY", "PRIVATE"],
+            "example": "PUBLIC",
+            "description": "영상 공개여부"
           },
           "relatedVideoIds": {
             "example": [

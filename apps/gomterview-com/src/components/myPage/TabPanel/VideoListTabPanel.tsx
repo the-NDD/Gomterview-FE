@@ -2,17 +2,16 @@ import { PATH } from '@constants/path';
 import { css } from '@emotion/react';
 import { Box } from 'gomterview-design-system';
 import useDeleteVideoMutation from '@/entities/video/model/mutations/useDeleteVideoMutation';
-import useVideoListQuery from '@/entities/video/model/queries/useVideoListQuery';
 import { theme } from '@gomterview/_theme';
 import DeleteCheckModal from '../DeleteCheckModal';
 import Thumbnail from '@common/Thumbnail/Thumbnail';
 import { VideoItem } from '@common/VideoItem';
 import { useModal } from '@gomterview/use-modal';
-import { MyVideoListResDto } from '@/types/video';
-import { ExcludeArray } from '@/types/utils';
+import { useSuspenseGetVideoAllQuery } from '@/entities/video/api/queries';
+import { SingleVideoResponseDto } from '@gomterview/api';
 
 type VideoListItemProps = {
-  video: ExcludeArray<MyVideoListResDto>;
+  video: SingleVideoResponseDto;
 };
 
 const MyVideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
@@ -53,7 +52,8 @@ const MyVideoListItem: React.FC<VideoListItemProps> = ({ video }) => {
 };
 
 const VideoListTabPanel: React.FC = () => {
-  const { data } = useVideoListQuery();
+  const { data } = useSuspenseGetVideoAllQuery();
+
   return (
     <Box
       css={css`

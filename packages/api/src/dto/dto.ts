@@ -196,15 +196,15 @@ export interface SingleVideoResponseDto {
    */
   videoLength: string;
   /**
-   * 비디오 공개 여부
-   * @example "PUBLIC / PRIVATE / LINK_ONLY"
+   * 영상 공개여부
+   * @example "PUBLIC"
    */
-  visibility: string;
+  visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE';
   /**
    * 영상 생성 일자
    * @example "1998.09.05"
    */
-  createdAt: number;
+  createdAt: string;
 }
 
 export interface VideoDetailResponseDto {
@@ -242,12 +242,12 @@ export interface VideoDetailResponseDto {
    * 영상 생성 일자
    * @example "1998.09.05"
    */
-  createdAt: number;
+  createdAt: string;
   /**
    * 영상 공개여부
    * @example "PUBLIC"
    */
-  visibility: string;
+  visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE';
   /**
    * 비디오 썸네일
    * @example "https://example.com"
@@ -272,10 +272,10 @@ export interface RelatableVideoResponseDto {
    */
   isRelated: boolean;
   /**
-   * 공개여부
+   * 영상 공개여부
    * @example "PUBLIC"
    */
-  visibility: string;
+  visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE';
   /**
    * 영상 이름
    * @example "츄 직캠"
@@ -285,7 +285,7 @@ export interface RelatableVideoResponseDto {
    * 생성일자
    * @example "1998.09.05"
    */
-  createdAt: number;
+  createdAt: string;
 }
 
 export interface MemberVideoResponseDto {
@@ -313,7 +313,7 @@ export interface MemberVideoResponseDto {
    * 영상 생성 일자
    * @example "1998.09.05"
    */
-  createdAt: number;
+  createdAt: string;
   /**
    * 회원 닉네임
    * @example "장아장"
@@ -341,10 +341,10 @@ export interface UpdateVideoRequestDto {
    */
   videoName: string;
   /**
-   * 비디오 공개 상태
-   * @example "PRIVATE"
+   * 영상 공개여부
+   * @example "PUBLIC"
    */
-  visibility: string;
+  visibility: 'PUBLIC' | 'LINK_ONLY' | 'PRIVATE';
   /**
    * 연관 비디오 id배열
    * @example [1,4,3,2]
