@@ -12,7 +12,10 @@ import { workbookApi } from '@/entities/workbook/api';
 const useWorkbookListQuery = (categoryId: string) => {
   return useSuspenseQuery({
     queryKey: QUERY_KEY.WORKBOOK_CATEGORY(categoryId),
-    queryFn: () => workbookApi.getWorkbook({ category: Number(categoryId) }),
+    queryFn: () =>
+      workbookApi.getWorkbook({
+        category: categoryId ? Number(categoryId) : null,
+      }),
   });
 };
 
