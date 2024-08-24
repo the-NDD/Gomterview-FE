@@ -38,16 +38,20 @@ const buildPathQueryKey = ({ path }) =>
                                 : `'${segment}'`
                 );
 
+const basicTypes = ['void', 'number', 'string', 'null', 'boolean'];
+
+const addDtoSuffix = (type) => basicTypes.includes(type) ? type : type.replace(/[()]/g, '').replace(/([a-zA-Z]+)(?=\[|$)/, '$1Dto');
+
 const getRequestParams = ({ parameters = [], query, payload }) => ({
     withTypes: [
-        ...parameters.map(({ name, type }) => `${name}: ${type}`),
-        query ? `params: ${query.type}` : '',
-        payload ? `data: ${payload.type}` : '',
+        ...parameters.map(({ name, type }) => `${name}: ${addDtoSuffix(type)}`),
+        query ? `params: ${addDtoSuffix(query.type)}` : '',
+        payload ? `body: ${addDtoSuffix(payload.type)}` : '',
     ].filter(Boolean).join(', '),
     withoutTypes: [
         ...parameters.map(({ name }) => `${name}`),
         query ? `params` : '',
-        payload ? `data` : '',
+        payload ? 'body' : '',
     ].filter(Boolean).join(', ')
 });
 
@@ -64,16 +68,14 @@ const config = routes
                 moduleName,
                 functionName: camelCase(functionName),
                 hookName: `use${pascalCase(functionName)}Query`,
-                responseDto: response.type === 'void'
-                        ? response.type
-                        : response.type.replace(/[()]/g, '').replace(/([a-zA-Z]+)(?=\[|$)/, '$1Dto'),
+                responseDto: addDtoSuffix(response.type),
                 requestParams,
                 requestParamsWithoutTypes,
                 queryKeyName: `GET_${queryKeyName}`,
                 queryKey: `(${requestParams}) => [${[
                     ...pathQueryKey,
-                    request.query ? '...params' : null,
-                    request.payload ? '...data' : null,
+                    request.query ? 'params' : null,
+                    request.payload ? 'data' : null,
                 ].filter(Boolean).join(', ')}]`,
             };
         });
@@ -87,7 +89,7 @@ import { <%~ allDto %> } from '@gomterview/api';
 import { <%~ moduleName %>Api } from '@/entities/<%~ moduleName %>/api';
 
 
-export const <% ~moduleName %>_QUERY_KEY = {
+export const <% ~moduleName.toUpperCase() %>_QUERY_KEY = {
 <% for (const queryConfig of config) { %>
     <% ~queryConfig.queryKeyName %>: <% ~queryConfig.queryKey %>,
 <% } %>
@@ -96,7 +98,7 @@ export const <% ~moduleName %>_QUERY_KEY = {
 const queries = {
 <% for (const queryConfig of config) { %>
     <% ~queryConfig.functionName %>: (<% ~queryConfig.requestParams %>) => ({
-    queryKey: <% ~moduleName %>_QUERY_KEY.<% ~queryConfig.queryKeyName %>(<% ~queryConfig.requestParamsWithoutTypes %>),
+    queryKey: <% ~moduleName.toUpperCase() %>_QUERY_KEY.<% ~queryConfig.queryKeyName %>(<% ~queryConfig.requestParamsWithoutTypes %>),
     queryFn: () => <% ~moduleName %>Api.<% ~queryConfig.functionName %>(<% ~queryConfig.requestParamsWithoutTypes %>)
     }),
 <% } %>
