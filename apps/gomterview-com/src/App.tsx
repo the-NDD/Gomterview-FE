@@ -1,7 +1,11 @@
 import { Global, ThemeProvider } from '@emotion/react';
 import { theme } from '@gomterview/_theme';
 import _global from '@gomterview/_theme/global';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  MutationCache,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import { RecoilRoot } from 'recoil';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import GlobalSVGProvider from '@/GlobalSvgProvider';
@@ -10,6 +14,14 @@ import { ToastContainer } from '@gomterview/toast/toastContainer';
 
 function App() {
   const queryClient = new QueryClient({
+    mutationCache: new MutationCache({
+      onSuccess: (_data, _variables, _context, mutation) => {
+        void queryClient.invalidateQueries({
+          queryKey: mutation.options.mutationKey,
+          exact: false,
+        });
+      },
+    }),
     defaultOptions: {
       queries: {
         retry: 1,
