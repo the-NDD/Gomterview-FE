@@ -1,0 +1,100 @@
+<%
+const { utils: { pascalCase }, route, modelTypes } = it;
+const { moduleName, routes } = route;
+
+const camelCase = (str) => str.replace(/([-_][a-zA-z])/g, (group) => group.toUpperCase().replace('-', '').replace('_', ''))
+        .replace(/By([A-Z])/g, (group) => `By${group.slice(2)}`);
+
+const getFunctionName = ({ request: { method, path } }) =>
+        `${method}_${path
+                .split('/')
+                .slice(2)
+                .map(segment =>
+                        segment.includes('${')
+                                ? `By_${segment.replace(/[${}]/g, '')}`
+                                : segment
+                )
+                .join('_')}`;
+
+const basicTypes = ['void', 'number', 'string', 'null', 'boolean'];
+
+const addDtoSuffix = (type) => basicTypes.includes(type) ? type : type.replace(/[()]/g, '').replace(/([a-zA-Z]+)(?=\[|$)/, '$1Dto');
+
+const getRequestParams = ({ parameters = [], payload }) => ({
+    withTypes: [
+        ...parameters.map(({ name, type }) => `${name}: ${addDtoSuffix(type)}`),
+        payload ? `body: ${addDtoSuffix(payload.type)}` : '',
+    ].filter(Boolean).join(', '),
+    withoutTypes: [
+        ...parameters.map(({ name }) => `${name}`),
+        payload ? 'body' : '',
+    ].filter(Boolean).join(', ')
+});
+
+const mutationConfigs = routes
+        .filter(({ request: { method } }) => method === 'post' || method === 'patch' || method === 'delete')
+        .map(route => {
+            const functionName = getFunctionName(route);
+            const { request, response } = route;
+            const { withTypes: requestParams, withoutTypes: requestParamsWithoutTypes } = getRequestParams(request);
+
+            return {
+                moduleName,
+                functionName: camelCase(functionName),
+                hookName: `use${pascalCase(functionName)}Mutation`,
+                responseDto: addDtoSuffix(response.type),
+                hasVariables: requestParams.length > 0,
+                requestParams,
+                requestParamsWithoutTypes,
+            };
+        });
+
+if (mutationConfigs.length > 0) {
+    const variableTypes = mutationConfigs
+            .filter(config => config.hasVariables)
+            .map(config => `type T${pascalCase(config.functionName)}Variables = { ${config.requestParams} };`)
+            .join('\n');
+%>
+
+import {
+DefaultError,
+useMutation,
+UseMutationOptions,
+useQueryClient,
+} from '@tanstack/react-query';
+import { <%= [...mutationConfigs.map(c => c.responseDto), ...mutationConfigs.map(c => c.requestParams)].join(', ') %> } from '@gomterview/api';
+import { <%= moduleName %>Api } from '@/entities/<%= moduleName %>/api';
+
+const mutations = {
+<% for (const config of mutationConfigs) { %>
+    <%= config.functionName %>: () => ({
+    mutationFn: <% if (config.hasVariables) { %>(variables: T<%= pascalCase(config.functionName) %>Variables) => {
+    const { <%= config.requestParamsWithoutTypes %> } = variables;
+    return <%= moduleName %>Api.<%= config.functionName %>(<%= config.requestParamsWithoutTypes %>);
+    }<% } else { %>() => <%= moduleName %>Api.<%= config.functionName %>()<% } %>,
+    mutationKey: [ '<%~ moduleName %>' ]
+    }),
+<% } %>
+};
+
+<% for (const config of mutationConfigs) { %>
+    export const <%= config.hookName %> = (
+    options?: Omit<
+    UseMutationOptions<<%= config.responseDto %>, DefaultError, <%= config.hasVariables ? `T${pascalCase(config.functionName)}Variables` : 'void' %>>,
+    'mutationFn'|'mutationKey'
+    >
+    ) => {
+    return useMutation({
+    ...mutations.<%= config.functionName %>(),
+    ...options,
+    });
+    };
+
+<% } %>
+
+<%= variableTypes %>
+
+<%
+} else { %>
+    <% /* mutationConfigs가 비어있을 때는 아무것도 출력되지 않습니다 */ %>
+<% } %>
