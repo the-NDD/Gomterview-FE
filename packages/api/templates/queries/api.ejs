@@ -1,5 +1,6 @@
 <%
-const { utils: { pascalCase }, route, modelTypes } = it;
+const { utils, route, modelTypes, config } = it;
+const { pascalCase } = utils;
 
 const { moduleName, routes } = route;
 
@@ -55,7 +56,7 @@ const getRequestParams = ({ parameters = [], query, payload }) => ({
     ].filter(Boolean).join(', ')
 });
 
-const config = routes
+const queryConfigs = routes
         .filter(({ request: { method } }) => method === 'get')
         .map(route => {
             const functionName = getFunctionName(route);
@@ -66,6 +67,7 @@ const config = routes
 
             return {
                 moduleName,
+                route,
                 functionName: camelCase(functionName),
                 hookName: `use${pascalCase(functionName)}Query`,
                 responseDto: addDtoSuffix(response.type),
@@ -80,7 +82,7 @@ const config = routes
             };
         });
 
-const allDto = config.map(v=>v.responseDto.replace(/[\[\]]/g, '')).join(',');
+const allDto = queryConfigs.map(v=>v.responseDto.replace(/[\[\]]/g, '')).join(',');
 %>
 
 import { DefaultError, useQuery, UseQueryOptions } from '@tanstack/react-query';
@@ -90,13 +92,13 @@ import { <%~ moduleName %>Api } from '@/entities/<%~ moduleName %>/api';
 
 
 export const <% ~moduleName.toUpperCase() %>_QUERY_KEY = {
-<% for (const queryConfig of config) { %>
+<% for (const queryConfig of queryConfigs) { %>
     <% ~queryConfig.queryKeyName %>: <% ~queryConfig.queryKey %>,
 <% } %>
 }
 
 const queries = {
-<% for (const queryConfig of config) { %>
+<% for (const queryConfig of queryConfigs) { %>
     <% ~queryConfig.functionName %>: (<% ~queryConfig.requestParams %>) => ({
     queryKey: <% ~moduleName.toUpperCase() %>_QUERY_KEY.<% ~queryConfig.queryKeyName %>(<% ~queryConfig.requestParamsWithoutTypes %>),
     queryFn: () => <% ~moduleName %>Api.<% ~queryConfig.functionName %>(<% ~queryConfig.requestParamsWithoutTypes %>)
@@ -104,7 +106,12 @@ const queries = {
 <% } %>
 }
 
-<% for (const queryConfig of config) { %>
+<% for (const queryConfig of queryConfigs) {
+    const routeDocs = includeFile("../route-docs.ejs", { config, route: queryConfig.route, utils });
+%>
+/**
+<%~ routeDocs.lines %>
+*/
    export const <%~ queryConfig.hookName %> = <TData = <%~ queryConfig.responseDto %>>(
     <%~ queryConfig.requestParams ? `${queryConfig.requestParams},`:''%>
     options?: Omit<UseQueryOptions<<%~ queryConfig.responseDto %>,DefaultError, TData>,'queryKey' | 'queryFn' >) => {

@@ -1,5 +1,6 @@
 <%
-const { utils: { pascalCase }, route, modelTypes } = it;
+const { utils, route, modelTypes, config } = it;
+const { pascalCase } = utils;
 const { moduleName, routes } = route;
 
 const camelCase = (str) => str.replace(/([-_][a-zA-z])/g, (group) => group.toUpperCase().replace('-', '').replace('_', ''))
@@ -40,6 +41,7 @@ const mutationConfigs = routes
 
             return {
                 moduleName,
+                route,
                 functionName: camelCase(functionName),
                 hookName: `use${pascalCase(functionName)}Mutation`,
                 responseDto: addDtoSuffix(response.type),
@@ -77,18 +79,23 @@ const mutations = {
 <% } %>
 };
 
-<% for (const config of mutationConfigs) { %>
-    export const <%= config.hookName %> = (
-    options?: Omit<
-    UseMutationOptions<<%= config.responseDto %>, DefaultError, <%= config.hasVariables ? `T${pascalCase(config.functionName)}Variables` : 'void' %>>,
-    'mutationFn'|'mutationKey'
-    >
-    ) => {
-    return useMutation({
-    ...mutations.<%= config.functionName %>(),
-    ...options,
-    });
-    };
+<% for (const mutationConfig of mutationConfigs) {
+    const routeDocs = includeFile("../route-docs.ejs", { config, route: mutationConfig.route, utils });
+%>
+/**
+<%~ routeDocs.lines %>
+*/
+export const <%= mutationConfig.hookName %> = (
+options?: Omit<
+UseMutationOptions<<%= mutationConfig.responseDto %>, DefaultError, <%= mutationConfig.hasVariables ? `T${pascalCase(mutationConfig.functionName)}Variables` : 'void' %>>,
+'mutationFn'|'mutationKey'
+>
+) => {
+return useMutation({
+...mutations.<%= mutationConfig.functionName %>(),
+...options,
+});
+};
 
 <% } %>
 
