@@ -10,13 +10,13 @@ import { WorkbookResponseDto, WorkbookTitleResponseDto } from '@gomterview/api';
 import { workbookApi } from '../api';
 
 export const WORKBOOK_QUERY_KEY = {
-  GET_WORKBOOK: (params: { category: number }) => ['workbook', params],
+  GET_WORKBOOK: (params: { category?: number | null }) => ['workbook', params],
   GET_WORKBOOK_TITLE: () => ['workbook', 'title'],
   GET_WORKBOOK_WORKBOOKID: (workbookId: number) => ['workbook', workbookId],
 };
 
 const queries = {
-  getWorkbook: (params: { category: number }) => ({
+  getWorkbook: (params: { category?: number | null }) => ({
     queryKey: WORKBOOK_QUERY_KEY.GET_WORKBOOK(params),
     queryFn: () => workbookApi.getWorkbook(params),
   }),
@@ -35,9 +35,9 @@ const queries = {
  * @tags workbook
  * @summary 카테고리별(null이면 전체) 문제집 조회
  * @request GET:/api/workbook*/
-export const useGetWorkbookQuery = <TData = WorkbookResponseDto[],>(
+export const useGetWorkbookQuery = <TData = WorkbookResponseDto[]>(
   params: {
-    category: number;
+    category?: number | null;
   },
   options?: Omit<
     UseQueryOptions<WorkbookResponseDto[], DefaultError, TData>,
@@ -53,7 +53,7 @@ export const useGetWorkbookQuery = <TData = WorkbookResponseDto[],>(
  * @tags workbook
  * @summary 회원의(null이면 Top5) 문제집 조회
  * @request GET:/api/workbook/title*/
-export const useGetWorkbookTitleQuery = <TData = WorkbookTitleResponseDto[],>(
+export const useGetWorkbookTitleQuery = <TData = WorkbookTitleResponseDto[]>(
   options?: Omit<
     UseQueryOptions<WorkbookTitleResponseDto[], DefaultError, TData>,
     'queryKey' | 'queryFn'
@@ -68,7 +68,7 @@ export const useGetWorkbookTitleQuery = <TData = WorkbookTitleResponseDto[],>(
  * @tags workbook
  * @summary 문제집 단건 조회
  * @request GET:/api/workbook/{workbookId}*/
-export const useGetWorkbookByWorkbookIdQuery = <TData = WorkbookResponseDto,>(
+export const useGetWorkbookByWorkbookIdQuery = <TData = WorkbookResponseDto>(
   workbookId: number,
   options?: Omit<
     UseQueryOptions<WorkbookResponseDto, DefaultError, TData>,
@@ -86,9 +86,9 @@ export const useGetWorkbookByWorkbookIdQuery = <TData = WorkbookResponseDto,>(
  * @tags workbook
  * @summary 카테고리별(null이면 전체) 문제집 조회
  * @request GET:/api/workbook*/
-export const useSuspenseGetWorkbookQuery = <TData = WorkbookResponseDto[],>(
+export const useSuspenseGetWorkbookQuery = <TData = WorkbookResponseDto[]>(
   params: {
-    category: number;
+    category?: number | null;
   },
   options?: Omit<
     UseSuspenseQueryOptions<WorkbookResponseDto[], DefaultError, TData>,

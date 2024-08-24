@@ -1,12 +1,8 @@
-import {
-  useSuspenseQuery,
-  UseSuspenseQueryResult,
-} from '@tanstack/react-query';
-import { QUERY_KEY } from '@constants/queryKey';
+import { UseSuspenseQueryResult } from '@tanstack/react-query';
 import { WorkbookEntity } from '@/types/workbook';
 import useUserInfo from '@hooks/useUserInfo';
-import { workbookApi } from '@/entities/workbook/api';
 import { useGetCategoryQuery } from '@/entities/category/api/queries';
+import { useSuspenseGetWorkbookByWorkbookIdQuery } from '@/entities/workbook/api/queries';
 
 export type WorkbookQueryResult = WorkbookEntity & {
   categoryName: string;
@@ -29,12 +25,10 @@ const useWorkbookQuery = ({
   const findCategoryName = (categoryId?: number) =>
     categories?.find((category) => category.id === categoryId)?.name ?? '';
 
-  return useSuspenseQuery({
-    queryKey: QUERY_KEY.WORKBOOK_ID(workbookId),
+  return useSuspenseGetWorkbookByWorkbookIdQuery(workbookId, {
     refetchOnMount: userInfo ? true : false,
     refetchOnWindowFocus: userInfo ? true : false,
     refetchOnReconnect: userInfo ? true : false,
-    queryFn: () => workbookApi.getWorkbookByWorkbookId(workbookId),
     select: (data) => {
       const categoryName = findCategoryName(data.categoryId);
       return {

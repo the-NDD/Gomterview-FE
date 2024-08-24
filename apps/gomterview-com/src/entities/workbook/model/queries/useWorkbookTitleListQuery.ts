@@ -1,7 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import { QUERY_KEY } from '@constants/queryKey';
 import useUserInfo from '@hooks/useUserInfo';
-import { workbookApi } from '@/entities/workbook/api';
+import { useGetWorkbookTitleQuery } from '@/entities/workbook/api/queries';
 
 /**
  * GET /workbook/title
@@ -13,9 +11,7 @@ import { workbookApi } from '@/entities/workbook/api';
 const useWorkbookTitleListQuery = () => {
   const userInfo = useUserInfo();
 
-  return useQuery({
-    queryKey: QUERY_KEY.WORKBOOK_TITLE,
-    queryFn: () => workbookApi.getWorkbookTitle(),
+  return useGetWorkbookTitleQuery({
     refetchOnMount: userInfo ? true : false,
     refetchOnWindowFocus: userInfo ? true : false,
     refetchOnReconnect: userInfo ? true : false,

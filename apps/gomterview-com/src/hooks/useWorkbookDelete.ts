@@ -1,17 +1,17 @@
 import useUserInfo from '@hooks/useUserInfo';
 import { useQueryClient } from '@tanstack/react-query';
-import useWorkbookDeleteMutation from '@/entities/workbook/model/mutations/useWorkbookDeleteMutation';
 import { WorkbookTitleListResDto } from '@/types/workbook';
 import { QUERY_KEY } from '@constants/queryKey';
+import { useDeleteWorkbookByWorkbookIdMutation } from '@/entities/workbook/api/mutations';
 
 const useWorkbookDelete = () => {
   const userInfo = useUserInfo();
   const queryClient = useQueryClient();
 
-  const { mutate: deleteWorkbookSet } = useWorkbookDeleteMutation();
+  const { mutate: deleteWorkbookSet } = useDeleteWorkbookByWorkbookIdMutation();
 
   const deleteFromServer = (workbookId: number) => {
-    deleteWorkbookSet(Number(workbookId));
+    deleteWorkbookSet({ workbookId: Number(workbookId) });
   };
 
   const deleteFromState = (workbookId: number) => {

@@ -2,8 +2,8 @@ import { WorkbookEntity } from '@/types/workbook';
 import { css } from '@emotion/react';
 import { Icon, Typography } from 'gomterview-design-system';
 import useQuestionCopyMutation from '@/entities/question/model/mutations/useQuestionCopyMutation';
-import useWorkbookPostMutation from '@/entities/workbook/model/mutations/useWorkbookPostMutation';
 import { toast } from '@gomterview/toast';
+import { usePostWorkbookMutation } from '@/entities/workbook/api/mutations';
 
 const NewWorkbookListButton = ({
   selectedQuestionIds,
@@ -14,7 +14,7 @@ const NewWorkbookListButton = ({
   workbookData: WorkbookEntity;
   onAddNewWorkbook: () => void;
 }) => {
-  const { mutateAsync: newWorkbookMutate } = useWorkbookPostMutation();
+  const { mutateAsync: newWorkbookMutate } = usePostWorkbookMutation();
   const { mutateAsync: newQuestionCopyMutate } = useQuestionCopyMutation();
 
   const handleNewWorkbook = () => {
@@ -30,10 +30,12 @@ const NewWorkbookListButton = ({
 
   const createNewWorkbook = async () => {
     const result = await newWorkbookMutate({
-      title: `${workbookData.title} 복사본`,
-      content: workbookData.content,
-      categoryId: workbookData.categoryId,
-      isPublic: workbookData.isPublic,
+      body: {
+        title: `${workbookData.title} 복사본`,
+        content: workbookData.content,
+        categoryId: workbookData.categoryId,
+        isPublic: workbookData.isPublic,
+      },
     });
 
     await newQuestionCopyMutate({

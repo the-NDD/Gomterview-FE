@@ -1,5 +1,4 @@
 import useUserInfo from '@hooks/useUserInfo';
-import useWorkbookPostMutation from '@/entities/workbook/model/mutations/useWorkbookPostMutation';
 import {
   WorkbookAddReqDto,
   WorkbookResDto,
@@ -7,6 +6,7 @@ import {
 } from '@/types/workbook';
 import { QUERY_KEY } from '@constants/queryKey';
 import { useQueryClient } from '@tanstack/react-query';
+import { usePostWorkbookMutation } from '@/entities/workbook/api/mutations';
 
 type useWorkbookAddProps = {
   onSuccess?: () => void;
@@ -15,7 +15,7 @@ const useWorkbookAdd = ({ onSuccess }: useWorkbookAddProps) => {
   const userInfo = useUserInfo();
   const queryClient = useQueryClient();
 
-  const { mutate: postInterviewSet } = useWorkbookPostMutation();
+  const { mutate: postInterviewSet } = usePostWorkbookMutation();
 
   const generateNewWorkbookId = () => {
     const lastId =
@@ -50,7 +50,7 @@ const useWorkbookAdd = ({ onSuccess }: useWorkbookAddProps) => {
   };
 
   const addWorkbookToServer = (workbook: WorkbookAddReqDto) => {
-    postInterviewSet(workbook);
+    postInterviewSet({ body: workbook });
   };
 
   const addWorkbookToState = (workbook: WorkbookAddReqDto) => {

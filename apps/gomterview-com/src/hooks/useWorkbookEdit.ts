@@ -6,7 +6,7 @@ import {
 } from '@/types/workbook';
 import { QUERY_KEY } from '@constants/queryKey';
 import { useQueryClient } from '@tanstack/react-query';
-import useWorkbookPatchMutation from '@/entities/workbook/model/mutations/useWorkbookPatchMutation';
+import { usePatchWorkbookMutation } from '@/entities/workbook/api/mutations';
 
 type useWorkbookEditProps = {
   onSuccess?: () => void;
@@ -15,10 +15,10 @@ const useWorkbookEdit = ({ onSuccess }: useWorkbookEditProps) => {
   const userInfo = useUserInfo();
   const queryClient = useQueryClient();
 
-  const { mutate: patchInterviewSet } = useWorkbookPatchMutation();
+  const { mutate: patchInterviewSet } = usePatchWorkbookMutation();
 
   const editWorkbookToServer = (workbook: WorkbookPatchReqDto) => {
-    patchInterviewSet(workbook);
+    patchInterviewSet({ body: workbook });
   };
 
   const editWorkbookToState = (workbook: WorkbookPatchReqDto) => {
