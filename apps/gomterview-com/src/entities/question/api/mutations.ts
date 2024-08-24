@@ -1,4 +1,4 @@
-import { questionApi } from '@/entities/question/api';
+import { questionApi } from '@/entities/question/api/index';
 import {
   CopyQuestionRequestDto,
   CreateQuestionRequestDto,

@@ -8,7 +8,7 @@ import { WorkbookQueryResult } from '@/entities/workbook/model/queries/useWorkbo
 import useEmptySuspenseEffect from '@hooks/useEmptySuspenseEffect';
 import { useRecoilValue } from 'recoil';
 import { questionSetting } from '@atoms/interviewSetting';
-import useQuestionWorkbookQuery from '@/entities/question/model/queries/useQuestionWorkbookQuery';
+import { useSuspenseGetQuestionByWorkbookIdQuery } from '@/entities/question/api/queries';
 
 type QuestionAccordionListProps = {
   isEditMode: boolean;
@@ -52,9 +52,10 @@ const QuestionAccordionList: React.FC<QuestionAccordionListProps> = ({
     (question) => question.workbookId === workbookInfo.workbookId
   );
 
-  const { data: questionAPIData } = useQuestionWorkbookQuery({
-    workbookId: workbookInfo.workbookId,
-  });
+  const { data: questionAPIData } = useSuspenseGetQuestionByWorkbookIdQuery(
+    workbookInfo.workbookId,
+    {}
+  );
 
   const questionData = onlySelectedOption ? selectedQuestions : questionAPIData;
 

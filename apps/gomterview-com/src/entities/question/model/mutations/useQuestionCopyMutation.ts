@@ -1,7 +1,6 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEY } from '@constants/queryKey';
-import { questionApi } from '@/entities/question/api';
-import { CopyQuestionRequestDto } from '@gomterview/api';
+import { usePostQuestionCopyMutation } from '@/entities/question/api/mutations';
 
 /**
  * POST question/copy
@@ -10,12 +9,15 @@ import { CopyQuestionRequestDto } from '@gomterview/api';
  */
 const useQuestionCopyMutation = () => {
   const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (data: CopyQuestionRequestDto) =>
-      questionApi.postQuestionCopy(data),
-    onSuccess: (res, req) => {
+
+  return usePostQuestionCopyMutation({
+    onSuccess: (_, req) => {
+      const {
+        body: { workbookId },
+      } = req;
+
       void queryClient.invalidateQueries({
-        queryKey: QUERY_KEY.WORKBOOK_ID(req.workbookId),
+        queryKey: QUERY_KEY.WORKBOOK_ID(workbookId),
       });
     },
   });

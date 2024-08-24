@@ -1,6 +1,5 @@
 import useUserInfo from '@hooks/useUserInfo';
 import { useState } from 'react';
-import useDeleteQuestionMutation from '@/entities/question/model/mutations/useDeleteQuestionMutation';
 import { useRecoilState } from 'recoil';
 import { questionSetting } from '@atoms/interviewSetting';
 import { QUERY_KEY } from '@constants/queryKey';
@@ -10,12 +9,14 @@ import useQuestionWorkbookQuery from '../entities/question/model/queries/useQues
 import useWorkbookQuery from '../entities/workbook/model/queries/useWorkbookQuery';
 import useWorkbookEdit from './useWorkbookEdit';
 import { toast } from '@gomterview/toast';
+import { useDeleteQuestionByQuestionIdMutation } from '@/entities/question/api/mutations';
 
 const useWorkbookQuestionDelete = (workbookId: number) => {
   const userInfo = useUserInfo();
   const queryClient = useQueryClient();
   const [, setSelectedQuestions] = useRecoilState(questionSetting);
-  const { mutateAsync: deleteQuestionAsync } = useDeleteQuestionMutation();
+  const { mutateAsync: deleteQuestionAsync } =
+    useDeleteQuestionByQuestionIdMutation();
 
   const [checkedQuestion, setCheckedQuestion] = useState<number[]>([]);
 
@@ -37,7 +38,7 @@ const useWorkbookQuestionDelete = (workbookId: number) => {
   const deleteServerQuestion = async () => {
     await Promise.all(
       checkedQuestion.map((questionId) => {
-        return deleteQuestionAsync(questionId);
+        return deleteQuestionAsync({ questionId });
       })
     );
     if (questions.length === checkedQuestion.length) {
@@ -71,6 +72,7 @@ const useWorkbookQuestionDelete = (workbookId: number) => {
         (question) => !checkedQuestion.includes(question.questionId)
       );
       return {
+        ...prev,
         isSuccess: selectedQuestions.length >= 1,
         selectedData: selectedQuestions,
       };

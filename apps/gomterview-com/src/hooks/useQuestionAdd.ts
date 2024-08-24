@@ -1,17 +1,14 @@
 import { useQueryClient } from '@tanstack/react-query';
-import useQuestionMutation from '../entities/question/model/mutations/useQuestionMutation';
 import useUserInfo from './useUserInfo';
 import { Question } from '@/types/question';
 import { QUERY_KEY } from '@/constants/queryKey';
+import { usePostQuestionMutation } from '@/entities/question/api/mutations';
 
-const useQuestionAdd = (
-  workbookId: number,
-  { onSuccess }: { onSuccess?: () => void }
-) => {
+const useQuestionAdd = ({ onSuccess }: { onSuccess?: () => void }) => {
   const userInfo = useUserInfo();
   const queryClient = useQueryClient();
 
-  const { mutate } = useQuestionMutation(workbookId);
+  const { mutate } = usePostQuestionMutation();
 
   const createNewQuestion = (content: string, lastId: number = 1) => {
     return {
@@ -31,7 +28,7 @@ const useQuestionAdd = (
   }) => {
     if (userInfo) {
       mutate(
-        { content: value, workbookId: workbookId },
+        { body: { content: value, workbookId: workbookId } },
         {
           onSuccess: () => onSuccess && onSuccess(),
         }
