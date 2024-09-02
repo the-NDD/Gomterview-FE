@@ -1,16 +1,15 @@
 import { css } from '@emotion/react';
-import { Box, SelectionBox, Typography } from 'gomterview-design-system';
+import { Box, SelectionBox, Tabs, Typography } from 'gomterview-design-system';
 import { ResponsiveMenu } from '@common/index';
-import { Tabs } from 'gomterview-design-system';
-import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
 import useBreakpoint from '@hooks/useBreakPoint';
+import { useSuspenseGetCategoryQuery } from '@/entities/category/api/queries';
 
 type CategoryMenuProps = {
   onTabChange: (v: string) => void;
 };
 
 const CategoryMenu: React.FC<CategoryMenuProps> = ({ onTabChange }) => {
-  const { data: categories } = useCategoryQuery();
+  const { data: categories } = useSuspenseGetCategoryQuery();
 
   const isDeviceBreakpoint = useBreakpoint();
 

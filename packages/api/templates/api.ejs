@@ -1,0 +1,25 @@
+<%
+const { utils, route, config, modelTypes } = it;
+const { _, pascalCase, require } = utils;
+const apiClassName = pascalCase(route.moduleName);
+const routes = route.routes;
+const dataContracts = _.map(modelTypes, "name");
+%>
+
+import { getAPIResponseData } from '../utils/get-api-response-data';
+import { AxiosInstance } from 'axios';
+<% if (dataContracts.length) { %>
+import { <%~ dataContracts.join(", ") %> } from "../dto/dto"
+<% } %>
+
+export class <%= apiClassName %>Api {
+private readonly instance: AxiosInstance;
+
+constructor(instance: AxiosInstance) {
+this.instance = instance;
+}
+
+<% for (const route of routes) { %>
+<%~ includeFile('./procedure-call.ejs', { ...it, route }) %>
+<% } %>
+}

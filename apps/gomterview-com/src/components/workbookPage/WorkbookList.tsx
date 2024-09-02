@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
-import useWorkbookListQuery from '@hooks/apis/queries/useWorkbookListQuery';
 import useBreakpoint from '@hooks/useBreakPoint';
 import Workbook from './Workbook';
 import GridWorkbookList from './GridWorkbookList';
+import { useSuspenseGetWorkbookQuery } from '@/entities/workbook/api/queries';
 
 type WorkbookListProps = {
   selectedCategoryId: string;
@@ -10,7 +10,9 @@ type WorkbookListProps = {
 
 const WorkbookList: React.FC<WorkbookListProps> = ({ selectedCategoryId }) => {
   const isDeviceBreakpoint = useBreakpoint();
-  const { data: workbookList } = useWorkbookListQuery(selectedCategoryId);
+  const { data: workbookList } = useSuspenseGetWorkbookQuery({
+    category: selectedCategoryId ? Number(selectedCategoryId) : null,
+  });
 
   return (
     <ul className="workbook-list">

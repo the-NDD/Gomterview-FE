@@ -29,14 +29,15 @@ const StartWithSelectedQuestionModal = ({
     }));
 
   const addNewWorkbook = () => {
-    setSelectedQuestions({
+    setSelectedQuestions((prev) => ({
+      ...prev,
       isSuccess: questions.length >= 1,
       selectedData: questions.map((question) => ({
         ...question,
         workbookId: workbookData.workbookId,
       })),
       from: 'workbook',
-    });
+    }));
     toast.success('선택한 문제집으로 면접을 시작합니다!');
   };
 

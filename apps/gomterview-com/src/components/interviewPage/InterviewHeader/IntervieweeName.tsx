@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
 import { theme } from '@gomterview/_theme';
-import useMemberNameQuery from '@/hooks/apis/queries/useMemberNameQuery';
 import { Typography } from 'gomterview-design-system';
+import { useGetMemberNameQuery } from '@/entities/member/api/queries';
 
 const IntervieweeName: React.FC = () => {
-  const { data } = useMemberNameQuery();
+  const { data } = useGetMemberNameQuery();
 
   return (
     <div

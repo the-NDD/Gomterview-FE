@@ -5,16 +5,16 @@ import LabelBox from '@common/QuestionSelectionBox/WorkbookGeneratorModal/LabelB
 import WorkbookCategory from '@common/QuestionSelectionBox/WorkbookGeneratorModal/WorkbookCategory';
 import useInput from '@hooks/useInput';
 import { theme } from '@gomterview/_theme';
-import useCategoryQuery from '@hooks/apis/queries/useCategoryQuery';
 import useWorkbookAdd from '@hooks/useWorkbookAdd';
 import { toast } from '@gomterview/toast';
+import { useGetCategoryQuery } from '@/entities/category/api/queries';
 
 type WorkbookAddFormProps = {
   closeModal: () => void;
 };
 
 const WorkbookAddForm: React.FC<WorkbookAddFormProps> = ({ closeModal }) => {
-  const { data: categories } = useCategoryQuery();
+  const { data: categories } = useGetCategoryQuery();
   const [activeValidationError, setActiveValidationError] = useState(false);
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const {

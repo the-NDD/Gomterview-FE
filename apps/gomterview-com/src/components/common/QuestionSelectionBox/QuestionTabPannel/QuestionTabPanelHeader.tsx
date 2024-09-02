@@ -1,16 +1,16 @@
 import { css, useTheme } from '@emotion/react';
 import {
   Button,
+  Chip,
   Icon,
   Menu,
   MenuItem,
   Typography,
-  Chip,
 } from 'gomterview-design-system';
 import { useState } from 'react';
 import useWorkbookDelete from '@hooks/useWorkbookDelete';
 import { toast } from '@gomterview/toast';
-import { WorkbookQueryResult } from '@hooks/apis/queries/useWorkbookQuery';
+import { WorkbookQueryResult } from '@/entities/workbook/model/queries/useWorkbookQuery';
 
 type QuestionTabPanelHeaderProps = {
   workbookInfo: WorkbookQueryResult;

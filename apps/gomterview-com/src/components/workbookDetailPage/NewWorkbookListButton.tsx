@@ -1,9 +1,9 @@
 import { WorkbookEntity } from '@/types/workbook';
 import { css } from '@emotion/react';
 import { Icon, Typography } from 'gomterview-design-system';
-import useQuestionCopyMutation from '@hooks/apis/mutations/useQuestionCopyMutation';
-import useWorkbookPostMutation from '@hooks/apis/mutations/useWorkbookPostMutation';
+import useQuestionCopyMutation from '@/entities/question/model/mutations/useQuestionCopyMutation';
 import { toast } from '@gomterview/toast';
+import { usePostWorkbookMutation } from '@/entities/workbook/api/mutations';
 
 const NewWorkbookListButton = ({
   selectedQuestionIds,
@@ -14,7 +14,7 @@ const NewWorkbookListButton = ({
   workbookData: WorkbookEntity;
   onAddNewWorkbook: () => void;
 }) => {
-  const { mutateAsync: newWorkbookMutate } = useWorkbookPostMutation();
+  const { mutateAsync: newWorkbookMutate } = usePostWorkbookMutation();
   const { mutateAsync: newQuestionCopyMutate } = useQuestionCopyMutation();
 
   const handleNewWorkbook = () => {
@@ -30,15 +30,19 @@ const NewWorkbookListButton = ({
 
   const createNewWorkbook = async () => {
     const result = await newWorkbookMutate({
-      title: `${workbookData.title} 복사본`,
-      content: workbookData.content,
-      categoryId: workbookData.categoryId,
-      isPublic: workbookData.isPublic,
+      body: {
+        title: `${workbookData.title} 복사본`,
+        content: workbookData.content,
+        categoryId: workbookData.categoryId,
+        isPublic: workbookData.isPublic,
+      },
     });
 
     await newQuestionCopyMutate({
-      workbookId: result.workbookId,
-      questionIds: selectedQuestionIds,
+      body: {
+        workbookId: result.workbookId,
+        questionIds: selectedQuestionIds,
+      },
     });
 
     toast.success('새로운 문제집에 선택된 질문들이 추가되었습니다.');

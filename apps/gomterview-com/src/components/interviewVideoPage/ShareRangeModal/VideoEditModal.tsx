@@ -3,8 +3,8 @@ import {
   Button,
   CheckBox,
   Input,
-  Typography,
   Modal,
+  Typography,
 } from 'gomterview-design-system';
 
 import { theme } from '@gomterview/_theme';
@@ -12,7 +12,7 @@ import LabelBox from '@common/QuestionSelectionBox/WorkbookGeneratorModal/LabelB
 import useInput from '@hooks/useInput';
 import { toast } from '@gomterview/toast';
 import { FormEventHandler, useEffect, useState } from 'react';
-import useRelatedInfoListQuery from '@hooks/apis/queries/useVideoRelatedInfoListQuery';
+import { useGetVideoRelateByVideoIdQuery } from '@/entities/video/api/queries';
 
 const visibilityOptions: {
   title: string;
@@ -49,7 +49,7 @@ const VideoEditModal: React.FC<VideoEditModalProps> = ({
   editVideo,
   closeModal,
 }) => {
-  const { data: relatedInfoList } = useRelatedInfoListQuery(videoId);
+  const { data: relatedInfoList } = useGetVideoRelateByVideoIdQuery(videoId);
   const [activeValidationError, setActiveValidationError] = useState(false);
   const [isThumbnailReset, setIsThumbnailReest] = useState(false);
   const [selectedVisibility, setSelectedVisibility] = useState<

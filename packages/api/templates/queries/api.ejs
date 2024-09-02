@@ -1,0 +1,142 @@
+<%
+const { utils, route, modelTypes, config } = it;
+const { pascalCase } = utils;
+
+const { moduleName, routes } = route;
+
+const camelCase = (str) => str.replace(/([-_][a-zA-z])/g, (group) => group.toUpperCase().replace('-', '').replace('_', ''))
+        .replace(/By([A-Z])/g, (group) => `By${group.slice(2)}`);
+
+const getFunctionName = ({ request: { method, path } }) =>
+        `${method}_${path
+                .split('/')
+                .slice(2)
+                .map(segment =>
+                        segment.includes('${')
+                                ? `By_${segment.replace(/[${}]/g, '')}`
+                                : segment
+                )
+                .join('_')}`;
+
+const buildQueryKey = ({ path }) =>
+        path
+                .split('/')
+                .filter(segment => segment && segment !== 'api')
+                .map(segment =>
+                        segment.match(/\${/)
+                                ? segment.replace(/[${}]/g, '').toUpperCase()
+                                : segment.toUpperCase()
+                )
+                .join('_');
+
+const buildPathQueryKey = ({ path }) =>
+        path
+                .split('/')
+                .filter(segment => segment && segment !== 'api')
+                .map(segment =>
+                        segment.match(/\${/)
+                                ? segment.replace(/[${}]/g, '')
+                                : `'${segment}'`
+                );
+
+const basicTypes = ['void', 'number', 'string', 'null', 'boolean'];
+
+const addDtoSuffix = (type) => basicTypes.includes(type) ? type : type.replace(/[()]/g, '').replace(/([a-zA-Z]+)(?=\[|$)/, '$1Dto');
+
+const getRequestParams = ({ parameters = [], query, payload }) => ({
+    withTypes: [
+        ...parameters.map(({ name, type }) => `${name}: ${addDtoSuffix(type)}`),
+        query ? `params: ${addDtoSuffix(query.type)}` : '',
+        payload ? `body: ${addDtoSuffix(payload.type)}` : '',
+    ].filter(Boolean).join(', '),
+    withoutTypes: [
+        ...parameters.map(({ name }) => `${name}`),
+        query ? `params` : '',
+        payload ? 'body' : '',
+    ].filter(Boolean).join(', ')
+});
+
+const queryConfigs = routes
+        .filter(({ request: { method } }) => method === 'get')
+        .map(route => {
+            const functionName = getFunctionName(route);
+            const { request, response } = route;
+            const queryKeyName = buildQueryKey(request);
+            const pathQueryKey = buildPathQueryKey(request);
+            const { withTypes: requestParams, withoutTypes: requestParamsWithoutTypes } = getRequestParams(request);
+
+            return {
+                moduleName,
+                route,
+                functionName: camelCase(functionName),
+                hookName: `use${pascalCase(functionName)}Query`,
+                suspenseHookName: `useSuspense${pascalCase(functionName)}Query`,
+                responseDto: addDtoSuffix(response.type),
+                requestParams,
+                requestParamsWithoutTypes,
+                queryKeyName: `GET_${queryKeyName}`,
+                queryKey: `(${requestParams}) => [${[
+                    ...pathQueryKey,
+                    request.query ? 'params' : null,
+                    request.payload ? 'data' : null,
+                ].filter(Boolean).join(', ')}]`,
+            };
+        });
+
+const allDto = queryConfigs.map(v=>v.responseDto.replace(/[\[\]]/g, '')).join(',');
+%>
+
+import { DefaultError, useQuery, useSuspenseQuery, UseQueryOptions, UseSuspenseQueryOptions } from '@tanstack/react-query';
+
+import { <%~ allDto %> } from '@gomterview/api';
+import { <%~ moduleName %>Api } from '../api';
+
+
+export const <% ~moduleName.toUpperCase() %>_QUERY_KEY = {
+<% for (const queryConfig of queryConfigs) { %>
+    <% ~queryConfig.queryKeyName %>: <% ~queryConfig.queryKey %>,
+<% } %>
+}
+
+const queries = {
+<% for (const queryConfig of queryConfigs) { %>
+    <% ~queryConfig.functionName %>: (<% ~queryConfig.requestParams %>) => ({
+    queryKey: <% ~moduleName.toUpperCase() %>_QUERY_KEY.<% ~queryConfig.queryKeyName %>(<% ~queryConfig.requestParamsWithoutTypes %>),
+    queryFn: () => <% ~moduleName %>Api.<% ~queryConfig.functionName %>(<% ~queryConfig.requestParamsWithoutTypes %>)
+    }),
+<% } %>
+}
+
+// ---------------------- Query ------------------------------
+<% for (const queryConfig of queryConfigs) {
+    const routeDocs = includeFile("../route-docs.ejs", { config, route: queryConfig.route, utils });
+%>
+/**
+<%~ routeDocs.lines %>
+*/
+export const <%~ queryConfig.hookName %> = <TData = <%~ queryConfig.responseDto %>>(
+<%~ queryConfig.requestParams ? `${queryConfig.requestParams},`:''%>
+options?: Omit<UseQueryOptions<<%~ queryConfig.responseDto %>,DefaultError, TData>,'queryKey' | 'queryFn' >) => {
+return useQuery({
+...queries.<% ~queryConfig.functionName %>(<% ~queryConfig.requestParamsWithoutTypes %>),
+...options,
+})
+}
+<% } %>
+
+// ------------------ Suspense Query --------------------------
+<% for (const queryConfig of queryConfigs) {
+    const routeDocs = includeFile("../route-docs.ejs", { config, route: queryConfig.route, utils });
+%>
+/**
+<%~ routeDocs.lines %>
+*/
+export const <%~ queryConfig.suspenseHookName %> = <TData = <%~ queryConfig.responseDto %>>(
+<%~ queryConfig.requestParams ? `${queryConfig.requestParams},`:''%>
+options?: Omit<UseSuspenseQueryOptions<<%~ queryConfig.responseDto %>,DefaultError, TData>,'queryKey' | 'queryFn' >) => {
+return useSuspenseQuery({
+...queries.<% ~queryConfig.functionName %>(<% ~queryConfig.requestParamsWithoutTypes %>),
+...options,
+})
+}
+<% } %>

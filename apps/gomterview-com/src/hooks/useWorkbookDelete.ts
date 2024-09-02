@@ -1,27 +1,28 @@
 import useUserInfo from '@hooks/useUserInfo';
 import { useQueryClient } from '@tanstack/react-query';
-import useWorkbookDeleteMutation from '@hooks/apis/mutations/useWorkbookDeleteMutation';
 import { WorkbookTitleListResDto } from '@/types/workbook';
-import { QUERY_KEY } from '@constants/queryKey';
+import { useDeleteWorkbookByWorkbookIdMutation } from '@/entities/workbook/api/mutations';
+import { WORKBOOK_QUERY_KEY } from '@/entities/workbook/api/queries';
+import { QUESTION_QUERY_KEY } from '@/entities/question/api/queries';
 
 const useWorkbookDelete = () => {
   const userInfo = useUserInfo();
   const queryClient = useQueryClient();
 
-  const { mutate: deleteWorkbookSet } = useWorkbookDeleteMutation();
+  const { mutate: deleteWorkbookSet } = useDeleteWorkbookByWorkbookIdMutation();
 
   const deleteFromServer = (workbookId: number) => {
-    deleteWorkbookSet(Number(workbookId));
+    deleteWorkbookSet({ workbookId: Number(workbookId) });
   };
 
   const deleteFromState = (workbookId: number) => {
     queryClient.setQueryData<WorkbookTitleListResDto | []>(
-      QUERY_KEY.WORKBOOK_TITLE,
+      WORKBOOK_QUERY_KEY.GET_WORKBOOK_TITLE(),
       (prev) => prev?.filter((item) => item.workbookId !== Number(workbookId))
     );
 
     void queryClient.invalidateQueries({
-      queryKey: QUERY_KEY.QUESTION_WORKBOOK(workbookId),
+      queryKey: QUESTION_QUERY_KEY.GET_QUESTION_WORKBOOKID(workbookId),
     });
   };
 

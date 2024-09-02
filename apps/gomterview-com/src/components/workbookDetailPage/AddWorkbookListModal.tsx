@@ -1,8 +1,8 @@
 import { WorkbookEntity } from '@/types/workbook';
 import { css } from '@emotion/react';
-import { Button, CheckBox, Typography, Modal } from 'gomterview-design-system';
-import useQuestionCopyMutation from '@hooks/apis/mutations/useQuestionCopyMutation';
-import useWorkbookTitleListQuery from '@hooks/apis/queries/useWorkbookTitleListQuery';
+import { Button, CheckBox, Modal, Typography } from 'gomterview-design-system';
+import useQuestionCopyMutation from '@/entities/question/model/mutations/useQuestionCopyMutation';
+import useWorkbookTitleListQuery from '@/entities/workbook/model/queries/useWorkbookTitleListQuery';
 import { useState } from 'react';
 import NewWorkbookListButton from './NewWorkbookListButton';
 import { useNavigate } from 'react-router-dom';
@@ -41,8 +41,10 @@ const AddWorkbookListModal = ({
         const workbookId = parseInt(item);
 
         return mutateAsync({
-          workbookId: workbookId,
-          questionIds: selectedQuestionIds,
+          body: {
+            workbookId: workbookId,
+            questionIds: selectedQuestionIds,
+          },
         });
       })
     );

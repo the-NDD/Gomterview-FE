@@ -1,17 +1,14 @@
 import { useQueryClient } from '@tanstack/react-query';
-import useQuestionMutation from './apis/mutations/useQuestionMutation';
 import useUserInfo from './useUserInfo';
 import { Question } from '@/types/question';
-import { QUERY_KEY } from '@/constants/queryKey';
+import { usePostQuestionMutation } from '@/entities/question/api/mutations';
+import { QUESTION_QUERY_KEY } from '@/entities/question/api/queries';
 
-const useQuestionAdd = (
-  workbookId: number,
-  { onSuccess }: { onSuccess?: () => void }
-) => {
+const useQuestionAdd = ({ onSuccess }: { onSuccess?: () => void }) => {
   const userInfo = useUserInfo();
   const queryClient = useQueryClient();
 
-  const { mutate } = useQuestionMutation(workbookId);
+  const { mutate } = usePostQuestionMutation();
 
   const createNewQuestion = (content: string, lastId: number = 1) => {
     return {
@@ -31,14 +28,14 @@ const useQuestionAdd = (
   }) => {
     if (userInfo) {
       mutate(
-        { content: value, workbookId: workbookId },
+        { body: { content: value, workbookId: workbookId } },
         {
           onSuccess: () => onSuccess && onSuccess(),
         }
       );
     } else {
       queryClient.setQueryData<Question[] | []>(
-        QUERY_KEY.QUESTION_WORKBOOK(workbookId),
+        QUESTION_QUERY_KEY.GET_QUESTION_WORKBOOKID(workbookId),
         (prev) => {
           if (prev?.length === 0 || !prev) return [createNewQuestion(value)];
           return [createNewQuestion(value, prev[0].questionId), ...prev];

@@ -6,7 +6,7 @@ import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import { Navigate } from 'react-router-dom';
 import logAPIErrorToSentry from './utils/logAPIErrorToSentry';
 import { API } from '@constants/api';
-import api from './apis/axios';
+import api from './apis/instance';
 import SomethingWrongErrorPage from '@page/errorPage/SomethingWrong';
 
 const APIErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {

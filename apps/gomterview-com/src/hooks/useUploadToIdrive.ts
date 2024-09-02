@@ -1,10 +1,12 @@
 import { SelectedQuestion } from '@/atoms/interviewSetting';
-import useGetPreSignedUrlMutation from '@/hooks/apis/mutations/useGetPreSignedUrlMutation';
 import { putBlobDataToIdrive } from '@/apis/idrive';
-import useAddVideoMutation from '@/hooks/apis/mutations/useAddVideoMutation';
 import { toast } from '@gomterview/toast';
 import { EncodingWebmToMp4, getThumbnailBlob } from '@/utils/record';
 import { IDRIVE_URL } from '@constants/api';
+import {
+  usePostVideoMutation,
+  usePostVideoPreSignedMutation,
+} from '@/entities/video/api/mutations';
 
 type UploadParams = {
   blob: Blob;
@@ -13,8 +15,8 @@ type UploadParams = {
 };
 
 export const useUploadToIDrive = () => {
-  const { mutateAsync: getPreSignedUrl } = useGetPreSignedUrlMutation();
-  const { mutate: videoToServer } = useAddVideoMutation();
+  const { mutateAsync: getPreSignedUrl } = usePostVideoPreSignedMutation();
+  const { mutate: videoToServer } = usePostVideoMutation();
 
   const uploadToIDriveWithMP4 = async ({
     blob,
@@ -38,16 +40,18 @@ export const useUploadToIDrive = () => {
       });
 
       videoToServer({
-        questionId: currentQuestion.questionId,
-        videoName: currentQuestion.questionContent,
-        videoAnswer: `${
-          currentQuestion?.answerContent
-            ? currentQuestion.answerContent
-            : '답변이 작성되지 않았습니다.'
-        }`,
-        url: `${IDRIVE_URL}/videos/${video.key}`,
-        thumbnail: `${IDRIVE_URL}/thumbnail/${thumbnail.key}`,
-        videoLength: recordTime,
+        body: {
+          questionId: currentQuestion.questionId,
+          videoName: currentQuestion.questionContent,
+          videoAnswer: `${
+            currentQuestion?.answerContent
+              ? currentQuestion.answerContent
+              : '답변이 작성되지 않았습니다.'
+          }`,
+          url: `${IDRIVE_URL}/videos/${video.key}`,
+          thumbnail: `${IDRIVE_URL}/thumbnail/${thumbnail.key}`,
+          videoLength: recordTime,
+        },
       });
 
       toast.success('성공적으로 서버에 업로드 되었습니다😊');
@@ -78,16 +82,18 @@ export const useUploadToIDrive = () => {
       });
 
       videoToServer({
-        questionId: currentQuestion.questionId,
-        videoName: currentQuestion.questionContent,
-        videoAnswer: `${
-          currentQuestion?.answerContent
-            ? currentQuestion.answerContent
-            : '답변이 작성되지 않았습니다.'
-        }`,
-        url: `${IDRIVE_URL}/videos/${video.key}`,
-        thumbnail: `${IDRIVE_URL}/thumbnail/${thumbnail.key}`,
-        videoLength: recordTime,
+        body: {
+          questionId: currentQuestion.questionId,
+          videoName: currentQuestion.questionContent,
+          videoAnswer: `${
+            currentQuestion?.answerContent
+              ? currentQuestion.answerContent
+              : '답변이 작성되지 않았습니다.'
+          }`,
+          url: `${IDRIVE_URL}/videos/${video.key}`,
+          thumbnail: `${IDRIVE_URL}/thumbnail/${thumbnail.key}`,
+          videoLength: recordTime,
+        },
       });
 
       toast.success('성공적으로 서버에 업로드 되었습니다😊');

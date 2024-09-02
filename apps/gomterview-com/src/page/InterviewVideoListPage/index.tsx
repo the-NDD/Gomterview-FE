@@ -5,11 +5,11 @@ import { CenterLayout } from '@components/layout';
 import { css } from '@emotion/react';
 
 import { Box, Typography } from 'gomterview-design-system';
-import usePublicVideoListQuery from '@hooks/apis/queries/usePublicVideoListQuery';
 import { theme } from '@gomterview/_theme';
+import { useGetVideoPublicQuery } from '@/entities/video/api/queries';
 
 const InterviewVideoListPage: React.FC = () => {
-  const { data: allVideoList } = usePublicVideoListQuery();
+  const { data: allVideoList } = useGetVideoPublicQuery();
 
   return (
     <InterviewVideoListPageLayout>
