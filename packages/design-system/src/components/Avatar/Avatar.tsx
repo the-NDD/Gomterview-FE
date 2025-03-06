@@ -28,7 +28,7 @@ const Avatar: React.FC<AvatarProps> = ({
         src={src}
         loading="lazy"
         onError={(e) =>
-          (e.currentTarget.src = `https://raw.githubusercontent.com/the-NDD/Gomterview-FE/main/src/assets/images/logo.webp`)
+          (e.currentTarget.src = `https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png`)
         }
         crossOrigin="anonymous"
         css={css`
