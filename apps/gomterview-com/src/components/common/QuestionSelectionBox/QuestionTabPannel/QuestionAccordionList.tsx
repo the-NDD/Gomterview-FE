@@ -4,7 +4,7 @@ import WorkbookEditModeDialog from '@common/QuestionSelectionBox/WorkbookEditMod
 import useWorkbookQuestionDelete from '@hooks/useWorkbookQuestionDelete';
 import { css } from '@emotion/react';
 import { toast } from '@gomterview/toast';
-import { WorkbookQueryResult } from '@/entities/workbook/model/queries/useWorkbookQuery';
+import { WorkbookQueryResult } from '@/entities/workbook/model/use-workbook-query';
 import useEmptySuspenseEffect from '@hooks/useEmptySuspenseEffect';
 import { useRecoilValue } from 'recoil';
 import { questionSetting } from '@atoms/interviewSetting';

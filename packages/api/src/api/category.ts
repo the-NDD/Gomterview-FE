@@ -16,7 +16,7 @@ export class CategoryApi {
   getCategory() {
     return getAPIResponseData<CategoryResponseDto[]>(this.instance, {
       method: 'get',
-      url: `/category`,
+      url: `/api/category`,
     });
   }
 }

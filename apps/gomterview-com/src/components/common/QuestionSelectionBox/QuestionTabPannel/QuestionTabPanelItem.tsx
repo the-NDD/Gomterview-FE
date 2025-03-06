@@ -14,7 +14,7 @@ import { ExcludeArray } from '@/types/utils';
 import QuestionTabPanelHeader from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionTabPanelHeader';
 import useBreakpoint from '@hooks/useBreakPoint';
 import QuestionTabPanelEditHeader from './QuestionTabPanelEditHeader';
-import useWorkbookQuery from '@/entities/workbook/model/queries/useWorkbookQuery';
+import useWorkbookQuery from '@/entities/workbook/model/use-workbook-query';
 import QuestionTabPanelBlank from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionTabPanelBlank';
 import QuestionAccordionList from '@common/QuestionSelectionBox/QuestionTabPannel/QuestionAccordionList';
 
@@ -39,6 +39,8 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
   const toggleShowSelectionOption = () => {
     setOnlySelectedOption((prev) => !prev);
   };
+  console.log(workbook);
+
   const { data: workbookInfo } = useWorkbookQuery({
     workbookId: workbook.workbookId,
   });

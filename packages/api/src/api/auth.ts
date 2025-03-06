@@ -14,7 +14,7 @@ export class AuthApi {
   getAuthLogin() {
     return getAPIResponseData<void>(this.instance, {
       method: 'get',
-      url: `/auth/login`,
+      url: `/api/auth/login`,
     });
   }
 
@@ -24,7 +24,7 @@ export class AuthApi {
   getAuthGoogle() {
     return getAPIResponseData<void>(this.instance, {
       method: 'get',
-      url: `/auth/google`,
+      url: `/api/auth/google`,
     });
   }
 
@@ -34,7 +34,7 @@ export class AuthApi {
   deleteAuthLogout() {
     return getAPIResponseData<void>(this.instance, {
       method: 'delete',
-      url: `/auth/logout`,
+      url: `/api/auth/logout`,
     });
   }
 
@@ -44,7 +44,7 @@ export class AuthApi {
   patchAuthReissue() {
     return getAPIResponseData<void>(this.instance, {
       method: 'patch',
-      url: `/auth/reissue`,
+      url: `/api/auth/reissue`,
     });
   }
 }

@@ -4,8 +4,8 @@ import { useRecoilState } from 'recoil';
 import { questionSetting } from '@atoms/interviewSetting';
 import { Question } from '@/types/question';
 import { useQueryClient } from '@tanstack/react-query';
-import useQuestionWorkbookQuery from '../entities/question/model/queries/useQuestionWorkbookQuery';
-import useWorkbookQuery from '../entities/workbook/model/queries/useWorkbookQuery';
+import useQuestionWorkbookQuery from '../entities/question/model/use-question-workbook-query';
+import useWorkbookQuery from '../entities/workbook/model/use-workbook-query';
 import useWorkbookEdit from './useWorkbookEdit';
 import { toast } from '@gomterview/toast';
 import { useDeleteQuestionByQuestionIdMutation } from '@/entities/question/api/mutations';
@@ -23,6 +23,7 @@ const useWorkbookQuestionDelete = (workbookId: number) => {
   const { data: questions } = useQuestionWorkbookQuery({
     workbookId: workbookId,
   });
+  console.log(workbookId);
   const { data: workbookInfo } = useWorkbookQuery({
     workbookId: workbookId,
   });

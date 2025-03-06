@@ -10,7 +10,7 @@ import {
 import { useState } from 'react';
 import useWorkbookDelete from '@hooks/useWorkbookDelete';
 import { toast } from '@gomterview/toast';
-import { WorkbookQueryResult } from '@/entities/workbook/model/queries/useWorkbookQuery';
+import { WorkbookQueryResult } from '@/entities/workbook/model/use-workbook-query';
 
 type QuestionTabPanelHeaderProps = {
   workbookInfo: WorkbookQueryResult;

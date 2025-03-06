@@ -25,7 +25,7 @@ export class QuestionApi {
       this.instance,
       {
         method: 'post',
-        url: `/question`,
+        url: `/api/question`,
         data,
       }
     );
@@ -41,7 +41,7 @@ export class QuestionApi {
       this.instance,
       {
         method: 'post',
-        url: `/question/copy`,
+        url: `/api/question/copy`,
         data,
       }
     );
@@ -54,7 +54,7 @@ export class QuestionApi {
   getQuestionByWorkbookId(workbookId: number) {
     return getAPIResponseData<QuestionResponseDto[]>(this.instance, {
       method: 'get',
-      url: `/question/${workbookId}`,
+      url: `/api/question/${workbookId}`,
     });
   }
 
@@ -68,7 +68,7 @@ export class QuestionApi {
       this.instance,
       {
         method: 'patch',
-        url: `/question/index`,
+        url: `/api/question/index`,
         data,
       }
     );
@@ -82,7 +82,7 @@ export class QuestionApi {
   deleteQuestionByQuestionId(questionId: number) {
     return getAPIResponseData<void>(this.instance, {
       method: 'delete',
-      url: `/question/${questionId}`,
+      url: `/api/question/${questionId}`,
     });
   }
 }

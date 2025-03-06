@@ -17,7 +17,7 @@ export class MemberApi {
   getMember() {
     return getAPIResponseData<MemberResponseDto>(this.instance, {
       method: 'get',
-      url: `/member`,
+      url: `/api/member`,
     });
   }
 
@@ -28,7 +28,7 @@ export class MemberApi {
   getMemberName() {
     return getAPIResponseData<MemberNicknameResponseDto>(this.instance, {
       method: 'get',
-      url: `/member/name`,
+      url: `/api/member/name`,
     });
   }
 }

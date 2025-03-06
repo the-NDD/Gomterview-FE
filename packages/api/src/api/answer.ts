@@ -23,7 +23,7 @@ export class AnswerApi {
       this.instance,
       {
         method: 'post',
-        url: `/answer`,
+        url: `/api/answer`,
         data,
       }
     );
@@ -37,7 +37,7 @@ export class AnswerApi {
   postAnswerDefault(data: DefaultAnswerRequestDto) {
     return getAPIResponseData<void, DefaultAnswerRequestDto>(this.instance, {
       method: 'post',
-      url: `/answer/default`,
+      url: `/api/answer/default`,
       data,
     });
   }
@@ -49,7 +49,7 @@ export class AnswerApi {
   getAnswerByQuestionId(questionId: number) {
     return getAPIResponseData<AnswerResponseDto[]>(this.instance, {
       method: 'get',
-      url: `/answer/${questionId}`,
+      url: `/api/answer/${questionId}`,
     });
   }
 
@@ -61,7 +61,7 @@ export class AnswerApi {
   deleteAnswerByAnswerId(answerId: number) {
     return getAPIResponseData<void>(this.instance, {
       method: 'delete',
-      url: `/answer/${answerId}`,
+      url: `/api/answer/${answerId}`,
     });
   }
 }

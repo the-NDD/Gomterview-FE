@@ -1,6 +1,6 @@
 import TabPanelItem from './QuestionTabPannel/QuestionTabPanelItem';
 import { Box, Tabs } from 'gomterview-design-system';
-import useWorkbookTitleListQuery from '@/entities/workbook/model/queries/useWorkbookTitleListQuery';
+import useWorkbookTitleListQuery from '@/entities/workbook/model/use-workbook-title-list-query';
 import QuestionTabList from '@common/QuestionSelectionBox/QuestionTabList';
 import WorkbookAddButton from '@common/QuestionSelectionBox/WorkbookAddButton';
 import { theme } from '@gomterview/_theme';
@@ -24,7 +24,7 @@ const QuestionSelectionBox = () => {
   const [isSidebarToggleOn, setIsSidebarToggleOn] = useState(true);
 
   if (!workbookListData) return null;
-
+  console.log(workbookListData);
   return (
     <>
       <Box

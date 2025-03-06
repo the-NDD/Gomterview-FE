@@ -8,8 +8,7 @@ import {
 } from '@components/workbookDetailPage';
 import { css } from '@emotion/react';
 import { Box, Button, CheckBox } from 'gomterview-design-system';
-import useQuestionWorkbookQuery from '@/entities/question/model/queries/useQuestionWorkbookQuery';
-import useWorkbookQuery from '@/entities/workbook/model/queries/useWorkbookQuery';
+
 import useUserInfo from '@hooks/useUserInfo';
 import { theme } from '@gomterview/_theme';
 import { useState } from 'react';
@@ -17,6 +16,8 @@ import { useLoaderData } from 'react-router-dom';
 import { toast } from '@gomterview/toast';
 import { useModal } from '@gomterview/use-modal';
 import { RequestLoginModal } from '@components/common';
+import useQuestionWorkbookQuery from '@/entities/question/model/use-question-workbook-query';
+import useWorkbookQuery from '@/entities/workbook/model/use-workbook-query';
 
 const WorkbookDetailPage = () => {
   const [selectedQuestion, setSelectedQuestion] = useState<Question[]>([]);

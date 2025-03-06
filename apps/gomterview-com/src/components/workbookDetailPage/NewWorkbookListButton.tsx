@@ -1,7 +1,7 @@
 import { WorkbookEntity } from '@/types/workbook';
 import { css } from '@emotion/react';
 import { Icon, Typography } from 'gomterview-design-system';
-import useQuestionCopyMutation from '@/entities/question/model/mutations/useQuestionCopyMutation';
+import useQuestionCopyMutation from '@/entities/question/model/use-question-copy-mutation';
 import { toast } from '@gomterview/toast';
 import { usePostWorkbookMutation } from '@/entities/workbook/api/mutations';
 

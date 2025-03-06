@@ -1,8 +1,8 @@
 import { WorkbookEntity } from '@/types/workbook';
 import { css } from '@emotion/react';
 import { Button, CheckBox, Modal, Typography } from 'gomterview-design-system';
-import useQuestionCopyMutation from '@/entities/question/model/mutations/useQuestionCopyMutation';
-import useWorkbookTitleListQuery from '@/entities/workbook/model/queries/useWorkbookTitleListQuery';
+import useQuestionCopyMutation from '@/entities/question/model/use-question-copy-mutation';
+import useWorkbookTitleListQuery from '@/entities/workbook/model/use-workbook-title-list-query';
 import { useState } from 'react';
 import NewWorkbookListButton from './NewWorkbookListButton';
 import { useNavigate } from 'react-router-dom';

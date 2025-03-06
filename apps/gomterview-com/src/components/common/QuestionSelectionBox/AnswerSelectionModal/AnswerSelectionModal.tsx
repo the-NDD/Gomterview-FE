@@ -6,7 +6,7 @@ import { Question } from '@/types/question';
 import { Modal, Typography } from 'gomterview-design-system';
 import { toast } from '@gomterview/toast';
 import { useGetAnswerByQuestionIdQuery } from '@/entities/answer/api/queries';
-import useAnswerDefaultMutation from '@/entities/answer/model/mutations/useAnswerDefaultMutation';
+import useAnswerDefaultMutation from '@/entities/answer/model/use-answer-default-mutation';
 
 type AnswerSelectionModalProps = {
   workbookId: number;
